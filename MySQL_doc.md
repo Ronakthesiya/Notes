@@ -1,11 +1,120 @@
 # MySQL Documentation: From Beginner to Advanced
 
 ## Table of Contents
+0. [Notes](#notes)
 1. [DDL (Data Definition Language)](#ddl-data-definition-language)
 2. [DML (Data Manipulation Language)](#dml-data-manipulation-language)
 3. [DQL (Data Query Language)](#dql-data-query-language)
 4. [Aggregate Functions](#aggregate-functions)
 5. [JOINs](#joins)
+
+---
+## Notes
+
+### Constraints
+
+#### NOT NULL
+```sql
+CREATE TABLE temp (
+    col1 INT NOT NULL
+);
+```
+
+#### UNIQUE
+```sql
+CREATE TABLE temp (
+    col1 INT UNIQUE
+);
+```
+
+#### PRIMARY KEY
+```sql
+CREATE TABLE temp (
+    col1 INT PRIMARY KEY
+    -- OR
+    PRIMARY KEY (col1, col2, ...)
+);
+```
+
+#### FOREIGN KEY
+```sql
+CREATE TABLE temp (
+    col1 INT,
+    FOREIGN KEY (col1) REFERENCES temp2(col2)
+);
+```
+
+#### DEFAULT
+```sql
+CREATE TABLE temp (
+    col1 INT DEFAULT 123
+);
+```
+
+#### CHECK
+```sql
+CREATE TABLE temp (
+    col1 INT CHECK (col1 >= 18)
+    -- OR
+    CONSTRAINT col1_check CHECK (col1 >= 18 AND col1 <= 100)
+);
+```
+---
+### OPERATORS
+
+Arithmetic : +,-,*,/,%
+Comparison : =, !=, >, >=, <, <=
+Logical : AND, OR, NOT, IN, BETWEEN, ALL, LIKE, ANY
+Bitwise : &, |
+
+---
+### Limit Clause
+```sql
+-- first 3 rows
+SELECT * FROM table LIMIT 3;
+```
+
+---
+### Order By Clause
+```sql
+SELECT * FROM table
+Order by col1;
+
+SELECT * FROM table
+Order by col1 DESC;
+```
+
+---
+### Aggregate Functions
+COUNT(), MAX(), MIN(), SUM(), AVG() 
+
+---
+### Cascading for FK
+#### On Delete/Update Cascade :
+referencing rows are updated/deleted in the child table when the referenced row is updated/deleted in the parent table which has a primary key.
+
+```sql
+CREATE TABLE temp(
+    col1 INT,
+    FOREIGN KEY (col1) REFERENCES temp2(col2)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
+```
+
+---
+
+### ALTER Table
+```sql
+ALTER TABLE table_name
+
+ADD COLUMN col_name datatype constraint
+DROP COLUMN col_name
+RENAME TO new_tbl_name
+CHANGE COLUMN old_name new_name new_datatype new_constraint
+MODIFY col_name new_datatype new_constraint
+
+```
 
 ---
 
