@@ -116,6 +116,63 @@ MODIFY col_name new_datatype new_constraint
 
 ```
 
+### FIELD(value, val1, val2, val3...)
+value : The value for which you want to find position
+val1, val2,... : A list of values against which you want to compare the specified value.
+
+```sql
+SELECT FIELD('A', 'A', 'B','C');
+
+// output 
++--------------------------+
+| FIELD('A', 'A', 'B','C') |
++--------------------------+
+|                        1 |
++--------------------------+
+1 row in set (0.00 sec)
+```
+
+FIELD with ORDER BY
+
+```sql
+SELECT 
+  orderNumber, 
+  status 
+FROM 
+  orders 
+ORDER BY 
+  FIELD(
+    status, 
+    'In Process', 
+    'On Hold', 
+    'Cancelled', 
+    'Resolved', 
+    'Disputed', 
+    'Shipped'
+  );
+
+
+// output
++-------------+------------+
+| orderNumber | status     |
++-------------+------------+
+|       10425 | In Process |
+|       10421 | In Process |
+|       10422 | In Process |
+|       10420 | In Process |
+|       10424 | In Process |
+|       10423 | In Process |
+|       10414 | On Hold    |
+|       10401 | On Hold    |
+|       10334 | On Hold    |
+|       10407 | On Hold    |
+
+```
+
+
+
+
+
 ---
 
 ## DDL (Data Definition Language)
