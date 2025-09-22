@@ -3,7 +3,11 @@
 ## Table of Contents
 1. [Create Trigger](#create_trigger)
 2. [Drop Trigger](#drop_trigger)
-2. [BEFORE INSERT Trigger](#before_insert_trigger)
+3. [BEFORE INSERT Trigger](#before_insert_trigger)
+4. [Multiple Triggers](#multiple_trigger)
+5. [Call a Stored Procedure From a Triggers](#call_sp_from_trigger)
+6. [SHOW TRIGGERS](#show_trigger)
+
 ---
 ## Create_Trigger
 
@@ -46,6 +50,7 @@ END;
 
 ```
 
+---
 ## Drop_Trigger
 
 #### Syntax
@@ -64,7 +69,7 @@ In this syntax:
 
 - Note that if you drop a table, MySQL will automatically drop all triggers associated with the table.
 
-
+---
 ## Before_Insert_Trigger
 
 ```sql
@@ -107,5 +112,139 @@ BEGIN
 END $$
 
 DELIMITER ;
+
+```
+
+---
+
+## Multiple_Trigger
+
+Syntax :
+
+```sql
+
+CREATE TRIGGER trigger_name
+{BEFORE|AFTER}{INSERT|UPDATE|DELETE} 
+ON table_name FOR EACH ROW 
+{FOLLOWS|PRECEDES} existing_trigger_name
+BEGIN
+    -- statements
+END
+
+```
+
+In this syntax, the FOLLOWS or PRECEDES specifies whether the new trigger should be invoked before or after an existing trigger.
+
+- The FOLLOWS allows the new trigger to activate after an existing trigger.
+- The PRECEDES allows the new trigger to activate before an existing trigger.
+
+Example : 
+
+```sql
+CREATE TRIGGER before_products_update_log_user
+   BEFORE UPDATE ON products 
+   FOR EACH ROW 
+   FOLLOWS before_products_update
+BEGIN
+    IF OLD.msrp <> NEW.msrp THEN
+	INSERT INTO 
+            UserChangeLogs(productCode,updatedBy)
+        VALUES
+            (OLD.productCode,USER());
+    END IF;
+END
+```
+
+---
+
+## Call_SP_From_Trigger
+
+```sql
+
+CREATE PROCEDURE CheckWithdrawal(
+    fromAccountId INT,
+    withdrawAmount DEC(10,2)
+)
+BEGIN
+    DECLARE balance DEC(10,2);
+    DECLARE withdrawableAmount DEC(10,2);
+    DECLARE message VARCHAR(255);
+
+    SELECT amount 
+    INTO balance
+    FROM accounts
+    WHERE accountId = fromAccountId;
+
+    SET withdrawableAmount = balance - 25;
+
+    IF withdrawAmount > withdrawableAmount THEN
+        SET message = CONCAT('Insufficient amount, the maximum withdrawable is ', withdrawableAmount);
+        SIGNAL SQLSTATE '45000' 
+            SET MESSAGE_TEXT = message;
+    END IF;
+END
+
+```
+
+
+```sql
+
+CREATE TRIGGER before_accounts_update
+BEFORE UPDATE
+ON accounts FOR EACH ROW
+BEGIN
+    CALL CheckWithdrawal (
+        OLD.accountId, 
+        OLD.amount - NEW.amount
+    );
+END
+
+```
+
+---
+
+## Show_Trigger
+
+Syntax :
+
+```sql
+SHOW TRIGGERS
+[{FROM | IN} database_name]
+[LIKE 'pattern' | WHERE search_condition];
+
+```
+
+1. The following example uses the SHOW TRIGGERS statement to get all the triggers in all databases in the current MySQL Server:
+
+```sql
+SHOW TRIGGERS;
+
+```
+
+2. The following example shows all triggers in the classicmodels database:
+
+```sql
+SHOW TRIGGERS
+FROM classicmodels;
+
+```
+
+3. The following statement list all the triggers associated with the employees table:
+
+```sql
+SHOW TRIGGERS
+FROM classicmodels
+WHERE table = 'employees';
+```
+
+4. To list triggers according to a pattern, you use the LIKE clause:
+
+```sql
+SHOW TRIGGERS 
+LIKE 'pattern';
+
+SHOW TRIGGERS 
+FROM database_name
+LIKE 'pattern';
 
 ```
