@@ -1,7 +1,7 @@
 # MySQL Documentation: Trigger
 
 ## Table of Contents
-1. [Create Trigger](#createtrigger)
+1. [Create Trigger](#Create Trigger)
 ---
 ## Create Trigger
 
