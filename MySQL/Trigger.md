@@ -6,7 +6,7 @@
 3. [BEFORE INSERT Trigger](#before_insert_trigger)
 4. [Multiple Triggers](#multiple_trigger)
 5. [Call a Stored Procedure From a Triggers](#call_sp_from_trigger)
-6. [SHOW TRIGGERS](#show_trigger)
+6. [SHOW Triggers](#show_trigger)
 
 ---
 ## Create_Trigger

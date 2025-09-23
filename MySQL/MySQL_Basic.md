@@ -1,17 +1,23 @@
 # MySQL Documentation: From Beginner to Advanced
 
 ## Table of Contents
-0. [Notes](#notes)
-1. [DDL (Data Definition Language)](#ddl-data-definition-language)
-2. [DML (Data Manipulation Language)](#dml-data-manipulation-language)
-3. [DQL (Data Query Language)](#dql-data-query-language)
-4. [Aggregate Functions](#aggregate-functions)
-5. [JOINs](#joins)
+1. [Constraints](#constraints)
+2. [Operators](#Operators)
+3. [Limit Clause](#Limit_Clause)
+4. [Order By Clause](#Order_By_Clause)
+5. [Cascading for FK](#Cascading_for_FK)
+6. [ALTER Table](#ALTER_Table)
+7. [FIELD function](#FIELD)
+8. [DDL (Data Definition Language)](#ddl-data-definition-language)
+9. [DML (Data Manipulation Language)](#dml-data-manipulation-language)
+10. [DQL (Data Query Language)](#dql-data-query-language)
+11. [Aggregate Functions](#aggregate-functions)
+12. [JOINs](#joins)
 
 ---
 ## Notes
 
-### Constraints
+## Constraints
 
 #### NOT NULL
 ```sql
@@ -60,7 +66,7 @@ CREATE TABLE temp (
 );
 ```
 ---
-### OPERATORS
+## Operators
 
 Arithmetic : +,-,*,/,%
 Comparison : =, !=, >, >=, <, <=
@@ -68,14 +74,18 @@ Logical : AND, OR, NOT, IN, BETWEEN, ALL, LIKE, ANY
 Bitwise : &, |
 
 ---
-### Limit Clause
+## Limit_Clause
 ```sql
 -- first 3 rows
 SELECT * FROM table LIMIT 3;
+
+--skip first 2 than next 3 rows 
+SELECT * FROM table LIMIT 2,3;
+
 ```
 
 ---
-### Order By Clause
+## Order_By_Clause
 ```sql
 SELECT * FROM table
 Order by col1;
@@ -85,12 +95,12 @@ Order by col1 DESC;
 ```
 
 ---
-### Aggregate Functions
+## Aggregate Functions
 COUNT(), MAX(), MIN(), SUM(), AVG() 
 
 ---
-### Cascading for FK
-#### On Delete/Update Cascade :
+## Cascading_for_FK
+### On Delete/Update Cascade :
 referencing rows are updated/deleted in the child table when the referenced row is updated/deleted in the parent table which has a primary key.
 
 ```sql
@@ -104,7 +114,7 @@ CREATE TABLE temp(
 
 ---
 
-### ALTER Table
+### ALTER_Table
 ```sql
 ALTER TABLE table_name
 
@@ -116,6 +126,7 @@ MODIFY col_name new_datatype new_constraint
 
 ```
 
+## FIELD
 ### FIELD(value, val1, val2, val3...)
 value : The value for which you want to find position
 val1, val2,... : A list of values against which you want to compare the specified value.
@@ -168,6 +179,8 @@ ORDER BY
 |       10407 | On Hold    |
 
 ```
+
+
 
 
 
