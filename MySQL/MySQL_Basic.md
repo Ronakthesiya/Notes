@@ -8,11 +8,13 @@
 5. [Cascading for FK](#Cascading_for_FK)
 6. [ALTER Table](#ALTER_Table)
 7. [FIELD function](#FIELD)
-8. [DDL (Data Definition Language)](#ddl-data-definition-language)
-9. [DML (Data Manipulation Language)](#dml-data-manipulation-language)
-10. [DQL (Data Query Language)](#dql-data-query-language)
-11. [Aggregate Functions](#aggregate-functions)
-12. [JOINs](#joins)
+8. [IF Statement](#IF_Statement)
+9. [CASE Statement](#CASE_Statement)
+10. [DDL (Data Definition Language)](#ddl-data-definition-language)
+11. [DML (Data Manipulation Language)](#dml-data-manipulation-language)
+12. [DQL (Data Query Language)](#dql-data-query-language)
+13. [Aggregate Functions](#aggregate-functions)
+14. [JOINs](#joins)
 
 ---
 ## Notes
@@ -179,6 +181,92 @@ ORDER BY
 |       10407 | On Hold    |
 
 ```
+
+## IF_Statement
+
+#### Syntax
+
+```sql
+IF condition THEN
+   statements;
+ELSEIF elseif-condition THEN
+   statements;
+...
+ELSE
+   statements;
+END IF;
+
+```
+
+#### Example
+
+```sql
+IF credit > 50000 THEN
+    SET pCustomerLevel = 'PLATINUM';
+ELSEIF credit <= 50000 AND credit > 10000 THEN
+    SET pCustomerLevel = 'GOLD';
+ELSE
+    SET pCustomerLevel = 'SILVER';
+END IF;
+
+```
+
+## CASE_Statement
+
+The CASE statement has two forms:
+
+- Simple CASE statement
+- Searched CASE statement.
+
+#### Simple CASE statement
+
+```sql
+CASE case_value
+   WHEN when_value1 THEN statements
+   WHEN when_value2 THEN statements
+   ...
+   [ELSE else-statements]
+END CASE;
+
+
+CASE customerCountry 
+    WHEN 'USA' THEN 
+        SET pShipping = '2-day Shipping';
+    WHEN 'Canada' THEN 
+        SET pShipping = '3-day Shipping';
+    ELSE 
+        SET pShipping = '5-day Shipping';
+END CASE;
+
+```
+
+#### Searched CASE statement
+
+```sql
+CASE
+    WHEN search_condition1 THEN statements
+    WHEN search_condition1 THEN statements
+    ...
+    [ELSE else-statements]
+END CASE;
+
+CASE 
+    WHEN waitingDay < 0 THEN 
+        SET pDeliveryStatus = 'Early Delivery';
+    WHEN waitingDay = 0 THEN 
+        SET pDeliveryStatus = 'On Time';
+    WHEN waitingDay >= 1 AND waitingDay < 5 THEN 
+        SET pDeliveryStatus = 'Late';
+    WHEN waitingDay >= 5 THEN 
+        SET pDeliveryStatus = 'Very Late';
+    ELSE 
+        SET pDeliveryStatus = 'No Information';
+END CASE;
+
+```
+
+
+
 
 
 
