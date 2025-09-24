@@ -36,7 +36,7 @@ In this syntax:
 
 - For example, if you update the value in the description column, in the trigger body, you can access the value of the description column before the update OLD.description and the new value NEW.description.
 
-![alt text](image.png)
+![alt text](Img/image.png)
 
 ```sql
 CREATE TRIGGER update_items_trigger
