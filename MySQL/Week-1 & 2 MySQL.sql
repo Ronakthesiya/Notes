@@ -204,6 +204,84 @@ FROM
     marks;
 
 
--- Assignment 8: Joins + Aggregates
+-- Assignment 8: Constraints & Performance
 -- -----------------------------------------------------------
 
+Alter table students
+ADD primary key (student_id);
+
+Alter table courses
+MODIFY column course_id INT auto_increment; 
+
+Explain SELECT 
+    *
+FROM
+    students
+WHERE
+    email = 'abc@gmail.com';
+
+CREATE index email
+on students(email);
+
+
+Explain SELECT 
+    *
+FROM
+    students
+WHERE
+    email = 'abc@gmail.com';
+
+-- Assignment 9: Stored Programs
+-- -----------------------------------------------------------
+
+
+DELIMITER $$
+
+create procedure find_students(
+	IN course varchar(50)
+)
+begin 
+	Select * From students s
+    inner join courses c
+    on s.course_id = c.course_id
+    Where c.course_name = course;
+end$$
+
+DELIMITER ;
+
+
+Call find_students('Civil Engineering');
+
+DELIMITER $$
+
+Create function temp(marks int)
+returns VARCHAR(10)
+DETERMINISTIC
+begin
+	
+	if marks>90 then 
+		return ('A');
+    elseif marks>80 then 
+		return ('B');
+    else 
+		return ('C');
+    END IF;
+end$$
+
+DELIMITER ;
+
+Select temp(90);
+
+-- Assignment 10: Views 
+-- -----------------------------------------------------------
+
+CREATE VIEW StudentCourseView AS
+    SELECT 
+        s.name, c.course_name
+    FROM
+        students s
+            INNER JOIN
+        courses c ON s.course_id = c.course_id;
+        
+Select * From StudentCourseView
+where course_name = 'Computer Science';

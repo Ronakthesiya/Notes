@@ -126,6 +126,7 @@ RENAME TO new_tbl_name
 CHANGE COLUMN old_name new_name new_datatype new_constraint
 MODIFY col_name new_datatype new_constraint
 
+
 ```
 
 ## FIELD
