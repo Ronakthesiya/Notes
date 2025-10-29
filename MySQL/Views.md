@@ -1,4 +1,4 @@
-# MySQL Documentation: Trigger
+# MySQL Documentation: View
 
 ## Table of Contents
 1. [Create View](#create_view)

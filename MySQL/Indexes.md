@@ -1,4 +1,4 @@
-# MySQL Documentation: Trigger
+# MySQL Documentation: Index
 
 ## Table of Contents
 1. [Introduction](#introduction)
