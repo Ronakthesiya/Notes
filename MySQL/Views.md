@@ -158,6 +158,8 @@ Additionally, you can use the DELETE statement to remove rows of the underlying 
 
 - Note that it is possible to create updatable views based on multiple tables using an inner join.
 
+- Views containing DISTINCT, GROUP BY, HAVING, UNION, or UNION ALL clauses are not updateable.
+
 #### Checking updatable view information
 
 First, create a table named items, insert some rows into the items table, and create a view that contains items whose prices are greater than 700.
