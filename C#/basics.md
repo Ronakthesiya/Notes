@@ -1071,11 +1071,268 @@ class Program
 
 ## Generic Collections
 
-1. List<T>
-2. Dictionary<TKey, TValue>
-3. Stack<T>
-4. HashSet<T>
-5. SortedList<TKey, TValue>
+<details><summary><b>1. List<Type></b></summary>
+Methods with Examples
+
+| Method                                                         | Description                            | Return Type             | Example                                                                                                      |
+| -------------------------------------------------------------- | -------------------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `Add(T item)`                                                  | Adds an element to the end of the list | `void`                  | `List<int> list = new(); list.Add(5);`                                                                       |
+| `AddRange(IEnumerable<T> collection)`                          | Adds multiple elements                 | `void`                  | `list.AddRange(new int[]{6,7});`                                                                             |
+| `AsReadOnly()`                                                 | Returns a read-only wrapper            | `ReadOnlyCollection<T>` | `var readOnly = list.AsReadOnly();`                                                                          |
+| `BinarySearch(T item)`                                         | Searches a sorted list                 | `int`                   | `list.Sort(); int index = list.BinarySearch(5);`                                                             |
+| `BinarySearch(T item, IComparer<T> comparer)`                  | Binary search with comparer            | `int`                   | `int idx = list.BinarySearch(5, Comparer<int>.Default);`                                                     |
+| `Clear()`                                                      | Removes all elements                   | `void`                  | `list.Clear();`                                                                                              |
+| `Contains(T item)`                                             | Checks if item exists                  | `bool`                  | `bool has5 = list.Contains(5);`                                                                              |
+| `ConvertAll<TResult>(Converter<T, TResult> converter)`         | Converts to another type               | `List<TResult>`         | `List<string> strs = list.ConvertAll(x => x.ToString());`                                                    |
+| `CopyTo(T[] array)`                                            | Copies all elements to array           | `void`                  | `int[] arr = new int[5]; list.CopyTo(arr);`                                                                  |
+| `CopyTo(T[] array, int arrayIndex)`                            | Copies starting at array index         | `void`                  | `list.CopyTo(arr, 2);`                                                                                       |
+| `CopyTo(int index, T[] array, int arrayIndex, int count)`      | Copies a range                         | `void`                  | `list.CopyTo(1, arr, 0, 2);`                                                                                 |
+| `Exists(Predicate<T> match)`                                   | Checks if any element matches          | `bool`                  | `bool hasEven = list.Exists(x => x%2==0);`                                                                   |
+| `Find(Predicate<T> match)`                                     | Returns first matching element         | `T`                     | `int firstEven = list.Find(x => x%2==0);`                                                                    |
+| `FindAll(Predicate<T> match)`                                  | Returns all matching elements          | `List<T>`               | `var evens = list.FindAll(x => x%2==0);`                                                                     |
+| `FindIndex(Predicate<T> match)`                                | Returns index of first match           | `int`                   | `int idx = list.FindIndex(x => x>5);`                                                                        |
+| `FindIndex(int startIndex, Predicate<T> match)`                | Start searching from index             | `int`                   | `int idx = list.FindIndex(2, x=>x>5);`                                                                       |
+| `FindIndex(int startIndex, int count, Predicate<T> match)`     | Search in range                        | `int`                   | `int idx = list.FindIndex(1,2,x=>x>5);`                                                                      |
+| `FindLast(Predicate<T> match)`                                 | Returns last matching element          | `T`                     | `int lastEven = list.FindLast(x=>x%2==0);`                                                                   |
+| `FindLastIndex(Predicate<T> match)`                            | Index of last match                    | `int`                   | `int idx = list.FindLastIndex(x=>x%2==0);`                                                                   |
+| `FindLastIndex(int startIndex, Predicate<T> match)`            | Search backward from index             | `int`                   | `int idx = list.FindLastIndex(3,x=>x%2==0);`                                                                 |
+| `FindLastIndex(int startIndex, int count, Predicate<T> match)` | Search backward in range               | `int`                   | `int idx = list.FindLastIndex(3,2,x=>x%2==0);`                                                               |
+| `ForEach(Action<T> action)`                                    | Performs action on each element        | `void`                  | `list.ForEach(x=>Console.WriteLine(x));`                                                                     |
+| `GetEnumerator()`                                              | Returns enumerator                     | `List<T>.Enumerator`    | `var enumerator = list.GetEnumerator(); while(enumerator.MoveNext()) Console.WriteLine(enumerator.Current);` |
+| `IndexOf(T item)`                                              | Index of first occurrence              | `int`                   | `int idx = list.IndexOf(5);`                                                                                 |
+| `IndexOf(T item, int index)`                                   | Start searching from index             | `int`                   | `int idx = list.IndexOf(5,1);`                                                                               |
+| `IndexOf(T item, int index, int count)`                        | Search in range                        | `int`                   | `int idx = list.IndexOf(5,0,3);`                                                                             |
+| `Insert(int index, T item)`                                    | Inserts element at index               | `void`                  | `list.Insert(1, 10);`                                                                                        |
+| `InsertRange(int index, IEnumerable<T> collection)`            | Inserts collection at index            | `void`                  | `list.InsertRange(1, new int[]{11,12});`                                                                     |
+| `LastIndexOf(T item)`                                          | Last occurrence index                  | `int`                   | `int idx = list.LastIndexOf(5);`                                                                             |
+| `LastIndexOf(T item, int index)`                               | Backward search from index             | `int`                   | `int idx = list.LastIndexOf(5,3);`                                                                           |
+| `LastIndexOf(T item, int index, int count)`                    | Backward search in range               | `int`                   | `int idx = list.LastIndexOf(5,3,2);`                                                                         |
+| `Remove(T item)`                                               | Removes first occurrence               | `bool`                  | `list.Remove(5);`                                                                                            |
+| `RemoveAll(Predicate<T> match)`                                | Removes all matching elements          | `int`                   | `int removed = list.RemoveAll(x=>x%2==0);`                                                                   |
+| `RemoveAt(int index)`                                          | Removes element at index               | `void`                  | `list.RemoveAt(0);`                                                                                          |
+| `RemoveRange(int index, int count)`                            | Removes range of elements              | `void`                  | `list.RemoveRange(0,2);`                                                                                     |
+| `Reverse()`                                                    | Reverses entire list                   | `void`                  | `list.Reverse();`                                                                                            |
+| `Reverse(int index, int count)`                                | Reverses a portion                     | `void`                  | `list.Reverse(1,3);`                                                                                         |
+| `Sort()`                                                       | Sorts list                             | `void`                  | `list.Sort();`                                                                                               |
+| `Sort(Comparison<T> comparison)`                               | Sorts using comparison                 | `void`                  | `list.Sort((a,b)=>b-a);`                                                                                     |
+| `Sort(IComparer<T> comparer)`                                  | Sorts with comparer                    | `void`                  | `list.Sort(Comparer<int>.Default);`                                                                          |
+| `Sort(int index, int count, IComparer<T> comparer)`            | Sorts portion with comparer            | `void`                  | `list.Sort(0,3,Comparer<int>.Default);`                                                                      |
+| `ToArray()`                                                    | Copies to new array                    | `T[]`                   | `int[] arr = list.ToArray();`                                                                                |
+| `TrimExcess()`                                                 | Reduces capacity if needed             | `void`                  | `list.TrimExcess();`                                                                                         |
+| `TrueForAll(Predicate<T> match)`                               | Checks if all elements match           | `bool`                  | `bool allEven = list.TrueForAll(x=>x%2==0);`                                                                 |
+
+
+Properties Examples
+
+| Property          | Description                       | Example                                        |
+| ----------------- | --------------------------------- | ---------------------------------------------- |
+| `Capacity`        | Number of elements list can store | `int cap = list.Capacity; list.Capacity = 20;` |
+| `Count`           | Number of elements in list        | `int cnt = list.Count;`                        |
+| `Item[int index]` | Access element at index           | `int val = list[0]; list[0] = 100;`            |
+
+</details>
+
+<details><summary><b>2. SortedList<TKey, TValue></b></summary>
+Properties
+
+| Property         | Description                      | Example                                    |
+| ---------------- | -------------------------------- | ------------------------------------------ |
+| `Count`          | Number of key-value pairs        | `int cnt = sl.Count;`                      |
+| `Capacity`       | Maximum elements before resizing | `int cap = sl.Capacity; sl.Capacity = 20;` |
+| `Keys`           | Gets a collection of keys        | `var keys = sl.Keys;`                      |
+| `Values`         | Gets a collection of values      | `var values = sl.Values;`                  |
+| `Item[TKey key]` | Access value by key              | `int val = sl["Alice"]; sl["Alice"] = 30;` |
+| `Comparer`       | Gets the comparer used for keys  | `var comparer = sl.Comparer;`              |
+
+
+Methods
+
+| Method                                    | Description                | Return Type                          | Example                                                                 |
+| ----------------------------------------- | -------------------------- | ------------------------------------ | ----------------------------------------------------------------------- |
+| `Add(TKey key, TValue value)`             | Adds a new key-value pair  | `void`                               | `sl.Add("Alice", 25);`                                                  |
+| `Clear()`                                 | Removes all elements       | `void`                               | `sl.Clear();`                                                           |
+| `ContainsKey(TKey key)`                   | Checks if key exists       | `bool`                               | `bool hasAlice = sl.ContainsKey("Alice");`                              |
+| `ContainsValue(TValue value)`             | Checks if value exists     | `bool`                               | `bool has25 = sl.ContainsValue(25);`                                    |
+| `IndexOfKey(TKey key)`                    | Returns index of key       | `int`                                | `int idx = sl.IndexOfKey("Alice");`                                     |
+| `IndexOfValue(TValue value)`              | Returns index of value     | `int`                                | `int idx = sl.IndexOfValue(25);`                                        |
+| `Remove(TKey key)`                        | Removes element by key     | `bool`                               | `sl.Remove("Alice");`                                                   |
+| `RemoveAt(int index)`                     | Removes element by index   | `void`                               | `sl.RemoveAt(0);`                                                       |
+| `TryGetValue(TKey key, out TValue value)` | Tries to get value by key  | `bool`                               | `if(sl.TryGetValue("Alice", out int val)) Console.WriteLine(val);`      |
+| `GetEnumerator()`                         | Returns enumerator         | `SortedList<TKey,TValue>.Enumerator` | `foreach(var kvp in sl) Console.WriteLine(kvp.Key + ": " + kvp.Value);` |
+| `EnsureCapacity(int min)`                 | Ensures capacity           | `int`                                | `sl.EnsureCapacity(50);`                                                |
+| `TrimExcess()`                            | Reduces capacity if unused | `void`                               | `sl.TrimExcess();`                                                      |
+
+</details>
+
+<details><summary><b>3. Dictionary<TKey, TValue></b></summary>
+Properties
+
+| Property         | Description               | Example                                        |
+| ---------------- | ------------------------- | ---------------------------------------------- |
+| `Count`          | Number of key-value pairs | `int cnt = dict.Count;`                        |
+| `Keys`           | Collection of all keys    | `var keys = dict.Keys;`                        |
+| `Values`         | Collection of all values  | `var values = dict.Values;`                    |
+| `Item[TKey key]` | Access value by key       | `dict["Alice"] = 25; int age = dict["Alice"];` |
+| `Comparer`       | Gets the key comparer     | `var cmp = dict.Comparer;`                     |
+
+
+Methods
+
+| Method                                    | Description                                            | Return Type                          | Example                                                                 |
+| ----------------------------------------- | ------------------------------------------------------ | ------------------------------------ | ----------------------------------------------------------------------- |
+| `Add(TKey key, TValue value)`             | Adds a key-value pair                                  | `void`                               | `dict.Add("Alice", 25);`                                                |
+| `Clear()`                                 | Removes all elements                                   | `void`                               | `dict.Clear();`                                                         |
+| `ContainsKey(TKey key)`                   | Checks if key exists                                   | `bool`                               | `bool hasAlice = dict.ContainsKey("Alice");`                            |
+| `ContainsValue(TValue value)`             | Checks if value exists                                 | `bool`                               | `bool has25 = dict.ContainsValue(25);`                                  |
+| `Remove(TKey key)`                        | Removes element by key                                 | `bool`                               | `dict.Remove("Alice");`                                                 |
+| `TryGetValue(TKey key, out TValue value)` | Tries to get value by key                              | `bool`                               | `if(dict.TryGetValue("Alice", out int val)) Console.WriteLine(val);`    |
+| `GetEnumerator()`                         | Returns enumerator                                     | `Dictionary<TKey,TValue>.Enumerator` | `foreach(var kvp in dict) Console.WriteLine($"{kvp.Key}:{kvp.Value}");` |
+| `EnsureCapacity(int capacity)`            | Ensures dictionary can hold at least this many entries | `int`                                | `dict.EnsureCapacity(50);`                                              |
+| `TrimExcess()`                            | Reduces capacity if many unused entries                | `void`                               | `dict.TrimExcess();`                                                    |
+
+</details>
+
+<details><summary><b>4. SortedDictionary<TKey,TValue></b></summary>
+Properties
+
+| Property         | Description                     | Example                                    |
+| ---------------- | ------------------------------- | ------------------------------------------ |
+| `Count`          | Number of key-value pairs       | `int cnt = sd.Count;`                      |
+| `Keys`           | Collection of keys              | `var keys = sd.Keys;`                      |
+| `Values`         | Collection of values            | `var values = sd.Values;`                  |
+| `Item[TKey key]` | Access value by key             | `sd["Alice"] = 25; int age = sd["Alice"];` |
+| `Comparer`       | Gets the comparer used for keys | `var cmp = sd.Comparer;`                   |
+
+
+Methods
+
+| Method                                    | Description               | Return Type                                | Example                                                               |
+| ----------------------------------------- | ------------------------- | ------------------------------------------ | --------------------------------------------------------------------- |
+| `Add(TKey key, TValue value)`             | Adds a new key-value pair | `void`                                     | `sd.Add("Alice", 25);`                                                |
+| `Clear()`                                 | Removes all elements      | `void`                                     | `sd.Clear();`                                                         |
+| `ContainsKey(TKey key)`                   | Checks if key exists      | `bool`                                     | `bool hasAlice = sd.ContainsKey("Alice");`                            |
+| `ContainsValue(TValue value)`             | Checks if value exists    | `bool`                                     | `bool has25 = sd.ContainsValue(25);`                                  |
+| `Remove(TKey key)`                        | Removes element by key    | `bool`                                     | `sd.Remove("Alice");`                                                 |
+| `TryGetValue(TKey key, out TValue value)` | Tries to get value by key | `bool`                                     | `if(sd.TryGetValue("Alice", out int val)) Console.WriteLine(val);`    |
+| `GetEnumerator()`                         | Returns enumerator        | `SortedDictionary<TKey,TValue>.Enumerator` | `foreach(var kvp in sd) Console.WriteLine($"{kvp.Key}:{kvp.Value}");` |
+
+
+</details>
+
+<details><summary><b>5. Stack<Type></b></summary>
+Properties
+
+| Property     | Description                              | Example                             |
+| ------------ | ---------------------------------------- | ----------------------------------- |
+| `Count`      | Number of elements in the stack          | `int cnt = stack.Count;`            |
+| `IsReadOnly` | Indicates if stack is read-only          | `bool readOnly = stack.IsReadOnly;` |
+| `Peek`       | Returns the top element without removing | `T top = stack.Peek();`             |
+
+
+Methods
+
+| Method             | Description                           | Return Type           | Example                                               |
+| ------------------ | ------------------------------------- | --------------------- | ----------------------------------------------------- |
+| `Push(T item)`     | Adds an item to the top of the stack  | `void`                | `stack.Push(10);`                                     |
+| `Pop()`            | Removes and returns the top item      | `T`                   | `int top = stack.Pop();`                              |
+| `Peek()`           | Returns the top item without removing | `T`                   | `int top = stack.Peek();`                             |
+| `Clear()`          | Removes all items                     | `void`                | `stack.Clear();`                                      |
+| `Contains(T item)` | Checks if item exists in stack        | `bool`                | `bool has10 = stack.Contains(10);`                    |
+| `ToArray()`        | Copies stack elements to a new array  | `T[]`                 | `int[] arr = stack.ToArray();`                        |
+| `TrimExcess()`     | Reduces capacity if unused            | `void`                | `stack.TrimExcess();`                                 |
+| `GetEnumerator()`  | Returns enumerator to iterate         | `Stack<T>.Enumerator` | `foreach(var item in stack) Console.WriteLine(item);` |
+
+</details>
+
+<details><summary><b>6. Queue<Type></b></summary>
+Properties
+
+| Property     | Description                                | Example                             |
+| ------------ | ------------------------------------------ | ----------------------------------- |
+| `Count`      | Number of elements in the queue            | `int cnt = queue.Count;`            |
+| `IsReadOnly` | Indicates if queue is read-only            | `bool readOnly = queue.IsReadOnly;` |
+| `Peek`       | Returns the front element without removing | `T front = queue.Peek();`           |
+
+
+Methods
+
+| Method             | Description                             | Return Type           | Example                                               |
+| ------------------ | --------------------------------------- | --------------------- | ----------------------------------------------------- |
+| `Enqueue(T item)`  | Adds an item to the end of the queue    | `void`                | `queue.Enqueue(10);`                                  |
+| `Dequeue()`        | Removes and returns the front item      | `T`                   | `int front = queue.Dequeue();`                        |
+| `Peek()`           | Returns the front item without removing | `T`                   | `int front = queue.Peek();`                           |
+| `Clear()`          | Removes all items                       | `void`                | `queue.Clear();`                                      |
+| `Contains(T item)` | Checks if item exists in the queue      | `bool`                | `bool has10 = queue.Contains(10);`                    |
+| `ToArray()`        | Copies queue elements to a new array    | `T[]`                 | `int[] arr = queue.ToArray();`                        |
+| `TrimExcess()`     | Reduces capacity if unused              | `void`                | `queue.TrimExcess();`                                 |
+| `GetEnumerator()`  | Returns enumerator to iterate           | `Queue<T>.Enumerator` | `foreach(var item in queue) Console.WriteLine(item);` |
+
+</details>
+
+<details><summary><b>7. HashSet<Type></b></summary>
+Properties
+
+| Property     | Description                                 | Example                          |
+| ------------ | ------------------------------------------- | -------------------------------- |
+| `Count`      | Number of elements in the set               | `int cnt = hs.Count;`            |
+| `Comparer`   | Gets the equality comparer used for the set | `var cmp = hs.Comparer;`         |
+| `IsReadOnly` | Indicates if set is read-only               | `bool readOnly = hs.IsReadOnly;` |
+
+
+Methods
+
+| Method                                      | Description                                    | Return Type             | Example                                            |
+| ------------------------------------------- | ---------------------------------------------- | ----------------------- | -------------------------------------------------- |
+| `Add(T item)`                               | Adds an element if it doesn’t exist            | `bool`                  | `hs.Add(10);`                                      |
+| `Remove(T item)`                            | Removes an element                             | `bool`                  | `hs.Remove(10);`                                   |
+| `Contains(T item)`                          | Checks if element exists                       | `bool`                  | `bool has10 = hs.Contains(10);`                    |
+| `Clear()`                                   | Removes all elements                           | `void`                  | `hs.Clear();`                                      |
+| `UnionWith(IEnumerable<T> other)`           | Adds all elements from another collection      | `void`                  | `hs.UnionWith(new int[]{1,2,3});`                  |
+| `IntersectWith(IEnumerable<T> other)`       | Keeps only elements present in both sets       | `void`                  | `hs.IntersectWith(new int[]{2,3,4});`              |
+| `ExceptWith(IEnumerable<T> other)`          | Removes elements present in another collection | `void`                  | `hs.ExceptWith(new int[]{1,4});`                   |
+| `SymmetricExceptWith(IEnumerable<T> other)` | Keeps elements in either set, but not both     | `void`                  | `hs.SymmetricExceptWith(new int[]{2,5});`          |
+| `IsSubsetOf(IEnumerable<T> other)`          | Checks if set is subset of another             | `bool`                  | `hs.IsSubsetOf(new int[]{1,2,3,4});`               |
+| `IsSupersetOf(IEnumerable<T> other)`        | Checks if set is superset of another           | `bool`                  | `hs.IsSupersetOf(new int[]{2,3});`                 |
+| `SetEquals(IEnumerable<T> other)`           | Checks if sets have same elements              | `bool`                  | `hs.SetEquals(new int[]{2,3,5});`                  |
+| `Overlaps(IEnumerable<T> other)`            | Checks if sets share any elements              | `bool`                  | `hs.Overlaps(new int[]{3,4});`                     |
+| `GetEnumerator()`                           | Returns enumerator                             | `HashSet<T>.Enumerator` | `foreach(var item in hs) Console.WriteLine(item);` |
+
+
+</details>
+
+<details><summary><b>8. LinkedList<Type></b></summary>
+Properties
+
+| Property     | Description                    | Example                                   |
+| ------------ | ------------------------------ | ----------------------------------------- |
+| `Count`      | Number of nodes in the list    | `int cnt = list.Count;`                   |
+| `First`      | Gets the first node            | `LinkedListNode<int> first = list.First;` |
+| `Last`       | Gets the last node             | `LinkedListNode<int> last = list.Last;`   |
+| `IsReadOnly` | Indicates if list is read-only | `bool readOnly = list.IsReadOnly;`        |
+
+
+Methods
+
+| Method                                       | Description                       | Return Type                | Example                                              |
+| -------------------------------------------- | --------------------------------- | -------------------------- | ---------------------------------------------------- |
+| `AddFirst(T value)`                          | Adds a node at the start          | `LinkedListNode<T>`        | `list.AddFirst(10);`                                 |
+| `AddLast(T value)`                           | Adds a node at the end            | `LinkedListNode<T>`        | `list.AddLast(20);`                                  |
+| `AddBefore(LinkedListNode<T> node, T value)` | Adds before a specific node       | `LinkedListNode<T>`        | `list.AddBefore(node, 15);`                          |
+| `AddAfter(LinkedListNode<T> node, T value)`  | Adds after a specific node        | `LinkedListNode<T>`        | `list.AddAfter(node, 25);`                           |
+| `Remove(T value)`                            | Removes first occurrence of value | `bool`                     | `list.Remove(10);`                                   |
+| `RemoveFirst()`                              | Removes the first node            | `void`                     | `list.RemoveFirst();`                                |
+| `RemoveLast()`                               | Removes the last node             | `void`                     | `list.RemoveLast();`                                 |
+| `Find(T value)`                              | Finds first node with value       | `LinkedListNode<T>`        | `var node = list.Find(20);`                          |
+| `FindLast(T value)`                          | Finds last node with value        | `LinkedListNode<T>`        | `var node = list.FindLast(20);`                      |
+| `Contains(T value)`                          | Checks if value exists            | `bool`                     | `list.Contains(15);`                                 |
+| `Clear()`                                    | Removes all nodes                 | `void`                     | `list.Clear();`                                      |
+| `GetEnumerator()`                            | Returns enumerator                | `LinkedList<T>.Enumerator` | `foreach(var item in list) Console.WriteLine(item);` |
+
+</details>
+
+
+
+
 
 
 ## Serialization
@@ -1083,5 +1340,4 @@ class Program
 <!-- baki -->
 
 ## Lambda syntax
-
 
