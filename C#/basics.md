@@ -1337,7 +1337,178 @@ Methods
 
 ## Serialization
 
-<!-- baki -->
+<details><summary><b>Json<Type></b></summary>
 
-## Lambda syntax
+ ```c#
+    unsing System.Text.Json;
+
+    public class JsonHandler
+    {
+        public static void SerializeToJson(Person person)
+        {
+            string json = JsonSerializer.Serialize(person);
+
+            Console.WriteLine(json);
+        }
+
+        public static void DeserializeFromJson(string json)
+        {
+            Person person = JsonSerializer.Deserialize<Person>(json);
+
+            Console.WriteLine(person);
+        }
+    }
+
+ ```
+</details>
+
+
+<details><summary><b>XML<Type></b></summary>
+
+ ```c#
+    public class XmlHandler
+    {
+        public static void SerializeToXml(Person person)
+        {
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(Person));
+            StreamWriter sw = new StreamWriter("demo.xml");
+            xmlSerializer.Serialize(sw,person);
+            sw.Close();
+
+            Console.WriteLine("XML file is ready !");
+
+        }
+
+        public static void DeserializeFromXml(string str)
+        {
+            TextReader sr = new StreamReader(str);
+
+            XmlSerializer xmlSerializer = new XmlSerializer (typeof(Person));
+            Person p = (Person)xmlSerializer.Deserialize(sr);
+
+            sr.Close();
+
+            Console.WriteLine(p);
+        }
+    }
+
+ ```
+</details>
+
+## Lambda
+
+```c#
+Func<int ,int ,string> temp = (a,b) => a + " " + b;
+Func<int, int, int> multiplyAndAdd = (a, b) =>
+{
+    int product = a * b;
+    return product + 10;
+};
+
+Console.WriteLine(multiplyAndAdd(2, 3)); // Output: 16
+```
+
+Action is used when a lambda doesn’t return a value
+
+```c#
+Action<string> greet = name => Console.WriteLine($"Hello, {name}!");
+greet("Alice");
+```
+
+Capturing Variables(Closures)
+
+```c#
+int factor = 3;
+Func<int, int> multiply = x => x * factor;
+```
+
+Lambdas with Async
+```c#
+Func<Task> asyncLambda = async () =>
+{
+    await Task.Delay(1000);
+    Console.WriteLine("Finished after 1 second!");
+};
+```
+
+## Extension Methods
+
+- An extension method in C# is a special kind of static method of static class that can be called as if it were an instance method on the type it extends.
+- Extension methods are defined in a static class.
+- The first parameter starts with the "this" keyword, followed by the type you want to extend.
+- You cannot override existing methods with extension methods.
+- Extension methods are often used to add helper or utility methods.
+- How to Declare an Extension Method
+
+```c#
+public static class ClassName{
+    public static returnType MethodName(this TypeToExtend obj, parameters) {
+
+    }
+}
+```
+### Types of Extension Methods
+
+<details><summary>Extension Method on Built-in Type</summary>
+
+- In this type of extension method, we can add new methods to built-in types like string, int, double, etc., without modifying their original definition.
+
+```c#
+using System;
+public static class IntExtensions {
+   // Extension method for int type
+   public static bool IsEven(this int number){
+      return number % 2 == 0;
+   }
+}
+
+class Program {
+   static void Main(){
+      int num = 10;
+      // Output: True
+      Console.WriteLine(num.IsEven());
+   }
+}
+```
+</details>
+
+
+<details><summary>Extension Method on User-defined Class</summary>
+
+- An extension method on a user-defined class can help you create an extension method for your own classes to add extra functionality without modifying the class directly.
+
+```c#
+public class Student {
+   public string Name { get; set; }
+}
+
+public static class StudentExtensions {
+   // Extension method for Student class
+   public static void DisplayWelcome(this Student s){
+      Console.WriteLine($"Welcome, {s.Name}!");
+   }
+}
+```
+</details>
+
+
+<details><summary>Extension Method on Interface</summary>
+
+- In this type, we can define extension methods for interfaces, which means all those classes that implement a given interface can use the extension method.
+
+```c#
+public interface IAnimal {
+   void Speak();
+}
+
+public static class AnimalExtensions {
+   // Extension method for IAnimal interface
+   public static void Eat(this IAnimal animal) {
+      Console.WriteLine("Animal is eating...");
+   }
+}
+```
+</details>
+
+
 
