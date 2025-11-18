@@ -707,60 +707,80 @@ bool isValid = rgx.IsMatch(email);
 
 ## File I/O
 
-### StreamReader 
+<details>
+<summary><h3>File Creation / Deletion</h3></summary>
 
-```c#
-using (StreamReader reader = new StreamReader("data.txt")) {
-    string line;
-    while ((line = reader.ReadLine()) != null) {
-        Console.WriteLine(line);
-    }
-}
-```
+| Method                         | Return Type    | Description                               | Example                              |
+| ------------------------------ | -------------- | ----------------------------------------- | ------------------------------------ |
+| `File.Create(string path)`     | `FileStream`   | Creates a new file; overwrites if exists. | `var fs = File.Create("a.txt");`     |
+| `File.CreateText(string path)` | `StreamWriter` | Creates text file (UTF-8) for writing.    | `var sw = File.CreateText("a.txt");` |
+| `File.Delete(string path)`     | `void`         | Deletes specified file.                   | `File.Delete("a.txt");`              |
 
-### Create a File
-
-File.CreateText()
-
-```c#
-using (StreamWriter writer = File.CreateText("data.txt")) {
-    writer.WriteLine("This is the first line.");
-    writer.WriteLine("This is the second line.");
-}
-```
-
-### Append to a File
-
-```c#
- using (StreamWriter writer = File.AppendText("data.txt")) {
-    writer.WriteLine("This line is appended.");
-}
-```
+</details>
 
 
-### Delete a File
+<details>
+<summary><h3>Copy / Move / Exists</h3></summary>
 
-```c#
-string path = "data.txt";
-if (File.Exists(path)) {
-    File.Delete(path);
-    Console.WriteLine("File deleted.");
-} else {
-    Console.WriteLine("File does not exist.");
-}
-```
+| Method                            | Return Type | Description                 | Example                              |
+| --------------------------------- | ----------- | --------------------------- | ------------------------------------ |
+| `File.Copy(src, dest)`            | `void`      | Copies file.                | `File.Copy("a.txt", "b.txt");`       |
+| `File.Copy(src, dest, overwrite)` | `void`      | Copies file with overwrite. | `File.Copy("a.txt", "b.txt", true);` |
+| `File.Move(src, dest)`            | `void`      | Moves/renames file.         | `File.Move("a.txt", "c.txt");`       |
+| `File.Exists(path)`               | `bool`      | Checks if file exists.      | `if (File.Exists("a.txt")) { }`      |
+
+</details>
 
 
-### Check if a File Exists
+<details>
+<summary><h3>Open / Stream Access</h3></summary>
 
-```c#
-string path = "data.txt";
-if (File.Exists(path)) {
-    Console.WriteLine("File exists.");
-} else {
-    Console.WriteLine("File does not exist.");
-}
-```
+| Method                                 | Return Type    | Description                         | Example                                                               |
+| -------------------------------------- | -------------- | ----------------------------------- | --------------------------------------------------------------------- |
+| `File.Open(path, mode)`                | `FileStream`   | Opens with file mode.               | `var fs = File.Open("a.txt", FileMode.Open);`                         |
+| `File.Open(path, mode, access)`        | `FileStream`   | Opens with mode + access.           | `File.Open("a.txt", FileMode.Open, FileAccess.Read);`                 |
+| `File.Open(path, mode, access, share)` | `FileStream`   | Opens with mode + access + sharing. | `File.Open("a.txt", FileMode.Open, FileAccess.Read, FileShare.Read);` |
+| `File.OpenRead(path)`                  | `FileStream`   | Opens read-only.                    | `var r = File.OpenRead("a.txt");`                                     |
+| `File.OpenWrite(path)`                 | `FileStream`   | Opens write-only.                   | `var w = File.OpenWrite("a.txt");`                                    |
+| `File.OpenText(path)`                  | `StreamReader` | Opens text for reading.             | `var reader = File.OpenText("a.txt");`                                |
+
+</details>
+
+
+<details>
+<summary><h3>Read All / Write All</h3></summary>
+
+| Method                             | Return Type    | Description                      | Example                                         |
+| ---------------------------------- | -------------- | -------------------------------- | ----------------------------------------------- |
+| `File.ReadAllText(path)`           | `string`       | Reads entire file as text.       | `string s = File.ReadAllText("a.txt");`         |
+| `File.ReadAllLines(path)`          | `string[]`     | Reads all lines.                 | `var lines = File.ReadAllLines("a.txt");`       |
+| `File.ReadAllBytes(path)`          | `byte[]`       | Reads entire file as bytes.      | `var bytes = File.ReadAllBytes("a.bin");`       |
+| `File.WriteAllText(path, text)`    | `void`         | Writes text to file.             | `File.WriteAllText("a.txt", "Hello");`          |
+| `File.WriteAllLines(path, lines)`  | `void`         | Writes string array.             | `File.WriteAllLines("a.txt", new[]{"a","b"});`  |
+| `File.WriteAllBytes(path, bytes)`  | `void`         | Writes bytes to file.            | `File.WriteAllBytes("a.bin", bytes);`           |
+| `File.AppendAllText(path, text)`   | `void`         | Appends text.                    | `File.AppendAllText("a.txt", "More");`          |
+| `File.AppendAllLines(path, lines)` | `void`         | Appends lines.                   | `File.AppendAllLines("a.txt", new[]{ "end" });` |
+| `File.AppendText(path)`            | `StreamWriter` | Opens file to append via writer. | `var sw = File.AppendText("a.txt");`            |
+
+</details>
+
+
+<details>
+<summary><h3>File Metadata (Times & Attributes)</h3></summary>
+
+| Method                               | Return Type       | Description            | Example                                                 |
+| ------------------------------------ | ----------------- | ---------------------- | ------------------------------------------------------- |
+| `File.GetAttributes(path)`           | `FileAttributes`  | Gets attributes.       | `var attr = File.GetAttributes("a.txt");`               |
+| `File.SetAttributes(path, attr)`     | `void`            | Sets attributes.       | `File.SetAttributes("a.txt", FileAttributes.ReadOnly);` |
+| `File.GetCreationTime(path)`         | `DateTime`        | Gets creation time.    | `var t = File.GetCreationTime("a.txt");`                |
+| `File.SetCreationTime(path, time)`   | `void`            | Sets creation time.    | `File.SetCreationTime("a.txt", DateTime.Now);`          |
+| `File.GetLastAccessTime(path)`       | `DateTime`        | Gets last access.      | `File.GetLastAccessTime("a.txt");`                      |
+| `File.SetLastAccessTime(path, time)` | `void`            | Sets last access.      | `File.SetLastAccessTime("a.txt", DateTime.Now);`        |
+| `File.GetLastWriteTime(path)`        | `DateTime`        | Gets last write.       | `File.GetLastWriteTime("a.txt");`                       |
+| `File.SetLastWriteTime(path, time)`  | `void`            | Sets last write.       | `File.SetLastWriteTime("a.txt", DateTime.Now);`         |
+| UTC Versions                         | `DateTime / void` | Same as above but UTC. | `File.GetCreationTimeUtc("a.txt");`                     |
+
+</details>
 
 ## DataTable
 
