@@ -1442,7 +1442,7 @@ int factor = 3;
 Func<int, int> multiply = x => x * factor;
 ```
 
-Lambdas with Async
+Lambdas with Async  
 ```c#
 Func<Task> asyncLambda = async () =>
 {
@@ -1532,3 +1532,129 @@ public static class AnimalExtensions {
 
 
 
+## LinQ
+
+| Function             | Explanation                                 | Example                                                                         |
+| -------------------- | ------------------------------------------- | ------------------------------------------------------------------------------- |
+| Where()              | Filters elements based on condition.        | `numbers.Where(n => n > 5)`                                                     |
+| OfType<T>()          | Returns elements of a specified type.       | `list.OfType<int>()`                                                            |
+| Select()             | Transforms each element.                    | `numbers.Select(n => n * n)`                                                    |
+| SelectMany()         | Flattens nested collections.                | `depts.SelectMany(d => d.Employees)`                                            |
+| OrderBy()            | Sorts ascending.                            | `people.OrderBy(p => p.Name)`                                                   |
+| OrderByDescending()  | Sorts descending.                           | `people.OrderByDescending(p => p.Age)`                                          |
+| ThenBy()             | Secondary sort (asc).                       | `people.OrderBy(p=>p.Last).ThenBy(p=>p.First)`                                  |
+| ThenByDescending()   | Secondary sort (desc).                      | `people.OrderBy(p=>p.City).ThenByDescending(p=>p.Age)`                          |
+| GroupBy()            | Groups elements by key.                     | `people.GroupBy(p => p.City)`                                                   |
+| Join()               | Inner join between sequences.               | `customers.Join(orders,c=>c.Id,o=>o.CustId,(c,o)=>new{c.Name,o.Product})`       |
+| GroupJoin()          | Groups join results (left join style).      | `customers.GroupJoin(orders,c=>c.Id,o=>o.CustId,(c,os)=>new{c.Name,Orders=os})` |
+| Distinct()           | Removes duplicates.                         | `numbers.Distinct()`                                                            |
+| Union()              | Combines two sequences, removes duplicates. | `a.Union(b)`                                                                    |
+| Intersect()          | Common elements of sequences.               | `a.Intersect(b)`                                                                |
+| Except()             | Elements in first sequence not in second.   | `a.Except(b)`                                                                   |
+| Any()                | True if any element matches.                | `nums.Any(n => n > 10)`                                                         |
+| All()                | True if all match condition.                | `nums.All(n => n > 0)`                                                          |
+| Contains()           | Checks if element exists.                   | `nums.Contains(5)`                                                              |
+| First()              | Returns first element; error if empty.      | `nums.First()`                                                                  |
+| FirstOrDefault()     | First or default value.                     | `nums.FirstOrDefault()`                                                         |
+| Last()               | Last element; error if empty.               | `nums.Last()`                                                                   |
+| LastOrDefault()      | Last or default value.                      | `nums.LastOrDefault()`                                                          |
+| Single()             | Exactly one match; error if 0 or >1.        | `nums.Single(n => n == 5)`                                                      |
+| SingleOrDefault()    | One match or default.                       | `nums.SingleOrDefault(n => n == 5)`                                             |
+| ElementAt()          | Returns element at index.                   | `nums.ElementAt(2)`                                                             |
+| ElementAtOrDefault() | Returns default if index invalid.           | `nums.ElementAtOrDefault(100)`                                                  |
+| Count()              | Counts elements; optional condition.        | `nums.Count(n => n > 5)`                                                        |
+| Sum()                | Sums values.                                | `nums.Sum()`                                                                    |
+| Average()            | Average of values.                          | `nums.Average()`                                                                |
+| Min()                | Minimum value.                              | `nums.Min()`                                                                    |
+| Max()                | Maximum value.                              | `nums.Max()`                                                                    |
+| Aggregate()          | Custom aggregator.                          | `nums.Aggregate((a,b)=>a+b)`                                                    |
+| ToList()             | Converts to List.                           | `nums.ToList()`                                                                 |
+| ToArray()            | Converts to Array.                          | `nums.ToArray()`                                                                |
+| Take()               | Takes first N elements.                     | `nums.Take(3)`                                                                  |
+| Skip()               | Skips first N elements.                     | `nums.Skip(3)`                                                                  |
+| TakeWhile()          | Takes while condition true.                 | `nums.TakeWhile(n < 10)`                                                        |
+| SkipWhile()          | Skips while condition true.                 | `nums.SkipWhile(n < 10)`                                                        |
+| Reverse()            | Reverses sequence.                          | `nums.Reverse()`                                                                |
+
+
+## ORM
+
+### Table Management
+| Method                        | Description                                 | Example                                  |
+| ----------------------------- | ------------------------------------------- | ---------------------------------------- |
+| `CreateTable<T>()`            | Creates table for type T (throws if exists) | `db.CreateTable<Employee>();`            |
+| `CreateTableIfNotExists<T>()` | Creates table if it doesn’t exist           | `db.CreateTableIfNotExists<Employee>();` |
+| `DropTable<T>()`              | Drops table                                 | `db.DropTable<Employee>();`              |
+| `DropTableIfExists<T>()`      | Drops table if exists                       | `db.DropTableIfExists<Employee>();`      |
+| `AlterTable<T>()`             | Updates table schema                        | `db.AlterTable<Employee>();`             |
+| `TruncateTable<T>()`          | Deletes all rows                            | `db.TruncateTable<Employee>();`          |
+
+### Insert / Create
+| Method                             | Description                           | Example                                              |
+| ---------------------------------- | ------------------------------------- | ---------------------------------------------------- |
+| `Insert(obj)`                      | Inserts a single object               | `db.Insert(new Employee { Name="John" });`           |
+| `InsertAll(IEnumerable<T>)`        | Inserts multiple objects              | `db.InsertAll(listOfEmployees);`                     |
+| `Insert(obj, selectIdentity:true)` | Inserts and returns auto-increment ID | `int id = db.Insert(emp, true);`                     |
+| `InsertOnly(obj, fields)`          | Inserts only specific fields          | `db.InsertOnly(() => new Employee { Name="John" });` |
+
+### Update
+
+| Method                              | Description                        | Example                                                            |
+| ----------------------------------- | ---------------------------------- | ------------------------------------------------------------------ |
+| `Update(obj)`                       | Updates full object by primary key | `db.Update(emp);`                                                  |
+| `UpdateOnly(obj, fields, where)`    | Updates only selected fields       | `db.UpdateOnly(() => new Employee { Age=30 }, x=>x.Name=="John");` |
+| `UpdateAdd<T>(field, value, where)` | Increment numeric fields           | `db.UpdateAdd(() => new Employee { Age=1 }, x=>x.Id==1);`          |
+
+
+### Delete
+| Method                 | Description                     | Example                             |
+| ---------------------- | ------------------------------- | ----------------------------------- |
+| `Delete(obj)`          | Deletes object by primary key   | `db.Delete(emp);`                   |
+| `Delete<T>(predicate)` | Deletes rows matching condition | `db.Delete<Employee>(x=>x.Age<25);` |
+| `DeleteAll<T>()`       | Deletes all rows                | `db.DeleteAll<Employee>();`         |
+| `DeleteById<T>(id)`    | Deletes row by primary key      | `db.DeleteById<Employee>(1);`       |
+
+
+### Select / Read
+| Method                          | Description                                 | Example                                                    |
+| ------------------------------- | ------------------------------------------- | ---------------------------------------------------------- |
+| `Select<T>()`                   | Returns all rows                            | `var emps = db.Select<Employee>();`                        |
+| `Select<T>(predicate)`          | Returns rows matching condition             | `var itEmps = db.Select<Employee>(x=>x.Department=="IT");` |
+| `Single<T>(predicate)`          | Returns single row; throws if none/multiple | `var emp = db.Single<Employee>(x=>x.Id==1);`               |
+| `SingleOrDefault<T>(predicate)` | Returns single row or default               | `var emp = db.SingleOrDefault<Employee>(x=>x.Id==10);`     |
+| `SingleById<T>(id)`             | Returns row by PK                           | `var emp = db.SingleById<Employee>(1);`                    |
+| `Exists<T>(predicate)`          | Checks if row exists                        | `bool exist = db.Exists<Employee>(x=>x.Name=="John");`     |
+| `Count<T>()`                    | Returns total rows                          | `int total = db.Count<Employee>();`                        |
+| `Count<T>(predicate)`           | Returns count with condition                | `int count = db.Count<Employee>(x=>x.Age>30);`             |
+| `LoadSelect<T>()`               | Loads rows with referenced children         | `var depts = db.LoadSelect<Department>();`                 |
+
+
+### Raw SQL Execution
+
+| Method                            | Description                 | Example                                                                    |
+| --------------------------------- | --------------------------- | -------------------------------------------------------------------------- |
+| `ExecuteSql(sql, params)`         | Executes SQL (non-query)    | `db.ExecuteSql("UPDATE Employee SET Age=30");`                             |
+| `SqlScalar<T>(sql, params)`       | Returns single scalar value | `int cnt = db.SqlScalar<int>("SELECT COUNT(*) FROM Employee");`            |
+| `SqlList<T>(sql, params)`         | Returns list from SQL       | `var emps = db.SqlList<Employee>("SELECT * FROM Employee");`               |
+| `SqlDictionary<K,V>(sql, params)` | Returns dictionary from SQL | `var dict = db.SqlDictionary<int,string>("SELECT Id,Name FROM Employee");` |
+
+
+### Transactions
+| Method              | Description            | Example                                                       |
+| ------------------- | ---------------------- | ------------------------------------------------------------- |
+| `OpenTransaction()` | Begins a transaction   | `using(var trans=db.OpenTransaction()){... trans.Commit(); }` |
+| `Commit()`          | Commits transaction    | `trans.Commit();`                                             |
+| `Rollback()`        | Rolls back transaction | `trans.Rollback();`                                           |
+
+
+### Fluent / LINQ Queries
+
+| Method                    | Description           | Example                                                                |
+| ------------------------- | --------------------- | ---------------------------------------------------------------------- |
+| `db.From<T>()`            | Starts a fluent query | `var q = db.From<Employee>();`                                         |
+| `Where(expr)`             | Adds WHERE clause     | `var q = db.From<Employee>().Where(x=>x.Age>30);`                      |
+| `OrderBy(expr)`           | ORDER BY ASC          | `db.Select(q.OrderBy(x=>x.Name));`                                     |
+| `OrderByDescending(expr)` | ORDER BY DESC         | `db.Select(q.OrderByDescending(x=>x.Age));`                            |
+| `ThenBy(expr)`            | Secondary sort ASC    | `db.Select(q.OrderBy(x=>x.Name).ThenBy(x=>x.Age));`                    |
+| `Limit(skip, rows)`       | Pagination            | `db.Select(q.Limit(10,5));`                                            |
+| `Join<T1,T2>(...)`        | Joins another table   | `var q = db.From<Employee>().Join<Department>((e,d)=>e.DeptId==d.Id);` |
