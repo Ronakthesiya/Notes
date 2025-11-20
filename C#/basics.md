@@ -1621,7 +1621,6 @@ public static class AnimalExtensions {
 | `Select<T>()`                   | Returns all rows                            | `var emps = db.Select<Employee>();`                        |
 | `Select<T>(predicate)`          | Returns rows matching condition             | `var itEmps = db.Select<Employee>(x=>x.Department=="IT");` |
 | `Single<T>(predicate)`          | Returns single row; throws if none/multiple | `var emp = db.Single<Employee>(x=>x.Id==1);`               |
-| `SingleOrDefault<T>(predicate)` | Returns single row or default               | `var emp = db.SingleOrDefault<Employee>(x=>x.Id==10);`     |
 | `SingleById<T>(id)`             | Returns row by PK                           | `var emp = db.SingleById<Employee>(1);`                    |
 | `Exists<T>(predicate)`          | Checks if row exists                        | `bool exist = db.Exists<Employee>(x=>x.Name=="John");`     |
 | `Count<T>()`                    | Returns total rows                          | `int total = db.Count<Employee>();`                        |
@@ -1658,3 +1657,41 @@ public static class AnimalExtensions {
 | `ThenBy(expr)`            | Secondary sort ASC    | `db.Select(q.OrderBy(x=>x.Name).ThenBy(x=>x.Age));`                    |
 | `Limit(skip, rows)`       | Pagination            | `db.Select(q.Limit(10,5));`                                            |
 | `Join<T1,T2>(...)`        | Joins another table   | `var q = db.From<Employee>().Join<Department>((e,d)=>e.DeptId==d.Id);` |
+
+
+## Cryptography 
+
+### AES (Advanced Encryption Standard)
+
+- Uses the same secret key for encryption and decryption.
+- symmetric cryptographic algorithm.
+
+```c#
+using (Aes aes = Aes.Create())
+{
+    aes.Key = key;
+    aes.IV = iv;
+
+    ICryptoTransform encryptor = aes.CreateEncryptor();
+    byte[] encrypted = encryptor.TransformFinalBlock(data, 0, data.Length);
+}
+```
+
+### RSA (Rivest–Shamir–Adleman)
+
+- It uses two keys:
+    1. Public Key – can be shared openly; used to encrypt data or verify signatures
+    2. Private Key – must be kept secret; used to decrypt data or sign data
+- asymmetric cryptographic algorithm.
+
+```c#
+using System.Security.Cryptography;
+
+RSA rsa = RSA.Create(2048);  // Key size 2048-bit
+
+string publicKey = Convert.ToBase64String(rsa.ExportRSAPublicKey());
+string privateKey = Convert.ToBase64String(rsa.ExportRSAPrivateKey());
+
+Console.WriteLine("Public Key: " + publicKey);
+Console.WriteLine("Private Key: " + privateKey);
+```
