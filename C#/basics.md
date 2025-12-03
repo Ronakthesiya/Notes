@@ -1,188 +1,7 @@
-<!-- ## C# Data types
-
-## 1. Value Types in C#
-
-1. Integral types (int, byte, long, etc.)
-2. Floating-point types (float, double, decimal)
-3. Character type (char)
-4. Boolean type (bool)
-5. Enumerations (enum)
-6. Structs (struct)
-
-## Integral Data Types
-
-byte	1 byte	0 to 255
-sbyte	1 byte	-128 to 127
-short	2 bytes	-32,768 to 32,767
-ushort	2 bytes	0 to 65,535
-int	4 bytes	-2,147,483,648 to 2,147,483,647
-uint	4 bytes	0 to 4,294,967,295
-long	8 bytes	-9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
-ulong	8 bytes	0 to 18,446,744,073,709,551,615
-
-
-## Floating-Point Data Types
-
-Data Type	Size	Precision
-float	4 bytes	6-7 decimal places
-double	8 bytes	15-16 decimal places
-decimal	16 bytes	28-29 decimal places
-
-
-## Character and Boolean Data Types
-
-Data Type	Size	Description
-char	2 bytes	Stores a single character
-bool	1 byte	Stores true or false
-
-
-## Enumerations (enum)
-An enum is a special data type used for defining named constant values.
-
-using System;
-
-class Program
-{
-    enum JobLevel { Intern, Junior, Mid, Senior, Manager }
-
-    static void Main()
-    {
-        JobLevel currentLevel = JobLevel.Mid;
-        Console.WriteLine("Current Job Level: " + currentLevel);
-    }
-}
-
-
-## Structs
-A struct is a value type used to encapsulate related data.
-
-using System;
-
-struct Employee
-{
-    public int ID;
-    public string Name;
-    public double Salary;
-}
-
-class Program
-{
-    static void Main()
-    {
-        Employee emp;
-        emp.ID = 101;
-        emp.Name = "Zoya";
-        emp.Salary = 60000.50;
-
-        Console.WriteLine("Employee ID: " + emp.ID);
-        Console.WriteLine("Employee Name: " + emp.Name);
-        Console.WriteLine("Employee Salary: $" + emp.Salary);
-    }
-}
-
-
-## 2. Reference Types in C#
-
-- The reference types do not contain the actual data stored in a variable, but they contain a reference to the variables.
-
-- In other words, they refer to a memory location. Using multiple variables, the reference types can refer to a memory location. If the data in the memory location is changed by one of the variables, the other variable automatically reflects this change in value. Example of built-in reference types are: object, dynamic, string, and array.
-
-## Object Type
-- The Object Type is the ultimate base class for all data types in C# Common Type System (CTS). Object is an alias for System.Object class. The object types can be assigned values of any other types, value types, reference types, predefined or user-defined types. However, before assigning values, it needs type conversion.
-
-- When a value type is converted to object type, it is called boxing and on the other hand, when an object type is converted to a value type, it is called unboxing.
-
-```c#
-using System;
-
-class Program
-{
-    static void Main()
-    {
-        object obj = 1001; // Student ID
-        Console.WriteLine("Student ID: " + obj);
-
-        obj = "Sudhir Sharma"; // Student Name
-        Console.WriteLine("Student Name: " + obj);
-    }
-}
-```
-
-
-## Dynamic Type
-You can store any type of value in the dynamic data type variable. Type checking for these types of variables takes place at run-time.
-
-```c#
-using System;
-
-class Program
-{
-    static void Main()
-    {
-        dynamic value = 10;
-        Console.WriteLine("Dynamic value: " + value);
-
-        value = "Hello, World!";
-        Console.WriteLine("Dynamic now contains: " + value);
-    }
-}
-```
-
-## String Type
-
-The String Type allows you to assign any string values to a variable. 
-
-
-## Array Type
-Arrays store multiple values of the same type in a single variable.
-
-## 3. Pointer Type in C#
-
-Pointer type variables store the memory address of another type. 
-
-```c#
-using System;
-
-unsafe class Program
-{
-    static void Main()
-    {
-        int grade = 90;
-        int* ptr = &grade;
-
-        Console.WriteLine("Original Grade: " + grade);
-        Console.WriteLine("Memory Address: " + (ulong)ptr);
-
-        *ptr = 95; // Modifying value using pointer
-        Console.WriteLine("Updated Grade: " + grade);
-    }
-}
-```
-
- -->
-
-
-# C# Data Types
-
-## 📘 Index
-
-1. [Value Types in C#](#1-value-types-in-c)
-   - [Integral Data Types](#integral-data-types)
-   - [Floating-Point Data Types](#floating-point-data-types)
-   - [Character and Boolean Data Types](#character-and-boolean-data-types)
-   - [Enumerations (enum)](#enumerations-enum)
-   - [Structs](#structs)
-2. [Reference Types in C#](#2-reference-types-in-c)
-   - [Object Type](#object-type)
-   - [Dynamic Type](#dynamic-type)
-   - [String Type](#string-type)
-   - [Array Type](#array-type)
-3. [Pointer Type in C#](#3-pointer-type-in-c)
-
----
+## C# Data Types
 
 <details>
-<summary><h2>1. Value Types in C#</h2></summary>
+<summary><h3>1. Value Types in C#</h3></summary>
 
 Value types directly contain their data. Examples include integers, floating-point numbers, characters, booleans, enums, and structs.
 
@@ -193,8 +12,6 @@ Value types directly contain their data. Examples include integers, floating-poi
 4. Boolean type (`bool`)
 5. Enumerations (`enum`)
 6. Structs (`struct`)
-
----
 
 <details>
 <summary><b>Integral Data Types</b></summary>
@@ -212,8 +29,6 @@ Value types directly contain their data. Examples include integers, floating-poi
 
 </details>
 
----
-
 <details>
 <summary><b>Floating-Point Data Types</b></summary>
 
@@ -225,8 +40,6 @@ Value types directly contain their data. Examples include integers, floating-poi
 
 </details>
 
----
-
 <details>
 <summary><b>Character and Boolean Data Types</b></summary>
 
@@ -236,8 +49,6 @@ Value types directly contain their data. Examples include integers, floating-poi
 | `bool` | 1 byte | Stores `true` or `false` |
 
 </details>
-
----
 
 <details>
 <summary><b>Enumerations (enum)</b></summary>
@@ -289,7 +100,7 @@ class Program
 ```
 
 </details> </details>
-<details> <summary><h2>2. Reference Types in C#</h2></summary>
+<details> <summary><h3>2. Reference Types in C#</h3></summary>
 
 Reference types do not store actual data. Instead, they store a reference (memory address) pointing to the data’s location in memory.
 
@@ -357,7 +168,7 @@ Console.WriteLine("First Score: " + scores[0]);
 ```
 
 </details> </details>
-<details> <summary><h2>3. Pointer Type in C#</h2></summary>
+<details> <summary><h3>3. Pointer Type in C#</h3></summary>
 
 Pointer type variables store the memory address of another variable.
 Pointers can only be used in an unsafe context.
@@ -382,60 +193,37 @@ unsafe class Program
 ```
 </details>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+---
 
 ## Types of Variables in C#
 
-1. Primitive Variables
+### 1. Primitive Variables
 The primitive variables are basic data types like int, float, char, and bool.
 ```c#
 int number = 10;
 double pi = 3.14;
 ```
 
-2. Reference Variables
+### 2. Reference Variables
 The reference variables hold references to objects in memory, like arrays and classes.
 ```c#
 string name = "Alice";
 int[] numbers = new int[] { 1, 2, 3 };
 ```
 
-3. Constants
+### 3. Constants
 The constants are variables whose value cannot be changed once assigned.
 ```c#
 const double PI = 3.14159;
 ```
 
-4. Nullable Variables
+### 4. Nullable Variables
 The nullable variables can hold a null value.
 ```c#
 int? age = null;
 ```
 
-
-
-
+---
 
 ## Access Specifier
 
@@ -467,9 +255,7 @@ int? age = null;
 | `protected internal` | Within the same assembly or derived classes  |
 | `private protected`  | Within the same assembly and derived classes |
 
-
-    
-
+---
 
 ## Structure
 
@@ -512,14 +298,14 @@ p1.empid = "SEO01";
 - When you create a struct object using the New operator, it gets created and the appropriate constructor is called. Unlike classes, structs can be instantiated without using the New operator.
 - If the New operator is not used, the fields remain unassigned and the object cannot be used until all the fields are initialized.
 
-#### Class versus Structure
+### Class versus Structure
 
 - classes are reference types and structs are value types
 - structures do not support inheritance
 - structures cannot have default constructor
 
 
-#### Structure with Methods and Interfaces
+### Structure with Methods and Interfaces
 
 ```c#
 using System;
@@ -553,6 +339,7 @@ class Program {
 }
 ```
 
+---
 
 ## enum
 
@@ -588,6 +375,7 @@ Numeric Value: 404
 Monday: 1
 Friday: 5
 ```
+---
 
 ## C# Constructors
 
@@ -627,7 +415,7 @@ namespace LineApplication {
    }
 }
 ```
-
+---
 
 ## Inheritance
 
@@ -636,6 +424,7 @@ namespace LineApplication {
 3. Hierarchical Inheritance
 4. Multiple Inheritance : C# does not support 
 
+---
 
 ## Polymorphism
 
@@ -668,6 +457,7 @@ Box3 = Box1 + Box2;
 ### Run-Time Polymorphism / Dynamic Polymorphism
 1. Method Overriding = Dynamic polymorphism is implemented by abstract classes and virtual functions.
 
+---
 
 ## Regex
 
@@ -692,6 +482,7 @@ string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
 Regex rgx = new Regex(pattern);
 bool isValid = rgx.IsMatch(email);
 ```
+---
 
 
 ## Exception Handling
@@ -704,6 +495,7 @@ bool isValid = rgx.IsMatch(email);
 
 - throw − A program throws an exception when a problem shows up. This is done using a throw keyword.
 
+---
 
 ## File I/O
 
@@ -782,6 +574,8 @@ bool isValid = rgx.IsMatch(email);
 
 </details>
 
+---
+
 ## DataTable
 
 ```c#
@@ -804,7 +598,7 @@ foreach (DataRow row in dt.Rows)
 }
 ```
 
-#### Filtering and Searching Rows
+### Filtering and Searching Rows
 
 ```c#
 DataRow[] highScores = dt.Select("Marks > 80");
@@ -815,7 +609,7 @@ foreach (DataRow row in highScores)
 }
 ```
 
-#### Sorting Data
+### Sorting Data
 
 ```c#
 DataRow[] sorted = dt.Select("", "Marks DESC");
@@ -832,7 +626,7 @@ DataTable clone = dt.Clone(); // Copies only structure (no data)
 
 ```
 
-#### Constraint
+### Constraint
 ```c#
 DataTable dt = new DataTable("Student");
 
@@ -854,6 +648,7 @@ dt.Columns.Add("IdName", typeof(string),"id+Name");
 
 dt.PrimaryKey = new DataColumn[] { dt.Columns["Id"] };
 
+// Add Even RowChanged => call after Row Changed
 dt.RowChanged += (s, e) =>
 {
     Console.WriteLine("Row changed: " + e.Row["Name"]);
@@ -866,7 +661,7 @@ dt.Rows.Add(null,"D");
 dt.Rows.Add(null,"A");
 ```
 
-#### ForeignKey
+### ForeignKey
 
 ```c#
 DataSet ds = new DataSet("CompanyDB");
@@ -896,7 +691,7 @@ DataRow parent = employees.Rows[0].GetParentRow("Dept_Employees");
 
 ```
 
-
+---
 
 ## DateTime
 
@@ -921,7 +716,7 @@ DataRow parent = employees.Rows[0].GetParentRow("Dept_Employees");
 | **Difference**       | `TimeSpan diff = d2 - d1`     | Finds duration              | `diff.Days`                        | Number of days          |
 | **Parse / TryParse** | `DateTime.Parse(string)`      | Convert string to date      | `DateTime.Parse("11/06/2025")`     | `DateTime` object       |
 
-
+---
 ## String
 
 | **Category**            | **Method / Property**         | **Description**               | **Example**                     | **Output / Note** |
@@ -949,6 +744,7 @@ DataRow parent = employees.Rows[0].GetParentRow("Dept_Employees");
 | **Empty & Null**        | `string.IsNullOrEmpty()`      | Check empty string            | `string.IsNullOrEmpty("")`      | `true`            |
 |                         | `string.IsNullOrWhiteSpace()` | Checks space-only string      | `"   "`                         | `true`            |
 
+---
 
 ## Math
 
@@ -975,11 +771,12 @@ DataRow parent = employees.Rows[0].GetParentRow("Dept_Employees");
 | **Random**           | `Random.Next()`       | Random integer   | `new Random().Next(1,10)` | `1–9`             |
 
 
+---
 
 ## Types of clases
 
 
-1. Regular Class
+### 1. Regular Class
 
 Can be instantiated using new.
 Can contain fields, methods, properties, constructors.
@@ -1001,7 +798,7 @@ e.Name = "Alice";
 e.Work();
 ```
 
-2. Abstract Class
+### 2. Abstract Class
 
 Cannot be instantiated directly.
 Can have abstract methods (without body) and regular methods.
@@ -1030,7 +827,7 @@ m.Work();
 
 ```
 
-3. Static Class
+### 3. Static Class
 
 Cannot be instantiated.
 All members must be static.
@@ -1047,7 +844,7 @@ int sum = MathHelper.Add(5, 10);
 Console.WriteLine(sum); // 15
 ```
 
-4. Sealed Class
+### 4. Sealed Class
 
 Cannot be inherited.
 Useful when you want to prevent extension of a class.
@@ -1065,7 +862,7 @@ sealed class Employee
 // class Manager : Employee {} // ❌ Not allowed
 ```
 
-5. Partial Class
+### 5. Partial Class
 
 Allows splitting class definition across multiple files.
 Useful in large projects or auto-generated code.
@@ -1099,6 +896,7 @@ partial class Employee
 | Generic    | Yes              | Yes                 | Both              | Type-safe reusable class      |
 | Record     | Yes              | Yes (with `record`) | Both              | Immutable data storage        |
 
+---
 
 ## Generic class
 
@@ -1124,6 +922,7 @@ strBox.ShowContent();  // Output: Content: Hello
 
 ```
 
+---
 
 ## Generic Methods
 
@@ -1145,9 +944,11 @@ class Program
 
 ```
 
+---
+
 ## Generic Collections
 
-<details><summary><b>1. List<Type></b></summary>
+<details><summary><h3>1. List<Type></h3></summary>
 Methods with Examples
 
 | Method                                                         | Description                            | Return Type             | Example                                                                                                      |
@@ -1208,7 +1009,7 @@ Properties Examples
 
 </details>
 
-<details><summary><b>2. SortedList<TKey, TValue></b></summary>
+<details><summary><h3>2. SortedList<TKey, TValue></h3></summary>
 Properties
 
 | Property         | Description                      | Example                                    |
@@ -1240,7 +1041,7 @@ Methods
 
 </details>
 
-<details><summary><b>3. Dictionary<TKey, TValue></b></summary>
+<details><summary><h3>3. Dictionary<TKey, TValue></h3></summary>
 Properties
 
 | Property         | Description               | Example                                        |
@@ -1268,7 +1069,7 @@ Methods
 
 </details>
 
-<details><summary><b>4. SortedDictionary<TKey,TValue></b></summary>
+<details><summary><h3>4. SortedDictionary<TKey,TValue></h3></summary>
 Properties
 
 | Property         | Description                     | Example                                    |
@@ -1295,7 +1096,7 @@ Methods
 
 </details>
 
-<details><summary><b>5. Stack<Type></b></summary>
+<details><summary><h3>5. Stack<Type></h3></summary>
 Properties
 
 | Property     | Description                              | Example                             |
@@ -1320,7 +1121,7 @@ Methods
 
 </details>
 
-<details><summary><b>6. Queue<Type></b></summary>
+<details><summary><h3>6. Queue<Type></h3></summary>
 Properties
 
 | Property     | Description                                | Example                             |
@@ -1345,7 +1146,7 @@ Methods
 
 </details>
 
-<details><summary><b>7. HashSet<Type></b></summary>
+<details><summary><h3>7. HashSet<Type></h3></summary>
 Properties
 
 | Property     | Description                                 | Example                          |
@@ -1376,7 +1177,7 @@ Methods
 
 </details>
 
-<details><summary><b>8. LinkedList<Type></b></summary>
+<details><summary><h3>8. LinkedList<Type></h3></summary>
 Properties
 
 | Property     | Description                    | Example                                   |
@@ -1407,7 +1208,7 @@ Methods
 </details>
 
 
-<details><summary><b>Array<Type></b></summary>
+<details><summary><h3>Array<Type></h3></summary>
 
 | Method                                    | Description                                | Return Type             | Example                                                   |
 | ----------------------------------------- | ------------------------------------------ | ----------------------- | --------------------------------------------------------- |
@@ -1436,10 +1237,11 @@ Methods
 
 </details>
 
+---
 
 ## Serialization
 
-<details><summary><b>Json<Type></b></summary>
+<details><summary><h3>Json<Type></h3></summary>
 
  ```c#
     unsing System.Text.Json;
@@ -1465,7 +1267,7 @@ Methods
 </details>
 
 
-<details><summary><b>XML<Type></b></summary>
+<details><summary><h3>XML<Type></h3></summary>
 
  ```c#
     public class XmlHandler
@@ -1496,6 +1298,8 @@ Methods
 
  ```
 </details>
+
+---
 
 ## Lambda
 
@@ -1532,6 +1336,7 @@ Func<Task> asyncLambda = async () =>
     Console.WriteLine("Finished after 1 second!");
 };
 ```
+---
 
 ## Extension Methods
 
@@ -1549,9 +1354,8 @@ public static class ClassName{
     }
 }
 ```
-### Types of Extension Methods
 
-<details><summary>Extension Method on Built-in Type</summary>
+<details><summary><h3>Extension Method on Built-in Type</h3></summary>
 
 - In this type of extension method, we can add new methods to built-in types like string, int, double, etc., without modifying their original definition.
 
@@ -1575,7 +1379,7 @@ class Program {
 </details>
 
 
-<details><summary>Extension Method on User-defined Class</summary>
+<details><summary><h3>Extension Method on User-defined Class</h3></summary>
 
 - An extension method on a user-defined class can help you create an extension method for your own classes to add extra functionality without modifying the class directly.
 
@@ -1594,7 +1398,7 @@ public static class StudentExtensions {
 </details>
 
 
-<details><summary>Extension Method on Interface</summary>
+<details><summary><h3>Extension Method on Interface</h3></summary>
 
 - In this type, we can define extension methods for interfaces, which means all those classes that implement a given interface can use the extension method.
 
@@ -1612,7 +1416,7 @@ public static class AnimalExtensions {
 ```
 </details>
 
-
+---
 
 ## LinQ
 
@@ -1658,6 +1462,7 @@ public static class AnimalExtensions {
 | SkipWhile()          | Skips while condition true.                 | `nums.SkipWhile(n < 10)`                                                        |
 | Reverse()            | Reverses sequence.                          | `nums.Reverse()`                                                                |
 
+---
 
 ## ORM
 
@@ -1740,6 +1545,7 @@ public static class AnimalExtensions {
 | `Limit(skip, rows)`       | Pagination            | `db.Select(q.Limit(10,5));`                                            |
 | `Join<T1,T2>(...)`        | Joins another table   | `var q = db.From<Employee>().Join<Department>((e,d)=>e.DeptId==d.Id);` |
 
+---
 
 ## Cryptography 
 
@@ -1777,3 +1583,4 @@ string privateKey = Convert.ToBase64String(rsa.ExportRSAPrivateKey());
 Console.WriteLine("Public Key: " + publicKey);
 Console.WriteLine("Private Key: " + privateKey);
 ```
+---
