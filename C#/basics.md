@@ -820,26 +820,82 @@ foreach (DataRow row in highScores)
 ```c#
 DataRow[] sorted = dt.Select("", "Marks DESC");
 
-foreach (DataRow row in sorted)
-{
-    Console.WriteLine($"{row["Name"]} - {row["Marks"]}");
-}
-
-
 // Update
 dt.Rows[0]["Marks"] = 88.5;
-
 // Delete
 dt.Rows[2].Delete();
 
-
 dt.AcceptChanges(); 
-
 
 DataTable copy = dt.Copy();   // Copies both structure + data
 DataTable clone = dt.Clone(); // Copies only structure (no data)
 
 ```
+
+#### Constraint
+```c#
+DataTable dt = new DataTable("Student");
+
+dt.Columns.Add("Id", typeof(int));
+dt.Columns[0].AutoIncrement = true;
+dt.Columns[0].AutoIncrementSeed = 1;
+dt.Columns[0].AutoIncrementStep = 1;
+
+DataColumn dc = new DataColumn();
+dc.AllowDBNull = false;
+dc.Unique = true;
+dc.DefaultValue = "abcd";
+dc.DataType = typeof(string);
+dc.ColumnName = "Name";
+dt.Columns.Add(dc);
+
+// Add Auto Generated Column => Expression Use
+dt.Columns.Add("IdName", typeof(string),"id+Name");
+
+dt.PrimaryKey = new DataColumn[] { dt.Columns["Id"] };
+
+dt.RowChanged += (s, e) =>
+{
+    Console.WriteLine("Row changed: " + e.Row["Name"]);
+    //Console.WriteLine(s.GetId());
+};
+
+dt.Rows.Add(null,"C");
+dt.Rows.Add(null,"B");
+dt.Rows.Add(null,"D");
+dt.Rows.Add(null,"A");
+```
+
+#### ForeignKey
+
+```c#
+DataSet ds = new DataSet("CompanyDB");
+
+// Add tables to dataset
+ds.Tables.Add(dept);
+ds.Tables.Add(emp);
+
+// Relation
+DataRelation rel = new DataRelation(
+    "Dept_Employees",
+    dept.Columns["DeptId"],
+    emp.Columns["DeptId"]
+);
+ds.Relations.Add(rel);
+
+
+// Access via relation => GetChildRows(relationName) , GetParentRow(relationName)
+foreach (DataRow d in dept.Rows)
+{
+    Console.WriteLine("Department: " + d["DeptName"]);
+    foreach (DataRow e in d.GetChildRows("Dept_Employees"))
+        Console.WriteLine(" - " + e["Name"]);
+}
+
+DataRow parent = employees.Rows[0].GetParentRow("Dept_Employees");
+
+```
+
 
 
 ## DateTime
@@ -1351,8 +1407,34 @@ Methods
 </details>
 
 
+<details><summary><b>Array<Type></b></summary>
+
+| Method                                    | Description                                | Return Type             | Example                                                   |
+| ----------------------------------------- | ------------------------------------------ | ----------------------- | --------------------------------------------------------- |
+| **Array.Sort(array)**                     | Sorts the array in ascending order.        | `void`                  | `Array.Sort(nums);`                                       |
+| **Array.Reverse(array)**                  | Reverses the array order.                  | `void`                  | `Array.Reverse(nums);`                                    |
+| **Array.IndexOf(array, value)**           | Returns first index of value.              | `int`                   | `int i = Array.IndexOf(nums, 4);`                         |
+| **Array.LastIndexOf(array, value)**       | Returns last index of value.               | `int`                   | `int i = Array.LastIndexOf(nums, 4);`                     |
+| **Array.Copy(src, dst, len)**             | Copies elements from one array to another. | `void`                  | `Array.Copy(a, b, 5);`                                    |
+| **Array.Clone()**                         | Creates a shallow copy.                    | `object`                | `int[] copy = (int[])nums.Clone();`                       |
+| **Array.Clear(array, index, len)**        | Resets elements to default.                | `void`                  | `Array.Clear(nums, 0, 3);`                                |
+| **Array.Resize(ref array, newSize)**      | Changes size (creates new array).          | `void`                  | `Array.Resize(ref nums, 10);`                             |
+| **Array.Exists(array, predicate)**        | Checks if any element matches condition.   | `bool`                  | `bool ok = Array.Exists(nums, x => x > 10);`              |
+| **Array.Find(array, predicate)**          | Returns first match.                       | `T`                     | `int v = Array.Find(nums, x => x > 10);`                  |
+| **Array.FindAll(array, predicate)**       | Returns all matches.                       | `T[]`                   | `int[] result = Array.FindAll(nums, x => x > 10);`        |
+| **Array.FindIndex(array, predicate)**     | Gets index of first match.                 | `int`                   | `int i = Array.FindIndex(nums, x => x == 5);`             |
+| **Array.FindLast(array, predicate)**      | Gets last matching element.                | `T`                     | `int v = Array.FindLast(nums, x => x > 10);`              |
+| **Array.FindLastIndex(array, predicate)** | Gets last matching index.                  | `int`                   | `int i = Array.FindLastIndex(nums, x => x == 5);`         |
+| **Array.TrueForAll(array, predicate)**    | Checks if all elements match condition.    | `bool`                  | `bool ok = Array.TrueForAll(nums, x => x >= 0);`          |
+| **Array.ForEach(array, action)**          | Executes action for each element.          | `void`                  | `Array.ForEach(nums, x => Console.WriteLine(x));`         |
+| **Array.BinarySearch(array, value)**      | Binary search in sorted array.             | `int`                   | `int i = Array.BinarySearch(nums, 10);`                   |
+| **Array.ConvertAll(src, converter)**      | Converts elements to another type.         | `TOutput[]`             | `string[] s = Array.ConvertAll(nums, x => x.ToString());` |
+| **Array.AsReadOnly(array)**               | Creates read-only wrapper.                 | `ReadOnlyCollection<T>` | `var ro = Array.AsReadOnly(nums);`                        |
+| **Array.Fill(array, value)**              | Sets all elements to value.                | `void`                  | `Array.Fill(nums, 7);`                                    |
+| **Array.Empty<T>()**                      | Returns an empty array of type T.          | `T[]`                   | `var empty = Array.Empty<int>();`                         |
 
 
+</details>
 
 
 ## Serialization
