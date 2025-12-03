@@ -487,13 +487,66 @@ bool isValid = rgx.IsMatch(email);
 
 ## Exception Handling
 
-- try − A try block identifies a block of code for which particular exceptions is activated. It is followed by one or more catch blocks.
+### 1. try 
+- A try block identifies a block of code for which particular exceptions is activated. It is followed by one or more catch blocks.
 
-- catch − A program catches an exception with an exception handler at the place in a program where you want to handle the problem. The catch keyword indicates the catching of an exception.
+### 2. catch 
+- A program catches an exception with an exception handler at the place in a program where you want to handle the problem. The catch keyword indicates the catching of an exception.
 
-- finally − The finally block is used to execute a given set of statements, whether an exception is thrown or not thrown. For example, if you open a file, it must be closed whether an exception is raised or not.
+### 3. finally 
+- The finally block is used to execute a given set of statements, whether an exception is thrown or not thrown. For example, if you open a file, it must be closed whether an exception is raised or not.
 
-- throw − A program throws an exception when a problem shows up. This is done using a throw keyword.
+### 4. throw 
+- A program throws an exception when a problem shows up. This is done using a throw keyword.
+
+- Throwing a new exception
+
+```c#
+throw new Exception("Something went wrong");
+```
+
+- Rethrowing an existing exception
+
+```c#
+catch (Exception ex)
+{
+    Console.WriteLine("Logging only");
+    throw;  // rethrows original exception with full stack trace
+}
+```
+
+### 5. Exception Filters (when)
+
+Exception filters let you filter which exceptions a catch block will handle.
+They execute a Boolean expression before the catch block runs, while the exception is still unwindable (not yet caught).
+
+If the condition:
+- returns true → the catch block handles the exception
+- returns false → the catch block is skipped, and the runtime continues searching for another matching handler
+
+```c#
+
+catch (Exception ex) when (boolean function or Expression)
+{
+
+}
+
+try
+{
+    SomeOperation();
+}
+catch (IOException ex) when (ex.Message.Contains("disk full"))
+{
+    Console.WriteLine("Disk full! Cleaning up...");
+}
+
+```
+
+Exception filters allow you to specify a condition using when that decides whether a catch block should handle an exception, and the condition is evaluated before the catch block receives the exception.
+This preserves stack traces, supports conditional logic, enables logging without handling, and avoids rethrow problems.
+
+
+
 
 ---
 
