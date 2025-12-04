@@ -627,6 +627,42 @@ This preserves stack traces, supports conditional logic, enables logging without
 
 </details>
 
+<details>
+<summary><h3>File Exceptions</h3></summary>
+
+| Operation / Mode        | If File Exists                                                        | If File Does NOT Exist      |
+| ----------------------- | --------------------------------------------------------------------- | --------------------------- |
+| **Create**              | Overwrite (clear file)                                                | Create new file             |
+| **CreateText**          | Overwrite (clear file)                                                | Create new file             |
+| **Delete**              | Delete file                                                           | Do nothing                  |
+| **Open (Open)**         | Opens existing file; overwrites only the chars you write, rest remain | Exception: *File Not Found* |
+| **Open (OpenOrCreate)** | Opens existing file; overwrites only the chars you write, rest remain | Create new file             |
+| **Open (Create)**       | Overwrite (clear file)                                                | Create new file             |
+| **Open (CreateNew)**    | Exception: already exists                                             | Create new file             |
+| **Open (Truncate)**     | Clear file then write                                                 | Exception: *File Not Found* |
+| **Open (Append)**       | Append to file                                                        | Create new file             |
+| **OpenRead**            | Open for read only                                                    | Exception: *File Not Found* |
+| **OpenWrite**           | Open for write only                                                   | Create new file             |
+| **OpenText**            | Read only                                                             | Exception: *File Not Found* |
+| **ReadAllText**         | Read content                                                          | Exception: *File Not Found* |
+| **ReadAllLines**        | Read content                                                          | Exception: *File Not Found* |
+| **ReadAllBytes**        | Read content                                                          | Exception: *File Not Found* |
+| **WriteAllText**        | Overwrite                                                             | Create new file             |
+| **WriteAllLines**       | Overwrite                                                             | Create new file             |
+| **WriteAllBytes**       | Overwrite                                                             | Create new file             |
+| **AppendAllText**       | Append                                                                | Create new file             |
+| **AppendAllLines**      | Append                                                                | Create new file             |
+| **AppendAllBytes**      | Append                                                                | Create new file             |
+
+
+| Operation         | src + dest exist       | only src exists | only dest exists         |
+| ----------------- | ---------------------- | --------------- | ------------------------ |
+| **Copy**          | Exception: dest exists | Create new dest | Exception: src not found |
+| **Copy(,, true)** | Overwrite dest         | Create new dest | Exception: src not found |
+| **Move**          | Overwrite dest         | Create new dest | Exception: src not found |
+
+</details>
+
 ---
 
 ## DataTable
