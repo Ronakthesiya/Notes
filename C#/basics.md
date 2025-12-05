@@ -659,7 +659,7 @@ This preserves stack traces, supports conditional logic, enables logging without
 | ----------------- | ---------------------- | --------------- | ------------------------ |
 | **Copy**          | Exception: dest exists | Create new dest | Exception: src not found |
 | **Copy(,, true)** | Overwrite dest         | Create new dest | Exception: src not found |
-| **Move**          | Overwrite dest         | Create new dest | Exception: src not found |
+| **Move**          | Exception: dest exists | Create new dest | Exception: src not found |
 
 </details>
 
@@ -669,7 +669,7 @@ This preserves stack traces, supports conditional logic, enables logging without
 
 ```c#
 DataTable dt = new DataTable("Students");
-
+ 
 // Add columns
 dt.Columns.Add("ID", typeof(int));
 dt.Columns.Add("Name", typeof(string));
@@ -1011,6 +1011,45 @@ strBox.ShowContent();  // Output: Content: Hello
 
 ```
 
+### Generic Class with Multiple Type Parameters
+
+```c#
+public class Pair<T1, T2>
+{
+    public T1 First { get; set; }
+    public T2 Second { get; set; }
+}
+```
+
+### Generic Constraints
+
+| Constraint      | Meaning                             |
+| --------------- | ----------------------------------- |
+| `T : class`     | Reference type                      |
+| `T : struct`    | Value type                          |
+| `T : new()`     | Must have parameterless constructor |
+| `T : BaseClass` | Must inherit the base class         |
+| `T : Interface` | Must implement an interface         |
+
+
+### Multiple Constraints
+
+Order must be:
+1. class/struct
+2. Base class
+3. Interfaces
+4. new()
+
+```c#
+public class Repository<T> where T : Entity, new()
+{
+    public T Create()
+    {
+        return new T();
+    }
+}
+
+```
 ---
 
 ## Generic Methods
