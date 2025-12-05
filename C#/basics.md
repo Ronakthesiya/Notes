@@ -1429,24 +1429,118 @@ Methods
 
 ---
 
-## Lambda
+## Delegate
+
+A delegate in C# is essentially a type-safe function pointer. It allows you to reference a method with a specific signature and return type, and invoke it later.
 
 ```c#
-Func<int ,int ,string> temp = (a,b) => a + " " + b;
-Func<int, int, int> multiplyAndAdd = (a, b) =>
-{
-    int product = a * b;
-    return product + 10;
-};
+delegate <return-type> <delegate-name>(<parameters>);
 
-Console.WriteLine(multiplyAndAdd(2, 3)); // Output: 16
+// Declare a delegate
+delegate int MathOperation(int a, int b);
+
+// static int Add(int x, int y)
+// {
+//     return x + y;
+// }
+
+MathOperation op = Add;  // Delegate points to Add method
+int result = op(5, 3);  // Calls Add(5,3)
+Console.WriteLine(result); // Output: 8
+
 ```
 
-Action is used when a lambda doesn’t return a value
+### Multicast Delegates
+
+A multicast delegate can hold references to more than one method. When invoked, it calls all methods in order.
 
 ```c#
-Action<string> greet = name => Console.WriteLine($"Hello, {name}!");
-greet("Alice");
+delegate void Notify(string message);
+
+class Program
+{
+    static void Main()
+    {
+        Notify notify = Method1;
+        notify += Method2; // Add another method
+
+        notify("Hello World");  // Calls both Method1 and Method2
+    }
+
+    static void Method1(string msg)
+    {
+        Console.WriteLine("Method1: " + msg);
+    }
+
+    static void Method2(string msg)
+    {
+        Console.WriteLine("Method2: " + msg);
+    }
+}
+
+// Output
+// Method1: Hello World
+// Method2: Hello World
+
+```
+
+### Built-in Delegates
+
+1. Func – represents methods that return a value.
+
+```c#
+Func<int, int, string> add = (x, y) => x + " " + y;
+Console.WriteLine(add(3, 4)); // Output: 7
+```
+
+2. Action – represents methods that do not return a value.
+
+```c#
+Action<string> greet = name => Console.WriteLine("Hello " + name);
+greet("Alice"); // Output: Hello Alice
+
+```
+
+3. Predicate – represents methods that return a boolean.
+
+```c#
+Predicate<int> isEven = x => x % 2 == 0;
+Console.WriteLine(isEven(4)); // Output: True
+```
+
+---
+
+## Lambda
+
+A lambda expression is an anonymous function (a function without a name) that you can use to create delegates or expression tree types.
+
+It’s a concise way to define a method inline, often used in LINQ queries, delegates, and functional programming patterns.
+
+```c#
+(parameters) => expression
+
+x => x * x        // Single parameter, returns square
+(x, y) => x + y   // Two parameters, returns sum
+() => DateTime.Now // No parameters, returns current date/time
+
+
+(x, y) => 
+{
+    int result = x + y;
+    Console.WriteLine(result);
+    return result;
+};
+
+
+Func<int, int, int> add = (x, y) => x + y;
+Console.WriteLine(add(3, 4)); // Output: 7
+
+Action<string> greet = name => Console.WriteLine("Hello " + name);
+greet("Alice"); // Output: Hello Alice
+
+Predicate<int> isEven = x => x % 2 == 0;
+Console.WriteLine(isEven(4)); // Output: True
+
 ```
 
 Capturing Variables(Closures)
