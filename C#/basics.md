@@ -1769,6 +1769,35 @@ public static class AnimalExtensions {
 
 ---
 
+
+### ORMLite Attributes Table
+
+| Attribute                 | Example                                                              | Explanation                                                                   |
+| ------------------------- | -------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| **[Alias]**               | `[Alias("Products")] class Product`                                  | Renames the table or column in SQL. Useful if DB uses different naming.       |
+| **[Schema]**              | `[Schema("inventory")] class Product`                                | Places table under a specific schema (PostgreSQL, SQL Server, MySQL).         |
+| **[CompositeKey]**        | `[CompositeKey("OrderId","ProductId")]`                              | Creates a multi-column primary key.                                           |
+| **[PrimaryKey]**          | `[PrimaryKey] public string Username { get; set; }`                  | Marks a column as the primary key when property isn't named "Id".             |
+| **[AutoIncrement]**       | `[AutoIncrement] public int Id { get; set; }`                        | Auto-increment identity column.                                               |
+| **[Unique]**              | `[Unique] public string Email { get; set; }`                         | Enforces a unique constraint on the column.                                   |
+| **[UniqueConstraint]**    | `[UniqueConstraint("A","B")]`                                        | Multi-column unique constraint.                                               |
+| **[Index]**               | `[Index] public string Name { get; set; }`                           | Creates an index for faster lookups. Can also be composite.                   |
+| **[Required]**            | `[Required] public string Username { get; set; }`                    | Column cannot be NULL (NOT NULL).                                             |
+| **[Default]**             | `[Default(0)] public int Stock { get; set; }`                        | Default value when new rows are inserted.                                     |
+| **[CheckConstraint]**     | `[CheckConstraint("Price > 0")]`                                     | DB-level validation to enforce a SQL condition.                               |
+| **[StringLength]**        | `[StringLength(100)] public string Name { get; set; }`               | Specifies max column length for VARCHAR/TEXT.                                 |
+| **[DecimalLength]**       | `[DecimalLength(10,2)] public decimal Price { get; set; }`           | Precision and scale for decimal fields.                                       |
+| **[CustomField]**         | `[CustomField("BLOB")] public byte[] Data { get; set; }`             | Fully control SQL column type (overrides defaults).                           |
+| **[EnumAsString]**        | `[EnumAsString] public Status Status { get; set; }`                  | Store enum as string (e.g., "Active") instead of integer (0,1...).            |
+| **[Ignore]**              | `[Ignore] public string Display => Name + " Item";`                  | Skip this property; it is not stored in the database.                         |
+| **[Compute]**             | `[Compute] public decimal Total => Qty * Price;`                     | Non-persistent calculated field (computed by SQL or ignored).                 |
+| **[CustomSelect]**        | `[CustomSelect("UPPER(Name)")] public string Name { get; set; }`     | Overrides how a field is selected in SQL queries.                             |
+| **[References]**          | `[References(typeof(Category))] public int CategoryId { get; set; }` | Marks a FK column referencing another table.                                  |
+| **[Reference]**           | `[Reference] public Category Category { get; set; }`                 | Navigation property for automatically loaded related data (using LoadSelect). |
+| **[ForeignKey]** (legacy) | `[ForeignKey(typeof(User))] public int UserId { get; set; }`         | Older version of [References]; still works.                                   |
+| **[RowVersion]**          | `[RowVersion] public ulong Version { get; set; }`                    | Optimistic concurrency control; incremented on each update.                   |
+
+
 ## Cryptography 
 
 ### AES (Advanced Encryption Standard)
@@ -1806,3 +1835,31 @@ Console.WriteLine("Public Key: " + publicKey);
 Console.WriteLine("Private Key: " + privateKey);
 ```
 ---
+
+## yield return
+
+- yield return allows you to create lazy sequences in C#
+- It’s the core mechanism behind LINQ deferred execution
+- Instead of building a full collection in memory, you yield elements one at a time
+
+Key Points:
+1. Methods using yield return automatically implement IEnumerable<T>
+2. Execution is deferred: the sequence is generated as it’s enumerated
+3. Ideal for streaming large or infinite sequences
+
+
+```c#
+IEnumerable<int> GetNumbers()
+{
+    for (int i = 1; i <= 5; i++)
+    {
+        yield return i; // lazily returns one number at a time
+    }
+}
+
+var numbers = GetNumbers(); // Not executed yet
+foreach (var n in numbers)
+{
+    Console.WriteLine(n); // Executed one by one
+}
+```
