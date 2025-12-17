@@ -448,3 +448,108 @@ contains all visible content of the webpage.
 | `vlink`       | Sets color for visited links.   | `<body vlink="purple">`      |
 | `alink`       | Sets color for active links.    | `<body alink="red">`         |
 
+
+## HTML Formatting Tags
+
+| **Tag**    | **Purpose**                   | **Example Code**             | **Output (Browser View)** |
+| ---------- | ----------------------------- | ---------------------------- | ------------------------- |
+| `<b>`      | Makes text bold (visual only) | `<b>Bold Text</b>`           | **Bold Text**             |
+| `<strong>` | Shows strong importance       | `<strong>Important</strong>` | **Important**             |
+| `<i>`      | Makes text italic             | `<i>Italic Text</i>`         | *Italic Text*             |
+| `<em>`     | Emphasizes text               | `<em>Emphasized</em>`        | *Emphasized*              |
+| `<u>`      | Underlines text               | `<u>Underlined</u>`          | <u>Underlined</u>         |
+| `<mark>`   | Highlights text               | `<mark>Highlighted</mark>`   | <mark>Highlighted</mark>  |
+| `<small>`  | Displays smaller text         | `<small>Small Text</small>`  | Small Text                |
+| `<sup>`    | Superscript text              | `10<sup>2</sup>`             | 10²                       |
+| `<sub>`    | Subscript text                | `H<sub>2</sub>O`             | H₂O                       |
+| `<del>`    | Deleted text (strike)         | `<del>₹500</del>`            | ~~₹500~~                  |
+| `<ins>`    | Inserted text                 | `<ins>New Text</ins>`        | <u>New Text</u>           |
+| `<code>`   | Programming code              | `<code>print()</code>`       | `print()`                 |
+| `<pre>`    | Preformatted text             | `<pre>Hello   World</pre>`   | Preserves spacing         |
+| `<kbd>`    | Keyboard input                | `<kbd>Ctrl</kbd>`            | Ctrl                      |
+| `<samp>`   | Sample output                 | `<samp>Error</samp>`         | Error                     |
+| `<var>`    | Variable name                 | `<var>x</var> = 5`           | *x* = 5                   |
+| `<cite>`   | Title of work                 | `<cite>HTML Book</cite>`     | *HTML Book*               |
+| `<dfn>`    | Definition term               | `<dfn>HTML</dfn>`            | *HTML*                    |
+| `<bdo>`    | Text direction                | `<bdo dir="rtl">Hello</bdo>` | olleH                     |
+| `<bdi>`    | Isolate direction             | `<bdi>محمد</bdi>`            | محمد                      |
+
+
+
+## img tag
+
+```html
+<img src="image_path" alt="Alternate text for the image" width="200px" height="150px" />
+```
+
+- src: The src attribute defines the path of the image (image URL).
+- alt: The alt attribute defines the alternate text; if there is a broken link to the image path, the alternate text displays on the webpage.
+- width and height: The width and height attribute define the height and width for the image.
+
+
+### Attributes
+
+| **Attribute**   | **Possible Values**   | **Effect / Meaning**                      | **Example**                                   |
+| --------------- | --------------------- | ----------------------------------------- | --------------------------------------------- |
+| `src`           | URL / path to image   | Specifies image source                    | `<img src="cat.jpg">`                         |
+| `alt`           | Any text              | Shows text if image fails; accessibility  | `<img alt="White cat">`                       |
+| `width`         | Number (px)           | Sets image width                          | `<img width="300">`                           |
+| `height`        | Number (px)           | Sets image height                         | `<img height="200">`                          |
+| `loading`       | `lazy`                | Loads image when needed                   | `<img loading="lazy">`                        |
+|                 | `eager`               | Loads immediately                         | `<img loading="eager">`                       |
+| `decoding`      | `sync`                | Decode immediately                        | `<img decoding="sync">`                       |
+|                 | `async`               | Decode asynchronously                     | `<img decoding="async">`                      |
+|                 | `auto`                | Browser decides                           | `<img decoding="auto">`                       |
+| `fetchpriority` | `high`                | Load first                                | `<img fetchpriority="high">`                  |
+|                 | `low`                 | Load later                                | `<img fetchpriority="low">`                   |
+|                 | `auto`                | Default behavior                          | `<img fetchpriority="auto">`                  |
+| `srcset`        | `URL widthDescriptor` | Loads image based on screen               | `<img srcset="a.jpg 480w, b.jpg 800w">`       |
+| `sizes`         | Media conditions      | Defines layout size                       | `<img sizes="(max-width:600px) 100vw, 50vw">` |
+| `usemap`        | `#mapname`            | Links image to map                        | `<img usemap="#mymap">`                       |
+| `ismap`         | Boolean               | Sends click coordinates                   | `<img ismap>`                                 |
+| `align`         | `left`, `right`       | Align image                               | CSS                                           |
+| `border`        | Number                | Image border                              | CSS                                           |
+| `hspace`        | Number                | Horizontal spacing                        | CSS                                           |
+| `vspace`        | Number                | Vertical spacing                          | CSS                                           |
+| `longdesc`      | URL                   | Image description                         | `<figure>`                                    |
+
+
+## Image Maps
+
+HTML image maps are defined by the `<map>` tag. An image map enables specific areas of an image to be clickable, acting as links to different destinations.
+
+The `<map>` tag is used to create a client-side image map, turning specific regions of an image into interactive elements. This allows users to click on different areas of the image, triggering various actions. The `<map>` element serves as a container for `<area>` elements, each defining a clickable region with specific attributes.
+
+```html
+<img src="/images/logo.png" usemap="#image_map">
+
+<map name="world map">
+   <!-- Define your clickable areas here -->
+   <area shape="shape_values" coords="coordinates" href="url" alt="Description">
+</map>
+```
+
+1. Rectangular Area
+
+```html
+<area shape="rect" coords="x1,y1,x2,y2" href="url" alt="Description">
+```
+x1, y1 − Coordinates of the top-left corner.
+x2, y2 − Coordinates of the bottom-right corner
+
+2. Circular Area
+```html
+<area shape="circle" coords="x,y,r" href="url" alt="Description">
+```
+x, y − Coordinates of the circle's center.
+r − Radius of the circle.
+
+3. Polygon Area
+```html
+<area shape="poly" coords="x1,y1,x2,y2,..,xn,yn" href="url" alt="Description">
+```
+Where x1, y1,..., xn, yn coordinates form the polygon.
+
+
+
+
