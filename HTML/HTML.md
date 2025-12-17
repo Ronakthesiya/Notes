@@ -20,12 +20,15 @@ HTML stands for HyperText Markup Language. It is used to structure the content o
 </html>
 ```
 
+---
+
 ## !DOCTYPE html
 
 - this tells the browser: “This document is written in HTML5.”
 - Must be the first line of the document
 - Case-insensitive, but usually written in uppercase
 
+---
 
 ## HTML tag
 
@@ -52,6 +55,7 @@ HTML stands for HyperText Markup Language. It is used to structure the content o
 | `accesskey`       | Keyboard shortcut for element            | Any key                   | `<html accesskey="h">`            |
 | `role`            | Defines ARIA role for accessibility      | ARIA roles                | `<html role="document">`          |
 
+---
 
 ## head tag
 
@@ -399,6 +403,7 @@ Tracking scripts
 </details>
 
 
+---
 
 ## Body tag
 
@@ -448,6 +453,7 @@ contains all visible content of the webpage.
 | `vlink`       | Sets color for visited links.   | `<body vlink="purple">`      |
 | `alink`       | Sets color for active links.    | `<body alink="red">`         |
 
+---
 
 ## HTML Formatting Tags
 
@@ -475,6 +481,7 @@ contains all visible content of the webpage.
 | `<bdi>`    | Isolate direction             | `<bdi>محمد</bdi>`            | محمد                      |
 
 
+---
 
 ## img tag
 
@@ -513,6 +520,7 @@ contains all visible content of the webpage.
 | `vspace`        | Number                | Vertical spacing                          | CSS                                           |
 | `longdesc`      | URL                   | Image description                         | `<figure>`                                    |
 
+---
 
 ## Image Maps
 
@@ -529,26 +537,28 @@ The `<map>` tag is used to create a client-side image map, turning specific regi
 </map>
 ```
 
-1. Rectangular Area
+### 1. Rectangular Area
 
 ```html
 <area shape="rect" coords="x1,y1,x2,y2" href="url" alt="Description">
 ```
-x1, y1 − Coordinates of the top-left corner.
-x2, y2 − Coordinates of the bottom-right corner
+- x1, y1 − Coordinates of the top-left corner.
+- x2, y2 − Coordinates of the bottom-right corner
 
-2. Circular Area
+### 2. Circular Area
 ```html
 <area shape="circle" coords="x,y,r" href="url" alt="Description">
 ```
-x, y − Coordinates of the circle's center.
-r − Radius of the circle.
+- x, y − Coordinates of the circle's center.
+- r − Radius of the circle.
 
-3. Polygon Area
+### 3. Polygon Area
 ```html
 <area shape="poly" coords="x1,y1,x2,y2,..,xn,yn" href="url" alt="Description">
 ```
-Where x1, y1,..., xn, yn coordinates form the polygon.
+- Where x1, y1,..., xn, yn coordinates form the polygon.
+
+---
 
 
 
