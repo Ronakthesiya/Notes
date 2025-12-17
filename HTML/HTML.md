@@ -404,4 +404,47 @@ Tracking scripts
 
 contains all visible content of the webpage.
 
+### Global Attributes
+
+| **Attribute** | **Type / Category** | **Description**                                                 | **Example**                                                 |
+| ------------- | ------------------- | --------------------------------------------------------------- | ----------------------------------------------------------- |
+| `id`          | Global              | Unique identifier for the `<body>` element, useful for CSS/JS.  | `<body id="mainBody">`                                      |
+| `class`       | Global              | One or more class names for styling with CSS.                   | `<body class="dark-theme page-home">`                       |
+| `style`       | Global              | Inline CSS styles.                                              | `<body style="background-color: lightblue; color: black;">` |
+| `title`       | Global              | Provides extra info, often shown as a tooltip.                  | `<body title="Main content of the page">`                   |
+| `data-*`      | Global              | Custom data attributes for JS.                                  | `<body data-user="admin">`                                  |
+| `lang`        | Global              | Specifies the language of the content.                          | `<body lang="en">`                                          |
+| `dir`         | Global              | Text direction: `ltr` (left-to-right) or `rtl` (right-to-left). | `<body dir="rtl">`                                          |
+
+
+### Event Attributes
+
+| **Attribute**  | **Description**                                        | **Example**                                             |
+| -------------- | ------------------------------------------------------ | ------------------------------------------------------- |
+| `onload`       | Executes JS when the page fully loads.                 | `<body onload="alert('Welcome!')">`                     |
+| `onunload`     | Executes JS when the page is closed or navigated away. | `<body onunload="alert('Goodbye!')">`                   |
+| `onresize`     | Executes JS when the window is resized.                | `<body onresize="console.log('Window resized')">`       |
+| `onscroll`     | Executes JS when the page is scrolled.                 | `<body onscroll="console.log('Scrolling')">`            |
+| `onkeydown`    | Executes JS when a key is pressed down.                | `<body onkeydown="console.log('Key pressed')">`         |
+| `onkeyup`      | Executes JS when a key is released.                    | `<body onkeyup="console.log('Key released')">`          |
+| `onkeypress`   | Executes JS when a key is pressed.                     | `<body onkeypress="console.log('Key press detected')">` |
+| `onclick`      | Executes JS when the body is clicked.                  | `<body onclick="alert('Body clicked!')">`               |
+| `ondblclick`   | Executes JS on double-click.                           | `<body ondblclick="alert('Double click!')">`            |
+| `onmousedown`  | Executes JS when a mouse button is pressed down.       | `<body onmousedown="console.log('Mouse down')">`        |
+| `onmouseup`    | Executes JS when a mouse button is released.           | `<body onmouseup="console.log('Mouse up')">`            |
+| `onmousemove`  | Executes JS when the mouse is moved.                   | `<body onmousemove="console.log('Mouse moving')">`      |
+| `onmouseenter` | Executes JS when the mouse enters the body.            | `<body onmouseenter="console.log('Mouse entered')">`    |
+| `onmouseleave` | Executes JS when the mouse leaves the body.            | `<body onmouseleave="console.log('Mouse left')">`       |
+
+
+### Deprecated Attributes
+
+| **Attribute** | **Description**                 | **Example**                  |
+| ------------- | ------------------------------- | ---------------------------- |
+| `background`  | Sets a background image.        | `<body background="bg.jpg">` |
+| `bgcolor`     | Sets background color.          | `<body bgcolor="yellow">`    |
+| `text`        | Sets default text color.        | `<body text="blue">`         |
+| `link`        | Sets color for unvisited links. | `<body link="green">`        |
+| `vlink`       | Sets color for visited links.   | `<body vlink="purple">`      |
+| `alink`       | Sets color for active links.    | `<body alink="red">`         |
 
