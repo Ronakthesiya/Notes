@@ -1,0 +1,15 @@
+F:\Ronak - 453\DemoCode\Ingestion\bin\Debug\net7.0\Ingestion.exe
+F:\Ronak - 453\DemoCode\Ingestion\bin\Debug\net7.0\Ingestion.deps.json
+F:\Ronak - 453\DemoCode\Ingestion\bin\Debug\net7.0\Ingestion.runtimeconfig.json
+F:\Ronak - 453\DemoCode\Ingestion\bin\Debug\net7.0\Ingestion.dll
+F:\Ronak - 453\DemoCode\Ingestion\bin\Debug\net7.0\Ingestion.pdb
+F:\Ronak - 453\DemoCode\Ingestion\obj\Debug\net7.0\Ingestion.csproj.AssemblyReference.cache
+F:\Ronak - 453\DemoCode\Ingestion\obj\Debug\net7.0\Ingestion.GeneratedMSBuildEditorConfig.editorconfig
+F:\Ronak - 453\DemoCode\Ingestion\obj\Debug\net7.0\Ingestion.AssemblyInfoInputs.cache
+F:\Ronak - 453\DemoCode\Ingestion\obj\Debug\net7.0\Ingestion.AssemblyInfo.cs
+F:\Ronak - 453\DemoCode\Ingestion\obj\Debug\net7.0\Ingestion.csproj.CoreCompileInputs.cache
+F:\Ronak - 453\DemoCode\Ingestion\obj\Debug\net7.0\Ingestion.dll
+F:\Ronak - 453\DemoCode\Ingestion\obj\Debug\net7.0\refint\Ingestion.dll
+F:\Ronak - 453\DemoCode\Ingestion\obj\Debug\net7.0\Ingestion.pdb
+F:\Ronak - 453\DemoCode\Ingestion\obj\Debug\net7.0\Ingestion.genruntimeconfig.cache
+F:\Ronak - 453\DemoCode\Ingestion\obj\Debug\net7.0\ref\Ingestion.dll

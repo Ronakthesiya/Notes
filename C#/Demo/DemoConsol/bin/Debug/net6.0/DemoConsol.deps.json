@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "DemoConsol/1.0.0": {
+        "dependencies": {
+          "DemoConsol2": "1.0.0"
+        },
+        "runtime": {
+          "DemoConsol.dll": {}
+        }
+      },
+      "DemoConsol2/1.0.0": {
+        "runtime": {
+          "DemoConsol2.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "DemoConsol/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DemoConsol2/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
