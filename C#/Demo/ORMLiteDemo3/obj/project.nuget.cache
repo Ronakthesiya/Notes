@@ -1,0 +1,28 @@
+{
+  "version": 2,
+  "dgSpecHash": "l0cR5/okilVcYT8gMQnfWmPgi+5Gf9QQeJm/xVfPwXqSycfaT2Rz4jidRDyzYAG1dFSzO6O5QQqQZIGjbJujcA==",
+  "success": true,
+  "projectFilePath": "F:\\Ronak - 453\\DemoCode\\ORMLiteDemo3\\ORMLiteDemo3.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ronak.t\\.nuget\\packages\\bouncycastle.cryptography\\2.6.2\\bouncycastle.cryptography.2.6.2.nupkg.sha512",
+    "C:\\Users\\ronak.t\\.nuget\\packages\\google.protobuf\\3.32.0\\google.protobuf.3.32.0.nupkg.sha512",
+    "C:\\Users\\ronak.t\\.nuget\\packages\\k4os.compression.lz4\\1.3.8\\k4os.compression.lz4.1.3.8.nupkg.sha512",
+    "C:\\Users\\ronak.t\\.nuget\\packages\\k4os.compression.lz4.streams\\1.3.8\\k4os.compression.lz4.streams.1.3.8.nupkg.sha512",
+    "C:\\Users\\ronak.t\\.nuget\\packages\\k4os.hash.xxhash\\1.0.8\\k4os.hash.xxhash.1.0.8.nupkg.sha512",
+    "C:\\Users\\ronak.t\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.2\\microsoft.extensions.dependencyinjection.abstractions.8.0.2.nupkg.sha512",
+    "C:\\Users\\ronak.t\\.nuget\\packages\\mysql.data\\9.5.0\\mysql.data.9.5.0.nupkg.sha512",
+    "C:\\Users\\ronak.t\\.nuget\\packages\\servicestack.common\\10.0.4\\servicestack.common.10.0.4.nupkg.sha512",
+    "C:\\Users\\ronak.t\\.nuget\\packages\\servicestack.interfaces\\10.0.4\\servicestack.interfaces.10.0.4.nupkg.sha512",
+    "C:\\Users\\ronak.t\\.nuget\\packages\\servicestack.ormlite\\10.0.4\\servicestack.ormlite.10.0.4.nupkg.sha512",
+    "C:\\Users\\ronak.t\\.nuget\\packages\\servicestack.ormlite.mysql\\10.0.4\\servicestack.ormlite.mysql.10.0.4.nupkg.sha512",
+    "C:\\Users\\ronak.t\\.nuget\\packages\\servicestack.text\\10.0.4\\servicestack.text.10.0.4.nupkg.sha512",
+    "C:\\Users\\ronak.t\\.nuget\\packages\\system.configuration.configurationmanager\\8.0.0\\system.configuration.configurationmanager.8.0.0.nupkg.sha512",
+    "C:\\Users\\ronak.t\\.nuget\\packages\\system.diagnostics.eventlog\\8.0.0\\system.diagnostics.eventlog.8.0.0.nupkg.sha512",
+    "C:\\Users\\ronak.t\\.nuget\\packages\\system.io.pipelines\\6.0.3\\system.io.pipelines.6.0.3.nupkg.sha512",
+    "C:\\Users\\ronak.t\\.nuget\\packages\\system.security.cryptography.protecteddata\\8.0.0\\system.security.cryptography.protecteddata.8.0.0.nupkg.sha512",
+    "C:\\Users\\ronak.t\\.nuget\\packages\\system.security.permissions\\8.0.0\\system.security.permissions.8.0.0.nupkg.sha512",
+    "C:\\Users\\ronak.t\\.nuget\\packages\\system.windows.extensions\\8.0.0\\system.windows.extensions.8.0.0.nupkg.sha512",
+    "C:\\Users\\ronak.t\\.nuget\\packages\\zstdsharp.port\\0.8.6\\zstdsharp.port.0.8.6.nupkg.sha512"
+  ],
+  "logs": []
+}
