@@ -1863,3 +1863,19 @@ foreach (var n in numbers)
     Console.WriteLine(n); // Executed one by one
 }
 ```
+
+## Comparition
+
+| Feature / Aspect               | **ADO.NET**                                                                 | **Dapper**                                                | **ORMLite**                                               | **EF Core (Entity Framework Core)**                                         |
+| ------------------------------ | --------------------------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------------------------- |
+| **Type**                       | Low-level data access                                                       | Micro-ORM                                                 | Lightweight ORM                                           | Full-featured ORM                                                           |
+| **Abstraction Level**          | Very low — direct SQL commands and connection handling                      | Low — executes SQL but maps results to objects            | Medium — maps POCOs to tables, simple CRUD                | High — maps POCOs to tables, supports LINQ, migrations, relationships       |
+| **Performance**                | High (direct SQL execution, minimal overhead)                               | Very high (almost as fast as ADO.NET)                     | High (lightweight mapping, minimal overhead)              | Medium (ORM abstraction adds overhead, can be tuned)                        |
+| **Ease of Use**                | Low — must write SQL, manually handle connections, parameters, transactions | Medium — simpler than raw ADO.NET, but still requires SQL | High — simple CRUD operations, easy setup, minimal config | Very High — LINQ queries, migrations, relationships, change tracking        |
+| **Querying**                   | SQL only                                                                    | SQL only                                                  | SQL and some query helpers                                | LINQ, SQL, and some raw SQL support                                         |
+| **Change Tracking**            | No                                                                          | No                                                        | No automatic change tracking                              | Yes, full change tracking                                                   |
+| **Relationships / Navigation** | Manual                                                                      | Manual                                                    | Limited                                                   | Full support (one-to-one, one-to-many, many-to-many)                        |
+| **Migrations**                 | None                                                                        | None                                                      | Limited                                                   | Full support (code-first migrations)                                        |
+| **Best For**                   | Maximum performance, fine-grained control                                   | Performance-critical apps that want simple object mapping | Simple apps needing lightweight ORM                       | Complex apps needing rich data modeling, relationships, and maintainability |
+| **Learning Curve**             | Steep                                                                       | Moderate                                                  | Easy                                                      | Moderate to steep                                                           |
+
