@@ -561,5 +561,61 @@ The `<map>` tag is used to create a client-side image map, turning specific regi
 ---
 
 
+## Table 
+
+The `<table>` tag is used in HTML to display data in rows and columns, like a spreadsheet.
+`<tr>` – Table Row
+`<td>` – Table Data
+`<th>` – Table Header
+`<caption>` – Table Title
+`<thead>` – Table Head
+`<tbody>` – Table Body
+`<tfoot>` – Table Footer
+
+### Attributes of `<table>` Tag
+
+| **Attribute**    | **Explanation**                                     | **Example**                               |
+| ---------------- | --------------------------------------------------- | ----------------------------------------- |
+| `border`         | Specifies the thickness of the table border         | `<table border="1">`                      |
+| `width`          | Sets the width of the table (px or %)               | `<table width="80%">`                     |
+| `height`         | Sets the height of the table                        | `<table height="300">`                    |
+| `align`          | Aligns the table horizontally (left, center, right) | `<table align="center">`                  |
+| `cellpadding`    | Space between cell border and content               | `<table cellpadding="10">`                |
+| `cellspacing`    | Space between table cells                           | `<table cellspacing="5">`                 |
+| `bgcolor` ⚠️     | Sets background color of table (deprecated)         | `<table bgcolor="lightblue">`             |
+| `bordercolor` ⚠️ | Sets border color (deprecated)                      | `<table bordercolor="red">`               |
+| `rules` ⚠️       | Controls inner borders (rows, cols, all, none)      | `<table rules="all">`                     |
+| `frame` ⚠️       | Controls outer border sides                         | `<table frame="box">`                     |
+| `summary`        | Describes table for screen readers                  | `<table summary="Student marks">`         |
+| `style`          | Applies CSS styles                                  | `<table style="border:2px solid black;">` |
+| `class`          | Assigns CSS class                                   | `<table class="data-table">`              |
+| `id`             | Gives unique identification                         | `<table id="marksTable">`                 |
+| `title`          | Shows tooltip text                                  | `<table title="Student Info">`            |
+
+
+### Attributes of `<tr>` (Table Row)
+
+| **Attribute** | **Explanation**           | **Example**               |
+| ------------- | ------------------------- | ------------------------- |
+| `align`       | Aligns content in row     | `<tr align="center">`     |
+| `valign`      | Vertical alignment of row | `<tr valign="top">`       |
+| `bgcolor` ⚠️  | Row background color      | `<tr bgcolor="yellow">`   |
+| `style`       | CSS styling               | `<tr style="color:red;">` |
+
+
+### Attributes of `<td>` and `<th>` (Table Cells)
+
+| **Attribute** | **Explanation**           | **Example**                      |
+| ------------- | ------------------------- | -------------------------------- |
+| `rowspan`     | Merges cells vertically   | `<td rowspan="2">Total</td>`     |
+| `colspan`     | Merges cells horizontally | `<td colspan="3">Marks</td>`     |
+| `align`       | Aligns text horizontally  | `<td align="right">90</td>`      |
+| `valign`      | Aligns text vertically    | `<td valign="middle">Data</td>`  |
+| `width`       | Sets cell width           | `<td width="100">`               |
+| `height`      | Sets cell height          | `<td height="50">`               |
+| `bgcolor` ⚠️  | Cell background color     | `<td bgcolor="pink">`            |
+| `style`       | CSS styling               | `<td style="font-weight:bold;">` |
+
+
 
 

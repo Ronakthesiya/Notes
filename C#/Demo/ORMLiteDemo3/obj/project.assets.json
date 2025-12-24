@@ -818,11 +818,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Ronak - 453\\DemoCode\\ORMLiteDemo3\\ORMLiteDemo3.csproj",
+      "projectUniqueName": "F:\\Ronak - 453 2\\Notes\\C#\\Demo\\ORMLiteDemo3\\ORMLiteDemo3.csproj",
       "projectName": "ORMLiteDemo3",
-      "projectPath": "F:\\Ronak - 453\\DemoCode\\ORMLiteDemo3\\ORMLiteDemo3.csproj",
+      "projectPath": "F:\\Ronak - 453 2\\Notes\\C#\\Demo\\ORMLiteDemo3\\ORMLiteDemo3.csproj",
       "packagesPath": "C:\\Users\\ronak.t\\.nuget\\packages\\",
-      "outputPath": "F:\\Ronak - 453\\DemoCode\\ORMLiteDemo3\\obj\\",
+      "outputPath": "F:\\Ronak - 453 2\\Notes\\C#\\Demo\\ORMLiteDemo3\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ronak.t\\AppData\\Roaming\\NuGet\\NuGet.Config",

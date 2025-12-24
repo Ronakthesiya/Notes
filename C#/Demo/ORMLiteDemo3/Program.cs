@@ -24,7 +24,12 @@ class Program
 
             Console.WriteLine(db.GetLastSql());
             Console.WriteLine(db.GetMergedParamsLastSql());
-            //Console.WriteLine(db);
+            //Console.WriteLine(db.GetMergedParamsLastSql);
+            db.SetLastCommandText("Select * from students");
+            //Console.WriteLine();
+
+            Console.WriteLine(db.GetLastSql());
+
 
             //db.CreateTableIfNotExists<Course>();
             //db.CreateTableIfNotExists<Student>();
