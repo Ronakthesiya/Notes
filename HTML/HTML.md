@@ -563,14 +563,14 @@ The `<map>` tag is used to create a client-side image map, turning specific regi
 
 ## Table 
 
-The `<table>` tag is used in HTML to display data in rows and columns, like a spreadsheet.
-`<tr>` – Table Row
-`<td>` – Table Data
-`<th>` – Table Header
-`<caption>` – Table Title
-`<thead>` – Table Head
-`<tbody>` – Table Body
-`<tfoot>` – Table Footer
+- The `<table>` tag is used in HTML to display data in rows and columns, like a spreadsheet.
+- `<tr>` – Table Row
+- `<td>` – Table Data
+- `<th>` – Table Header
+- `<caption>` – Table Title
+- `<thead>` – Table Head
+- `<tbody>` – Table Body
+- `<tfoot>` – Table Footer
 
 ### Attributes of `<table>` Tag
 
@@ -616,6 +616,8 @@ The `<table>` tag is used in HTML to display data in rows and columns, like a sp
 | `bgcolor` ⚠️  | Cell background color     | `<td bgcolor="pink">`            |
 | `style`       | CSS styling               | `<td style="font-weight:bold;">` |
 
+
+## Form 
 
 
 
