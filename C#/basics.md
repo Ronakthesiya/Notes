@@ -698,6 +698,8 @@ foreach (DataRow row in highScores)
 }
 ```
 
+
+
 ### Sorting Data
 
 ```c#
@@ -779,6 +781,80 @@ foreach (DataRow d in dept.Rows)
 DataRow parent = employees.Rows[0].GetParentRow("Dept_Employees");
 
 ```
+
+### DataTable Props
+
+| **Property Name**    | **Explanation / Purpose**               | **Example (C#)**                                              |
+| -------------------- | --------------------------------------- | ------------------------------------------------------------- |
+| `Columns`            | Gets collection of columns in the table | `dt.Columns.Add("Id", typeof(int));`                          |
+| `Rows`               | Gets collection of rows in the table    | `dt.Rows.Add(1, "John");`                                     |
+| `TableName`          | Gets or sets the name of the DataTable  | `dt.TableName = "Students";`                                  |
+| `PrimaryKey`         | Gets or sets primary key columns        | `dt.PrimaryKey = new[] { dt.Columns["Id"] };`                 |
+| `Constraints`        | Gets collection of constraints          | `dt.Constraints.Add(new UniqueConstraint(dt.Columns["Id"]));` |
+| `DefaultView`        | Gets default DataView for the table     | `DataView dv = dt.DefaultView;`                               |
+| `CaseSensitive`      | Determines case-sensitive comparisons   | `dt.CaseSensitive = true;`                                    |
+| `Locale`             | Gets or sets culture info               | `dt.Locale = CultureInfo.InvariantCulture;`                   |
+| `Namespace`          | Gets or sets XML namespace              | `dt.Namespace = "http://tempuri.org";`                        |
+| `Prefix`             | Gets or sets XML prefix                 | `dt.Prefix = "std";`                                          |
+| `ChildRelations`     | Gets child relations collection         | `dt.ChildRelations.Count;`                                    |
+| `ParentRelations`    | Gets parent relations collection        | `dt.ParentRelations.Count;`                                   |
+| `MinimumCapacity`    | Gets or sets minimum rows capacity      | `dt.MinimumCapacity = 50;`                                    |
+| `ExtendedProperties` | Stores custom information               | `dt.ExtendedProperties["Key"] = "Value";`                     |
+| `HasErrors`          | Indicates whether table has errors      | `bool b = dt.HasErrors;`                                      |
+| `DisplayExpression`  | Expression for display values           | `dt.DisplayExpression = "Id + Name";`                         |
+
+### DataTable methods
+
+| **Method Name**   | **Explanation / Purpose**                            | **Example (C#)**                             |
+| ----------------- | ---------------------------------------------------- | -------------------------------------------- |
+| `AcceptChanges()` | Commits all changes (Added, Modified, Deleted rows). | `dt.AcceptChanges();`                        |
+| `RejectChanges()` | Cancels changes since last AcceptChanges().          | `dt.RejectChanges();`                        |
+| `Clear()`         | Removes all rows but keeps table structure.          | `dt.Clear();`                                |
+| `Clone()`         | Copies only structure (columns, constraints).        | `DataTable dt2 = dt.Clone();`                |
+| `Copy()`          | Copies structure and data.                           | `DataTable dt2 = dt.Copy();`                 |
+| `NewRow()`        | Creates a new row using table schema.                | `DataRow dr = dt.NewRow();`                  |
+| `Select()`        | Selects rows using filter/sort expression.           | `dt.Select("Id > 1");`                       |
+| `Compute()`       | Performs aggregate calculations.                     | `dt.Compute("COUNT(Id)", "");`               |
+| `GetChanges()`    | Returns only changed rows.                           | `DataTable ch = dt.GetChanges();`            |
+| `LoadDataRow()`   | Loads data and updates existing rows.                | `dt.LoadDataRow(new object[]{1,"A"}, true);` |
+| `Merge()`         | Merges another DataTable.                            | `dt.Merge(dt2);`                             |
+| `BeginInit()`     | Starts initialization block.                         | `dt.BeginInit();`                            |
+| `EndInit()`       | Ends initialization block.                           | `dt.EndInit();`                              |
+| `BeginLoadData()` | Improves performance during bulk load.               | `dt.BeginLoadData();`                        |
+| `EndLoadData()`   | Ends bulk loading.                                   | `dt.EndLoadData();`                          |
+| `Dispose()`       | Frees unmanaged resources.                           | `dt.Dispose();`                              |
+
+### DataView props
+
+| **Property Name**  | **Explanation / Purpose**      | **Example (C#)**                                        |
+| ------------------ | ------------------------------ | ------------------------------------------------------- |
+| `Table`            | Gets or sets source DataTable  | `dv.Table = dt;`                                        |
+| `RowFilter`        | Filters rows in the view       | `dv.RowFilter = "Id > 1";`                              |
+| `Sort`             | Sorts rows in view             | `dv.Sort = "Name ASC";`                                 |
+| `Count`            | Gets number of rows            | `int c = dv.Count;`                                     |
+| `AllowEdit`        | Allows editing rows            | `dv.AllowEdit = true;`                                  |
+| `AllowDelete`      | Allows deleting rows           | `dv.AllowDelete = true;`                                |
+| `AllowNew`         | Allows adding new rows         | `dv.AllowNew = true;`                                   |
+| `IsInitialized`    | Indicates initialization state | `bool b = dv.IsInitialized;`                            |
+| `RowStateFilter`   | Filters rows by state          | `dv.RowStateFilter = DataViewRowState.ModifiedCurrent;` |
+| `ApplyDefaultSort` | Uses default sort              | `dv.ApplyDefaultSort = true;`                           |
+| `Item[int]`        | Gets row by index              | `dv[0]["Name"];`                                        |
+| `Item[string]`     | Gets column value              | `dv[0]["Id"];`                                          |
+| `Table.Columns`    | Access table columns           | `dv.Table.Columns["Name"];`                             |
+
+
+### DataView methods
+
+| **Method Name**    | **Explanation / Purpose**        | **Example (C#)**               |
+| ------------------ | -------------------------------- | ------------------------------ |
+| `AddNew()`         | Adds a new row through DataView. | `DataRowView r = dv.AddNew();` |
+| `Delete(int)`      | Deletes row at given index.      | `dv.Delete(0);`                |
+| `Find(object)`     | Finds row using sorted column.   | `dv.Find(2);`                  |
+| `FindRows(object)` | Finds multiple matching rows.    | `dv.FindRows(2);`              |
+| `ToTable()`        | Converts DataView to DataTable.  | `DataTable t = dv.ToTable();`  |
+| `BeginInit()`      | Starts initialization.           | `dv.BeginInit();`              |
+| `EndInit()`        | Ends initialization.             | `dv.EndInit();`                |
+| `Dispose()`        | Releases resources.              | `dv.Dispose();`                |
 
 ---
 
