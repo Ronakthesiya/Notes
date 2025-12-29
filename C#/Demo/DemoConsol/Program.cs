@@ -1,13 +1,15 @@
 ﻿
 using DemoConsol;
-using DemoConsol2;
 using System.Runtime.InteropServices;
 
-class Program : ProgramInternal
+class Program 
 {
 
     public static void Main(String[] args)
     {
+
+        //DestructorsDemo destructors = new DestructorsDemo();
+        //destructors.Demo();
 
         //AccessSpecifires accessSpecifires = new AccessSpecifires();
         //accessSpecifires.demo();
@@ -17,6 +19,8 @@ class Program : ProgramInternal
 
         //DatatableDemo datatable = new DatatableDemo();
         //datatable.demo();
+
+
 
         //DateStringMath.demo();
 
@@ -43,8 +47,8 @@ class Program : ProgramInternal
         //DatatableDemo demo = new DatatableDemo();
         //DatatableDemo.demo();
 
-        DataViewdemo demo = new DataViewdemo();
-        demo.demo();
+        //DataViewdemo demo = new DataViewdemo();
+        //demo.demo();
 
         //FileOp.demo();
 

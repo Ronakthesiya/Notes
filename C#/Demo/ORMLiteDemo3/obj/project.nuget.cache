@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "9gY1dW2FUFTf4+F/PIV0fOulSKhb5cFpsK75pksJ40qvq6Ey7NBcIXkpIU4ZTdCgOibl4Vrm80Es0EHh/QCYSg==",
+  "dgSpecHash": "F7KMmfusudDfLNo8x94vlshsvjwwawXwGZvFmD+yRYMvi+Aqr7C6OBp5RtiQapx62hbbBLDYmsRnGE7b+38HOg==",
   "success": true,
   "projectFilePath": "F:\\Ronak - 453 2\\Notes\\C#\\Demo\\ORMLiteDemo3\\ORMLiteDemo3.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,7 @@
     "C:\\Users\\ronak.t\\.nuget\\packages\\k4os.hash.xxhash\\1.0.8\\k4os.hash.xxhash.1.0.8.nupkg.sha512",
     "C:\\Users\\ronak.t\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.2\\microsoft.extensions.dependencyinjection.abstractions.8.0.2.nupkg.sha512",
     "C:\\Users\\ronak.t\\.nuget\\packages\\mysql.data\\9.5.0\\mysql.data.9.5.0.nupkg.sha512",
+    "C:\\Users\\ronak.t\\.nuget\\packages\\newtonsoft.json\\13.0.4\\newtonsoft.json.13.0.4.nupkg.sha512",
     "C:\\Users\\ronak.t\\.nuget\\packages\\servicestack.common\\10.0.4\\servicestack.common.10.0.4.nupkg.sha512",
     "C:\\Users\\ronak.t\\.nuget\\packages\\servicestack.interfaces\\10.0.4\\servicestack.interfaces.10.0.4.nupkg.sha512",
     "C:\\Users\\ronak.t\\.nuget\\packages\\servicestack.ormlite\\10.0.4\\servicestack.ormlite.10.0.4.nupkg.sha512",

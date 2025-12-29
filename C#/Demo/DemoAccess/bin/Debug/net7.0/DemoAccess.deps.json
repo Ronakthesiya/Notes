@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "DemoAccess/1.0.0": {
+        "dependencies": {
+          "DemoConsol": "1.0.0"
+        },
+        "runtime": {
+          "DemoAccess.dll": {}
+        }
+      },
+      "DemoConsol/1.0.0": {
+        "runtime": {
+          "DemoConsol.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "DemoAccess/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DemoConsol/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

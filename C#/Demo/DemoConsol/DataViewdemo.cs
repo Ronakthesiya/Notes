@@ -27,84 +27,76 @@ namespace DemoConsol
             students.Rows.Add(3, "Charlie", "10B", 72, "Pass");
             students.Rows.Add(4, "David", "10B", 40, "Fail");
 
+            //DataView dv = new DataView(students);
 
-            DataView dv = new DataView(students);
+            //dv.Sort = "Class desc, Marks desc";
 
-            dv.RowFilter = "Marks>35 and Marks<80";
+            //foreach (DataRowView row in dv)
+            //{
+            //    Console.WriteLine(row["Class"] + " " + row["Marks"]);
+            //}
 
-            dv.Sort = "Name Desc";
+            //Admin View
+            //      See all students
+            //      Sort by Marks(Descending)
 
-            DataTable dt2 = dv.ToTable();
+            DataView adminView = students.DefaultView;
+            adminView.Sort = "Marks Desc";
 
-            foreach (DataRow row in dt2.Rows)
+            Console.WriteLine("Admin View");
+            foreach (DataRowView row in adminView)
             {
-                Console.Write(row["Name"]+" ");
-                Console.WriteLine(row["Marks"]);
+                Console.WriteLine(row["StudentID"] + " " + row["Name"] + " " + row["Marks"] + " " + row["Status"]);
             }
+            Console.WriteLine();
+
+            //Teacher View
+            //        See only students who passed
+            //        Sort by Name
+            DataView teacherView = students.DefaultView;
+            //DataView teacherView = new DataView(students);
+            teacherView.RowFilter = "Status = 'Pass'";
+            teacherView.Sort = "Name";
+
+            Console.WriteLine("Teacher View");
+            foreach (DataRowView row in teacherView)
+            {
+                Console.WriteLine(row["StudentID"] + " " + row["Name"] + " " + row["Marks"] + " " + row["Status"]);
+            }
+            Console.WriteLine();
 
 
-            //            Admin View
-            //                  See all students
-            //                  Sort by Marks(Descending)
+            //Search Student by ID
+            teacherView.Sort = "StudentID";
+            int index = teacherView.Find(3);
+            if (index != -1)
+            {
+                Console.WriteLine("Found: " + teacherView[index]["Name"]);
+            }
+            Console.WriteLine();
 
-            //DataView adminView = students.DefaultView;
-            //adminView.Sort = "Marks Desc";
+            //Update Marks
+            //        Changes reflect automatically in both views
 
-            //Console.WriteLine("Admin View");
-            //foreach (DataRowView row in adminView)
-            //{
-            //    Console.WriteLine(row["StudentID"]+" "+row["Name"]+" " + row["Marks"]+" " + row["Status"]);
-            //}
-            //Console.WriteLine();
+            students.Rows[1]["Marks"] = 60;
+            students.Rows[1]["Status"] = "Pass";
 
-            ////Teacher View
-            ////        See only students who passed
-            ////        Sort by Name
-
-            //DataView teacherView = students.DefaultView;
-            ////DataView teacherView = new DataView(students);
-            //teacherView.RowFilter = "Status = 'Pass'";
-            //teacherView.Sort = "Name";
-
-            //Console.WriteLine("Teacher View");
-            //foreach (DataRowView row in teacherView)
-            //{
-            //    Console.WriteLine(row["StudentID"]+" "+row["Name"]+" " + row["Marks"]+" " + row["Status"]);
-            //}
-            //Console.WriteLine();
+            Console.WriteLine("Teacher View");
+            foreach (DataRowView row in teacherView)
+            {
+                Console.WriteLine(row["StudentID"] + " " + row["Name"] + " " + row["Marks"] + " " + row["Status"]);
+            }
+            Console.WriteLine();
 
 
-            ////Search Student by ID
-            //teacherView.Sort = "StudentID";
-            //int index = teacherView.Find(3);
-            //if (index != -1)
-            //{
-            //    Console.WriteLine("Found: " + teacherView[index]["Name"]);
-            //}
-            //Console.WriteLine();
+            // change by dataview reflect in datatable
 
-            ////Update Marks
-            ////        Changes reflect automatically in both views
+            teacherView[1]["Name"] = "Ronak";
 
-            //students.Rows[1]["Marks"] = 60;
-            //students.Rows[1]["Status"] = "Pass";
-
-            //Console.WriteLine("Teacher View");
-            //foreach (DataRowView row in teacherView)
-            //{
-            //    Console.WriteLine(row["StudentID"] + " " + row["Name"] + " " + row["Marks"] + " " + row["Status"]);
-            //}
-            //Console.WriteLine();
-
-
-            //// change by dataview reflect in datatable
-
-            //teacherView[1]["Name"] = "Ronak";
-
-            //foreach (DataRow row in students.Rows)
-            //{
-            //    Console.WriteLine(row["StudentID"] + " " + row["Name"] + " " + row["Marks"] + " " + row["Status"]);
-            //}
+            foreach (DataRow row in students.Rows)
+            {
+                Console.WriteLine(row["StudentID"] + " " + row["Name"] + " " + row["Marks"] + " " + row["Status"]);
+            }
 
         }
     }

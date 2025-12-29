@@ -98,7 +98,7 @@ namespace DemoConsol
             string path = Console.ReadLine();
             Console.Write("Enter text to append: ");
             string text = Console.ReadLine();
-            File.AppendAllText(path, text + Environment.NewLine);
+            File.AppendAllText(path, text);
             Console.WriteLine("Text appended successfully.");
         }
 
@@ -183,7 +183,7 @@ namespace DemoConsol
             string path = Console.ReadLine();
             Console.WriteLine("Enter lines (type 'END' to stop):");
 
-            var lines = new System.Collections.Generic.List<string>();
+            var lines = new List<string>();
             string input;
             while ((input = Console.ReadLine())?.ToUpper() != "END")
             {
@@ -204,7 +204,6 @@ namespace DemoConsol
             Console.WriteLine("full name : " + fileInfo.FullName);
             Console.WriteLine("name : " + fileInfo.Name);
             Console.WriteLine("Length : " + fileInfo.Length);
-            Console.WriteLine("Attributes : " + fileInfo.Attributes);
             Console.WriteLine("CreationTime : " + fileInfo.CreationTime);
             Console.WriteLine("Directory : " + fileInfo.Directory);
             Console.WriteLine("Directory Name : " + fileInfo.DirectoryName);

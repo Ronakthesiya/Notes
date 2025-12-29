@@ -8,13 +8,23 @@ namespace DemoConsol
 {
     internal class EnumDemo
     {
-        public enum OrderStatus
+        public enum enumOrderStatus
         {
-            Pending = 1,    
-            Processing, 
-            Shipped,    
-            Delivered,  
-            Cancelled 
+            Pending = 1,
+            Processing,
+            Shipped,
+            Delivered,
+            Cancelled
+        }
+
+        // flaged enum
+        [Flags]
+        public enum enumAccess
+        {
+            Read = 1,
+            Write = 2,
+            Delete = 4,
+            None = 8,
         }
 
         public void demo()
@@ -24,18 +34,36 @@ namespace DemoConsol
             int n = int.Parse(Console.ReadLine());
 
             Console.Write("Current Status : ");
-            Console.WriteLine((OrderStatus)n);
+            Console.WriteLine((enumOrderStatus)n);
 
             Console.Write("Next Status : ");
-            Console.WriteLine((OrderStatus)n+1);
-            
-            //Console.WriteLine(OrderStatus.Shipped+2);
+            Console.WriteLine((enumOrderStatus)n + 1);
+
+            //Console.WriteLine(enumOrderStatus.Shipped+2);
 
             Console.WriteLine("Enter Order Status (Pending, Processing, Shipped, Delivered, Cancelled)");
             string str = Console.ReadLine();
 
             Console.Write("Current Status : ");
-            Console.WriteLine((int)Enum.Parse<OrderStatus>(str));
+            Console.WriteLine((int)Enum.Parse<enumOrderStatus>(str));
+
+
+            enumAccess onlyread = enumAccess.Read;
+            enumAccess onlywrite = enumAccess.Write;
+            enumAccess onlydelete = enumAccess.Delete;
+            enumAccess readwrite = onlyread | onlywrite;
+            enumAccess readwritedelete = readwrite | onlydelete;
+            enumAccess readdelete = onlyread | onlydelete;
+            enumAccess none = enumAccess.None;
+
+            Console.WriteLine("checking...");
+
+            if ((readwritedelete & onlydelete) == onlydelete)
+            {
+                Console.WriteLine("delete accessed");
+            }
+
+
         }
     }
 }

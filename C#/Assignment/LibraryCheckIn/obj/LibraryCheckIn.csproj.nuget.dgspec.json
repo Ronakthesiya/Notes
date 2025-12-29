@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Ronak - 453\\DemoCode\\LibraryCheckIn\\LibraryCheckIn.csproj": {}
+    "F:\\Ronak - 453 2\\Notes\\C#\\Assignment\\LibraryCheckIn\\LibraryCheckIn.csproj": {}
   },
   "projects": {
-    "F:\\Ronak - 453\\DemoCode\\LibraryCheckIn\\LibraryCheckIn.csproj": {
+    "F:\\Ronak - 453 2\\Notes\\C#\\Assignment\\LibraryCheckIn\\LibraryCheckIn.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Ronak - 453\\DemoCode\\LibraryCheckIn\\LibraryCheckIn.csproj",
+        "projectUniqueName": "F:\\Ronak - 453 2\\Notes\\C#\\Assignment\\LibraryCheckIn\\LibraryCheckIn.csproj",
         "projectName": "LibraryCheckIn",
-        "projectPath": "F:\\Ronak - 453\\DemoCode\\LibraryCheckIn\\LibraryCheckIn.csproj",
+        "projectPath": "F:\\Ronak - 453 2\\Notes\\C#\\Assignment\\LibraryCheckIn\\LibraryCheckIn.csproj",
         "packagesPath": "C:\\Users\\ronak.t\\.nuget\\packages\\",
-        "outputPath": "F:\\Ronak - 453\\DemoCode\\LibraryCheckIn\\obj\\",
+        "outputPath": "F:\\Ronak - 453 2\\Notes\\C#\\Assignment\\LibraryCheckIn\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ronak.t\\AppData\\Roaming\\NuGet\\NuGet.Config",

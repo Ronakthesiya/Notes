@@ -7,12 +7,12 @@ namespace LibraryCheckIn.Domain
 
     public class Program
     {
-        enum BookCondition { New = -1, Good = 0, Worn = 3, Damaged = 10 };
+        enum BookCondition { New = -1, Good = 0, Worn = 3, Damaged = 10 , Notgiven = 1};
 
         class Book
         {
             // private = Only access by the class
-            private int Id { get; set; }
+            public int Id { get; set; }
 
             public string Title { get; set; }
 
@@ -21,6 +21,7 @@ namespace LibraryCheckIn.Domain
 
             public string Author { get; set; }
 
+            public Book() { }
 
             public Book(int a,string b,string d, BookCondition c)
             {
@@ -61,7 +62,43 @@ namespace LibraryCheckIn.Domain
             foreach (var line in lines.Skip(1))
             {
                 var arr = line.Split(',');
-                Book book = new Book(Convert.ToInt32(arr[0]), arr[1], arr[2], Enum.Parse<BookCondition>(arr[3]));
+                if (arr.Length < 4)
+                {
+
+                    Book book1 = new Book();
+
+                    if (arr.Length >= 1)
+                    {
+                        book1.Id = Convert.ToInt32(arr[0]);
+                    }
+
+                    if (arr.Length >= 2)
+                    {
+                        book1.Title = arr[1];
+                    }
+
+                    if (arr.Length >= 3)
+                    {
+                        book1.Author = arr[2];
+                    }
+
+                    books.Add(book1);
+                    continue;
+                }
+
+                if (string.IsNullOrEmpty(arr[3]))
+                {
+                    Book book1 = new Book(Convert.ToInt32(arr[0]), arr[1], arr[2], BookCondition.Notgiven);
+
+                    books.Add(book1);
+                    continue;
+                }
+
+                BookCondition bookCondition = new BookCondition();
+
+                Enum.TryParse<BookCondition>(arr[3],out bookCondition);
+
+                Book book = new Book(Convert.ToInt32(arr[0]), arr[1], arr[2], bookCondition);
 
                 books.Add(book);
             }

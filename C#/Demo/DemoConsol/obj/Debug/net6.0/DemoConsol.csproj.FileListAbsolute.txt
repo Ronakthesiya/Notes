@@ -19,3 +19,18 @@ F:\Ronak - 453\DemoCode\DemoConsol\bin\Debug\net6.0\DemoConsol2.exe
 F:\Ronak - 453\DemoCode\DemoConsol\bin\Debug\net6.0\DemoConsol2.dll
 F:\Ronak - 453\DemoCode\DemoConsol\bin\Debug\net6.0\DemoConsol2.pdb
 F:\Ronak - 453\DemoCode\DemoConsol\obj\Debug\net6.0\DemoConsol.csproj.CopyComplete
+F:\Ronak - 453 2\Notes\C#\Demo\DemoConsol\obj\Debug\net6.0\DemoConsol.dll
+F:\Ronak - 453 2\Notes\C#\Demo\DemoConsol\obj\Debug\net6.0\refint\DemoConsol.dll
+F:\Ronak - 453 2\Notes\C#\Demo\DemoConsol\obj\Debug\net6.0\DemoConsol.pdb
+F:\Ronak - 453 2\Notes\C#\Demo\DemoConsol\bin\Debug\net6.0\DemoConsol.exe
+F:\Ronak - 453 2\Notes\C#\Demo\DemoConsol\bin\Debug\net6.0\DemoConsol.deps.json
+F:\Ronak - 453 2\Notes\C#\Demo\DemoConsol\bin\Debug\net6.0\DemoConsol.runtimeconfig.json
+F:\Ronak - 453 2\Notes\C#\Demo\DemoConsol\bin\Debug\net6.0\DemoConsol.dll
+F:\Ronak - 453 2\Notes\C#\Demo\DemoConsol\bin\Debug\net6.0\DemoConsol.pdb
+F:\Ronak - 453 2\Notes\C#\Demo\DemoConsol\obj\Debug\net6.0\DemoConsol.csproj.AssemblyReference.cache
+F:\Ronak - 453 2\Notes\C#\Demo\DemoConsol\obj\Debug\net6.0\DemoConsol.GeneratedMSBuildEditorConfig.editorconfig
+F:\Ronak - 453 2\Notes\C#\Demo\DemoConsol\obj\Debug\net6.0\DemoConsol.AssemblyInfoInputs.cache
+F:\Ronak - 453 2\Notes\C#\Demo\DemoConsol\obj\Debug\net6.0\DemoConsol.AssemblyInfo.cs
+F:\Ronak - 453 2\Notes\C#\Demo\DemoConsol\obj\Debug\net6.0\DemoConsol.csproj.CoreCompileInputs.cache
+F:\Ronak - 453 2\Notes\C#\Demo\DemoConsol\obj\Debug\net6.0\DemoConsol.genruntimeconfig.cache
+F:\Ronak - 453 2\Notes\C#\Demo\DemoConsol\obj\Debug\net6.0\ref\DemoConsol.dll

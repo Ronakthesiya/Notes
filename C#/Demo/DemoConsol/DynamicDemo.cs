@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DemoConsol.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,10 +7,7 @@ using System.Threading.Tasks;
 
 namespace DemoConsol
 {
-    class Emp
-    {
-        public string Name { get; set; }
-    }
+    
     internal class DynamicDemo
     {
         public static void demo()

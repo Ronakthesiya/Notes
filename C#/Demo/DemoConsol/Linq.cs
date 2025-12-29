@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DemoConsol.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,17 +7,6 @@ using System.Threading.Tasks;
 
 namespace DemoConsol
 {
-    public class Employee
-    {
-        public string Name { get; set; }
-        public int DepartmentId { get; set; }
-    }
-
-    public class Department
-    {
-        public string Name { get; set; }    
-        public int Id { get; set; }
-    }
     internal class Linq
     {
         public static void demo()

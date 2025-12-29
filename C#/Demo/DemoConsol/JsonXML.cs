@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DemoConsol.Models;
+using DemoConsol.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,26 +11,7 @@ using System.Xml.Serialization;
 
 namespace DemoConsol
 {
-    public class Person
-    {
-        public string Name { get; set; }
-        public int Age { get; set; }
-        public string Email { get; set; }
-        public override string ToString()
-        {
-            return $"Name: {Name}, Age: {Age}, Email: {Email}";
-        }
-
-        public void GetPerson()
-        {
-            Console.Write("Enter Name : ");
-            Name = Console.ReadLine();
-            Console.Write("Enter Age : ");
-            Age = int.Parse(Console.ReadLine());
-            Console.Write("Enter Email : ");
-            Email = Console.ReadLine();
-        }
-    }
+    
     public class JsonXML
     {
         public static void demo()
@@ -76,48 +59,4 @@ namespace DemoConsol
             }
         }
     }
-
-    public class JsonHandler
-    {
-        public static void SerializeToJson(Person person)
-        {
-            string json = JsonSerializer.Serialize(person);
-
-            Console.WriteLine(json);
-        }
-
-        public static void DeserializeFromJson(string json)
-        {
-            Person person = JsonSerializer.Deserialize<Person>(json);
-
-            Console.WriteLine(person);
-        }
-    }
-
-    public class XmlHandler
-    {
-        public static void SerializeToXml(Person person)
-        {  
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(Person));
-            StreamWriter sw = new StreamWriter("demo.xml");
-            xmlSerializer.Serialize(sw,person);
-            sw.Close();
-
-            Console.WriteLine("XML file is ready ! demo.xml");
-
-        }
-
-        public static void DeserializeFromXml(string str)
-        {
-            TextReader sr = new StreamReader(str);
-
-            XmlSerializer xmlSerializer = new XmlSerializer (typeof(Person));
-            Person p = (Person)xmlSerializer.Deserialize(sr);
-
-            sr.Close();
-
-            Console.WriteLine(p);
-        }
-    }
-    
 }
