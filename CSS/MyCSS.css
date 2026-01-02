@@ -1,0 +1,11 @@
+p *{
+    color: red;
+}
+
+li[class~="a"]{
+    color: blue;
+}
+
+p::selection{
+    background-color: red;
+}

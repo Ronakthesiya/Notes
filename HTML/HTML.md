@@ -779,3 +779,126 @@ Indicates where to display the response after submitting the form
 - step = weeks
 
 ## label
+
+When a user clicks or touches/taps a label, the browser passes the focus to its associated input
+
+### two ways
+
+- you first need to add the id attribute to the `<input>` element. Next, you add the for attribute to the `<label>` element, where the value of for is the same as the id in the `<input>` element.
+
+```html
+<label for="peas">I like peas.</label>
+<input type="checkbox" name="peas" id="peas" />
+```
+
+- you can nest the `<input>` directly inside the `<label>`, in which case the for and id attributes are not needed because the association is implicit:
+```html
+<label>
+  I like peas.
+  <input type="checkbox" name="peas" />
+</label>
+```
+
+## button
+
+```html
+<button class="favorite styled" type="button">Add to favorites</button>
+```
+
+### Attributes
+
+1. autofocus = This Boolean attribute specifies that the button should have input focus when the page loads. Only one element in a document can have this attribute.
+
+2. value, type, disabled
+
+## datalist
+
+give suggestion when focus on input tag
+
+```html
+<label for="ice-cream-choice">Choose a flavor:</label>
+<input list="ice-cream-flavors" id="ice-cream-choice" name="ice-cream-choice" />
+
+<datalist id="ice-cream-flavors">
+  <option value="Chocolate"></option>
+  <option value="Coconut"></option>
+  <option value="Mint"></option>
+  <option value="Strawberry"></option>
+  <option value="Vanilla"></option>
+</datalist>
+```
+
+## feildset
+
+to group some part of form
+
+```html
+<fieldset>
+  <legend>Choose your favorite monster</legend>
+
+  <!-- .... form data -->
+</fieldset>
+```
+
+## select
+
+create a dropdown list
+
+```html
+<select name="pets" id="pet-select">
+  <option value="">--Please choose an option--</option>
+  <option value="dog" selected>Dog</option>
+  <option value="cat">Cat</option>
+  <option value="hamster">Hamster</option>
+  <option value="parrot">Parrot</option>
+  <option value="spider">Spider</option>
+  <option value="goldfish">Goldfish</option>
+</select>
+```
+
+### Attributes
+1. multiple, size, name, required, disable  
+2. selected = for default select
+
+### optgroup
+
+used to part the selection list of dropdown
+
+```html
+<select name="foods" id="hr-select">
+  <option value="">Choose a food</option>
+  <hr />
+  <optgroup label="Fruit">
+    <option value="apple">Apples</option>
+    <option value="banana">Bananas</option>
+    <option value="cherry">Cherries</option>
+    <option value="damson">Damsons</option>
+  </optgroup>
+  <hr />
+  <optgroup label="Vegetables">
+    <option value="artichoke">Artichokes</option>
+    <option value="broccoli">Broccoli</option>
+    <option value="cabbage">Cabbages</option>
+  </optgroup>
+</select>
+```
+
+## textarea
+
+```html
+<textarea id="story" name="story" rows="5" cols="33">
+It was a dark and stormy night...
+</textarea>
+```
+
+---
+
+## Semantic vs Non-Semantic
+
+| Semantic         | Non-Semantic     |
+| ---------------- | ---------------- |
+| Has meaning      | No meaning       |
+| SEO friendly     | Not SEO friendly |
+| Accessible       | Less accessible  |
+| Self-descriptive | Generic          |
+
