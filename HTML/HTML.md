@@ -648,11 +648,11 @@ The `<form>` tag is a container for all form-related elements.
 ```html
 <form enctype="application/x-www-form-urlencoded">
 ``` 
-| Value                               | Use            |
-| ----------------------------------- | -------------- |
-| `application/x-www-form-urlencoded` | Default        |
-| `multipart/form-data`               | File uploads   |
-| `text/plain`                        | Debugging only |
+| Value                               | Use                         |
+| ----------------------------------- | --------------              |
+| `application/x-www-form-urlencoded` | Default                     |
+| `multipart/form-data`               | File uploads                |
+| `text/plain`                        | Debugging only, Plain text  |
 
 
 4. accept-charset
@@ -689,3 +689,93 @@ Indicates whether input elements can by default have their values automatically 
 
 7. target
 Indicates where to display the response after submitting the form
+
+
+## Input
+
+### Attributes
+
+#### type
+
+1. button
+- value = text inside btn
+- accesskey = to fast access btn
+- disabled = to disable btn
+
+2. checkbox
+- id, name = same if required
+- checked
+- value = pass to server when checked
+
+3. color
+
+4. date
+- value = "yyyy-mm-dd", may be not in step date
+- max,min = "yyyy-mm-dd"
+- step = days(1,2..) , count from min -> value -> 01-01-1970
+
+5. datetime-local
+- value,max,min = "yyyy-mm-ddThh:mm:ss:milis"
+- step = sec , count from min -> value -> 01-01-1970T00:00
+
+6. email
+- list = id of `<datalist>` for suggestions
+- maxlength,minlength = int
+- multiple = allow to take comma(,) seprated list of email
+- pattern = RegExp
+- placeholder, readonly, value
+
+7. file
+- value = path of file
+- accept = list of file type (".doc,.docx,.xml")
+- capture = user,environment -> to open camera, audio of mobile devices
+- multiple
+
+8. hidden
+
+9. image
+
+10. month
+- value,max,min = "yyyy-mm"
+- step = months
+
+11. number
+- value,min,max,step
+
+12. password
+- maxlength,minlength,value
+
+13. radio
+- name = same for group
+- value = send to server
+- checked = default checked
+
+14. range
+- min,max,value
+- list
+
+15. reset
+- value = display in btn
+- accesskey = shortcut key
+
+16. search
+
+17. submit
+- value, accesskey
+
+18. tel
+
+19. text
+- list, maxlength, minlength, spellcheck, size, placeholder
+
+20. time
+- min,max,value = hh:mm
+- step = sec
+
+21. url
+
+22. week
+- value,min,max = yyyy-Wnn (2017-W01)
+- step = weeks
+
+## label
