@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace DemoConsol
 {
+    /// <summary>
+    /// this class is used to define the demo of delegate
+    /// also cover the multicast delegate
+    /// </summary>
     internal class DelegateDemo
     {
 

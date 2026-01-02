@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace DemoConsol.Services
 {
-    // Sealed Class
-
+    /// <summary>
+    /// Sealed class define demo of sealed class
+    /// used to caidate the amount before payment
+    /// </summary>
     sealed class PaymentValidator
     {
         public static bool Validate(double amount)

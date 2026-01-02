@@ -12,9 +12,6 @@ namespace Ingestion.Pipeline.Abstractions
     /// </summary>
     public abstract class FileImporter<T>
     {
-        /// <summary>
-        /// Parse a file at <paramref name="path"/> into a sequence of <typeparamref name="T"/>.
-        /// </summary>
         public abstract IEnumerable<T> Import(string path);
 
     }

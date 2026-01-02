@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace DemoConsol.Services
 {
+    /// <summary>
+    /// implement paybyme class
+    /// payment done by cash
+    /// </summary>
     public class CashPayment : PayByMe
     {
         public override void Pay(double amount)

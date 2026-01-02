@@ -4,6 +4,10 @@ using ReadingRoom.Models.NewFolder;
 
 namespace ReadingRoom.Controllers
 {
+    /// <summary>
+    /// Room Controller used for CRUD operations of rooms
+    /// Contains all room api end points
+    /// </summary>
     [ApiController]
     [Route("[controller]")]
     public class RoomController : Controller
@@ -15,10 +19,14 @@ namespace ReadingRoom.Controllers
             _dbContext = dBContext;
         }
 
+        /// <summary>
+        /// return the list of all rooms
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Get()
         {
-            var rooms = _dbContext.Rooms.ToList();
+            List<Room> rooms = _dbContext.Rooms.ToList();
 
             //IQueryable queryable = _dbContext.Rooms.Where(a => a.Id > 2);
 
@@ -27,6 +35,12 @@ namespace ReadingRoom.Controllers
             return Ok(rooms);
         }
 
+
+        /// <summary>
+        /// create a room 
+        /// </summary>
+        /// <param name="room">take from body</param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Post(DTORoom room)
         {
@@ -44,6 +58,12 @@ namespace ReadingRoom.Controllers
             return Ok(room1);
         }
 
+
+        /// <summary>
+        /// return room by id
+        /// </summary>
+        /// <param name="id">take the id of room</param>
+        /// <returns></returns>
         [HttpGet]
         [Route("{id:int}")]
         public IActionResult Get(int id)
@@ -53,9 +73,14 @@ namespace ReadingRoom.Controllers
             return Ok(room);
         }
 
+        /// <summary>
+        /// Update the room
+        /// </summary>
+        /// <param name="id">id of room</param>
+        /// <param name="room">rooms data for update</param>
+        /// <returns></returns>
         [HttpPut]
         [Route("{id:int}")]
-
         public IActionResult Put(int id,DTORoom room) { 
 
             Room room1 = new Room()
@@ -72,6 +97,11 @@ namespace ReadingRoom.Controllers
             return Ok(room1);
         }
 
+        /// <summary>
+        /// Delete the room by id
+        /// </summary>
+        /// <param name="id">take id of room for delete</param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("{id:int}")]
         public IActionResult Delete(int id)

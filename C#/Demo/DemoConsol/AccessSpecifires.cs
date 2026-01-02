@@ -7,8 +7,15 @@ using System.Threading.Tasks;
 
 namespace DemoConsol
 {
+    /// <summary>
+    /// This class if for demo of Access Specifiers, 
+    /// covers all Access Specifires like public, private, protected, internal
+    /// </summary>
     internal class AccessSpecifires 
     {
+        /// <summary>
+        /// method to access and check the use of access specifires
+        /// </summary>
         public void demo()
         {
             BankAccount.ShowBalance();

@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace DemoConsol.Models
 {
-    // Partial class
-
-    // in Account details File
+    
+    /// <summary>
+    /// provide demo of partial class
+    /// </summary>
     public partial class Account
     {
         public string AccountHolder { get; set; }
@@ -17,7 +18,9 @@ namespace DemoConsol.Models
     }
 
 
-    // in Account method File
+    /// <summary>
+    /// second part of the demo of partial class 
+    /// </summary>
     public partial class Account
     {
         public void Deposit(decimal amount)

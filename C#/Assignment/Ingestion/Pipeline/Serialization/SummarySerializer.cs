@@ -18,10 +18,15 @@ namespace Ingestion.Pipeline.Serialization
 
         public static string ToXml(WriteObj obj)
         {
-            var serializer = new XmlSerializer(typeof(WriteObj));
-            using var sw = new StringWriter();
-            serializer.Serialize(sw, obj);
-            return sw.ToString();
+            XmlSerializer serializer = new XmlSerializer(typeof(WriteObj));
+            string val = "";
+            using (StringWriter sw = new StringWriter())
+            {
+                serializer.Serialize(sw, obj);
+                val =  sw.ToString();
+            }
+
+            return val;
         }
     }
 

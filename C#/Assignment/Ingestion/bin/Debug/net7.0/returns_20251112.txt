@@ -1,0 +1,6 @@
+[
+    {"Id":"4","Title":"b4","Author":"","Condition":"Good"},
+    {"Id":"4","Title":"b4","Author":"","Condition":"Worn"},
+    {"Id":"3","Title":"","Author":"a3","Condition":"Damaged"},
+    {"Id":"1","Title":"b1","Author":"a1","Condition":"New"}
+]

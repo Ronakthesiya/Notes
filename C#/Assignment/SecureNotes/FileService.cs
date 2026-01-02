@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace SecureNotes
 {
+    /// <summary>
+    /// Provide File Service to write in file and read from file
+    /// </summary>
     internal class FileService
     {
         public static void Write(string path,string json)
@@ -18,11 +21,11 @@ namespace SecureNotes
             File.WriteAllText(path, json);
         }
 
-        public static string Read(string path)
+        public static string? Read(string path)
         {
             if (!Path.Exists(path))
             {
-                return "no file found";
+                return null;
             }
             return File.ReadAllText(path);
         }

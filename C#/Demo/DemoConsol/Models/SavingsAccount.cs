@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace DemoConsol.Models
 {
+    /// <summary>
+    /// saving account is chiled class of bank account 
+    /// for demo of access speciofires
+    /// </summary>
     public class SavingsAccount : BankAccount
     {
         public void ShowDetails()

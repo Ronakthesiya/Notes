@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace SecureNotes
 {
+    /// <summary>
+    /// Note Model with all properties
+    /// </summary>
     internal class Note
     {
         public Guid Id { get; set; } = Guid.NewGuid();
@@ -14,7 +17,7 @@ namespace SecureNotes
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
-        public string key { get; set; }
+        public string Salt { get; set; }
         public string IV { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Ingestion.Pipeline.Importers
@@ -13,8 +14,12 @@ namespace Ingestion.Pipeline.Importers
     {
         public override IEnumerable<Book> Import(string path)
         {
-            var json = File.ReadAllText(path);
-            return JsonSerializer.Deserialize<List<Book>>(json) ?? Enumerable.Empty<Book>();
+            string? json = File.ReadAllText(path);
+            JsonSerializerOptions options = new JsonSerializerOptions
+            {
+                Converters = { new JsonStringEnumConverter() }
+            };
+            return JsonSerializer.Deserialize<List<Book>>(json,options) ?? Enumerable.Empty<Book>();
         }
     }
 

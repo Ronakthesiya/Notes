@@ -6,17 +6,24 @@ using System.Threading.Tasks;
 
 namespace DemoConsol
 {
+    /// <summary>
+    /// this class is used to define hoe Async Await works in c#
+    /// </summary>
     internal class AsynAwait
     {
         public void demo()
         {
             Console.WriteLine("Start");
-            stopfor1sec();
+            Stopfor1sec();
             Console.WriteLine("End");
             Console.ReadKey();
         }
 
-        public async Task stopfor1sec()
+        /// <summary>
+        /// method to stop execution for 1 sec
+        /// </summary>
+        /// <returns></returns>
+        public async Task Stopfor1sec()
         {
             await Task.Delay(10000);
             Console.WriteLine("Continue . . .");

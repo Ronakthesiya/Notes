@@ -619,5 +619,73 @@ The `<map>` tag is used to create a client-side image map, turning specific regi
 
 ## Form 
 
+The `<form>` tag is a container for all form-related elements.
+
+### Attributes 
+
+1. action
+- where the form data sent
+
+- URL (/submit, login.php, https://example.com)
+- Empty (action="") → submits to same page
+- Omitted → same page
 
 
+
+2. method
+```html
+<form method="get">
+<form method="post">
+```
+| Method | Description                         |
+| ------ | ----------------------------------- |
+| `get`  | Appends data to URL (visible)       |
+| `post` | Sends data in request body (hidden) |
+
+
+
+3. enctype
+```html
+<form enctype="application/x-www-form-urlencoded">
+``` 
+| Value                               | Use            |
+| ----------------------------------- | -------------- |
+| `application/x-www-form-urlencoded` | Default        |
+| `multipart/form-data`               | File uploads   |
+| `text/plain`                        | Debugging only |
+
+
+4. accept-charset
+```html
+<form accept-charset="UTF-8 ISO-8859-1">
+```
+- It specifies how characters are encoded before being sent.
+- This is important for handling non-ASCII characters (like accented letters, emojis, or non-English scripts).
+- The browser will choose the first supported encoding from the list.
+
+
+
+5. autocapitalize
+
+- The autocapitalize attribute controls whether and how text is automatically capitalized when a user types, mainly on mobile devices (phones and tablets).
+
+```html
+<form>
+  <input type="text" name="username" autocapitalize="none">
+</form>
+```
+
+| Value        | Behavior                                       |
+| ------------ | ---------------------------------------------- |
+| `none`       | No automatic capitalization                    |
+| `sentences`  | Capitalize first letter of sentences (default) |
+| `words`      | Capitalize first letter of each word           |
+| `characters` | Capitalize every character                     |
+
+
+6. autocomplete
+Indicates whether input elements can by default have their values automatically completed by the browser.
+
+
+7. target
+Indicates where to display the response after submitting the form

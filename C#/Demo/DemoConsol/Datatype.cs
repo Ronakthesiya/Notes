@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace DemoConsol
 {
+    /// <summary>
+    /// Datatype class contains all datatype variable demo
+    /// </summary>
      class Datatype
     {
 

@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace DemoConsol
 {
+    /// <summary>
+    /// define different types of lambda expression
+    /// give a demo of lambda expression
+    /// </summary>
     internal class LambdaExp
     {
         public static void demo()

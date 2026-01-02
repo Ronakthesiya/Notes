@@ -21,13 +21,13 @@ namespace ORMLiteDemo
             using (var db = dbFactory.Open())
             {
 
-                var res = db.GetTableColumns<Employee>();
+                //var res = db.GetTableColumns<Employee>();
 
-                foreach (var item in res)
-                {
-                  
-                    Console.WriteLine(item.ColumnName+" "+item.DataType);
-                }
+                //foreach (var item in res)
+                //{
+
+                //    Console.WriteLine(item.ColumnName+" "+item.DataType);
+                //}
 
                 //var cnt = db.Count<Employee>();
 

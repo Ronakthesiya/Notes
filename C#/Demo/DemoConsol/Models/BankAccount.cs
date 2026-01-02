@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace DemoConsol.Models
 {
+    /// <summary>
+    /// this class define different feilds of account
+    /// provide demo of access specifires
+    /// </summary>
     public class BankAccount
     {
         public static string AccountHolder = "Ronak Thesiya";

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DemoConsol.Services
 {
+    /// <summary>
+    /// use to define and send Sms notification
+    /// </summary>
     public class SmsNotification
     {
         public string PhoneNumber { get; set; }

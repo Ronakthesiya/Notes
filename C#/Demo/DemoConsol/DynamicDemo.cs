@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace DemoConsol
 {
-    
+    /// <summary>
+    /// this class get dynamic data from getRandomData method and 
+    /// print it's value and datatype
+    /// </summary>
     internal class DynamicDemo
     {
         public static void demo()
@@ -67,6 +70,10 @@ namespace DemoConsol
             }
         }
 
+        /// <summary>
+        /// Method have list of different datatypes
+        /// </summary>
+        /// <returns>random datatype => dynamic</returns>
         public static dynamic getRandomData()
         {
             List<dynamic> list = new List<dynamic>

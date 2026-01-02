@@ -14,23 +14,27 @@ namespace Ingestion.Pipeline.Importers
         {
             List<Book> books = new List<Book>();
 
-            foreach (var file in Directory.EnumerateFiles(rootPath, "*.*", SearchOption.AllDirectories))
+            foreach (string file in Directory.EnumerateFiles(rootPath, "*.*", SearchOption.AllDirectories))
             {
-                var ext = Path.GetExtension(file);
+                string? ext = Path.GetExtension(file);
                 
 
                 if(ext == ".txt")
                 {
                     JsonBookImporter jsonBookImporter = new JsonBookImporter();
 
-                    foreach (var book in jsonBookImporter.Import(file))
+                    foreach (Book book in jsonBookImporter.Import(file))
+                    {
                         books.Add(book);
+                    }
                 }else if(ext == ".csv")
                 {
                     CsvBookImporter csvBookImporter = new CsvBookImporter();
 
-                    foreach (var book in csvBookImporter.Import(file))
+                    foreach (Book book in csvBookImporter.Import(file))
+                    {
                         books.Add(book);
+                    }
                 }
                 
             }

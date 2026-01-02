@@ -16,9 +16,11 @@ namespace Ingestion.Pipeline.Reporting
     {
         public void WriteReport(IEnumerable<T> items, string outputPath)
         {
-            var serializer = new XmlSerializer(typeof(List<T>));
-            using var fs = File.Create(outputPath);
-            serializer.Serialize(fs, items.ToList());
+            XmlSerializer serializer = new XmlSerializer(typeof(List<T>));
+            using (FileStream fs = File.Create(outputPath))
+            {
+                serializer.Serialize(fs, items.ToList());
+            }
         }
     }
 

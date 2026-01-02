@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DemoConsol
 {
+    /// <summary>
+    /// this class used all important methods of date, string, math classes
+    /// </summary>
     internal class DateStringMath
     {
         public static void demo()
@@ -30,6 +33,9 @@ namespace DemoConsol
             }
         }
 
+        /// <summary>
+        /// Mehtod contains all Math lib oprations
+        /// </summary>
         private static void MathDemo()
         {
             double price = 199.75;
@@ -53,6 +59,10 @@ namespace DemoConsol
             Console.WriteLine(Math.Abs(-15));
 
         }
+
+        /// <summary>
+        /// Method contains String related operations
+        /// </summary>
 
         private static void StringDemo()
         {
@@ -80,6 +90,9 @@ namespace DemoConsol
             Console.WriteLine(name.Length);
         }
 
+        /// <summary>
+        /// Method contains DateTime related operations
+        /// </summary>
         public static void DateTimeDemo()
         {
             while (true)

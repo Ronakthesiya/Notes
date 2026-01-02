@@ -10,6 +10,10 @@ using System.Threading.Tasks;
 
 namespace DemoConsol
 {
+    /// <summary>
+    /// this class have detailes about dataView 
+    /// cover allmostly used methods
+    /// </summary>
     internal class DataViewdemo
     {
         public void demo() {

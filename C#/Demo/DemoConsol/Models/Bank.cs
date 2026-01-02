@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DemoConsol.Models
 {
+    /// <summary>
+    /// Bank class is used see the account details
+    /// </summary>
     public class Bank
     {
         public void Display()

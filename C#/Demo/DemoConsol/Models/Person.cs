@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DemoConsol.Models
 {
+    /// <summary>
+    /// Person class define persion details and method to access and print the details
+    /// </summary>
     public class Person
     {
         public string Name { get; set; }

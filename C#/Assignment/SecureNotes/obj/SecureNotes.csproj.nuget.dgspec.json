@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Ronak - 453\\DemoCode\\SecureNotes\\SecureNotes.csproj": {}
+    "F:\\Ronak - 453 2\\Notes\\C#\\Assignment\\SecureNotes\\SecureNotes.csproj": {}
   },
   "projects": {
-    "F:\\Ronak - 453\\DemoCode\\SecureNotes\\SecureNotes.csproj": {
+    "F:\\Ronak - 453 2\\Notes\\C#\\Assignment\\SecureNotes\\SecureNotes.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Ronak - 453\\DemoCode\\SecureNotes\\SecureNotes.csproj",
+        "projectUniqueName": "F:\\Ronak - 453 2\\Notes\\C#\\Assignment\\SecureNotes\\SecureNotes.csproj",
         "projectName": "SecureNotes",
-        "projectPath": "F:\\Ronak - 453\\DemoCode\\SecureNotes\\SecureNotes.csproj",
+        "projectPath": "F:\\Ronak - 453 2\\Notes\\C#\\Assignment\\SecureNotes\\SecureNotes.csproj",
         "packagesPath": "C:\\Users\\ronak.t\\.nuget\\packages\\",
-        "outputPath": "F:\\Ronak - 453\\DemoCode\\SecureNotes\\obj\\",
+        "outputPath": "F:\\Ronak - 453 2\\Notes\\C#\\Assignment\\SecureNotes\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ronak.t\\AppData\\Roaming\\NuGet\\NuGet.Config",

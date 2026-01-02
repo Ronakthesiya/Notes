@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace DemoConsol
 {
+    /// <summary>
+    /// this class have two type of security demo 
+    /// AES
+    /// RSA
+    /// </summary>
     internal class SecurityDemo
     {
         public static void demo()
@@ -18,6 +23,10 @@ namespace DemoConsol
             encryptDataWithRsa(Console.ReadLine());
         }
         
+        /// <summary>
+        /// method encrypt data with aes 
+        /// </summary>
+        /// <param name="data">data to encrypt</param>
         public static void encryptDataWithAes(dynamic data)
         {
             using (var aes = Aes.Create())
@@ -38,6 +47,10 @@ namespace DemoConsol
             }
         }
 
+        /// <summary>
+        /// method dencrypt data with aes 
+        /// </summary>
+        /// <param name="data">data to dencrypt</param>
         public static void decryptDataWithAes(dynamic data)
         {
             using(var aes = Aes.Create())
@@ -52,7 +65,10 @@ namespace DemoConsol
             }
         }
 
-
+        /// <summary>
+        /// method encrypt data with rsa 
+        /// </summary>
+        /// <param name="data">data to encrypt</param>
         public static void encryptDataWithRsa(dynamic data)
         {
             using (var rsa = RSA.Create())
@@ -70,6 +86,10 @@ namespace DemoConsol
             }
         }
 
+        /// <summary>
+        /// method dencrypt data with rsa 
+        /// </summary>
+        /// <param name="data">data to dencrypt</param>
         public static void decryptDataWithRsa(dynamic data, byte[] privateKey)
         {
             using (var rsa = RSA.Create())

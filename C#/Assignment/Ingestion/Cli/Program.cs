@@ -15,25 +15,34 @@ namespace Ingestion.Cli
     {
         public static void Main(string[] args)
         {
-            var opts = new Options();
+            Options opts = new Options();
 
-            var books = ImportRunner.ImportAll(opts.InputDir).ToList();
+            List<Book>? books = ImportRunner.ImportAll(opts.InputDir).ToList();
 
-            var summary = new WriteObj
+            books.ForEach(Displaybook);
+
+            WriteObj summary = new WriteObj
             {
                 Total = books.Count,
-                TopPenalties = books.TopBy(b => b.Penalty, 5).ToList(),
-                Conditions = books.ToConditionCounts().ToList()
+                TopPenalties = books.TopBy(b => (int)b.Condition, 5).ToList(),
+                Conditions = books.ToConditionCounts().ToList(),
             };
 
-            var json = SummarySerializer.ToJson(summary);
+            string json = SummarySerializer.ToJson(summary);
             File.WriteAllText(opts.Output, json);
 
-            //var xml = SummarySerializer.ToXml(summary);
-            //File.WriteAllText(Path.ChangeExtension(opts.Output, ".xml"), xml);
+            string xml = SummarySerializer.ToXml(summary);
+            File.WriteAllText(Path.ChangeExtension(opts.Output, ".xml"), xml);
 
 
         }
+
+        public static void Displaybook(Book book)
+        {
+            Console.WriteLine(book.Id + " " + book.Title + " " + book.Author + " " + book.Condition);
+        }
     }
+
+
 
 }

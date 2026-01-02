@@ -11,7 +11,9 @@ using System.Xml.Serialization;
 
 namespace DemoConsol
 {
-    
+    /// <summary>
+    /// this class serialize and deserialize objects into/from JSON and XML
+    /// </summary>
     public class JsonXML
     {
         public static void demo()

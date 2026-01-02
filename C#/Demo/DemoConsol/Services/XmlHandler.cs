@@ -8,6 +8,9 @@ using System.Xml.Serialization;
 
 namespace DemoConsol.Services
 {
+    /// <summary>
+    /// handle the XML serialization and desirialization
+    /// </summary>
     public class XmlHandler
     {
         public static void SerializeToXml(Person person)

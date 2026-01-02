@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DemoConsol.Models
 {
+    /// <summary>
+    /// Temp class is just provide destructure demo
+    /// </summary>
     public class Temp
     {
         ~Temp()

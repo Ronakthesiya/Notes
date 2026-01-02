@@ -7,20 +7,36 @@ using System.Threading.Tasks;
 
 namespace SecureNotes
 {
+    /// <summary>
+    /// Provide Json Service like convert Note to Json and Json to Note
+    /// </summary>
     internal class JsonService
     {
-        public static string NotetoJson(Note note)
+        public static string? NotetoJson(Note note)
         {
-            string json = JsonSerializer.Serialize(note);
-
-            return json;
+            try
+            {
+                string json = JsonSerializer.Serialize(note);
+                return json;
+            }
+            catch 
+            {
+                return null;
+            }
         }
 
-        public static Note JsontoNote(string json)
+        public static Note? JsontoNote(string json)
         {
-            Note note = JsonSerializer.Deserialize<Note>(json);
+            try
+            {
+                Note note = JsonSerializer.Deserialize<Note>(json);
 
-            return note;
+                return note;
+            }
+            catch 
+            {
+                return null; 
+            }
         }
     }
 }

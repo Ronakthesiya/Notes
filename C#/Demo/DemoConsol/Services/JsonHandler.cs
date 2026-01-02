@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace DemoConsol.Services
 {
+    /// <summary>
+    /// handle the json serialization and desirialization
+    /// </summary>
     public class JsonHandler
     {
         public static void SerializeToJson(Person person)

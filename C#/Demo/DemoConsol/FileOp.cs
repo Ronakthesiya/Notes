@@ -2,6 +2,10 @@
 
 namespace DemoConsol
 {
+    /// <summary>
+    /// class have mulitiple file related operations methods
+    /// cover various file operation like create, delete, copy, move, read, write
+    /// </summary>
     public class FileOp
     {
         public static void demo()

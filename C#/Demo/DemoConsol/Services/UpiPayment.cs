@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace DemoConsol.Services
 {
+    /// <summary>
+    /// implement paybyme class
+    /// payment done by Upi
+    /// for online payment
+    /// </summary>
     public class UpiPayment : PayByMe
     {
         public override void Pay(double amount)

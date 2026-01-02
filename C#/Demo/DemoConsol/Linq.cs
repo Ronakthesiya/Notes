@@ -7,11 +7,32 @@ using System.Threading.Tasks;
 
 namespace DemoConsol
 {
+    /// <summary>
+    /// provide demo of linq
+    /// cover all methods of linq to IEnumarable 
+    /// </summary>
     internal class Linq
     {
         public static void demo()
         {
             var numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+            List<Employee> employees = new List<Employee>
+            {
+                new Employee { Name = "Alice", DepartmentId = 1 },
+                new Employee { Name = "Bob", DepartmentId = 2 },
+                new Employee { Name = "Charlie", DepartmentId = 2 },
+                new Employee { Name = "Eva", DepartmentId = 1 }
+            };
+
+            List<Department> departments = new List<Department>
+            {
+                new Department { Id = 1, Name = "IT" },
+                new Department { Id = 2, Name = "HR" }
+            };
+
+
+
 
             //Error when you modify : 
             //var newlist = numbers.Where(x => x > 1);
@@ -56,14 +77,7 @@ namespace DemoConsol
 
 
             // groupby
-            var employees = new List<Employee>
-            {
-                new Employee { Name = "Alice", DepartmentId = 1 },
-                new Employee { Name = "Bob", DepartmentId = 2 },
-                new Employee { Name = "Charlie", DepartmentId = 2 },
-                new Employee { Name = "Eva", DepartmentId = 1 }
-            };
-
+            
             var deptCounts = employees
                                     .GroupBy(e => e.DepartmentId)
                                     .Select(g => new
@@ -79,12 +93,6 @@ namespace DemoConsol
 
 
             //join
-
-            var departments = new List<Department>
-            {
-                new Department { Id = 1, Name = "IT" },
-                new Department { Id = 2, Name = "HR" }
-            };
 
             var joinresult = employees.Join(
                     departments,
@@ -155,15 +163,15 @@ namespace DemoConsol
             //Count()
             numbers.Count(n => n > 5);
 
-            //Sum() / Average() / Min() / Max()
 
+            //Sum() / Average() / Min() / Max()
             numbers.Sum();
             numbers.Average();
             numbers.Min();
 
+
             //Aggregate()
             numbers.Aggregate((a, b) => a * b);
-
 
 
             var q = employees.

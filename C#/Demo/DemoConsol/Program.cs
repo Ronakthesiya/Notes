@@ -2,6 +2,10 @@
 using DemoConsol;
 using System.Runtime.InteropServices;
 
+/// <summary>
+/// Base class of this project 
+/// starting point of project
+/// </summary>
 class Program 
 {
 
@@ -34,7 +38,7 @@ class Program
 
         //GenericsDemo.demo();
 
-        //Linq.demo();
+        Linq.demo();
 
 
 

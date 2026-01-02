@@ -7,19 +7,41 @@ using System.Threading.Tasks;
 
 namespace DemoConsol
 {
+    /// <summary>
+    /// class have demo of Extension Method
+    /// three extension method is define for demo purpose
+    /// </summary>
     internal static class ExtensionMethod
     {
-        public static bool isEmail(this string str)
+
+        /// <summary>
+        /// check whether the string is email or not
+        /// </summary>
+        /// <param name="str">take the string for extension method <param>
+        /// <returns>boolean value true or false</returns>
+        public static bool IsEmail(this string str)
         {
             return str.Contains("@") && str.Contains(".");
         }
 
-        public static bool isEven(this int val)
+
+        /// <summary>
+        /// check whether the number is even or not
+        /// </summary>
+        /// <param name="val">takes the number to check</param>
+        /// <returns>boolean value true or false</returns>
+        public static bool IsEven(this int val)
         {
             return val % 2 == 0;
         }
 
-        public static IEnumerable<string> joinOneByOne(this IEnumerable<string> list1, IEnumerable<string> list2)
+        /// <summary>
+        /// Method join to list index by index
+        /// </summary>
+        /// <param name="list1">list 1</param>
+        /// <param name="list2">list 2</param>
+        /// <returns>combined list</returns>
+        public static IEnumerable<string> JoinOneByOne(this IEnumerable<string> list1, IEnumerable<string> list2)
         {
             var enum1 = list1.GetEnumerator();
             var enum2 = list2.GetEnumerator();
@@ -40,7 +62,7 @@ namespace DemoConsol
             string[] list1 = a.Split(",");
             string[] list2 = b.Split(",");
 
-            IEnumerable<string>? finalist = list1.joinOneByOne(list2);
+            IEnumerable<string>? finalist = list1.JoinOneByOne(list2);
 
             //list1[1] = "asdf";
 

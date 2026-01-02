@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace DemoConsol
 {
+    /// <summary>
+    /// destructure is used 
+    /// and called by GC manualy
+    /// </summary>
     public class DestructorsDemo
     {
         public void First()
@@ -31,11 +35,13 @@ namespace DemoConsol
         {
             Console.WriteLine("demo start");
 
-            Console.WriteLine("first called");
             First();
 
-            Console.WriteLine("Sec called");
+            //GC.Collect();
+
             Sec();
+
+            //GC.Collect();
 
             Console.WriteLine("demo end");
         }

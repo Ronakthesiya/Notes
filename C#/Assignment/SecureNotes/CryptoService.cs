@@ -9,36 +9,38 @@ using System.Threading.Tasks;
 
 namespace SecureNotes.Service
 {
-    public static class CryptoService
+    /// <summary>
+    /// Provide Crypto Services 
+    /// Encryption and Decryption using AES
+    /// </summary>
+    public class CryptoService
     {
-        private const int KeySize = 256;
+        private const int KeySize = 32;
 
-        public static string GenerateKey()
+        public byte[] GenerateSalt()
         {
-            string keyBase64 = "";
+            byte[] salt = new byte[16];
+            RandomNumberGenerator.Fill(salt);
+            return salt;
+        }
 
-            using (Aes aes = Aes.Create())
-            {
-                aes.KeySize = KeySize;
-                aes.GenerateKey();
+        public byte[] GenerateKey(string passphrase, byte[] salt)
+        {
+            Rfc2898DeriveBytes pbkdf2 = new Rfc2898DeriveBytes(passphrase,salt,100000,HashAlgorithmName.SHA256);
 
-                keyBase64 = Convert.ToBase64String(aes.Key);
-            }
-
-            return keyBase64;
+            return pbkdf2.GetBytes(KeySize);
         }
 
 
-
-        public static string Encrypt(string plaintext, string key, out string IVKey)
+        public string Encrypt(string plaintext, byte[] key, out byte[] iv)
         {
             using (Aes aes = Aes.Create())
             {
                 aes.Padding = PaddingMode.Zeros;
-                aes.Key = Convert.FromBase64String(key);
+                aes.Key = key;
                 aes.GenerateIV();
 
-                IVKey = Convert.ToBase64String(aes.IV);
+                iv = aes.IV;
 
                 ICryptoTransform encryptor = aes.CreateEncryptor();
 
@@ -49,14 +51,14 @@ namespace SecureNotes.Service
             }
         }
 
-        public static string Decrypt(string Cypertxt, string key, string IVKey)
+
+        public string Decrypt(string Cypertxt, byte[] key, byte[] iv)
         {
             using (Aes aes = Aes.Create())
             {
                 aes.Padding = PaddingMode.Zeros;
-                aes.Key = Convert.FromBase64String(key);
-                aes.IV = Convert.FromBase64String(IVKey);
-                //aes.GenerateIV();
+                aes.Key = key;
+                aes.IV = iv;
 
                 ICryptoTransform decryptor = aes.CreateDecryptor();
 
@@ -67,11 +69,7 @@ namespace SecureNotes.Service
             }
         }
 
-        //private static byte[] DeriveKey(string passphrase, byte[] salt)
-        //{
-        //    using var pbkdf2 = new Rfc2898DeriveBytes(passphrase, salt, Iterations, HashAlgorithmName.SHA256);
-        //    return pbkdf2.GetBytes(KeySize);
-        //}
+  
 
     }
 }

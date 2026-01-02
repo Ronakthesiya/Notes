@@ -10,83 +10,56 @@ class Program
 {
     static void Main()
     {
-        var dbFactory = new OrmLiteConnectionFactory(
-                    "Server=127.0.0.1;Port=3306;Database=OrmLiteDemoDB2;User Id=Admin;Password=gs@123;",
-                    MySqlDialect.Provider
+        OrmLiteConnectionFactory dbFactory = new OrmLiteConnectionFactory(
+                    connectionString: "Server=127.0.0.1;Port=3306;Database=OrmLiteDemoDB2;User Id=Admin;Password=gs@123;",
+                    dialectProvider: MySqlDialect.Provider
                 );
 
-        Student s = new Student(); 
-
-       
-
-        using (var db = dbFactory.Open())
+        using (IDbConnection db = dbFactory.Open())
         {
 
-            var q = db.From<Course>().Where(c => c.Name == "Course1").Select(c => new { c.Id, c.Description });
+            //var q = db.From<Course>().Where(c => c.Name == "Course1").Select(c => new { c.Id, c.Description });
 
-            List<Course> list = db.Select(q);
+            //List<Course> list = db.Select(q);
 
-            var q1 = db.From<Student>()
-                                        .Join<Course>((s, c) => s.CourseId == c.Id)
-                                        .Select<Student, Course>((s, c) => new { name = s.Name, temp = c.Id });
+            //var q1 = db.From<Student>()
+            //                            .Join<Course>((s, c) => s.CourseId == c.Id)
+            //                            .Select<Student, Course>((s, c) => new { name = s.Name, temp = c.Id });
 
-            var list2 = db.Select<object>(q1);
+            //var list2 = db.Select<object>(q1);
 
-
-
-            foreach (object val in list2)
-            {
-                Console.WriteLine(JObject.Parse(val.ToJson())["name"]);
-                Console.WriteLine(JObject.Parse(val.ToJson())["temp"]);
-            }
-
-
-            foreach (object val in list2)
-            {
-                var dict = (IDictionary<string, object>)val;
-                Console.WriteLine(dict["name"]);
-                Console.WriteLine(dict["temp"]);
-            }
-
-            //db.CreateTableIfNotExists<Course>();
-            //db.CreateTableIfNotExists<Student>();
-
-            //while (true)
+            //foreach (object val in list2)
             //{
-            //    Console.Clear();
-            //    Console.WriteLine("1. Student Operations");
-            //    Console.WriteLine("2. Course Operations");
-            //    Console.Write("Select option: ");
-            //    var mainChoice = Console.ReadLine();
-
-            //    if (mainChoice == "1")
-            //        StudentMenu(db);
-            //    else if (mainChoice == "2")
-            //        CourseMenu(db);
+            //    Console.WriteLine(JObject.Parse(val.ToJson())["name"]);
+            //    Console.WriteLine(JObject.Parse(val.ToJson())["temp"]);
             //}
 
+            //foreach (object val in list2)
+            //{
+            //    IDictionary<string, object> dict = (IDictionary<string, object>)val;
 
-            //Student st = new Student() { 
-            //    CourseId = 1,
-            //    Name = "UpdatedUpdated",
-            //    Description = "Updated"
-            //};
+            //    foreach (string key in dict.Keys)
+            //    {
+            //        Console.WriteLine(dict[key]);
+            //    }
+            //}
 
-            //var list = db.Select<Student>();
-            //list.ForEach(PrintStudent);
+            db.CreateTableIfNotExists<Course>();
+            db.CreateTableIfNotExists<Student>();
 
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("1. Student Operations");
+                Console.WriteLine("2. Course Operations");
+                Console.Write("Select option: ");
+                var mainChoice = Console.ReadLine();
 
-            //db.UpdateOnlyFields<Student>(st , s => new { s.Description , s.Name} , s => s.Id == 10);
-
-            //Console.WriteLine();
-            //list = db.Select<Student>();
-
-            //var list = db.Column<string>(db.From<Student>().Select(x => x.Name));
-            //Console.WriteLine(list);
-            //list.ForEach(Console.WriteLine); 
-            //PrintStudent(list);
-            //list.ForEach(PrintStudent);
-
+                if (mainChoice == "1")
+                    StudentMenu(db);
+                else if (mainChoice == "2")
+                    CourseMenu(db);
+            }
 
 
             //var q = db.From<Student>().Where(e => e.Id>2).Select(e => e.Name);
@@ -104,34 +77,29 @@ class Program
 
             //Console.WriteLine(db.GetLastSql());
 
-
-
         }
     }
 
     static void StudentMenu(IDbConnection db)
     {
-        //Console.Clear();
-        //Console.WriteLine("1. Insert");
-        //Console.WriteLine("2. Update");
-        //Console.WriteLine("3. Delete");
-        //Console.WriteLine("4. Select");
-        //Console.Write("Choose: ");
-        //var choice = Console.ReadLine();
+        Console.Clear();
+        Console.WriteLine("1. Insert");
+        Console.WriteLine("2. Update");
+        Console.WriteLine("3. Delete");
+        Console.WriteLine("4. Select");
+        Console.Write("Choose: ");
+        var choice = Console.ReadLine();
 
-        
+        switch (choice)
+        {
+            case "1": InsertStudent(db); break;
+            case "2": UpdateStudent(db); break;
+            case "3": DeleteStudent(db); break;
+            case "4": SelectStudent(db); break;
+        }
 
-
-        //switch (choice)
-        //{
-        //    case "1": InsertStudent(db); break;
-        //    case "2": UpdateStudent(db); break;
-        //    case "3": DeleteStudent(db); break;
-        //    case "4": SelectStudent(db); break;
-        //}
-
-        //Console.WriteLine("\nPress any key to continue...");
-        //Console.ReadKey();
+        Console.WriteLine("\nPress any key to continue...");
+        Console.ReadKey();
     }
 
     static void InsertStudent(IDbConnection db)

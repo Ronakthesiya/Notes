@@ -9,6 +9,11 @@ using System.Xml.Linq;
 
 namespace DemoConsol
 {
+
+    /// <summary>
+    /// this class have demo of generic class and methods
+    /// two notification is send by same class object one by email and one by sms
+    /// </summary>
     public class GenericsDemo
     {
         public static void demo()

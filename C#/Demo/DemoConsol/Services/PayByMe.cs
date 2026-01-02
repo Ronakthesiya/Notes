@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace DemoConsol.Services
 {
+    /// <summary>
+    /// abstract class implement Ipayment interfase
+    /// </summary>
     public abstract class PayByMe : IPayment
     {
         public abstract void Pay(double amount);

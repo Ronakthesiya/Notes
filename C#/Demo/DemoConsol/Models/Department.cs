@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace DemoConsol.Models
 {
+    /// <summary>
+    /// department class define the propertice 
+    /// name and id of depaertment
+    /// </summary>
     public class Department
     {
         public string Name { get; set; }

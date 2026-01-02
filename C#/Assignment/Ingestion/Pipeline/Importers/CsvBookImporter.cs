@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 namespace Ingestion.Pipeline.Importers
 {
     /// <summary>
-    /// CSV importer for <see cref="Book"/> records.
     /// Marked sealed: extension is not intended because CSV parsing logic
     /// is tightly coupled to this specific file structure.
     /// </summary>
@@ -19,16 +18,20 @@ namespace Ingestion.Pipeline.Importers
         {
             List<Book> books = new List<Book>();
 
-            foreach (var line in File.ReadLines(path).Skip(1))
+            foreach (string line in File.ReadLines(path).Skip(1))
             {
-                var parts = line.Split(',');
+                string[]? parts = line.Split(',');
+
+                enumBookCondition bookCondition = new enumBookCondition();
+
+                Enum.TryParse<enumBookCondition>(parts[3],out bookCondition);
+
                 books.Add(new Book
                 {
-                    Title = parts[0],
-                    Author = parts[1],
-                    Year = int.Parse(parts[2]),
-                    Penalty = decimal.Parse(parts[3]),
-                    Condition = parts[4]
+                    Id = parts[0],
+                    Title = parts[1],
+                    Author = parts[2],
+                    Condition = bookCondition
                 });
             }
 

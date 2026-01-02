@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace DemoConsol
 {
+    /// <summary>
+    /// this class specifice the demo of DataTable
+    /// All the Constraint and some method and propertices are cover in this
+    /// </summary>
     internal class DatatableDemo
     {
         public void demo()

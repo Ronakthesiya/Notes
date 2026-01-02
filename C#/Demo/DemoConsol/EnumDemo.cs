@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace DemoConsol
 {
+    /// <summary>
+    /// this class define two Enum one is flaged other one is not flaged
+    /// give a demo of enum
+    /// </summary>
     internal class EnumDemo
     {
         public enum enumOrderStatus
