@@ -250,10 +250,10 @@ display : inner outer;
 ### cross-axis
 - `align-items` = align the item on the `cross axis`
 - `align-self` 
-- - The align-items property sets the align-self property on all of the flex items as a group.
-- - This means you can explicitly declare the align-self property to target a single item. 
+  - The align-items property sets the align-self property on all of the flex items as a group.
+  - This means you can explicitly declare the align-self property to target a single item. 
 - `align-content`
-- - When flex items are allowed to wrap across multiple lines, the align-content property can be used to control the distribution of space between the lines, also known as packing flex lines.
+  - When flex items are allowed to wrap across multiple lines, the align-content property can be used to control the distribution of space between the lines, also known as packing flex lines.
 
 ### main-axis
 - `justify-content` = align the item on the `main axis`
