@@ -29,9 +29,9 @@
 - div li h1 = h1 tag in li which is in div tag
 - id = # + id
 - based on state = 
-- - a:link -> unvisited link
-- - a:visited 
-- - a:hover
+  - a:link -> unvisited link
+  - a:visited 
+  - a:hover
 - h1 + ul + p = all p tag just after ul which is just after h1
 - tag.class = tag with class
 - `*` = Universal selector select all
@@ -164,9 +164,9 @@ display : inner outer;
 
 - inner =  defines the type of formatting context that its contents are laid out in (assuming it is a non-replaced element).
 
-- - flow = default layout behavior of elements in CSS.
+  - flow = default layout behavior of elements in CSS.
 
-- - table = These elements behave like HTML `<table>` elements.
+  - table = These elements behave like HTML `<table>` elements.
 ```html
 <div class="table">
   <div class="row">
@@ -188,35 +188,35 @@ display : inner outer;
   border: 1px solid black;
 }
 ```
-- - flex = creates a flex formatting context, optimized for one-dimensional layouts.
+  - flex = creates a flex formatting context, optimized for one-dimensional layouts.
 | Axis       | Description             |
 | ---------- | ----------------------- |
 | Main axis  | Direction items flow    |
 | Cross axis | Perpendicular direction |
 
-- - grid = creates a grid formatting context, designed for two-dimensional layouts (rows and columns).
+  - grid = creates a grid formatting context, designed for two-dimensional layouts (rows and columns).
 
  
 - outer = These keywords specify the element's outer display type
 
-- - block = The element generates a block box, generating line breaks both before and after the element when in the normal flow.
+  - block = The element generates a block box, generating line breaks both before and after the element when in the normal flow.
 
-- - inline = The element generates one or more inline boxes that do not generate line breaks before or after themselves. In normal flow, the next element will be on the same line if there is space.
+  - inline = The element generates one or more inline boxes that do not generate line breaks before or after themselves. In normal flow, the next element will be on the same line if there is space.
 
 ## flexbox
 
 ### flex-direction 
 - Main axis
 - values :
-- - row
-- - row-reverse
-- - column
-- - column-reverse
+  - row
+  - row-reverse
+  - column
+  - column-reverse
 
 ### flex-wrap
-- - nowrap = The flex items are laid out in a single line which may cause the flex container to overflow.
-- - wrap = The flex items break into multiple lines.
-- - wrap-reverse = Behaves the same as wrap, but cross-start and cross-end are inverted.
+  - nowrap = The flex items are laid out in a single line which may cause the flex container to overflow.
+  - wrap = The flex items break into multiple lines.
+  - wrap-reverse = Behaves the same as wrap, but cross-start and cross-end are inverted.
 
 ### flex-flow
 - flex-direction + flex-wrap
@@ -281,6 +281,112 @@ display : inner outer;
 
 ## grid
 
+### 1. grid
+- define display type
+
+```css
+.container{
+  display: grid;
+}
+```
+
+### 2. grid-templete-rows
+- define the number of rows with size
+
+```css
+grid-template-rows: 1fr 2fr 1fr; /* 3 rows with diff size */ /* fr = fraction means part of empty/available */
+
+grid-template-rows: 40px 4em 40px;
+```
+
+### 3. grid-templete-columns
+
+- same as rows
+
+### 4. grid-templete-areas
+
+- define the string name for specific part / rowcols of grid
+- use `.` for empty part / null part 
+- otherwise use string
+
+```css
+/* areas for 3 rows and 3 columns */
+grid-template-areas:
+  "a a a"
+  "b c c"
+  "b c c";
+
+grid-template-areas:
+  "a a ."
+  "a a ."
+  ". b c";
+
+```
+
+### 5. grid-template
+
+- combine grid-template-rows, grid-template-columns, grid-template-areas
+
+```css
+grid-template:
+  "a a a" 40px
+  "b c c" 40px
+  "b c c" 40px / 1fr 1fr 1fr;
+
+grid-template:
+  "a a ." minmax(50px, auto)
+  "a a ." 80px
+  "b b c" auto / 2em 3em auto;
+```
+
+### 6. grid-auto-column
+- Width of implicit columns
+
+### 7. grid-auto-row
+- Height of implicit rows
+
+### 8. grid-auto-flow
+- Placement direction
+  - row = Items are placed by filling each row in turn, adding new rows as necessary. If neither row nor column is provided, row is assumed.
+  - column = Items are placed by filling each column in turn, adding new columns as necessary.
+  - dense = "dense" packing algorithm attempts to fill in holes earlier in the grid, if smaller items come up later. This may cause items to appear out-of-order, when doing so would fill in holes left by larger items.
+
+### 9. grid-column-start
+- number(id) of column where to start the current item
+```css
+grid-column-start: 1;
+```
+
+### 10. grid-column-end
+- number(id) of column where to end the current item 
+```css
+grid-column-end: 4;
+```
+
+### 11. grid-column
+- shorthand of grid-column-start & grid-column-end
+- grid-column : start / end
+
+```css
+grid-column: 1 / 4;
+grid-column: 1 / span 3; /* => means start at 1 and extend 3 column so end at column no = 4 */
+```
+
+### 12. grid-row, grid-row-start, grid-row-end
+
+- same as column
+
+
+### 13. grid-area
+- used to define area of current content in grid
+- contains a string of area define in grid-template-areas
+
+```css
+grid-area: a;
+
+grid-area: 2 / 1 / 2 / 4; 
+/* grid-row-start / grid-column-start / grid-row-end / grid-column-end */
+```
 
 
 <!-- ### 
