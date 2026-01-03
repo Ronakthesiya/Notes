@@ -135,8 +135,155 @@
 | `::file-selector-button` | File input button | `input::file-selector-button { background: blue; }` |
 
 
+## box-sizing
 
-### 
+### content-box
+
+w,h = content w/h
+
+```css
+.box {
+  box-sizing: content-box;
+}
+```
+
+### border-box
+
+w,h = content w/h + padding w/h + border w/h
+
+```css
+.box {
+  box-sizing: border-box;
+}
+```
+ 
+
+## display
+
+display : inner outer;
+
+- inner =  defines the type of formatting context that its contents are laid out in (assuming it is a non-replaced element).
+
+- - flow = default layout behavior of elements in CSS.
+
+- - table = These elements behave like HTML `<table>` elements.
+```html
+<div class="table">
+  <div class="row">
+    <div class="cell">A</div>
+    <div class="cell">B</div>
+  </div>
+</div>
+```
+```css
+.table {
+  display: table;
+  width: 100%;
+}
+.row {
+  display: table-row;
+}
+.cell {
+  display: table-cell;
+  border: 1px solid black;
+}
+```
+- - flex = creates a flex formatting context, optimized for one-dimensional layouts.
+| Axis       | Description             |
+| ---------- | ----------------------- |
+| Main axis  | Direction items flow    |
+| Cross axis | Perpendicular direction |
+
+- - grid = creates a grid formatting context, designed for two-dimensional layouts (rows and columns).
+
+ 
+- outer = These keywords specify the element's outer display type
+
+- - block = The element generates a block box, generating line breaks both before and after the element when in the normal flow.
+
+- - inline = The element generates one or more inline boxes that do not generate line breaks before or after themselves. In normal flow, the next element will be on the same line if there is space.
+
+## flexbox
+
+### flex-direction 
+- Main axis
+- values :
+- - row
+- - row-reverse
+- - column
+- - column-reverse
+
+### flex-wrap
+- - nowrap = The flex items are laid out in a single line which may cause the flex container to overflow.
+- - wrap = The flex items break into multiple lines.
+- - wrap-reverse = Behaves the same as wrap, but cross-start and cross-end are inverted.
+
+### flex-flow
+- flex-direction + flex-wrap
+- flex-direction : flex-direction flex-wrap
+
+### flex-grow
+- flex-grow defines how much a flex item can grow relative to other items when there is free space in the container.
+```css
+.item {
+  flex-grow: 1;
+}
+```
+
+### flex-shrink
+- flex-shrink defines how much a flex item can shrink relative to others when there is not enough space.
+```css
+.item {
+  flex-shrink: 1;
+}
+```
+
+| Property      | Handles     | Default |
+| ------------- | ----------- | ------- |
+| `flex-grow`   | Extra space | `0`     |
+| `flex-shrink` | Overflow    | `1`     |
+
+- They never work at the same time.
+
+## Alignment in flexbox
+
+### cross-axis
+- `align-items` = align the item on the `cross axis`
+- `align-self` 
+- - The align-items property sets the align-self property on all of the flex items as a group.
+- - This means you can explicitly declare the align-self property to target a single item. 
+- `align-content`
+- - When flex items are allowed to wrap across multiple lines, the align-content property can be used to control the distribution of space between the lines, also known as packing flex lines.
+
+### main-axis
+- `justify-content` = align the item on the `main axis`
+
+
+| Value              | What it does                          | Detailed explanation                                                                                                                                      | Typical use case                        |
+| ------------------ | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| **stretch**        | Stretches items to fill cross-axis    | Default value. Items stretch to fill the container’s cross size **unless they have an explicit size** (`height` in row layout, `width` in column layout). | Equal-height columns, full-height cards |
+| **flex-start**     | Aligns items to start of cross-axis   | Items are aligned to the **start edge of the flex container** according to the flex direction. Uses the **flexbox axis**, not writing mode.               | Top-aligned rows, left-aligned columns  |
+| **flex-end**       | Aligns items to end of cross-axis     | Items align to the **end edge of the cross-axis**, based on flexbox flow.                                                                                 | Bottom-aligned content                  |
+| **start**          | Aligns items to start of writing mode | Similar to `flex-start`, but respects **writing mode & text direction** (LTR, RTL, vertical text).                                                        | Internationalized layouts               |
+| **end**            | Aligns items to end of writing mode   | Like `flex-end`, but depends on **writing mode**, not flex direction.                                                                                     | Multilingual designs                    |
+| **center**         | Centers items on cross-axis           | Items are centered between cross-axis edges.                                                                                                              | Centering vertically or horizontally    |
+| **baseline**       | Aligns items by their text baselines  | Items line up based on their **first text baseline** instead of edges. Font size differences remain visible.                                              | Text alignment in navbars               |
+| **first baseline** | Aligns items using first baseline     | Explicit version of `baseline`. Uses the **first baseline** of each item.                                                                                 | Precise typographic alignment           |
+| **last baseline**  | Aligns items using last baseline      | Items align using the **last baseline** (useful for multi-line text).                                                                                     | Complex text layouts                    |
+
+
+## gaps in flexbox
+
+- gap = sets the gaps between rows and columns.
+- column-gap = gap between an element's columns.
+- row-gap = gap between an element's rows.
+
+
+## grid
+
+
+
+<!-- ### 
 
 ## functions
 
@@ -150,7 +297,7 @@
 }
 ```
 
-### 2. rotate()
+### 2. rotate() -->
 
 
 

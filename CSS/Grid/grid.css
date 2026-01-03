@@ -1,0 +1,123 @@
+.page{}
+
+.header{
+    display: grid;
+    grid-template-columns: 1fr 1fr 5fr 1fr 1fr;
+    background-color: lightgreen;
+    padding: 10px;
+    text-align: center;
+}
+
+.header > *{
+    padding: 10px;
+}
+
+.logo{
+    background-color: lightcoral;
+}
+
+.Name{
+    background-color: lightblue;
+}
+
+.Search{
+    background-color: lightgoldenrodyellow;
+}
+
+.profile{
+    background-color: lightcyan;
+}
+
+.logout{
+    background-color: lightgray;
+}
+
+.content{
+    padding: 10px;
+    background-color: lightpink;
+    display: grid;
+    grid-template-columns: 2fr 4fr 4fr 4fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 5fr;
+    grid-template-areas: 
+        "a b b b"
+        "a b b b"
+        "a b b b"
+        "a b b b"
+        "a b b b";
+    height: 80vh;
+}
+
+.sidebar{
+    padding: 10px;
+    background-color: lightsalmon;
+    grid-area: a;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 5fr;
+}
+
+.sidebar > * {
+    padding: 10px;
+    margin: 10px 0px;
+    text-align: center;
+}
+
+.Home{
+    background-color: lightseagreen;
+}
+
+.Users{
+    background-color: lightskyblue;
+}
+
+.Add{
+    background-color: lightslategray;
+}
+
+.Edit{
+    background-color: lightsteelblue;
+}
+
+.main{
+    grid-area: b;
+    display: grid;
+    grid-template-columns: 1fr 10fr 1fr;
+    grid-template-rows: 1fr 10fr 1fr;
+    grid-template-areas: 
+        "e h g"
+        "e f g"
+        "e i g";
+    background-color: lightyellow;
+    padding: 10px;
+    text-align: center;
+}
+
+.text{
+    grid-area: f;
+    background-color: lightblue;
+    place-content: center;
+}
+
+.footer{
+    background-color: lightcoral;
+    display: grid;
+    padding: 10px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 5px;
+    text-align: center;
+}
+
+.About{
+    background-color: lightcyan;
+}
+
+.Linkedin{
+    background-color: lightgoldenrodyellow;
+}
+
+.meta{
+    background-color: lightgray;
+}
+
+.whatsapp{
+    background-color: lightgreen;
+}
