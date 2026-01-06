@@ -3,24 +3,37 @@
   <head>
     <meta charset="utf-8" />
     <title>Getting started with CSS</title>
-    <link href="/CSS/MyCSS.css" rel="stylesheet">
+    <!-- <link href="/CSS/MyCSS.css" rel="stylesheet"> -->
+
+    <style>
+      div span{
+        color: red;
+      }
+
+      div > span{
+        color: blue;
+      }
+    </style>
   </head>
 
   <body>
     <span>asdf</span>
-    <p>
+    <div>
       sadfasdfgdsfgdfsgh
-      <span>I am a level one heading 2</span>
+      <p>
+        <span>I am a level one heading 2</span>
+      </p>
+
       <span>I am a level one heading 3</span>
-    </p>
-    <p>
+    </div>
+    <div>
       <span>I am a level one heading 4</span>
       <span>I am a level one heading 5</span>
-    </p>
-    <p>
+    </div>
+    <div>
       <span>I am a level one heading 6</span>
       <span>I am a level one heading 7</span>
-    </p>
+    </div>
     <span>I am a level one heading 8</span>
     
 

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        [class^=box]{
+            height: 100px;
+            width: 100px;
+            background-color: lightcoral;
+            text-align: center;
+            align-content: center;
+        }
+
+        .box1{
+            position: static;
+        }
+
+        .box2{
+            position: relative;
+            top: 80px;
+            left: 120px;
+        }
+
+        .box3{
+            position: absolute;
+            top: 250px;
+            left: 250px;
+        }
+
+        .box4{
+            position: fixed;
+            top: 50%;
+            left: 50%;
+        }
+
+        .box5{
+            position: sticky;
+            top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">static</div>
+    <div class="box2">relative</div>
+    <div class="box3">absolute</div>
+    <div class="box4">fixed</div>
+    <div class="box5">sticky</div>
+    <div style="height: 1000vh;"></div>
+</body>
+</html>

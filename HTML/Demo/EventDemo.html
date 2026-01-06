@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events demo</title>
+    <style>
+        div{
+            margin: 10px;
+        }
+        .box{
+            height: 100px;
+            width: 100px;
+            padding: 5px;
+            background-color: rgb(179, 221, 235);
+            text-align: center;
+            align-content: center;
+        }
+        .container{
+            display: flex;
+        }
+
+    </style>
+</head>
+<body onresize="alert('resize')" onscroll="alert('scroling')">
+    <!-- <body onload="alert('Welcome')" onresize="alert('resize')" onscroll="alert('scroling')"> -->
+    <h2> Keybord Event </h2>
+    <div onkeydown="alert('onkeydown')">onkeydown : <input type="text"></div>
+    <div onkeyup="alert('onkeyup')">onkeyup : <input type="text"></div>
+    <div onkeypress="alert('onkeypress')">onkeypress : <input type="text"></div>
+
+    <h2>Mouse Event</h2>
+    <div class="container">
+        <div class="box" onclick="alert('onclick')"> onclick </div>
+        <div class="box" ondblclick="alert('ondblclick')"> ondblclick </div>
+        <div class="box" onmousedown="alert('onmousedown')"> onmousedown </div>
+        <div class="box" onmouseup="alert('onmouseup')"> onmouseup </div>
+        <div class="box" onmousemove="alert('onmousemove')"> onmousemove </div>
+        <div class="box" onmouseenter="alert('onmouseenter')"> onmouseenter </div>
+        <div class="box" onmouseleave="alert('onmouseleave')"> onmouseleave </div>
+    </div>
+</body>
+</html>

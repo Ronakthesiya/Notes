@@ -432,6 +432,13 @@ grid-area: 2 / 1 / 2 / 4;
 12. pc = 1pc = 12pt = 1in/6
 13. pt = 1pt = 1in/72
 
+
+## Specificity
+
+1. Inline style = 1000
+2. id selector = 100
+3. class, attribute, pseudo class = 10
+4. element, pseudo element = 1
 <!-- ### 
 
 ## functions

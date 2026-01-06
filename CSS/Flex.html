@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0%;
+            margin: 0%;
+        }
+
+        .Navbar{
+            background-color: lightblue;
+            display: flex;
+            gap: 20px;
+            justify-content: end;
+            align-items: center;
+            padding-right: 20px;
+            height: 10vh;
+        }
+
+        .Sidebar{
+            box-sizing: border-box;
+            background-color: lightcoral;
+            display: flex;
+            flex-direction: column;
+            height: 80vh;
+            float: left;
+            padding: 20px;
+            gap: 20px;
+            width: 15vw;
+        }
+
+        .Main{
+            background-color: lightgoldenrodyellow;
+            height: 80vh;
+            box-sizing: border-box;
+            display: flex;
+            padding: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .Content{
+            height: 80%;
+            width: 85%;
+            background-color: lightgreen;
+            text-align: center;
+            align-content: center;
+        }
+
+        .Footer{
+            background-color: lightseagreen ;
+            display: flex;
+            gap: 20px;
+            height: 10vh;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="Navbar">
+            <div>Logout</div>
+            <div>Profile</div>
+        </div>
+        <div class="Sidebar">
+            <div>Home</div>
+            <div>Create</div>
+            <div>Update</div>
+            <div>Delete</div>
+            <div>Users</div>
+        </div>
+        <div class="Main">
+            <div class="Content">Content</div>
+        </div>
+        <div class="Footer">
+            <div>About</div>
+            <div>Insta</div>
+            <div>linkedin</div>
+            <div>@copyright</div>
+        </div>
+    </div>
+</body>
+</html>
