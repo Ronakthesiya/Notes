@@ -188,7 +188,8 @@ display : inner outer;
   border: 1px solid black;
 }
 ```
-  - flex = creates a flex formatting context, optimized for one-dimensional layouts.
+  - flex = creates a flex formatting context, optimized for one-dimensional layouts.+
+
 | Axis       | Description             |
 | ---------- | ----------------------- |
 | Main axis  | Direction items flow    |
@@ -255,9 +256,6 @@ display : inner outer;
 - `align-content`
   - When flex items are allowed to wrap across multiple lines, the align-content property can be used to control the distribution of space between the lines, also known as packing flex lines.
 
-### main-axis
-- `justify-content` = align the item on the `main axis`
-
 
 | Value              | What it does                          | Detailed explanation                                                                                                                                      | Typical use case                        |
 | ------------------ | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
@@ -271,6 +269,9 @@ display : inner outer;
 | **first baseline** | Aligns items using first baseline     | Explicit version of `baseline`. Uses the **first baseline** of each item.                                                                                 | Precise typographic alignment           |
 | **last baseline**  | Aligns items using last baseline      | Items align using the **last baseline** (useful for multi-line text).                                                                                     | Complex text layouts                    |
 
+
+### main-axis
+- `justify-content` = align the item on the `main axis`
 
 ## gaps in flexbox
 
@@ -388,6 +389,48 @@ grid-area: 2 / 1 / 2 / 4;
 /* grid-row-start / grid-column-start / grid-row-end / grid-column-end */
 ```
 
+
+## Media query
+
+### Media type 
+
+1. Screen
+2. print
+3. all
+4. speech
+
+| Feature / Operator | What It Checks                    | Values / Format         | When It Applies                           | Example                                 |
+| ------------------ | --------------------------------- | ----------------------- | ----------------------------------------- | --------------------------------------- |
+| `width`            | Exact viewport width              | Length (px, em, etc.)   | Only when viewport width exactly matches  | `@media (width: 600px)`                 |
+| `height`           | Exact viewport height             | Length                  | Only when viewport height exactly matches | `@media (height: 800px)`                |
+| `min-width`        | Minimum viewport width            | Length                  | When width ≥ value                        | `@media (min-width: 768px)`             |
+| `min-height`       | Minimum viewport height           | Length                  | When height ≥ value                       | `@media (min-height: 600px)`            |
+| `max-width`        | Maximum viewport width            | Length                  | When width ≤ value                        | `@media (max-width: 767px)`             |
+| `max-height`       | Maximum viewport height           | Length                  | When height ≤ value                       | `@media (max-height: 500px)`            |
+| `aspect-ratio`     | Exact width-to-height ratio       | `width/height`          | When ratio exactly matches                | `@media (aspect-ratio: 16/9)`           |
+| `min-aspect-ratio` | Minimum width-to-height ratio     | `width/height`          | When ratio ≥ value                        | `@media (min-aspect-ratio: 4/3)`        |
+| `max-aspect-ratio` | Maximum width-to-height ratio     | `width/height`          | When ratio ≤ value                        | `@media (max-aspect-ratio: 3/4)`        |
+| `orientation`      | Screen orientation                | `portrait`, `landscape` | Based on width vs height                  | `@media (orientation: landscape)`       |
+| `hover`            | Hover capability of primary input | `hover`, `none`         | Depends on input device                   | `@media (hover: hover)`                 |
+| `and`              | Combines conditions               | Keyword                 | All conditions must be true               | `(min-width: 768px) and (hover: hover)` |
+| `or` (`,`)         | Alternative conditions            | Comma `,`               | Any condition can be true                 | `(max-width: 600px), (hover: none)`     |
+| `not`              | Negates a query                   | Keyword                 | Applies when condition is false           | `@media not (orientation: landscape)`   |
+
+## Units
+
+1. px = pixel 
+2. % = size relative to elemet's parent
+3. em = relative to parent font size
+4. ex = reltive to parent's height of lowercase letter
+5. rem = root font size (16px)
+6. rex = root font height
+7. vh = % of viewport height
+8. vw = % of viewport width
+9. cm = centimeter 1cm = 96px/2.54
+10. mm = millimeter 1mm = 1cm/10
+11. in = inch 1in = 2.54cm = 96px
+12. pc = 1pc = 12pt = 1in/6
+13. pt = 1pt = 1in/72
 
 <!-- ### 
 
