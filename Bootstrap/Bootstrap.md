@@ -144,3 +144,62 @@ table, table-color, table-striped, table-striped-columns, table-hover, table-act
 
 ## display
 
+- d-inline = display inline
+- d-block = display block
+- d-none = display none
+
+## flex
+
+- d-flex = outer display as it is, inner flex
+- d-inline-flex = oter display inline, inner flex
+
+### flex direaction
+
+- flex-row
+- flex-row-reverse
+- flex-column
+- flex-column-
+
+### flex fill
+
+- flex-fill = sibling elements to force them into widths equal to their content (or equal widths if their content does not surpass their border-boxes) while taking up all available horizontal space.
+
+![flex fill demo](image.png)
+
+```html
+<div class="d-flex">
+  <div class="p-2 flex-fill">Flex item with a lot of content</div>
+  <div class="p-2 flex-fill">Flex item</div>
+  <div class="p-2 flex-fill">Flex item</div>
+</div>
+```
+
+### flex grow and shrink
+
+- flex-grow-1 = item’s ability to grow to fill available space.
+
+![Alt text](image-1.png)
+
+```html
+<div class="d-flex">
+  <div class="p-2 flex-grow-1">Flex item</div>
+  <div class="p-2">Flex item</div>
+  <div class="p-2">Third flex item</div>
+</div>
+```
+
+- flex-shrink-1 = flex item’s ability to shrink if necessary
+
+![Alt text](image-2.png)
+<div class="d-flex">
+  <div class="p-2 w-100">Flex item</div>
+  <div class="p-2 flex-shrink-1">Flex item</div>
+</div>
+
+
+## Wrap
+
+- flex-nowrap
+- flex-wrap
+- flex-wrap-reverse
+
