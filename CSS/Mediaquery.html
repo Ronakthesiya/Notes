@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            display: flex;
+            flex-direction: row;
+            gap: 5vw;
+            align-items: center;
+            height: 90vh;
+            justify-content: center;
+        }
+
+        img{
+            width: 60vw;
+        }
+
+
+        @media (max-width: 500px){
+            .container{
+                display: flex;
+                flex-direction: column;
+                column-gap: 10vh;
+                align-items: center;
+                justify-content: center;
+                height: 90vh;
+            }
+
+            img{
+                width: 90vw;
+                height: auto;
+            }
+
+            .text{
+                font-size: 4vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <img src="/HTML/Demo/Assets/eye.jpg">
+        </div>
+        <div class="text"> 
+            <h1>image of eye </h1>
+            <p>dsaf asdf asdf asdf asdf  sdf asd f f g ewdas</p>
+            <p>dsaf asdf asdf asdf asdf  sdf asd f f g ewdas</p>
+            <p>dsaf asdf asdf asdf asdf  sdf asd f f g ewdas</p>
+        </div>
+    </div>
+</body>
+</html>

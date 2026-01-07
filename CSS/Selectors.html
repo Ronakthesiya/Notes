@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p{
+            color: lightblue;
+        }
+
+        .class{
+            color: blue;
+        }
+
+        #id{
+            color: lightcyan;
+        }
+
+        [class=a]{
+            color: lightgreen;
+        }
+
+        [class^=a]{
+            color: lightgrey;
+        }
+
+        /* [class$=d]{
+            color: lightpink;
+        } */
+
+        /* [class~=c]{
+            color: lightsalmon;
+        } */
+
+        /* [class*=c]{
+            color: lightseagreen;
+        } */
+
+    </style>
+</head>
+<body>
+    <p> hello </p>
+    <div class="class"> class </div>
+    <div id="id">id</div>
+
+    <div class="a b c d">different class</div>
+    <div class="a b c d">different class</div>
+    <div class="a b c d">different class</div>
+    <div class="abcd">different class</div>
+</body>
+</html>
