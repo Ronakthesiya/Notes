@@ -158,7 +158,7 @@ table, table-color, table-striped, table-striped-columns, table-hover, table-act
 - flex-row
 - flex-row-reverse
 - flex-column
-- flex-column-
+- flex-column-reverse
 
 ### flex fill
 
@@ -191,10 +191,13 @@ table, table-color, table-striped, table-striped-columns, table-hover, table-act
 - flex-shrink-1 = flex item’s ability to shrink if necessary
 
 ![Alt text](image-2.png)
+
+```html
 <div class="d-flex">
   <div class="p-2 w-100">Flex item</div>
   <div class="p-2 flex-shrink-1">Flex item</div>
 </div>
+```
 
 
 ## Wrap
