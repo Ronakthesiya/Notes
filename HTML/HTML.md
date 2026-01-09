@@ -902,3 +902,74 @@ It was a dark and stormy night...
 | Accessible       | Less accessible  |
 | Self-descriptive | Generic          |
 
+---
+
+## video tag
+
+```html
+  <video src="Assets/flower.webm" autoplay loop controls width="300"></video>
+```
+
+### Attributes
+
+1. src = The URL of the video to embed
+2. height, width
+3. autoplay = the video automatically begins to play back as soon as it can without stopping to finish loading the data.
+4. controls = allow the user to control video playback, including volume, seeking, and pause/resume playback.
+5. controlslist = to add or remove spcific controls
+
+```html
+  <video controls controlslist="nofullscreen nodownload noremoteplayback noplaybackrate"></video>
+```
+
+6. loop = browser will automatically seek back to the start upon reaching the end of the video.
+7. muted = default audio mute setting contained in the video
+
+#### Browsers don't all support the same video formats; you can provide multiple sources
+
+```html
+<video controls>
+  <source src="myVideo.webm" type="video/webm" />
+  <source src="myVideo.mp4" type="video/mp4" />
+  <p>
+    Your browser doesn't support HTML video. Here is a
+    <a href="myVideo.mp4" download="myVideo.mp4">link to the video</a> instead.
+  </p>
+</video>
+```
+
+---
+
+## audio
+
+```html
+<audio src="Assets/t-rex-roar.mp3" controls autoplay loop></audio>
+
+<a href="Assets/t-rex-roar.mp3"> Download audio </a>
+```
+
+### Attributes
+
+1. src = The URL of the video to embed
+2. autoplay = the video automatically begins to play back as soon as it can without stopping to finish loading the data.
+3. controls = allow the user to control video playback, including volume, seeking, and pause/resume playback.
+4. controlslist = to add or remove spcific controls
+```html
+  <video controls controlslist="nofullscreen nodownload noremoteplayback"></video>
+```
+5. loop = browser will automatically seek back to the start upon reaching the end of the video.
+6. muted = default audio mute setting contained in the video
+
+#### Browsers don't all support the same audio formats; you can provide multiple sources
+
+
+```html
+<audio controls>
+  <source src="myAudio.mp3" type="audio/mpeg" />
+  <source src="myAudio.ogg" type="audio/ogg" />
+  <p>
+    Download <a href="myAudio.mp3" download="myAudio.mp3">MP3</a> or
+    <a href="myAudio.ogg" download="myAudio.ogg">OGG</a> audio.
+  </p>
+</audio>
+```

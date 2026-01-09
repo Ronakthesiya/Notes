@@ -5,25 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        p{
+        /* p{
             color: lightblue;
+        } */
+        
+        #class1{
+            color: lightcyan;
         }
-
         .class{
             color: blue;
         }
 
-        #id{
-            color: lightcyan;
-        }
 
-        [class=a]{
+        /* [class=a]{
             color: lightgreen;
         }
 
         [class^=a]{
             color: lightgrey;
-        }
+        } */
 
         /* [class$=d]{
             color: lightpink;
@@ -41,7 +41,7 @@
 </head>
 <body>
     <p> hello </p>
-    <div class="class"> class </div>
+    <div class="class" id="class1"> class </div>
     <div id="id">id</div>
 
     <div class="a b c d">different class</div>

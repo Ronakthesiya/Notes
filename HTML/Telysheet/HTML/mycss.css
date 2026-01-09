@@ -1,0 +1,128 @@
+.content{
+    margin: 20px;
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+table, th, td{
+    border: 1px solid black;    
+    border-collapse: collapse;
+    width: 50%;
+}
+
+.header table{
+    border-bottom: none;
+}
+
+.header table tr:last-child td{
+    border-bottom: none;
+}
+
+td,th{
+    padding: 2px;
+    height: 1.5em;
+}
+
+td:nth-child(2){
+    text-align: center;
+}
+
+thead{
+    background-color: lightgray;
+}
+
+.header > table > tbody > tr:first-child{
+    font-weight: 700;
+}
+
+.developertext{
+    background-color: lightgray;
+    border: 1px solid black;
+    height: 1.5em;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: 700;
+    padding-top: 5px;
+}
+
+.developers{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.developers table, .developers table tr:first-child td{
+    border-top: none;
+}
+
+.developers table, .developers table tr:last-child td{
+    border-bottom: none;
+}
+
+.batchtext{
+    background-color: lightgray;
+    border: 1px solid black;
+    height: 1.5em;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 5px;
+    font-weight: 700;
+}
+
+tbody > tr > td:first-child{
+    width: 70%;
+} 
+
+.batch{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.batch table, .batch table tr:first-child td{
+    border-top: none;
+}
+
+
+@media (max-width: 570px){
+    .header{
+        flex-direction: column;
+        gap: 0px;
+    } 
+    
+    .QA > tbody > tr:first-child{
+        display: none;
+    }
+
+    table, th, td{
+        border: 1px solid black;    
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .developers{
+        flex-direction: column;
+        gap: 0px;
+    }
+
+    .developers table:first-child{
+        border-bottom: 1px solid black;
+    }
+
+    tbody > tr > td:last-child{
+        width: auto;
+    }
+
+    tbody > tr > td:first-child{
+        width: 70%;
+    } 
+
+    .batch{
+        flex-direction: column;
+        gap: 0px;
+    }
+}
