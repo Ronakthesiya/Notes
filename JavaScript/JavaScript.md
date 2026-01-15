@@ -548,7 +548,303 @@ const a3 = a.map((s) => s.length);
 
 console.log(a3); // [8, 6, 7, 9]
 ```
-
 ---
 
 ## Expressions and operators
+
+<details>
+  <summary>
+    <h3>Assignment operators</h3>
+  </summary>
+
+| **Operator** | **Description**                          | **Equivalent**         |
+| ------------ | ---------------------------------------- | ---------------------- |
+| `=`          | Assigns value                            | `x = f()`              |
+| `+=`         | Adds and assigns                         | `x = x + f()`          |
+| `-=`         | Subtracts and assigns                    | `x = x - f()`          |
+| `*=`         | Multiplies and assigns                   | `x = x * f()`          |
+| `/=`         | Divides and assigns                      | `x = x / f()`          |
+| `%=`         | Modulo (remainder) and assigns           | `x = x % f()`          |
+| `**=`        | Exponentiation and assigns               | `x = x ** f()`         |
+| `<<=`        | Left bitwise shift and assigns           | `x = x << f()`         |
+| `>>=`        | Right bitwise shift and assigns          | `x = x >> f()`         |
+| `>>>`        | Unsigned right bitwise shift and assigns | `x = x >>> f()`        |
+| `&=`         | Bitwise AND and assigns                  | `x = x & f()`          |
+| `^=`         | Bitwise XOR and assigns                  | `x = x ^ f()`          |
+| `\|=`        | Bitwise OR and assigns                   | `x = x \| f()`         |
+| `&&=`        | Logical AND and assigns                  | `x && (x = f())`       |
+| `\|\|=`      | Logical OR and assigns                   | `x \|\| (x = f())`     |
+| `??=`        | Nullish coalescing and assigns           | `x ?? (x = f())`       |
+</details>
+
+
+<details>
+  <summary>
+    <h3>Comparison operators</h3>
+  </summary>
+
+| **Operator**  | **Description**                                      | **Example**        | **Result** |
+| ------------- | ---------------------------------------------------- | ------------------ | ---------- |
+| `==`          | Equality (with type coercion)                        | `5 == '5'`         | `true`     |
+| `===`         | Strict equality (without type coercion)              | `5 === '5'`        | `false`    |
+| `!=`          | Inequality (with type coercion)                      | `5 != '5'`         | `false`    |
+| `!==`         | Strict inequality (without type coercion)            | `5 !== '5'`        | `true`     |
+| `>`           | Greater than                                         | `10 > 5`           | `true`     |
+| `>=`          | Greater than or equal                                | `5 >= 5`           | `true`     |
+| `<`           | Less than                                            | `5 < 10`           | `true`     |
+| `<=`          | Less than or equal                                   | `5 <= 10`          | `true`     |
+| `Object.is()` | Strict equality, special handling for `NaN` and `-0` | `Object.is(0, -0)` | `false`    |
+
+- When to Use Which Operator:
+
+  - Use == for loose equality (when you want type coercion).
+  - Use === for strict equality (when you want to avoid type coercion).
+  - Use != for loose inequality (when type coercion is acceptable).
+  - Use !== for strict inequality (when type coercion should be avoided).
+  - Use >, >=, <, <= for numerical or lexicographical comparisons.
+  - Use Object.is() when you need to compare values strictly, with special handling for NaN and -0.
+</details>
+
+
+<details>
+  <summary>
+    <h3>Arithmetic operators</h3>
+  </summary>
+
+| **Operator** | **Description**                  | **Example** | **Result** |
+| ------------ | -------------------------------- | ----------- | ---------- |
+| `+`          | Addition or string concatenation | `5 + 3`     | `8`        |
+| `-`          | Subtraction                      | `10 - 5`    | `5`        |
+| `*`          | Multiplication                   | `4 * 3`     | `12`       |
+| `/`          | Division                         | `10 / 2`    | `5`        |
+| `%`          | Remainder (modulo)               | `10 % 3`    | `1`        |
+| `**`         | Exponentiation                   | `2 ** 3`    | `8`        |
+
+</details>
+
+
+<details>
+  <summary>
+    <h3>Bitwise operators</h3>
+  </summary>
+
+| **Operator** | **Description**      | **Example** | **Result** |
+| ------------ | -------------------- | ----------- | ---------- |
+| `&`          | Bitwise AND          | `5 & 3`     | `1`        |
+| `\| `        | Bitwise OR           | `5\| 3`     | `7`        |
+| `^`          | Bitwise XOR          | `5 ^ 3`     | `6`        |
+| `~`          | Bitwise NOT          | `~5`        | `-6`       |
+| `<<`         | Left Shift           | `5 << 1`    | `10`       |
+| `>>`         | Signed Right Shift   | `5 >> 1`    | `2`        |
+| `>>>`        | Unsigned Right Shift | `5 >>> 1`   | `2`        |
+</details>
+
+
+<details>
+  <summary>
+    <h3>Logical operators</h3>
+  </summary>
+
+| **Operator** | **Description**                                                    | **Result**                                          |
+| ------------ | ------------------------------------------------------------       | --------------------------------------------------- |
+| `&&`         | **Logical AND**: Returns `true` if both operands are truthy.       | `true` if both are truthy, else `false`.            |
+| `\|\| `      | **Logical OR**: Returns `true` if at least one operand is truthy.  | `true` if either is truthy, else `false`.           |
+| `!`          | **Logical NOT**: Inverts the truthiness of the operand.            | `true` for falsy values, `false` for truthy values. |
+| `??`         | **Nullish coalescing**: Returns expr1 if neither null/undefined; otherwise, returns expr2.                               |
+
+</details>
+
+
+<details>
+  <summary>
+    <h3>Conditional (ternary) operators</h3>
+  </summary>
+
+```js
+condition ? val1 : val2
+
+const status = age >= 18 ? "adult" : "minor";
+```
+
+- If condition is true, the operator has the value of val1. Otherwise it has the value of val2. You can use the conditional operator anywhere you would use a standard operator.
+
+</details>
+
+<details>
+  <summary>
+    <h3>Unary operators</h3>
+  </summary>
+
+#### 1. delete
+
+- The delete operator deletes an object's property.
+
+```js
+delete object.property;
+delete object[propertyKey];
+delete objectName[index];
+```
+
+#### 2. typeof
+
+- The typeof operator returns a string indicating the type of the unevaluated operand.
+
+```js
+const myFun = () => 5 + 2;
+const shape = "round";
+const size = 1;
+const foo = ["Apple", "Mango", "Orange"];
+const today = new Date();
+
+typeof myFun; // returns "function"
+typeof shape; // returns "string"
+typeof size; // returns "number"
+typeof foo; // returns "object"
+typeof today; // returns "object"
+typeof doesntExist; // returns "undefined"
+
+typeof true; // returns "boolean"
+typeof null; // returns "object"
+
+typeof 62; // returns "number"
+typeof "Hello world"; // returns "string"
+```
+
+#### 3. void
+
+- The void operator specifies an expression to be evaluated without returning a value.
+
+</details>
+
+
+
+<details>
+  <summary>
+    <h3>Relational operators</h3>
+  </summary>
+
+#### 1. in
+
+- The in operator returns true if the specified property is in the specified object.
+
+```js
+propNameOrNumber in objectName
+
+
+// Arrays
+const trees = ["redwood", "bay", "cedar", "oak", "maple"];
+0 in trees; // returns true
+3 in trees; // returns true
+6 in trees; // returns false
+"bay" in trees; // returns false
+// (you must specify the index number, not the value at that index)
+"length" in trees; // returns true (length is an Array property)
+
+// built-in objects
+"PI" in Math; // returns true
+const myString = new String("coral");
+"length" in myString; // returns true
+
+// Custom objects
+const myCar = { make: "Honda", model: "Accord", year: 1998 };
+"make" in myCar; // returns true
+"model" in myCar; // returns true
+
+```
+
+#### 2. instanceof
+
+- The instanceof operator returns true if the specified object is of the specified object type.
+
+```js
+object instanceof objectType
+
+const obj = new Map();
+if (obj instanceof Map) {
+  // statements to execute
+}
+```
+</details>
+
+---
+
+## Destructuring
+
+- The destructuring syntax is a JavaScript syntax that makes it possible to unpack values from arrays, or properties from objects, into distinct variables.
+
+```js
+const [a, b, c] = arr;
+const { a, b, c } = obj;
+
+const obj = { a: 1, b: { c: 2 } };
+const {
+  a,
+  b: { c: d },
+} = obj;
+// Two variables are bound: `a` and `d`
+
+
+const { a, ...others } = { a: 1, b: 2, c: 3 };
+console.log(others); // { b: 2, c: 3 }
+
+const [first, ...others2] = [1, 2, 3];
+console.log(others2); // [2, 3]
+
+
+const foo = ["one", "two"];
+
+const [red, yellow, green, blue] = foo;
+console.log(red); // "one"
+console.log(yellow); // "two"
+console.log(green); // undefined
+console.log(blue); // undefined
+
+
+let a = 1;
+let b = 3;
+
+[a, b] = [b, a];
+console.log(a); // 3
+console.log(b); // 1
+
+const arr = [1, 2, 3];
+[arr[2], arr[1]] = [arr[1], arr[2]];
+console.log(arr); // [1, 3, 2]
+```
+
+---
+
+## Math
+
+| **Math Function**          | **Description**                                                          | **Example**             | **Result**          |
+| -------------------------- | ------------------------------------------------------------------------ | ----------------------- | ------------------- |
+| `Math.abs(x)`              | Returns the absolute value of `x`.                                       | `Math.abs(-5)`          | `5`                 |
+| `Math.ceil(x)`             | Returns the smallest integer greater than or equal to `x`.               | `Math.ceil(5.3)`        | `6`                 |
+| `Math.floor(x)`            | Returns the largest integer less than or equal to `x`.                   | `Math.floor(5.7)`       | `5`                 |
+| `Math.round(x)`            | Returns the value of `x` rounded to the nearest integer.                 | `Math.round(5.5)`       | `6`                 |
+| `Math.pow(base, exponent)` | Returns the base raised to the power of the exponent.                    | `Math.pow(2, 3)`        | `8`                 |
+| `Math.sqrt(x)`             | Returns the square root of `x`.                                          | `Math.sqrt(16)`         | `4`                 |
+| `Math.min(x, y, ...)`      | Returns the smallest of the arguments.                                   | `Math.min(5, 1, 9, 0)`  | `0`                 |
+| `Math.max(x, y, ...)`      | Returns the largest of the arguments.                                    | `Math.max(5, 1, 9, 0)`  | `9`                 |
+| `Math.random()`            | Returns a random number between 0 (inclusive) and 1 (exclusive).         | `Math.random()`         | `0.54321` (example) |
+| `Math.log(x)`              | Returns the natural logarithm (base `e`) of `x`.                         | `Math.log(10)`          | `2.302585`          |
+| `Math.log10(x)`            | Returns the base 10 logarithm of `x`.                                    | `Math.log10(100)`       | `2`                 |
+| `Math.log2(x)`             | Returns the base 2 logarithm of `x`.                                     | `Math.log2(8)`          | `3`                 |
+| `Math.sin(x)`              | Returns the sine of `x` (x in radians).                                  | `Math.sin(Math.PI / 2)` | `1`                 |
+| `Math.cos(x)`              | Returns the cosine of `x` (x in radians).                                | `Math.cos(Math.PI)`     | `-1`                |
+| `Math.tan(x)`              | Returns the tangent of `x` (x in radians).                               | `Math.tan(Math.PI / 4)` | `1`                 |
+| `Math.abs(x)`              | Returns the absolute value of `x`.                                       | `Math.abs(-10)`         | `10`                |
+| `Math.trunc(x)`            | Returns the integer part of `x`, removing any fractional digits.         | `Math.trunc(5.99)`      | `5`                 |
+| `Math.sign(x)`             | Returns the sign of `x`: `-1` (negative), `0` (zero), or `1` (positive). | `Math.sign(-4)`         | `-1`                |
+| `Math.imul(a, b)`          | Returns the result of a 32-bit integer multiplication.                   | `Math.imul(2, 3)`       | `6`                 |
+| `Math.cbrt(x)`             | Returns the cube root of `x`.                                            | `Math.cbrt(27)`         | `3`                 |
+| `Math.expm1(x)`            | Returns `e^x - 1` (i.e., exponential function minus 1).                  | `Math.expm1(1)`         | `1.71828`           |
+| `Math.hypot(x, y)`         | Returns the square root of the sum of squares of its arguments.          | `Math.hypot(3, 4)`      | `5`                 |
+| `Math.sinh(x)`             | Returns the hyperbolic sine of `x`.                                      | `Math.sinh(1)`          | `1.175201`          |
+| `Math.cosh(x)`             | Returns the hyperbolic cosine of `x`.                                    | `Math.cosh(1)`          | `1.543081`          |
+| `Math.tanh(x)`             | Returns the hyperbolic tangent of `x`.                                   | `Math.tanh(1)`          | `0.761594`          |
+
+
+---
+
+## 
