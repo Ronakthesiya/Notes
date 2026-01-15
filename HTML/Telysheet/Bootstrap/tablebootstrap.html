@@ -5,13 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
- 
+    <link rel="stylesheet" href="right.css">
 </head>
 <body>
     <div class="content">
         <div class="container mt-5">
+            
+            <div>
+                <div class="addQA mb-1">
+                    <label for="QA">QA : </label>
+                    <input type="text" id="QA" name="QAName" placeholder="Name">
+                    <input type="number" id="QA" name="QAnumber" placeholder="Number">
+                    <button class="btn btn-success" onclick="add('QA')">add</button>
+                    <button class="btn btn-danger" onclick="remove('QA')">remove</button>
+                </div>
+                <div class="addManagement mb-1">
+                    <label for="Management">Management : </label>
+                    <input type="text" id="Management" name="ManagementName" placeholder="Name">
+                    <input type="number" id="Management" name="Managementnumber" placeholder="Number">
+                    <button class="btn btn-success" onclick="add('Management')">add</button>
+                    <button class="btn btn-danger" onclick="remove('Management')">remove</button>
+                    
+                </div>
+                <div class="addDeveloper mb-1">
+                    <label for="Developer">Developer : </label>
+                    <input type="text" id="Developer" name="DeveloperName" placeholder="Name">
+                    <input type="number" id="Developer" name="Developernumber" placeholder="Number">
+                    <button class="btn btn-success" onclick="add('Developer')">add</button>
+                    <button class="btn btn-danger" onclick="remove('Developer')">remove</button>
+
+                </div>
+                <div class="addBatch mb-5">
+                    <label for="Batch">Batch : </label>
+                    <input type="text" id="Batch" name="BatchName" placeholder="Name">
+                    <input type="number" id="Batch" name="Batchnumber" placeholder="Number">
+                    <button class="btn btn-success" onclick="add('Batch')">add</button>
+                    <button class="btn btn-danger" onclick="remove('Batch')">remove</button>
+                    
+                </div>
+            </div>
             <div class="row justify-content-center">
-                <div class="col-sm-5">
+                <div class="col-sm-5 Management">
                     <div class="row">
                         <div class="col-8 border border-dark bg-secondary-subtle text-center">Name</div>
                         <div class="col-4 border border-dark bg-secondary-subtle text-center">Extension</div>
@@ -20,7 +54,7 @@
                         <div class="col-12 border border-dark bg-secondary-subtle text-center">MANAGEMENT</div>
                     </div>
                     <div class="row">
-                        <div class="col-8 border border-dark">Viral Sh</div>
+                        <div class="col-8 border border-dark">Viral Shah</div>
                         <div class="col-4 border border-dark text-center">303</div>
                     </div>
                     <div class="row">
@@ -28,11 +62,11 @@
                         <div class="col-4 border border-dark text-center">362</div>
                     </div>
                     <div class="row">
-                        <div class="col-8 border border-dark">Tejas Charani</div>
+                        <div class="col-8 border border-dark right">Tejas Charani</div>
                         <div class="col-4 border border-dark text-center">362</div>
                     </div>
                     <div class="row">
-                        <div class="col-8 border border-dark">Ronak Gand</div>
+                        <div class="col-8 border border-dark right">Ronak Gandhi</div>
                         <div class="col-4 border border-dark text-center">359</div>
                     </div>
                     <div class="row">
@@ -53,7 +87,7 @@
                     </div>
 
                 </div>
-                <div class="col-sm-5">
+                <div class="col-sm-5 QA">
                     <div class="row">
                         <div class="col-8 border border-dark bg-secondary-subtle text-center">Name</div>
                         <div class="col-4 border border-dark bg-secondary-subtle text-center">Extension</div>
@@ -103,7 +137,7 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-sm-5">
+                <div class="col-sm-5 Developer1">
                     <div class="row">
                         <div class="col-8 border border-dark">Akhil Sakariya</div>
                         <div class="col-4 border border-dark text-center">37</div>
@@ -193,93 +227,93 @@
                         <div class="col-4 border border-dark text-center">368</div>
                     </div>
                 </div>
-                <div class="col-sm-5">
+                <div class="col-sm-5 Developer2">
                     <div class="row">
                         <div class="col-8 border border-dark">asdf</div>
                         <div class="col-4 border border-dark text-center">37</div>
                     </div>
                     <div class="row">
-                        <div class="col-8 border border-dark">Amisha Kotadiyadiv></div>
+                        <div class="col-8 border border-dark">Amisha Kotadiya</div>
                         <div class="col-4 border border-dark text-center">354</div>
                     </div>
                     <div class="row">
-                        <div class="col-8 border border-dark">Ashish Bagathariyadiv></div>
+                        <div class="col-8 border border-dark">Ashish Bagathariya</div>
                         <div class="col-4 border border-dark text-center">342</div>
                     </div>
                     <div class="row">
-                        <div class="col-8 border border-dark">Avani Trivadidiv></div>
+                        <div class="col-8 border border-dark">Avani Trivadi</div>
                         <div class="col-4 border border-dark text-center">330</div>
                     </div>
                     <div class="row">
-                        <div class="col-8 border border-dark">Bansi Bhimanidiv></div>
+                        <div class="col-8 border border-dark">Bansi Bhimani</div>
                         <div class="col-4 border border-dark text-center">335</div>
                     </div>
                     <div class="row">
-                        <div class="col-8 border border-dark">Bhargav Chauhandiv></div>
+                        <div class="col-8 border border-dark">Bhargav Chauhan</div>
                         <div class="col-4 border border-dark text-center">302</div>
                     </div>
                     <div class="row">
-                        <div class="col-8 border border-dark">Bhavesh Tilaladiv></div>
+                        <div class="col-8 border border-dark">Bhavesh Tilala</div>
                         <div class="col-4 border border-dark text-center">324</div>
                     </div>
                     <div class="row">
-                        <div class="col-8 border border-dark">Brijesh Kamanidiv></div>
+                        <div class="col-8 border border-dark">Brijesh Kamani</div>
                         <div class="col-4 border border-dark text-center">314</div>
                     </div>
                     <div class="row">
-                        <div class="col-8 border border-dark">Chandani Noghavadradiv></div>
+                        <div class="col-8 border border-dark">Chandani Noghavadra</div>
                         <div class="col-4 border border-dark text-center">318</div>
                     </div>
                     <div class="row">
-                        <div class="col-8 border border-dark">Chintan Gabanidiv></div>
+                        <div class="col-8 border border-dark">Chintan Gabani</div>
                         <div class="col-4 border border-dark text-center">334</div>
                     </div>
                     <div class="row">
-                        <div class="col-8 border border-dark">Dhruvi Vanpariyadiv></div>
+                        <div class="col-8 border border-dark">Dhruvi Vanpariya</div>
                         <div class="col-4 border border-dark text-center">354</div>
                     </div>
                     <div class="row">
-                        <div class="col-8 border border-dark">Dhruvil Dobariyadiv></div>
+                        <div class="col-8 border border-dark">Dhruvil Dobariya</div>
                         <div class="col-4 border border-dark text-center">321</div>
                     </div>
                     <div class="row">
-                        <div class="col-8 border border-dark">Gulabsha Bhattidiv></div>
+                        <div class="col-8 border border-dark">Gulabsha Bhatti</div>
                         <div class="col-4 border border-dark text-center">339</div>
                     </div>
                     <div class="row">
-                        <div class="col-8 border border-dark">Harshil Thummardiv></div>
+                        <div class="col-8 border border-dark">Harshil Thummar</div>
                         <div class="col-4 border border-dark text-center">346</div>
                     </div>
                     <div class="row">
-                        <div class="col-8 border border-dark">Heli Parekhdiv></div>
+                        <div class="col-8 border border-dark">Heli Parekh</div>
                         <div class="col-4 border border-dark text-center">339</div>
                     </div>
                     <div class="row">
-                        <div class="col-8 border border-dark">Hemendra Padiyadiv></div>
+                        <div class="col-8 border border-dark">Hemendra Padiya</div>
                         <div class="col-4 border border-dark text-center">371</div>
                     </div>
                     <div class="row">
-                        <div class="col-8 border border-dark">Hitesh Duragiyadiv></div>
+                        <div class="col-8 border border-dark">Hitesh Duragiya</div>
                         <div class="col-4 border border-dark text-center">363</div>
                     </div>
                     <div class="row">
-                        <div class="col-8 border border-dark">Hutish Sejudiv></div>
+                        <div class="col-8 border border-dark">Hutish Seju</div>
                         <div class="col-4 border border-dark text-center">346</div>
                     </div>
                     <div class="row">
-                        <div class="col-8 border border-dark">Janki Vaishnaniidiv></div>
+                        <div class="col-8 border border-dark">Janki Vaishnanii</div>
                         <div class="col-4 border border-dark text-center">322</div>
                     </div>
                     <div class="row">
-                        <div class="col-8 border border-dark">Jayesh Bhanderidiv></div>
+                        <div class="col-8 border border-dark">Jayesh Bhanderi</div>
                         <div class="col-4 border border-dark text-center">314</div>
                     </div>
                     <div class="row">
-                        <div class="col-8 border border-dark">Kapil Thakkardiv></div>
+                        <div class="col-8 border border-dark">Kapil Thakkar</div>
                         <div class="col-4 border border-dark text-center">383</div>
                     </div>
                     <div class="row">
-                        <div class="col-8 border border-dark">Ketan Damanidiv></div>
+                        <div class="col-8 border border-dark">Ketan Damani</div>
                         <div class="col-4 border border-dark text-center">368</div>
                     </div>
                 </div>
@@ -292,7 +326,7 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-sm-5">
+                <div class="col-sm-5 Batch1">
                     <div class="row">
                         <div class="col-8 border border-dark">Arti Vaghela</div>
                         <div class="col-4 border border-dark text-center">378</div>
@@ -306,7 +340,7 @@
                         <div class="col-4 border border-dark text-center">372</div>
                     </div>
                 </div>
-                <div class="col-sm-5">
+                <div class="col-sm-5 Batch2">
                     <div class="row">
                         <div class="col-8 border border-dark">Dev Nakum</div>
                         <div class="col-4 border border-dark text-center">373</div>
@@ -323,5 +357,7 @@
             </div>
         </div>
     </div>
+
+    <script src="scrpit.js"></script>
 </body>
 </html>
