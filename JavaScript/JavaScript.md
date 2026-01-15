@@ -876,3 +876,120 @@ console.log(arr); // [1, 3, 2]
 | `String.padEnd(targetLength, padString)`   | Pads the current string with `padString` until it reaches `targetLength` from the end.   | `"5".padEnd(3, "0")`           | `"500"`                |
 | `String.matchAll(regexp)`                  | Returns an iterator of all matches of the regular expression.                            | `"aaa".matchAll(/a/g)`         | `["a", "a", "a"]`      |
 
+---
+
+## Date and Time
+
+### creating Date Object
+
+1. new Date(): 
+- Creates a new Date object representing the current date and time.
+
+2. new Date(milliseconds): 
+- Creates a Date object representing the number of milliseconds since January 1, 1970, 00:00:00 UTC (the Unix epoch).
+
+3. new Date(dateString): 
+- Creates a Date object from a date string (e.g., "YYYY-MM-DD" or other formats).
+
+4. new Date(year, month, day, hours, minutes, seconds, milliseconds): 
+- Creates a Date object with a specified date and time.
+- The month is 0-indexed (0 = January, 1 = February, etc.).
+
+### Getting Date and Time Components
+
+| **Method**          | **Description**                                                              | **Example**                                                   |
+| ------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| `getFullYear()`     | Returns the **4-digit year**.                                                | `let date = new Date(); console.log(date.getFullYear());`     |
+| `getMonth()`        | Returns the **month** (0-11). **Note**: January is `0`, December is `11`.    | `let date = new Date(); console.log(date.getMonth());`        |
+| `getDate()`         | Returns the **day of the month** (1-31).                                     | `let date = new Date(); console.log(date.getDate());`         |
+| `getDay()`          | Returns the **day of the week** (0 = Sunday, 1 = Monday, etc.).              | `let date = new Date(); console.log(date.getDay());`          |
+| `getHours()`        | Returns the **hours** (0-23).                                                | `let date = new Date(); console.log(date.getHours());`        |
+| `getMinutes()`      | Returns the **minutes** (0-59).                                              | `let date = new Date(); console.log(date.getMinutes());`      |
+| `getSeconds()`      | Returns the **seconds** (0-59).                                              | `let date = new Date(); console.log(date.getSeconds());`      |
+| `getMilliseconds()` | Returns the **milliseconds** (0-999).                                        | `let date = new Date(); console.log(date.getMilliseconds());` |
+| `getTime()`         | Returns the **time** in milliseconds since the Unix epoch (January 1, 1970). | `let date = new Date(); console.log(date.getTime());`         |
+
+
+### Setting Date and Time Components
+
+| **Method**                      | **Description**                                                             | **Example**                                           |
+| ------------------------------- | --------------------------------------------------------------------------- | ----------------------------------------------------- |
+| `setFullYear(year)`             | Sets the **year** of the date object.                                       | `let date = new Date(); date.setFullYear(2025);`      |
+| `setMonth(month)`               | Sets the **month** (0-11).                                                  | `let date = new Date(); date.setMonth(11);`           |
+| `setDate(day)`                  | Sets the **day of the month** (1-31).                                       | `let date = new Date(); date.setDate(15);`            |
+| `setHours(hours)`               | Sets the **hours** (0-23).                                                  | `let date = new Date(); date.setHours(10);`           |
+| `setMinutes(minutes)`           | Sets the **minutes** (0-59).                                                | `let date = new Date(); date.setMinutes(45);`         |
+| `setSeconds(seconds)`           | Sets the **seconds** (0-59).                                                | `let date = new Date(); date.setSeconds(30);`         |
+| `setMilliseconds(milliseconds)` | Sets the **milliseconds** (0-999).                                          | `let date = new Date(); date.setMilliseconds(500);`   |
+| `setTime(milliseconds)`         | Sets the **time** based on the number of milliseconds since the Unix epoch. | `let date = new Date(); date.setTime(1609459200000);` |
+
+---
+
+## Regular Expressions
+
+### 1. Using Literal Notation
+
+- A regular expression is enclosed between two forward slashes (/).
+
+```js
+/pattern/flags
+```
+- pattern: The regular expression pattern.
+- flags: Optional modifiers (e.g., g for global search, i for case-insensitive).
+
+```js
+let regex = /hello/i; // Matches 'hello' in a case-insensitive manner
+```
+
+### 2. Using the RegExp Constructor
+
+```js
+new RegExp('pattern', 'flags')
+
+let regex = new RegExp('hello', 'i'); // Equivalent to /hello/i
+```
+
+### Regular Expression
+
+| **Feature**                              | **Syntax/Example**                 | **Description**                                                                  | **Example**                                                              |                  
+| ---------------------------------------- | ---------------------------------- | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | 
+| **Literal Characters**                   | `/abc/`                            | Matches the exact sequence of characters.                                        | `"abc"` matches `"abc"`, but not `"abd"`.                                |                  
+| **Dot (`.`)**                            | `/a.b/`                            | Matches any single character (except newlines).                                  | `"acb"`, `"axb"`, `"a b"`                                                |                  
+| **Anchors: Start (`^`)**                 | `/^abc/`                           | Matches the start of the string.                                                 | `"abc"` matches only if it's at the start of the string.                 |                  
+| **Anchors: End (`$`)**                   | `/abc$/`                           | Matches the end of the string.                                                   | `"abc"` matches only if it's at the end of the string.                   |                  
+| **Character Set (`[]`)**                 | `/[aeiou]/`                        | Matches any one character inside the brackets.                                   | `"e"`, `"a"`, `"i"`, `"o"`, `"u"`                                        |                  
+| **OR (`\|`) Operator**                   | `/abc\|def/`                       | Matches either the pattern on the left or right of the `\|`.                     | `"abc"` or `"def"`                                                       |
+| **Grouping (`()`)**                      | `/a(b\|c)/`                        | Groups patterns, matching either `b` or `c`.                                     | `"ab"` or `"ac"`                                                         |
+| **Predefined Character Classes**         | `/\d/`, `/\w/`, `/\s/`             | Matches digits (`\d`), word characters (`\w`), and whitespace characters (`\s`). | `"1"`, `"a"`, `" "`                                                      |                  
+| **Negation (`^` in `[]`)**               | `/[^aeiou]/`                       | Matches any character except the ones inside the brackets.                       | `"b"`, `"c"`, `"x"`                                                      |                  
+| **Quantifiers (`*`, `+`, `?`, `{n,m}`)** | `/a*/`, `/a+/`, `/a?/`, `/a{2,4}/` | Matches a specified number of occurrences.                                       | `"a"`, `"aa"`, `"aaa"`, `"aaaa"`, but `"aaaaa"` doesn't match `/a{2,4}/` |                  
+| **Zero or More (`*`)**                   | `/a*/`                             | Matches zero or more occurrences of the preceding element.                       | `"a"`, `"aa"`, `"aaa"`, `""`                                             |                  
+| **One or More (`+`)**                    | `/a+/`                             | Matches one or more occurrences of the preceding element.                        | `"a"`, `"aa"`, `"aaa"`, but not `""`                                     |                  
+| **Optional (`?`)**                       | `/a?/`                             | Matches zero or one occurrence of the preceding element.                         | `"a"`, `""`                                                              |                  
+| **Exact Number (`{n}`)**                 | `/a{3}/`                           | Matches exactly `n` occurrences of the preceding element.                        | `"aaa"`                                                                  |                  
+| **Range (`{n,m}`)**                      | `/a{2,4}/`                         | Matches between `n` and `m` occurrences of the preceding element.                | `"aa"`, `"aaa"`, `"aaaa"`, but not `"a"` or `"aaaaa"`                    |                  
+| **Whitespace (`\s`)**                    | `/\s/`                             | Matches any whitespace character (space, tab, newline).                          | `" "`, `"\t"`, `"\n"`                                                    |                  
+| **Non-Whitespace (`\S`)**                | `/\S/`                             | Matches any non-whitespace character.                                            | `"a"`, `"1"`, `"!"`                                                      |                  
+| **Digit (`\d`)**                         | `/\d/`                             | Matches any digit (0-9).                                                         | `"0"`, `"1"`, `"9"`                                                      |                  
+| **Non-Digit (`\D`)**                     | `/\D/`                             | Matches any non-digit character.                                                 | `"a"`, `"A"`, `" "`                                                      |                  
+| **Word Character (`\w`)**                | `/\w/`                             | Matches any alphanumeric character plus underscore (`a-zA-Z0-9_`).               | `"a"`, `"A"`, `"1"`, `"_"`                                               |                  
+| **Non-Word Character (`\W`)**            | `/\W/`                             | Matches any character that is not alphanumeric or underscore.                    | `"!"`, `"#"`, `" "`                                                      |                  
+| **Word Boundary (`\b`)**                 | `/\bword\b/`                       | Matches a word boundary.                                                         | `" word "`, `"word."`, but not `"sword"` or `"wording"`                  |                  
+| **Non-Word Boundary (`\B`)**             | `/\Bword\B/`                       | Matches a position that is not a word boundary.                                  | `"sword"`                                                                |                  
+| **Positive Lookahead (`(?=...)`)**       | `/\d(?=\D)/`                       | Matches a digit only if it’s followed by a non-digit character.                  | `"1"` in `"123a"`                                                        |                  
+| **Negative Lookahead (`(?!...)`)**       | `/\d(?!\D)/`                       | Matches a digit only if it’s not followed by a non-digit character.              | `"1"` in `"1234"` but not `"1"` in `"123a"`                              |                  
+| **Escape Special Characters**            | `/\./`, `/\+/, `/\`                | Use `\` to escape special characters like `.`, `+`, `*`, `?`, etc.               | `"."`, `"+"`, `"\\"`                                                     |                  
+
+
+### Regex Methods
+
+| **Method**                       | **Description**                                                | **Example**                                  | **Result**                     |
+| -------------------------------- | -------------------------------------------------------------- | -------------------------------------------- | ------------------------------ |
+| **`String.match(regex)`**        | Returns an array of all matches for the regex pattern.         | `"hello world".match(/\w+/g)`                | `["hello", "world"]`           |
+| **`String.replace(regex, str)`** | Replaces matched substrings with a specified string.           | `"hello world".replace("world", "universe")` | `"hello universe"`             |
+| **`String.search(regex)`**       | Returns the index of the first match.                          | `"hello world".search("world")`              | `6`                            |
+| **`String.split(regex)`**        | Splits the string into an array of substrings based on regex.  | `"apple,banana,grape".split(/,/)`            | `["apple", "banana", "grape"]` |
+| **`RegExp.test(string)`**        | Tests if a string matches the regex pattern.                   | `/\d/.test("hello123")`                      | `true`                         |
+| **`RegExp.exec(string)`**        | Executes a search for a match and returns an array of results. | `/\d+/.exec("abc 123 def")`                  | `["123"]`                      |
+
+
