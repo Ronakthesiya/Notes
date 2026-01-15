@@ -847,4 +847,32 @@ console.log(arr); // [1, 3, 2]
 
 ---
 
-## 
+## String
+
+| **Method/Property**                        | **Description**                                                                          | **Example**                    | **Result**             |
+| ------------------------------------------ | ---------------------------------------------------------------------------------------- | ------------------------------ | ---------------------- |
+| `String.length`                            | Returns the length of a string.                                                          | `"Hello".length`               | `5`                    |
+| `String.charAt(index)`                     | Returns the character at a specified index.                                              | `"Hello".charAt(1)`            | `"e"`                  |
+| `String.charCodeAt(index)`                 | Returns the Unicode value of the character at a specified index.                         | `"Hello".charCodeAt(1)`        | `101` (Unicode of 'e') |
+| `String.indexOf(searchValue)`              | Returns the index of the first occurrence of `searchValue`. Returns `-1` if not found.   | `"Hello".indexOf("l")`         | `2`                    |
+| `String.lastIndexOf(searchValue)`          | Returns the index of the last occurrence of `searchValue`.                               | `"Hello".lastIndexOf("l")`     | `3`                    |
+| `String.includes(searchValue)`             | Returns `true` if `searchValue` is found, `false` otherwise.                             | `"Hello".includes("e")`        | `true`                 |
+| `String.startsWith(searchValue)`           | Returns `true` if the string starts with `searchValue`.                                  | `"Hello".startsWith("He")`     | `true`                 |
+| `String.endsWith(searchValue)`             | Returns `true` if the string ends with `searchValue`.                                    | `"Hello".endsWith("lo")`       | `true`                 |
+| `String.slice(start, end)`                 | Extracts a section of a string and returns it as a new string.                           | `"Hello".slice(1, 4)`          | `"ell"`                |
+| `String.substring(start, end)`             | Returns a substring between two indices, excluding the end index.                        | `"Hello".substring(1, 4)`      | `"ell"`                |
+| `String.substr(start, length)`             | Returns a portion of a string starting at `start` index with a given length.             | `"Hello".substr(1, 3)`         | `"ell"`                |
+| `String.toUpperCase()`                     | Returns a new string with all characters converted to uppercase.                         | `"Hello".toUpperCase()`        | `"HELLO"`              |
+| `String.toLowerCase()`                     | Returns a new string with all characters converted to lowercase.                         | `"Hello".toLowerCase()`        | `"hello"`              |
+| `String.trim()`                            | Removes whitespace from both ends of a string.                                           | `"  Hello  ".trim()`           | `"Hello"`              |
+| `String.replace(searchValue, newValue)`    | Returns a new string with the first occurrence of `searchValue` replaced by `newValue`.  | `"Hello".replace("l", "L")`    | `"HeLlo"`              |
+| `String.replaceAll(searchValue, newValue)` | Returns a new string with all occurrences of `searchValue` replaced by `newValue`.       | `"Hello".replaceAll("l", "L")` | `"HeLLo"`              |
+| `String.split(separator)`                  | Splits a string into an array of substrings based on a separator.                        | `"Hello World".split(" ")`     | `["Hello", "World"]`   |
+| `String.match(regexp)`                     | Retrieves the matches of a string against a regular expression.                          | `"Hello".match(/[a-z]/)`       | `["e"]`                |
+| `String.search(regexp)`                    | Returns the index of the first match of a regular expression.                            | `"Hello".search(/[A-Z]/)`      | `0`                    |
+| `String.concat(string2, ...)`              | Concatenates two or more strings.                                                        | `"Hello".concat(" ", "World")` | `"Hello World"`        |
+| `String.repeat(count)`                     | Returns a new string repeated `count` times.                                             | `"Hello".repeat(3)`            | `"HelloHelloHello"`    |
+| `String.padStart(targetLength, padString)` | Pads the current string with `padString` until it reaches `targetLength` from the start. | `"5".padStart(3, "0")`         | `"005"`                |
+| `String.padEnd(targetLength, padString)`   | Pads the current string with `padString` until it reaches `targetLength` from the end.   | `"5".padEnd(3, "0")`           | `"500"`                |
+| `String.matchAll(regexp)`                  | Returns an iterator of all matches of the regular expression.                            | `"aaa".matchAll(/a/g)`         | `["a", "a", "a"]`      |
+
