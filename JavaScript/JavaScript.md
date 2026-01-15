@@ -120,3 +120,435 @@ Literals represent values in JavaScript. These are fixed values—not variables�
 | **`indexOf()`**       | Returns the first index of the specified element, or `-1` if not found.                                                      | `[1, 2, 3].indexOf(2);`                         | `1`               | 1. `searchElement`: The element to search for.<br>2. `fromIndex` (optional): The index to start searching from.                                                                |
 | **`lastIndexOf()`**   | Returns the last index of the specified element, or `-1` if not found.                                                       | `[1, 2, 3].lastIndexOf(2);`                     | `1`               | 1. `searchElement`: The element to search for.<br>2. `fromIndex` (optional): The index to start searching from (backwards).                                                    |
 
+
+### Boolean
+
+#### Falsy Values
+- A falsy value is one that is considered false when evaluated in a boolean context
+- There are only six falsy values in JavaScript:
+
+1. false
+2. 0 (zero)
+3. -0 (negative zero)
+4. "" (empty string)
+5. null
+6. undefined
+7. NaN (Not-a-Number)
+
+#### Truthy Values
+
+- A truthy value is any value that is not falsy. Essentially, everything except the six falsy values mentioned above is truthy.
+
+### Object literals
+
+- An object literal is a list of zero or more pairs of property names and associated values of an object, enclosed in curly braces ({}).
+
+```js
+const car = { manyCars: { a: "Saab", b: "Jeep" }, 7: "Mazda" };
+
+console.log(car.manyCars.b); // Jeep
+console.log(car[7]); // Mazda
+```
+
+---
+
+## Control flow 
+
+### if...else statement
+
+```js
+if (condition) {
+  statement1;
+} else {
+  statement2;
+}
+
+if (condition1) {
+  statement1;
+} else if (condition2) {
+  statement2;
+} else if (conditionN) {
+  statementN;
+} else {
+  statementLast;
+}
+```
+
+### switch statement
+
+```js
+switch (expression) {
+  case label1:
+    statements1;
+    break;
+  case label2:
+    statements2;
+    break;
+  // …
+  default:
+    statementsDefault;
+}
+```
+---
+
+## Exception handling statements
+
+### throw statement
+
+- Use the throw statement to throw an exception. 
+
+```js
+throw "Error2"; // String type
+throw 42; // Number type
+throw true; // Boolean type
+throw {
+  toString() {
+    return "I'm an object!";
+  },
+};
+```
+
+### try...catch statement
+
+```js
+openMyFile();
+try {
+  writeMyFile(theData); // This may throw an error
+} catch (e) {
+  handleError(e); // If an error occurred, handle it
+} finally {
+  closeMyFile(); // Always close the resource
+}
+```
+
+- If the finally block returns a value, this value becomes the return value of the entire try...catch...finally production, regardless of any return statements in the try and catch blocks
+
+```js
+try {
+  doSomethingErrorProne();
+} catch (e) {
+  // Now, we actually use `console.error()`
+  console.error(e.name); // 'Error'
+  console.error(e.message); // 'The message', or a JavaScript error message
+}
+```
+---
+
+## Loops and iteration
+
+### for statement
+
+```js
+for (initialization; condition; afterthought)
+  statement
+```
+
+### do...while statement
+
+```js
+do
+  statement
+while (condition);
+
+let i = 0;
+do {
+  i += 1;
+  console.log(i);
+} while (i < 5);
+```
+
+### while statement
+
+```js
+while (condition)
+  statement
+
+let n = 0;
+let x = 0;
+while (n < 3) {
+  n++;
+  x += n;
+}
+```
+
+### labeled statement+
+- A label provides a statement with an identifier that lets you refer to it elsewhere in your program.
+
+```js
+let x = 0;
+let z = 0;
+labelCancelLoops: while (true) {
+  console.log("Outer loops:", x);
+  x += 1;
+  z = 1;
+  while (true) {
+    console.log("Inner loops:", z);
+    z += 1;
+    if (z === 10 && x === 10) {
+      break labelCancelLoops;
+    } else if (z === 10) {
+      break;
+    }
+  }
+}
+```
+
+### break statement
+-  break the loop
+
+### continue statement
+- direct next itration of loop
+
+### for...in statement
+
+- The for...in loop is used to iterate over the enumerable property keys (or indices) of an object or array. It will iterate over all properties, including inherited ones, unless they are non-enumerable.
+
+- Key Characteristics:
+  - Iterates over property keys (or indices in arrays).
+  - Works on objects and arrays.
+  - Iterates over enumerable properties of the object.
+
+```js
+for (variable in object)
+  statement
+
+for (const i in obj) {
+  result += `${objName}.${i} = ${obj[i]}<br>`;
+}
+```
+
+### for...of statement
+
+- The for...of loop is used to iterate over iterable objects like arrays, strings, maps, sets, NodeLists, and any object with an [Symbol.iterator] property. It gives access to the values directly, not the keys (or indices).
+
+- Key Characteristics:
+  - Iterates over values in an iterable object (e.g., arrays, strings).
+  - Does not work for objects (use for...in for that).
+  - Iterates over elements directly (not property names).
+
+```js
+const arr = [3, 5, 7];
+arr.foo = "hello";
+
+for (const i in arr) {
+  console.log(i);
+}
+// "0" "1" "2" "foo"
+
+for (const i of arr) {
+  console.log(i);
+}
+// Logs: 3 5 7
+```
+
+```js
+const obj = { foo: 1, bar: 2 };
+
+for (const [key, val] of Object.entries(obj)) {
+  console.log(key, val);
+}
+// "foo" 1
+// "bar" 2
+```
+
+| Feature               | `for...in`                                    | `for...of`                                          |
+| --------------------- | --------------------------------------------- | --------------------------------------------------- |
+| **Iteration over**    | Object keys or array indices                  | Values of iterable objects (e.g., arrays, strings)  |
+| **Works with**        | Objects, arrays (keys/indices)                | Arrays, strings, maps, sets, etc. (values)          |
+| **Accesses**          | Property keys or array indices (not values)   | Values directly                                     |
+| **Suitable for**      | Objects (properties), checking all properties | Arrays, strings, iterables, direct access to values |
+| **Works on Arrays?**  | Yes (but accesses indices as strings)         | Yes (accesses values directly)                      |
+| **Works on Objects?** | Yes (accesses property names)                 | No (throws an error if used on a plain object)      |
+
+
+---
+
+## function
+
+```js
+function square(number) {
+  return number * number;
+}
+```
+
+### Function expressions
+
+```js
+const square = function (number) {
+  return number * number;
+};
+
+console.log(square(4)); // 16
+
+const factorial = function fac(n) {
+  return n < 2 ? 1 : n * fac(n - 1);
+};
+
+console.log(factorial(3)); // 6
+```
+
+### Function hoisting
+
+- Functions must be in scope when they are called, but the function declaration can be hoisted (appear below the call in the code). The scope of a function declaration is the function in which it is declared (or the entire program, if it is declared at the top level).
+
+```js
+console.log(square(5)); // 25
+
+function square(n) {
+  return n * n;
+}
+```
+
+- Function hoisting only works with function declarations — not with function expressions. The following code will not work:
+
+```js
+console.log(square(5)); // ReferenceError: Cannot access 'square' before initialization
+const square = function (n) {
+  return n * n;
+};
+```
+
+### Immediately Invoked Function Expressions (IIFE)
+
+- An Immediately Invoked Function Expression (IIFE) is a code pattern that directly calls a function defined as an expression. It looks like this:
+
+```js
+(function () {
+  // Do something
+})();
+
+const value = (function () {
+  // Do something
+  return someValue;
+})();
+```
+
+### Function scopes 
+
+- Functions form a scope for variables—this means variables defined inside a function cannot be accessed from anywhere outside the function. The function scope inherits from all the upper scopes.
+
+- a function defined in the global scope can access all variables defined in the global scope. A function defined inside another function can also access all variables defined in its parent function, and any other variables to which the parent function has access. On the other hand, the parent function (and any other parent scope) does not have access to the variables and functions defined inside the inner function.
+
+### Closures
+
+- We also refer to the function body as a closure. A closure is any piece of source code (most commonly, a function) that refers to some variables, and the closure "remembers" these variables even when the scope in which these variables were declared has exited.
+
+```js
+function A(x) {
+  function B(y) {
+    function C(z) {
+      console.log(x + y + z);
+    }
+    C(3);
+  }
+  B(2);
+}
+A(1); // Logs 6 (which is 1 + 2 + 3)
+```
+
+### Name conflicts
+
+- When two arguments or variables in the scopes of a closure have the same name, there is a name conflict.
+- More nested scopes take precedence. So, the innermost scope takes the highest precedence, while the outermost scope takes the lowest.
+
+```js
+function outside() {
+  const x = 5;
+  function inside(x) {
+    return x * 2;
+  }
+  return inside;
+}
+
+console.log(outside()(10)); // 20 (instead of 10)
+```
+
+### Using the arguments object
+
+- The arguments of a function are maintained in an array-like object. Within a function, you can address the arguments passed to it as follows:
+
+```js
+arguments[i];
+```
+
+```js
+function myConcat(separator) {
+  let result = ""; // initialize list
+  // iterate through arguments
+  for (let i = 1; i < arguments.length; i++) {
+    result += arguments[i] + separator;
+  }
+  return result;
+}
+
+
+console.log(myConcat(", ", "red", "orange", "blue"));
+// "red, orange, blue, "
+
+console.log(myConcat("; ", "elephant", "giraffe", "lion", "cheetah"));
+// "elephant; giraffe; lion; cheetah; "
+
+console.log(myConcat(". ", "sage", "basil", "oregano", "pepper", "parsley"));
+// "sage. basil. oregano. pepper. parsley. "
+```
+
+### Function parameters
+
+- two special kinds of parameter syntax: default parameters and rest parameters.
+
+#### 1. Default parameters
+
+- parameters of functions default to undefined
+
+```js
+function multiply(a, b) {
+  b = typeof b !== "undefined" ? b : 1;
+  return a * b;
+}
+
+console.log(multiply(5)); // 5
+```
+
+```js
+
+function multiply(a, b = 1) {
+  return a * b;
+}
+
+console.log(multiply(5)); // 5
+```
+
+#### 2. Rest parameters
+
+- The rest parameter syntax allows us to represent an indefinite number of arguments as an array.
+
+- In the following example, the function multiply uses rest parameters to collect arguments from the second one to the end. The function then multiplies these by the first argument.
+
+```js
+function multiply(multiplier, ...theArgs) {
+  return theArgs.map((x) => multiplier * x);
+}
+
+const arr = multiply(2, 1, 2, 3);
+console.log(arr); // [2, 4, 6]
+```
+
+### Arrow functions
+
+```js
+const a = ["Hydrogen", "Helium", "Lithium", "Beryllium"];
+
+const a2 = a.map(function (s) {
+  return s.length;
+});
+
+console.log(a2); // [8, 6, 7, 9]
+
+const a3 = a.map((s) => s.length);
+
+console.log(a3); // [8, 6, 7, 9]
+```
+
+---
+
+## Expressions and operators
