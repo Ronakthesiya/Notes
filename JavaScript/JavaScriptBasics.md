@@ -1,3 +1,8 @@
+## JavaScript
+
+
+
+
 ## Declaring variable
 
 - starts with a letter, underscore (_), or dollar sign ($)
