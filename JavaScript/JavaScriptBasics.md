@@ -998,3 +998,8 @@ let regex = new RegExp('hello', 'i'); // Equivalent to /hello/i
 | **`RegExp.exec(string)`**        | Executes a search for a match and returns an array of results. | `/\d+/.exec("abc 123 def")`                  | `["123"]`                      |
 
 
+
+## Class
+
+- 
+

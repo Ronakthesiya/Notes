@@ -475,6 +475,138 @@ const divClone = div.cloneNode(true); // Deep clone (including children)
 document.body.appendChild(divClone);
 ```
 
+## Session Storage
+
+- Whenever a document is loaded in a particular tab in the browser, a unique page session gets created and assigned to that particular tab. 
+
+- A page session lasts as long as the tab or the browser is open, and survives over page reloads and restores.
+
+- Closing the tab/window ends the session and clears the data in sessionStorage.
+
+- Data survives:
+    - Page reload
+- But cleared when:
+    - Tab is closed
+    - Browser window is closed
+- Not shared across tabs (new tab = empty session).
+
+```js
+// Save data to sessionStorage
+sessionStorage.setItem("key", "value");
+
+// Get saved data from sessionStorage
+let data = sessionStorage.getItem("key");
+
+// Remove saved data from sessionStorage
+sessionStorage.removeItem("key");
+
+// Remove all saved data from sessionStorage
+sessionStorage.clear();
+```
+
+- Saving text between refreshes
+
+```js
+// Get the text field that we're going to track
+let field = document.getElementById("field");
+
+// See if we have an autosave value
+// (this will only happen if the page is accidentally refreshed)
+if (sessionStorage.getItem("autosave")) {
+  // Restore the contents of the text field
+  field.value = sessionStorage.getItem("autosave");
+}
+
+// Listen for changes in the text field
+field.addEventListener("change", () => {
+  // And save the results into the session storage object
+  sessionStorage.setItem("autosave", field.value);
+});
+```
+
+## localStorage property
+
+- localStorage is similar to sessionStorage, except that while localStorage data has no expiration time, sessionStorage data gets cleared when the page session ends — that is, when the page is closed.
+
+- Data **remains permanently** (unless manually removed).
+- Survives:
+    - Page reload
+    - Browser restart
+    - System restart
+- Shared across all **tabs/windows** of the same site.
+
+```js
+localStorage.setItem("myCat", "Tom");
+
+const cat = localStorage.getItem("myCat");
+
+localStorage.removeItem("myCat");
+
+localStorage.clear();
+```
+
+- save objects
+
+```js
+const user = { name: "Ronak", age: 21 };
+localStorage.setItem("user", JSON.stringify(user));
+
+user = JSON.parse(localStorage.getItem("user"));
+```
+
+## Cookie
+
+- Cookies are small pieces of data stored by the browser and sent to the server with each HTTP request. They can be used to store information such as user preferences, login states, or tracking data.
+
+```js
+document.cookie = "name=value; expires=expiryDate; path=path; domain=domain; secure; HttpOnly; SameSite=sameSiteValue";
+```
+
+1. name=value
+    - This is the core part of the cookie. It defines the cookie's name and value.
+    - Example: "username=JohnDoe"
+
+2. expires=expiryDate
+    - expiration date of the cookie.
+    - not specified than work like session cookie
+    - format: "Wdy, DD Mon YYYY HH:MM:SS GMT"
+    - document.cookie = "username=JohnDoe; expires=Wed, 21 Oct 2026 07:28:00 GMT";
+
+3. max-age=seconds
+    - cookie’s lifetime in seconds from the moment it is set
+    - If max-age is used, expires is ignored.
+    - document.cookie = "username=JohnDoe; max-age=3600"; // expires in 1 hour
+
+4. path=path
+    - defines the URL path for which the cookie is valid
+    - If you set path=/, the cookie is available across the entire domain.
+    - If not specified, it defaults to the current path
+    - document.cookie = "user=JohnDoe; path=/admin"; // Only available on the /admin path
+
+5. domain=domain
+    - The domain attribute specifies the domain to which the cookie belongs. It can be a subdomain or a higher-level domain.
+    - document.cookie = "user=JohnDoe; domain=example.com"; // Available on example.com and all its subdomains
+
+6. secure
+    - The secure attribute ensures that the cookie is only sent over secure (HTTPS) connections.
+    - document.cookie = "user=JohnDoe; secure"; // Only sent over HTTPS
+
+7. HttpOnly
+    - The HttpOnly attribute restricts the cookie from being accessed via JavaScript
+    - document.cookie = "session_id=abc123; HttpOnly"; // Cookie can't be accessed via JavaScript
+
+8. SameSite
+    - Strict: The cookie is sent only if the request is coming from the same origin.
+        - This is the most restrictive setting.
+        - Example: SameSite=Strict
+        
+    - Lax: The cookie is sent with some cross-site requests (like navigation) but not with others (like third-party API calls).
+        - Example: SameSite=Lax
+
+    - None: The cookie is sent with all cross-site requests, but it must be used in conjunction with the Secure flag (only sent over HTTPS).
+        - Example: SameSite=None; Secure
+
+
 
 
 
