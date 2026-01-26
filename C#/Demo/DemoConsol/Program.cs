@@ -38,7 +38,7 @@ class Program
 
         //GenericsDemo.demo();
 
-        Linq.demo();
+        //Linq.demo();
 
 
 

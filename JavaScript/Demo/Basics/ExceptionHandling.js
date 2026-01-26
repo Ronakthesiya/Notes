@@ -21,8 +21,18 @@ class ValidationError extends Error {
     }
 }
 
+class DivideByZero extends Error{
+    constructor(){
+        super("divide by zero");
+    }
+}
+
 try {
-    throw new ValidationError("Invalid input!");
+    var a = 1;
+    var b = 0;
+    if(b==0){
+        throw new DivideByZero();
+    }
 } catch (e) {
     console.log(e instanceof ValidationError); // true
     console.log(e.message); // "Invalid input!"

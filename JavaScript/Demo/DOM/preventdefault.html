@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <textarea name="text" id="text" cols="30" rows="10"></textarea>
+    </div>
+    <script>
+        const text = document.getElementById("text");
+
+        text.onkeydown = function (e) {
+            console.log("onkeydown");
+            console.log(e.defaultPrevented);  
+            console.log(e.key);  
+            e.preventDefault();
+            console.log(e.defaultPrevented);    
+        }
+
+        document.addEventListener("keydown",function (e) {
+            console.log("document started");
+        },true);
+
+        document.addEventListener("keydown",function (e) {
+            console.log("document end");
+        },false);
+
+        text.addEventListener("keydown",function (e) {
+            console.log("text started");
+        },true);
+
+        text.addEventListener("keydown",function (e) {
+            console.log("text end");
+        },false); 
+        
+    </script>
+</body>
+</html>
