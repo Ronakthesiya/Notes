@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <style>
+        .error{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="col-4 mx-auto">
+            <form action="" id="form1">
+                <br>
+                <input class="form-control" type="text" name="title" placeholder="Enter Title">
+                <br>
+                <input class="form-control" type="text" name="discreption" placeholder="Enter descreption">
+                <br>
+                <input type="submit" value="Save" class="btn btn-info">
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js" integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+
+    <script>
+        $(document).ready(
+            $("#form1").validate({
+                rules:{
+                    title: {
+                        required: true,
+                        minlength: 3
+                    },
+                    discreption:{
+                        required:true,
+                        minlength: 2
+                    }
+                },
+                messages:{
+                    title: {
+                        required: "title is required",
+                        minlength: "enter 3 or more character"
+                    },
+                    discreption:{
+                        required: "discreption is required",
+                        minlength: "enter 2 or more character"
+                    }
+                },
+                highlight: function(element){
+                    $(element).css({
+                        "border": "2px solid red"
+                    })
+                },
+                unhighlight: function (element) {
+                    $(element).css({
+                        "border": "2px solid black"
+                    })
+                }
+            })
+        )
+    </script>
+</body>
+</html>
