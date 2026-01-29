@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js" integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
+
+    <script>
+        let data = [
+            {name: "John", role: "admin"}, 
+            {name: "Jane", role: "user"}
+        ]
+
+        let admin = $.grep(data,function (val,index) {
+            if (val.role == "admin") return true;
+            return false;
+        })
+
+        let names = $.map(data,function (val) {
+            return val.name
+        })
+        console.log(data);
+        console.log(admin);
+        console.log(names);
+
+
+        let obj1 = {theme: "dark", notifications: true}
+        let obj2 = {theme: "light"}
+
+        console.log($.extend(obj1,obj2));
+    </script>
+</body>
+</html>

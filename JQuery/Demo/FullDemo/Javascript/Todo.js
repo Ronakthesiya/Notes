@@ -71,7 +71,7 @@ $('#taskForm').validate({
         $(form).find("input[name='title']").val("");
         $(form).find("textarea[name='description']").val("");
 
-        console.log(getTasks());
+        getTasks();
     }
 })
 

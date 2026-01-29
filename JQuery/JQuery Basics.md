@@ -666,3 +666,15 @@ $(document).ready(function() {
 });
 ```
 
+
+## Deferred & Promise
+
+### Deferred
+
+### Promise
+
+## Ajax
+
+- The functions and methods therein allow us to load data from the server without a browser page refresh.
+
+ 

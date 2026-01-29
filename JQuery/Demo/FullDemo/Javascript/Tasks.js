@@ -74,27 +74,52 @@ export function tasklistView(){
     let val = "";
     let pendingcnt = 0;
 
-    fetch("http://127.0.0.1:5506/Notes/JQuery/Demo/FullDemo/Javascript/tableRow.html")
-    .then(res => res.text())
-    .then(html => {
-        $.each(tasks,function(index,element){
-            if(element[3]=="pending"){
-                pendingcnt++;
-            }
-    
-            val += html
-            .replace("element[1]", element[1])
-            .replace("element[2]", element[2])
-            .replace("element[3]", element[3])
-            .replace(/\$\{index\}/g, index);
-        })
+    $.ajax({
+        url: "http://127.0.0.1:5506/Notes/JQuery/Demo/FullDemo/Javascript/tableRow.html",
+        type: "get",
+        success: function(responce){
 
-        console.log(val);
+            $.each(tasks,function(index,element){
+                if(element[3]=="pending"){
+                    pendingcnt++;
+                }
+
+                val += responce.replace("element[1]", element[1])
+                .replace("element[2]", element[2])
+                .replace("element[3]", element[3])
+                .replace(/\$\{index\}/g, index);
+            })
+
+            $("#pendingcnt").text(pendingcnt);
+            $("#complatedcnt").text(tasks.length-pendingcnt);
+            $(taskslist).html(val);
+        },
+        error:function () {
+            console.log(error);
+        }
+    })
+
+    // fetch("http://127.0.0.1:5506/Notes/JQuery/Demo/FullDemo/Javascript/tableRow.html")
+    // .then(res => res.text())
+    // .then(html => {
+    //     $.each(tasks,function(index,element){
+    //         if(element[3]=="pending"){
+    //             pendingcnt++;
+    //         }
+    
+    //         val += html
+    //         .replace("element[1]", element[1])
+    //         .replace("element[2]", element[2])
+    //         .replace("element[3]", element[3])
+    //         .replace(/\$\{index\}/g, index);
+    //     })
+
+    //     // console.log(val);
         
-        $("#pendingcnt").text(pendingcnt);
-        $("#complatedcnt").text(tasks.length-pendingcnt);
-        $(taskslist).html(val);
-    });
+    //     $("#pendingcnt").text(pendingcnt);
+    //     $("#complatedcnt").text(tasks.length-pendingcnt);
+    //     $(taskslist).html(val);
+    // });
 
     
 }
