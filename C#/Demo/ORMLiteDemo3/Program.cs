@@ -17,7 +17,7 @@ class Program
 
         using (IDbConnection db = dbFactory.Open())
         {
-
+            #region comment
             //var q = db.From<Course>().Where(c => c.Name == "Course1").Select(c => new { c.Id, c.Description });
 
             //List<Course> list = db.Select(q);
@@ -43,6 +43,7 @@ class Program
             //        Console.WriteLine(dict[key]);
             //    }
             //}
+            #endregion
 
             db.CreateTableIfNotExists<Course>();
             db.CreateTableIfNotExists<Student>();
