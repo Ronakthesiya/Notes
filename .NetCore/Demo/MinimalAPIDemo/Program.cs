@@ -22,36 +22,63 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+var product = app.MapGroup("api/product/");
 
-app.MapGet("api/product", (ILog log) =>
+
+product.MapGet("", (ILog log) =>
 {
     log.Log("get product by api.");
     return Results.Ok(Data.products);
+})
+.AddEndpointFilter(async (context, next) =>
+{
+    Console.WriteLine("Filter Executed");   
+    return await next(context);
+}); 
+
+
+product.MapGet("/{id}", (ILog log,int id) =>
+{
+    if (id <= 0)
+    {
+        return Results.BadRequest("Id is not valid.");
+    }
+
+    try
+    {
+        log.Log("get product " + id + " by api.");
+        return Results.Ok(Data.products.First(prod => prod.id == id));
+    }
+    catch (Exception e)
+    {
+        return Results.BadRequest(e.Message);
+    }
 });
 
 
-app.MapGet("api/product/{id}", (ILog log,int id) =>
+product.MapPost("", (ILog log,Product product) =>
 {
-    log.Log("get product "+id+" by api.");
-    return Results.Ok(Data.products.FirstOrDefault(prod => prod.id==id));
-});
+    if (product.id != 0)
+    {
+        return Results.BadRequest("id must be 0");
+    }
 
-
-app.MapPost("api/product", (ILog log,Product product) =>
-{
     log.Log("create product by api.");
-
     product.id = Data.products.Last().id+1;
     Data.products.Add(product);
 
-    return Results.Created($"api/product/{product.id}",product);
+    return Results.Created($"/{product.id}",product);
 });
 
 
-app.MapPut("api/product", (ILog log,Product product) =>
+product.MapPut("", (ILog log,Product product) =>
 {
-    log.Log("update product by api.");
+    if (product.id <= 0)
+    {
+        return Results.BadRequest("Id is not valid.");
+    }
 
+    log.Log("update product by api.");
     Product oldProduct = Data.products.FirstOrDefault(prod => prod.id == product.id);
 
     oldProduct.price = product.price;
@@ -62,10 +89,14 @@ app.MapPut("api/product", (ILog log,Product product) =>
 });
 
 
-app.MapDelete("api/product/{id}", (ILog log,int id) =>
+product.MapDelete("/{id}", (ILog log,int id) =>
 {
-    log.Log("delete product by api.");
+    if (id <= 0)
+    {
+        return Results.BadRequest("Id is not valid.");
+    }
 
+    log.Log("delete product by api.");
     return Results.Ok(Data.products.RemoveAll(prod => prod.id == id));
 });
 
