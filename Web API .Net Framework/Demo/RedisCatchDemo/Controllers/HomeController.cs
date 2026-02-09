@@ -43,7 +43,7 @@ namespace RedisCatchDemo.Controllers
 
             using (IDbConnection db = dbFactory.Open())
             {
-                std = db.SelectByIds<Student>(new [] {id})[0];
+                std = db.Select<Student>(student => student.Id == id)[0];
 
             }
             redisdb.StringSet(cacheKey, JSON.stringify(std), TimeSpan.FromMinutes(3));

@@ -8,6 +8,7 @@ namespace RedisCatchDemo
 {
     public class RedisCacheHelper
     {
+        // define connection with redis
         private static Lazy<ConnectionMultiplexer> lazyConnection = new Lazy<ConnectionMultiplexer>(() =>
         {
             string redisConnection = "localhost:6379";

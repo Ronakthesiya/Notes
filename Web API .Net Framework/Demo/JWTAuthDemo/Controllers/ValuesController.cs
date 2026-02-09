@@ -7,6 +7,7 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Runtime.Caching;
 using System.Security.AccessControl;
+using System.Runtime.Remoting.Contexts;
 
 namespace JWTAuthDemo.Controllers
 {
@@ -35,18 +36,21 @@ namespace JWTAuthDemo.Controllers
         }
 
 
-
+        // http catch only work with client
         [HttpGet]
         public HttpResponseMessage Get()
         {
             // Changes every 60 seconds
             string currentETag = "\"" + (DateTime.UtcNow.Ticks/TimeSpan.TicksPerMinute) + "\"";
 
+            // check if data is in catch
             var requestETag = Request.Headers.IfNoneMatch.FirstOrDefault();
             if (requestETag != null && requestETag.Tag == currentETag)
             {
                 return Request.CreateResponse(HttpStatusCode.NotModified);
             }
+
+            // if not in catch than create new data and return
             var data = new
             {
                 Message = "Hello API",
@@ -54,6 +58,7 @@ namespace JWTAuthDemo.Controllers
             };
             var response = Request.CreateResponse(HttpStatusCode.OK, data);
 
+            // catch store only for 60 secound
             response.Headers.ETag = new EntityTagHeaderValue(currentETag);
             response.Headers.CacheControl = new CacheControlHeaderValue
             {
@@ -64,7 +69,9 @@ namespace JWTAuthDemo.Controllers
         }
 
 
-        private static readonly ObjectCache _cache = MemoryCache.Default;
+
+        // Memory Cache
+        private readonly ObjectCache _cache = MemoryCache.Default;
 
         [HttpGet]
         [Route("get/{id:int}")]
@@ -72,7 +79,7 @@ namespace JWTAuthDemo.Controllers
         {
             if (_cache.Get(id + "") != null)
             {
-                return Request.CreateResponse(HttpStatusCode.OK, new { val = _cache.Get(id + "") });
+                return Request.CreateResponse(HttpStatusCode.OK, new { valFromCatch = _cache.Get(id + "") });
             }
 
             _cache.Set(
@@ -84,6 +91,7 @@ namespace JWTAuthDemo.Controllers
             return Request.CreateResponse(HttpStatusCode.OK,new { val = _cache.Get(id + "") });
 
         }
+
 
     }
 

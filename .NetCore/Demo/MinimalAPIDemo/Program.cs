@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.RateLimiting;
 using MinimalAPIDemo;
 using MinimalAPIDemo.Interface;
 
@@ -10,6 +11,23 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<ILog, Log>();
 
+builder.Services.AddRateLimiter(options =>
+{
+    options.AddFixedWindowLimiter("fixed", limiterOptions =>
+    {
+        limiterOptions.Window = TimeSpan.FromMinutes(1);
+        limiterOptions.PermitLimit = 2;
+        limiterOptions.QueueLimit = 0;
+    });
+
+    options.AddSlidingWindowLimiter("sliding", limiterOptions =>
+    {
+        limiterOptions.Window = TimeSpan.FromMinutes(1);
+        limiterOptions.PermitLimit = 1;
+        limiterOptions.SegmentsPerWindow = 1;
+    });
+});
+
 
 var app = builder.Build();
 
@@ -19,6 +37,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseRateLimiter();
 
 app.UseHttpsRedirection();
 
@@ -34,7 +54,8 @@ product.MapGet("", (ILog log) =>
 {
     Console.WriteLine("Filter Executed");   
     return await next(context);
-}); 
+})
+ .RequireRateLimiting("fixed"); ; 
 
 
 product.MapGet("/{id}", (ILog log,int id) =>
@@ -53,7 +74,7 @@ product.MapGet("/{id}", (ILog log,int id) =>
     {
         return Results.BadRequest(e.Message);
     }
-});
+}).RequireRateLimiting("sliding");
 
 
 product.MapPost("", (ILog log,Product product) =>

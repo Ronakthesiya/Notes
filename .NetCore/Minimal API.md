@@ -185,6 +185,8 @@ app.MapPost("/users", async (User user, IValidator<User> validator) =>
 
 - Filters are like middleware for endpoints.
 
+### Inline endpoint filters
+
 ```cs
 app.MapPost("/orders", (Order order) =>
 {
@@ -198,6 +200,33 @@ app.MapPost("/orders", (Order order) =>
     return await next(context);
 });
 ```
+
+### DI in filter
+
+```cs
+public class AuditFilter(ILogger<AuditFilter> logger) : IEndpointFilter
+{
+    public async ValueTask<object?> InvokeAsync(
+        EndpointFilterInvocationContext context,
+        EndpointFilterDelegate next)
+    {
+        logger.LogInformation("Request started");
+        return await next(context);
+    }
+}
+
+var group = app.MapGroup("/api")
+    .AddEndpointFilter<AuditFilter>();
+```
+
+| Feature                | Middleware | Endpoint Filter |
+| ---------------------- | ---------- | --------------- |
+| Scope                  | Global     | Endpoint/group  |
+| Runs before routing    | Yes        | No              |
+| Access to bound params | ❌          | ✅               |
+| Typed arguments        | ❌          | ✅               |
+| Short-circuit          | Yes        | Yes             |
+
 
 ## Authorization & Authentication
 
