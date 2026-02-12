@@ -116,6 +116,19 @@
 - Improves performance
 - Reduces latency
 
+| Feature                | **Allowed Headers** (`Access-Control-Allow-Headers`)                        | **Exposed Headers** (`Access-Control-Expose-Headers`)                  |
+| ---------------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| **Purpose**            | Tells the browser which request headers the client is allowed to send       | Tells the browser which response headers the client is allowed to read |
+| **Direction**          | Client → Server                                                             | Server → Client                                                        |
+| **Used In**            | Preflight (OPTIONS) response                                                | Actual response                                                        |
+| **When It Matters**    | When client sends custom headers (e.g., `Authorization`, `X-Custom-Header`) | When server sends custom headers and JS needs to read them             |
+| **Default Behavior**   | Browser blocks request if header not allowed                                | Browser hides custom response headers from JS unless exposed           |
+| **Example Header**     | `Access-Control-Allow-Headers: Authorization, Content-Type`                 | `Access-Control-Expose-Headers: X-Total-Count`                         |
+| **Configured In .NET** | `headers: "*"` or specific headers in `EnableCorsAttribute`                 | `cors.ExposedHeaders.Add("ronak");`                                    |
+| **Affects Preflight?** | Yes                                                                         | No                                                                     |
+| **Security Role**      | Controls what client is allowed to send                                     | Controls what client is allowed to see                                 |
+
+
 ## CORS Flow Lifecycle
 
 ### 1. Browser Detects Cross-Origin
