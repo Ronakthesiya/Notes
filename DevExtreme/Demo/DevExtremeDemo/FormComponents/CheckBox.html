@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <!-- jQuery -->
+    <script type="text/javascript" src="../Scripts/jquery-3.5.1.min.js"></script>
+
+    <!-- DevExtreme CSS -->
+    <link rel="stylesheet" href="../Content/dx.dark.css">
+
+    <!-- DevExtreme JavaScript -->
+    <script type="text/javascript" src="../Scripts/dx.all.js"></script>
+</head>
+<body>
+    <div id="chk1"></div>
+
+    <div style="height: 100px"></div>
+
+    <div id="demoCheck"></div>
+    <script>
+        $("#chk1").dxCheckBox({
+            accessKey: "s",
+            activeStateEnabled: true,
+            //disabled: true,
+            value: true,
+            hint: "Mark this option",
+            text: "Accept Terms & Conditions",
+            //validationErrors: [{ message: "Please choose an option" }],
+            //validationMessageMode: "always",
+            //validationMessagePosition: "bottom",
+            //validationStatus: "invalid"
+        });
+
+
+        var instance1 = $("#chk1").dxCheckBox("instance");
+
+        //instance1.resetOption("value");
+        //instance1.reset();
+
+        //instance1.option("value",false)
+        instance1.clear();
+        console.log(instance1.option("value"));
+
+
+
+        $("#demoCheck").dxCheckBox({
+            text: "Accept Terms",
+            value: null,
+            enableThreeStateBehavior: true,
+            width: 250,
+            height: 40,
+            iconSize: 22,
+            hint: "You must accept before continuing",
+            name: "termsCheckbox",
+            accessKey: "a",
+            tabIndex: 2,
+            validationStatus: "invalid",
+            validationErrors: [{ message: "This field is required" }],
+            validationMessageMode: "always",
+            validationMessagePosition: "top",
+            onInitialized: function (e) {
+                console.log("Initialized");
+            },
+            onValueChanged: function (e) {
+                console.log("New value:", e.value);
+
+                if (e.value)
+                    e.component.option("validationStatus", "valid");
+                else
+                    e.component.option("validationStatus", "invalid");
+            }
+        });
+
+    </script>
+
+
+    <div id="demo"></div>
+
+    <script>
+        $("#demo").dxCheckBox({
+            text: "Subscribe",
+            value: false
+        });
+
+        const instance = $("#demo").dxCheckBox("instance");
+
+        // Batch update
+        instance.beginUpdate();
+        instance.option("text", "Updated Text");
+        instance.option("value", true);
+        instance.endUpdate();
+
+        // Focus control
+        instance.focus();
+
+        // Custom key handler
+        instance.registerKeyHandler("enter", function () {
+            alert("Enter pressed!");
+        });
+
+        // Reset example
+        instance.reset(false);
+    </script>
+
+</body>
+</html>

@@ -64,3 +64,15 @@ varvalue = cache.Get("greeting");
 MemoryCache.Default.Set("products", data, DateTimeOffset.Now.AddMinutes(5));
 ```
 
+| Method                                     | Purpose                            |
+| ------------------------------------------ | ---------------------------------- |
+| `Contains(key)`                            | Check if item exists               |
+| `Get(key)`                                 | Get cached value                   |
+| `Set(key, value, expiration)`              | Add/update value                   |
+| `Add(key, value, expiration)`              | Add only if key doesn’t exist      |
+| `Remove(key)`                              | Remove item                        |
+| `GetCacheItem(key)`                        | Get both key & value               |
+| `AddOrGetExisting(key, value, expiration)` | Thread-safe add-if-not-exists      |
+| `Trim(%)`                                  | Remove items under memory pressure |
+| `GetCount()`                               | Number of cached items             |
+
