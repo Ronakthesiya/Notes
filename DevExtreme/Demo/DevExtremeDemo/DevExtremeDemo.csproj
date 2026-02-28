@@ -124,6 +124,7 @@
     <Content Include="Content\dx.softblue.compact.css" />
     <Content Include="Content\dx.softblue.css" />
     <Content Include="FormComponents\CheckBox.html" />
+    <Content Include="FormComponents\DateBox.html" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
     <Content Include="Scripts\cldr.js" />

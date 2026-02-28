@@ -77,9 +77,10 @@ namespace JWTAuthDemo.Controllers
         [Route("get/{id:int}")]
         public HttpResponseMessage GetKey(int id)
         {
-            if (_cache.Get(id + "") != null)
+            object val = _cache.Get(id + "");
+            if (val != null)
             {
-                return Request.CreateResponse(HttpStatusCode.OK, new { valFromCatch = _cache.Get(id + "") });
+                return Request.CreateResponse(HttpStatusCode.OK, new { valFromCatch = val });
             }
 
             _cache.Set(
