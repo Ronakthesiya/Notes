@@ -1,3 +1,159 @@
+## Http Context
+
+| Feature                | ASP.NET Framework   | ASP.NET Core    |
+| ---------------------- | ------------------- | --------------- |
+| Access                 | HttpContext.Current | Injected via DI |
+| Thread-bound           | Yes                 | No              |
+| Static access          | Yes                 | No              |
+| Testability            | Harder              | Easier          |
+| SynchronizationContext | Yes                 | No              |
+
+
+### HttpContext in .Net Framework
+
+| Property      | Description                |
+| ------------- | -------------------------- |
+| `Request`     | Incoming request data      |
+| `Response`    | Outgoing response          |
+| `Session`     | Per-user session storage   |
+| `Application` | Global application storage |
+| `Server`      | Utility methods            |
+| `User`        | Authenticated user         |
+| `Items`       | Per-request storage        |
+| `Cache`       | Application-wide cache     |
+
+
+#### HttpContext.Items (Per-Request Storage)
+
+- Store data during request lifecycle
+- Share data between modules, filters, handlers
+
+```cs
+// BeginRequest
+HttpContext.Current.Items["Start"] = DateTime.Now;
+
+// EndRequest
+var start = (DateTime)HttpContext.Current.Items["Start"];
+var duration = DateTime.Now - start;
+```
+
+#### HttpContext.Session (Per-user storage)
+
+- Stored:
+    - In memory
+    - SQL Server
+    - State server
+
+- Real-world:
+    - Shopping cart
+    - User preferences
+
+```cs
+HttpContext.Session["Cart"] = cart;
+```
+
+#### HttpContext.Application (Global app-level storage)
+
+- Shared across all users.
+
+```cs
+HttpContext.Application["TotalUsers"] = 100;
+```
+
+- Requires manual locking
+
+```cs
+Application.Lock();
+Application["Counter"] = count;
+Application.UnLock();
+```
+
+#### HttpContext.Cache (Global caching)
+
+- Better alternative than Application.
+
+```cs
+HttpContext.Cache.Insert("Products", products);
+```
+
+#### HttpContext.User
+
+```cs
+var username = HttpContext.User.Identity.Name;
+```
+- Used in:
+    - Role-based access
+    - Claims
+    - Identity system
+
+
+### HttpContext in ASP.NET Core
+
+#### Accessing HttpContext
+
+- In Controllers = Controller base class provides it.
+- In Minimal APIs = Injected automatically.
+- In Services = ASP.NET Core uses DI.
+
+#### HttpContext Core Properties
+
+1. Request
+
+```cs
+var path = HttpContext.Request.Path;
+var headers = HttpContext.Request.Headers;
+var body = HttpContext.Request.Body;
+```
+
+2. Response
+
+```cs
+HttpContext.Response.StatusCode = 404;
+await HttpContext.Response.WriteAsync("Not Found");
+```
+
+3. User (Authentication)
+
+```cs
+var username = HttpContext.User.Identity.Name;
+```
+
+4. Items (Per-Request Storage)
+
+```cs
+HttpContext.Items["StartTime"] = DateTime.UtcNow;
+```
+
+- Logging duration
+- Sharing data between middleware
+- Correlation IDs
+
+5. Session (Optional)
+
+```cs
+> program.cs
+
+builder.Services.AddSession();
+app.UseSession();
+
+> Controller
+
+HttpContext.Session.SetString("Cart", "123");
+
+```
+
+6. Connection
+
+```cs
+var ip = HttpContext.Connection.RemoteIpAddress;
+```
+
+- Logging
+- Security
+- Rate limiting
+
+
+
 ## HTTP Request & Response Handling
 
 ### HttpRequest

@@ -6,6 +6,15 @@ namespace FilterDemo.Filter
     {
         public void OnResourceExecuted(ResourceExecutedContext context)
         {
+            // context.HttpContext;
+            // context.ActionDescriptor
+            // context.ModelState
+            // context.Exception
+            // context.Canceled
+            // context.RouteData
+            // context.Filters
+            // context.ExceptionHandled
+            // context.Result
             Console.WriteLine("========================================== Resource Executed");
         }
 

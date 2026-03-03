@@ -1,3 +1,4 @@
+using FilterDemo.Filter;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FilterDemo.Controllers
@@ -7,9 +8,11 @@ namespace FilterDemo.Controllers
     public class HomeController : ControllerBase
     {
         [HttpGet]
+        [TypeFilter(typeof(ActionFilter))]
+        [ServiceFilter(typeof(ResultFilter))]
         public IActionResult Get()
         {
-            Console.WriteLine("=== Action Exicuted");
+            Console.WriteLine("=== Action Method");
             return Ok("Action Result");
         }
     }
