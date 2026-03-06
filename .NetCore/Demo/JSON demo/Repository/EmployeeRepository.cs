@@ -17,9 +17,6 @@ namespace JSON_demo.Repository
 
             string jsonData = File.ReadAllText(filePath);
 
-            Console.WriteLine(jsonData);
-
-
             employees = JsonSerializer.Deserialize<List<Employee>>(jsonData);
             
             return employees;
@@ -43,9 +40,6 @@ namespace JSON_demo.Repository
                 persons,
                 PersonJsonContext.Default.ListPerson
             );
-
-
-            Console.WriteLine(jsonData);
 
             File.WriteAllText(filePath, jsonData);
 
@@ -82,10 +76,12 @@ namespace JSON_demo.Repository
             using FileStream fs = File.Create(filePath2);
             using Utf8JsonWriter writer = new Utf8JsonWriter(fs, new JsonWriterOptions { Indented = true });
 
+            writer.WriteStartArray();
             writer.WriteStartObject();
             writer.WriteString("Name", name);
             writer.WriteNumber("Age", age);
             writer.WriteEndObject();
+            writer.WriteEndArray();
 
             writer.Flush(); // make sure data is written to the file
 

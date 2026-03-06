@@ -55,7 +55,7 @@ product.MapGet("", (ILog log) =>
     Console.WriteLine("Filter Executed");   
     return await next(context);
 })
- .RequireRateLimiting("fixed"); ; 
+ .RequireRateLimiting("fixed");
 
 
 product.MapGet("/{id}", (ILog log,int id) =>
