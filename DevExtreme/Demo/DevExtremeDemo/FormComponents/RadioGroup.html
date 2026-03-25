@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>dxRadioGroup Full Demo</title>
+
+    <!-- DevExtreme CSS -->
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/24.2.3/css/dx.light.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DevExtreme JS -->
+    <script src="https://cdn3.devexpress.com/jslib/24.2.3/js/dx.all.js"></script>
+</head>
+<body>
+
+    <div id="radioGroup"></div> <!-- Container for RadioGroup -->
+
+    <script>
+        $(function () {
+
+            const data = [
+                { id: 1, name: "Option 1" },
+                { id: 2, name: "Option 2" },
+                { id: 3, name: "Option 3" }
+            ];
+
+            // =========================
+            // CREATE RADIO GROUP INSTANCE WITH ALL OPTIONS
+            // =========================
+            const instance = $("#radioGroup").dxRadioGroup({
+
+                // -------- BASIC OPTIONS --------
+                accessKey: "R", // Keyboard shortcut key
+                activeStateEnabled: true, // Enables active state styling
+                focusStateEnabled: true, // Enables focus styling
+                hoverStateEnabled: true, // Enables hover styling
+                visible: true, // Controls visibility
+                width: 300, // Width of component
+                height: "auto", // Height of component
+                hint: "Select an option", // Tooltip text
+                name: "demoRadioGroup", // HTML name attribute
+
+                // -------- DATA OPTIONS --------
+                dataSource: data, // Bind data source
+                displayExpr: "name", // Field to display
+                valueExpr: "id", // Field used as value
+                value: 1, // Default selected value
+
+                // -------- LAYOUT --------
+                layout: "vertical", // Layout: vertical or horizontal
+
+                // -------- ITEMS (alternative to dataSource) --------
+                // items: ["A", "B", "C"], // Static items (commented because using dataSource)
+
+                // -------- VALIDATION --------
+                isValid: true, // Validation state
+                validationMessageMode: "auto", // When to show validation message
+                validationMessagePosition: "bottom", // Position of validation message
+
+                // -------- HTML ATTRIBUTES --------
+                elementAttr: { id: "customId", class: "custom-class" }, // Custom HTML attributes
+
+                // =========================
+                // EVENTS
+                // =========================
+
+                onInitialized: function (e) {
+                    // Fires when component is initialized
+                    console.log("Initialized", e.component);
+                },
+
+                onContentReady: function (e) {
+                    // Fires after rendering or repaint
+                    console.log("Content Ready");
+                },
+
+                onValueChanged: function (e) {
+                    // Fires when value changes
+                    console.log("Value Changed from", e.previousValue, "to", e.value);
+                },
+
+                onOptionChanged: function (e) {
+                    // Fires when any option changes
+                    console.log("Option Changed:", e.name, e.value);
+                },
+
+                onDisposing: function (e) {
+                    // Fires before component is destroyed
+                    console.log("Disposing component");
+                }
+
+            }).dxRadioGroup("instance"); // Get instance
+
+
+            // =========================
+            // METHODS DEMONSTRATION
+            // =========================
+
+            // beginUpdate() - prevents multiple re-renders
+            instance.beginUpdate();
+
+            // option(name, value) - set single option
+            instance.option("value", 2);
+
+            // option(object) - set multiple options
+            instance.option({ layout: "horizontal" });
+
+            // endUpdate() - resume rendering
+            instance.endUpdate();
+
+            // getDataSource() - retrieve data source
+            console.log("DataSource:", instance.getDataSource());
+
+            // focus() - focus component
+            instance.focus();
+
+            // registerKeyHandler() - handle keyboard event
+            instance.registerKeyHandler("enter", function () {
+                console.log("Enter key pressed");
+            });
+
+            // on() - attach event dynamically
+            instance.on("valueChanged", function (e) {
+                console.log("Dynamic handler:", e.value);
+            });
+
+            // off() - remove event handler
+            // instance.off("valueChanged");
+
+            // repaint() - re-render component
+            instance.repaint();
+
+            // reset(value) - reset to specific value
+            instance.reset(1);
+
+            // clear() - clear selection
+            // instance.clear();
+
+            // resetOption() - reset option to default
+            instance.resetOption("layout");
+
+            // element() - get DOM element
+            console.log("Element:", instance.element());
+
+            // =========================
+            // STATIC METHODS
+            // =========================
+
+            // getInstance() - get instance from DOM
+            const sameInstance = DevExpress.ui.dxRadioGroup.getInstance($("#radioGroup"));
+            console.log("Same instance:", sameInstance);
+
+            // defaultOptions() - set global defaults
+            DevExpress.ui.dxRadioGroup.defaultOptions({
+                device: { deviceType: "desktop" },
+                options: {
+                    focusStateEnabled: true
+                }
+            });
+
+            // dispose() - destroy component (uncomment to test)
+            // instance.dispose();
+
+        });
+    </script>
+
+</body>
+</html>

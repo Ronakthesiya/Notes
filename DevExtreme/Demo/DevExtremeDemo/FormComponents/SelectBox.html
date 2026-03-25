@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <!-- DevExtreme CSS -->
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/24.2.3/css/dx.light.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DevExtreme Library -->
+    <script src="https://cdn3.devexpress.com/jslib/24.2.3/js/dx.all.js"></script>
+</head>
+<body>
+    <div id="selectBox">
+
+    </div>
+
+    <script>
+        $(function () {
+            const data = [{
+                ID: 1,
+                Name: 'Banana',
+                Category: 'Fruits'
+            }, {
+                ID: 2,
+                Name: 'Cucumber',
+                Category: 'Vegetables'
+            }, {
+                ID: 3,
+                Name: 'Apple',
+                Category: 'Fruits'
+            }, {
+                ID: 4,
+                Name: 'Tomato',
+                Category: 'Vegetables'
+            }, {
+                ID: 5,
+                Name: 'Apricot',
+                Category: 'Fruits'
+                }]
+
+
+
+            $("#selectBox").dxSelectBox({
+                dataSource: new DevExpress.data.DataSource({
+                    store: data,
+                    type: "array",
+                    key: "ID",
+                    group: "Category"
+                }),
+                valueExpr: 'ID',
+                displayExpr: 'Name',
+                grouped: true,
+                acceptCustomValue: true,
+                onValueChanged: function (e) {
+                    console.log(e.value);
+                    console.log(e.previousValue);
+                },
+                onCustomItemCreating: function (e) {
+                    let newValue = e.text;
+
+                    if (!newValue) {
+                        e.customItem = null;
+                        return;
+                    }
+
+                    let newId = data.length ? Math.max(...data.map(x => x.ID)) + 1 : 1;
+
+                    let newItem = {
+                        ID: newId,
+                        Name: newValue,
+                        Category: 'Fruits'
+                    };
+
+                    data.push(newItem);
+
+                    e.component.getDataSource().reload();
+
+                    e.customItem = newItem;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

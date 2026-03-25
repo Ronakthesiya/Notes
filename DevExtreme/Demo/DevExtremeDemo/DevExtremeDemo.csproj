@@ -123,8 +123,17 @@
     <Content Include="Content\dx.material.teal.light.css" />
     <Content Include="Content\dx.softblue.compact.css" />
     <Content Include="Content\dx.softblue.css" />
+    <Content Include="FormComponents\Button.html" />
     <Content Include="FormComponents\CheckBox.html" />
     <Content Include="FormComponents\DateBox.html" />
+    <Content Include="FormComponents\DropDown.html" />
+    <Content Include="FormComponents\FileUploader.html" />
+    <Content Include="FormComponents\NumberBox.html" />
+    <Content Include="FormComponents\RadioGroup.html" />
+    <Content Include="FormComponents\SelectBox.html" />
+    <Content Include="FormComponents\TextArea.html" />
+    <Content Include="FormComponents\TextBox.html" />
+    <Content Include="FormComponents\Validator.html" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
     <Content Include="Scripts\cldr.js" />

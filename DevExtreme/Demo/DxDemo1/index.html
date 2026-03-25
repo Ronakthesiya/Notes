@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>DevExtreme Real Form Demo (Session Storage)</title>
+
+    <!-- DevExtreme CSS -->
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/23.2.5/css/dx.light.css">
+
+    <!-- jQuery + DevExtreme -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn3.devexpress.com/jslib/23.2.5/js/dx.all.js"></script>
+</head>
+<body>
+
+    <h2 style="font-family:sans-serif">Employee Registration Form</h2>
+    <div id="formContainer"></div>
+
+    <script>
+        $(function () {
+
+            const departments = [
+                { id: 1, name: "Engineering", group: "Technical" },
+                { id: 2, name: "QA", group: "Technical" },
+                { id: 3, name: "HR", group: "Management" },
+                { id: 4, name: "Finance", group: "Management" }
+            ];
+
+            const manager = [
+                {id:1, name: "ABC"},
+                {id:2, name: "DEF"},
+                { id:3, name: "XYZ"}
+            ];
+
+            const roles = ["Developer", "Tester", "Manager", "HR"];
+
+            // Load session data
+            const savedData = sessionStorage.getItem("data");
+            const formData = savedData ? JSON.parse(savedData) : {
+                firstName: "",
+                lastName: "",
+                email: "",
+                age: null,
+                dob: null,
+                isActive: true,
+                gender: "Male",
+                department: null,
+                role: null,
+                bio: ""
+            };
+
+            $("#formContainer").dxForm({
+                formData: formData,
+                colCount: 2,
+                validationGroup: "employeeForm",
+
+                onFieldDataChanged: function (e) {
+                    sessionStorage.setItem("data", JSON.stringify(e.component.option("formData")));
+                },
+
+                items: [
+                    {
+                        dataField: "firstName",
+                        label: { text: "First Name" },
+                        validationRules: [{ type: "required" }]
+                    },
+                    {
+                        dataField: "lastName",
+                        label: { text: "Last Name" },
+                        validationRules: [{ type: "required" }]
+                    },
+                    {
+                        dataField: "email",
+                        label: { text: "Email" },
+                        validationRules: [
+                            { type: "required" },
+                            {
+                                type: "email",
+                                message: "Invalid email format, please go to google account manager and copy email"
+                            }
+                        ]
+                    },
+                    {
+                        dataField: "age",
+                        label: { text: "Age" },
+                        editorType: "dxNumberBox",
+                        editorOptions: { min: 18, max: 60 }
+                    },
+                    {
+                        dataField: "dob",
+                        label: { text: "Date of Birth" },
+                        editorType: "dxDateBox"
+                    },
+                    {
+                        dataField: "isActive",
+                        label: { text: "Active Employee" },
+                        editorType: "dxCheckBox"
+                    },
+                    {
+                        dataField: "gender",
+                        label: { text: "Gender" },
+                        editorType: "dxRadioGroup",
+                        editorOptions: {
+                            items: ["Male", "Female", "Other"]
+                        }
+                    },
+                    {
+                        dataField: "role",
+                        label: { text: "Role (Search + Custom)" },
+                        editorType: "dxSelectBox",
+                        editorOptions: {
+                            dataSource: roles,
+                            searchEnabled: true,
+                            acceptCustomValue: true
+                        }
+                    },
+                    {
+                        dataField: "department",
+                        label: { text: "Department (Grouped)" },
+                        editorType: "dxSelectBox",
+                        editorOptions: {
+                            dataSource: new DevExpress.data.DataSource({
+                                store: departments,
+                                group: "group"
+                            }),
+                            displayExpr: "name",
+                            valueExpr: "id",
+                            grouped: true
+                        }
+                    },
+                    {
+                        dataField: "manager",
+                        label: { text: "Manager (Dropdown)" },
+                        editorType: "dxDropDownBox",
+                        editorOptions: {
+                            dataSource: manager,
+                            valueExpr: "id",
+                            displayExpr: "name",
+                            placeholder: "Select manager",
+                            contentTemplate: function (e) {
+                                return $("<div>").dxDataGrid({
+                                    dataSource: manager,
+                                    columns: ["id", "name"],
+                                    selection: { mode: "single" },
+                                    showBorders: true,
+                                    onSelectionChanged: function (s) {
+                                        if (s.selectedRowsData.length) {
+                                            const selected = s.selectedRowsData[0];
+
+                                            e.component.option("value", selected.id);
+                                            e.component.close();                 
+                                        }
+                                    }
+                                });
+                            },
+                        }
+                    },
+                    {
+                        dataField: "resume",
+                        label: { text: "Upload Resume" },
+                        editorType: "dxFileUploader",
+                        editorOptions: {
+                            accept: ".pdf,.doc,.docx,.png",
+                            uploadMode: "useForm"
+                        }
+                    },
+                    {
+                        dataField: "bio",
+                        label: { text: "Short Bio" },
+                        editorType: "dxTextArea"
+                    },
+                    {
+                        itemType: "button",
+                        colSpan: 2,
+                        buttonOptions: {
+                            text: "Submit",
+                            type: "success",
+                            onClick: function () {
+                                const result = DevExpress.validationEngine.validateGroup("employeeForm");
+                                if (result.isValid) {
+                                    DevExpress.ui.notify("Employee saved successfully!", "success", 2000);
+                                    console.log("Submitted Data:", formData);
+                                } else {
+                                    DevExpress.ui.notify("Please fix validation errors", "error", 2000);
+                                }
+                            }
+                        }
+                    },
+                    {
+                        itemType: "button",
+                        colSpan: 2,
+                        buttonOptions: {
+                            text: "Clear Session",
+                            type: "danger",
+                            onClick: function () {
+                                sessionStorage.removeItem("data");
+                                location.reload();
+                            }
+                        }
+                    }
+                ]
+            });
+
+        });
+    </script>
+
+</body>
+</html>

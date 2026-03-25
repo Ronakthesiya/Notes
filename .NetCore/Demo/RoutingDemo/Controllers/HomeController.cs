@@ -6,6 +6,13 @@ namespace RoutingDemo.Controllers
     [Route("Home")]
     public class HomeController : ControllerBase
     {
+        // without constraint
+        // give run time error The request matched multiple endpoints
+
+        // with constraint
+        // both working -> id:int allow only int values
+        //              -> name:alpha allow only char string values 
+
         [HttpGet]
         [Route("Get/{id:int}")]
         public IActionResult Index(int id)

@@ -1,0 +1,224 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <!-- DevExtreme CSS -->
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/24.2.3/css/dx.light.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DevExtreme Library -->
+    <script src="https://cdn3.devexpress.com/jslib/24.2.3/js/dx.all.js"></script>
+</head>
+<body>
+    <div id="textBox"></div>
+
+    <button id="btnFocus">Focus</button>
+    <button id="btnBlur">Blur</button>
+    <button id="btnClear">Clear</button>
+    <button id="btnOption">Change Option</button>
+    <button id="btnReset">Reset</button>
+
+    <script>
+        $(function () {
+
+            // Create TextBox instance
+            const textBoxInstance = $("#textBox").dxTextBox({
+
+                // =========================
+                // BASIC OPTIONS
+                // =========================
+
+                value: "Hello DevExtreme",     // initial value of textbox
+                placeholder: "Enter text...",  // placeholder text when empty
+                name: "myTextBox",             // HTML name attribute (form usage)
+                accessKey: "T",                // keyboard shortcut (Alt+T)
+
+                // =========================
+                // UI / BEHAVIOR OPTIONS
+                // =========================
+
+                disabled: false,               // disable input
+                readOnly: false,               // make read-only
+                visible: true,                // show/hide component
+                hoverStateEnabled: true,      // enable hover effect
+                activeStateEnabled: true,     // enable active (click) effect
+                focusStateEnabled: true,      // enable keyboard focus
+
+                // =========================
+                // SIZE / STYLE
+                // =========================
+
+                width: 300,                   // width of textbox
+                height: 40,                   // height of textbox
+                stylingMode: "outlined",      // UI style (outlined / filled / underlined)
+
+                // =========================
+                // LABEL
+                // =========================
+
+                label: "Username",            // label text
+                labelMode: "floating",        // label behavior (floating / static)
+
+                // =========================
+                // VALIDATION
+                // =========================
+
+                isValid: true,                // validation status
+                validationErrors: null,       // validation errors array
+                validationMessageMode: "auto",// when to show validation message
+
+                // =========================
+                // INPUT ATTRIBUTES
+                // =========================
+
+                elementAttr: {                // attributes for wrapper div
+                    class: "my-textbox"
+                },
+
+                inputAttr: {                  // attributes for input element
+                    id: "txtInput",
+                    autocomplete: "off"
+                },
+
+                maxLength: 50,                // max characters allowed
+                tabIndex: 1,                 // tab order
+
+                // =========================
+                // VALUE CHANGE
+                // =========================
+
+                valueChangeEvent: "keyup",    // event that updates value
+
+                // =========================
+                // BUTTONS
+                // =========================
+
+                buttons: [
+                    "clear",                 // built-in clear button
+                    {
+                        name: "customBtn",   // custom button name
+                        location: "after",   // position
+                        options: {
+                            icon: "search",  // icon
+                            onClick: function () {
+                                alert("Custom button clicked");
+                            }
+                        }
+                    }
+                ],
+
+                // =========================
+                // EVENTS
+                // =========================
+
+                onInitialized: function (e) {
+                    console.log("Initialized"); // when component is created
+                },
+
+                onContentReady: function () {
+                    console.log("Content Ready"); // when rendered
+                },
+
+                onFocusIn: function () {
+                    console.log("Focus In"); // when textbox gains focus
+                },
+
+                onFocusOut: function () {
+                    console.log("Focus Out"); // when textbox loses focus
+                },
+
+                onInput: function (e) {
+                    console.log("Typing:", e.component.option("value")); // fires on typing
+                },
+
+                onChange: function () {
+                    console.log("Changed (blur)"); // fires after blur if changed
+                },
+
+                onValueChanged: function (e) {
+                    console.log("Old:", e.previousValue); // previous value
+                    console.log("New:", e.value);         // new value
+                },
+
+                onKeyDown: function (e) {
+                    console.log("Key Down:", e.event.key); // key pressed
+                },
+
+                onKeyUp: function (e) {
+                    console.log("Key Up:", e.event.key);   // key released
+                },
+
+                onEnterKey: function () {
+                    alert("Enter pressed"); // Enter key event
+                },
+
+                onCopy: function () {
+                    console.log("Copied"); // copy event
+                },
+
+                onCut: function () {
+                    console.log("Cut"); // cut event
+                },
+
+                onPaste: function () {
+                    console.log("Pasted"); // paste event
+                },
+
+                onOptionChanged: function (e) {
+                    console.log("Option changed:", e.name); // any option change
+                },
+
+                onDisposing: function () {
+                    console.log("Disposed"); // before destroy
+                }
+
+            }).dxTextBox("instance"); // get instance for method usage
+
+
+            // =========================
+            // METHODS DEMO
+            // =========================
+
+            // Focus method
+            $("#btnFocus").click(function () {
+                textBoxInstance.focus(); // set focus
+            });
+
+            // Blur method
+            $("#btnBlur").click(function () {
+                textBoxInstance.blur(); // remove focus
+            });
+
+            // Clear method
+            $("#btnClear").click(function () {
+                textBoxInstance.clear(); // clear value
+            });
+
+            // Change option dynamically
+            $("#btnOption").click(function () {
+                textBoxInstance.option("value", "Changed dynamically"); // update value
+            });
+
+            // Reset method
+            $("#btnReset").click(function () {
+                textBoxInstance.reset(); // reset to initial value
+            });
+
+            // beginUpdate & endUpdate
+            textBoxInstance.beginUpdate(); // stop rendering
+            textBoxInstance.option("value", "Batch Update");
+            //textBoxInstance.option("readOnly", true);
+            textBoxInstance.endUpdate();   // resume rendering
+
+            // Get button and change visibility dynamically
+            const customBtn = textBoxInstance.getButton("customBtn");
+            customBtn.option("visible", true);
+
+        });
+    </script>
+</body>
+</html>

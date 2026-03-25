@@ -1,0 +1,274 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+
+    <!-- DevExtreme CSS -->
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/24.2.3/css/dx.light.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DevExtreme Library -->
+    <script src="https://cdn3.devexpress.com/jslib/24.2.3/js/dx.all.js"></script>
+</head>
+<body>
+    <!-- Container for TextArea -->
+    <div id="textArea"></div>
+
+    <!-- Buttons to test methods -->
+    <button id="btnFocus">Focus</button>
+    <button id="btnBlur">Blur</button>
+    <button id="btnClear">Clear</button>
+    <button id="btnReset">Reset</button>
+    <button id="btnOption">Change Option</button>
+    <button id="btnRepaint">Repaint</button>
+    <button id="btnDispose">Dispose</button>
+
+    <script>
+        $(function () {
+
+            // =========================
+            // INITIALIZATION
+            // =========================
+
+            // Create dxTextArea instance
+            const textAreaInstance = $("#textArea").dxTextArea({
+
+                // =========================
+                // BASIC OPTIONS
+                // =========================
+
+                value: "Initial Text",              // initial value of textarea
+                placeholder: "Enter description",  // placeholder text when empty
+                name: "myTextArea",                // HTML name attribute for form
+                accessKey: "D",                   // keyboard shortcut (Alt+D)
+
+                // =========================
+                // UI / BEHAVIOR
+                // =========================
+
+                disabled: false,                  // disable component
+                readOnly: false,                 // make textarea read-only
+                visible: true,                   // show/hide component
+                hoverStateEnabled: true,         // enable hover styling
+                activeStateEnabled: true,        // enable click styling
+                focusStateEnabled: true,         // allow keyboard focus
+
+                // =========================
+                // SIZE / RESIZE
+                // =========================
+
+                width: 400,                      // width of textarea
+                height: 120,                    // fixed height
+                autoResizeEnabled: false,       // disable auto-resize
+                minHeight: 80,                  // minimum height (for auto resize)
+                maxHeight: 300,                 // maximum height
+
+                // =========================
+                // LABEL
+                // =========================
+
+                label: "Description",            // label text
+                labelMode: "floating",           // label behavior
+
+                // =========================
+                // VALIDATION
+                // =========================
+
+                isValid: true,                   // validation state
+                validationErrors: null,          // validation errors
+                validationMessageMode: "auto",   // when to show validation
+
+                // =========================
+                // INPUT ATTRIBUTES
+                // =========================
+
+                elementAttr: {                   // attributes for wrapper div
+                    class: "custom-textarea"
+                },
+
+                inputAttr: {                     // attributes for textarea element
+                    id: "txtAreaInput",
+                    "aria-label": "Description"
+                },
+
+                maxLength: 200,                  // maximum characters allowed
+                spellcheck: true,               // enable spellcheck
+                tabIndex: 1,                    // tab navigation order
+
+                // =========================
+                // VALUE CHANGE CONTROL
+                // =========================
+
+                valueChangeEvent: "keyup",       // update value on keyup
+
+                // =========================
+                // STYLING
+                // =========================
+
+                stylingMode: "outlined",         // outlined / filled / underlined
+                rtlEnabled: false,              // left-to-right layout
+
+                // =========================
+                // BUTTONS
+                // =========================
+
+                buttons: [
+                    "clear",                    // built-in clear button
+                    {
+                        name: "customBtn",      // custom button name
+                        location: "after",      // button position
+                        options: {
+                            icon: "comment",    // icon for button
+                            onClick: function () {
+                                alert("Custom button clicked"); // click action
+                            }
+                        }
+                    }
+                ],
+
+                // =========================
+                // EVENTS
+                // =========================
+
+                onInitialized: function (e) {
+                    console.log("Initialized"); // component created
+                },
+
+                onContentReady: function () {
+                    console.log("Content Ready"); // UI rendered
+                },
+
+                onDisposing: function () {
+                    console.log("Disposed"); // before destroy
+                },
+
+                // Value Events
+                onInput: function (e) {
+                    console.log("Typing:", e.component.option("value")); // live typing
+                },
+
+                onChange: function () {
+                    console.log("Changed (blur)"); // change after blur
+                },
+
+                onValueChanged: function (e) {
+                    console.log("Old:", e.previousValue); // old value
+                    console.log("New:", e.value);         // new value
+                },
+
+                // Focus Events
+                onFocusIn: function () {
+                    console.log("Focus In"); // when focused
+                },
+
+                onFocusOut: function () {
+                    console.log("Focus Out"); // when focus lost
+                },
+
+                // Keyboard Events
+                onKeyDown: function (e) {
+                    console.log("Key Down:", e.event.key); // key pressed
+                },
+
+                onKeyUp: function (e) {
+                    console.log("Key Up:", e.event.key);   // key released
+                },
+
+                onEnterKey: function () {
+                    alert("Enter key pressed"); // Enter key action
+                },
+
+                // Clipboard Events
+                onCopy: function () {
+                    console.log("Copied"); // copy action
+                },
+
+                onCut: function () {
+                    console.log("Cut"); // cut action
+                },
+
+                onPaste: function () {
+                    console.log("Pasted"); // paste action
+                },
+
+                // Option change tracking
+                onOptionChanged: function (e) {
+                    console.log("Option changed:", e.name); // any option change
+                }
+
+            }).dxTextArea("instance"); // get instance for methods
+
+
+            // =========================
+            // METHODS DEMO
+            // =========================
+
+            // Focus method
+            $("#btnFocus").click(function () {
+                textAreaInstance.focus(); // set focus to textarea
+            });
+
+            // Blur method
+            $("#btnBlur").click(function () {
+                textAreaInstance.blur(); // remove focus
+            });
+
+            // Clear method
+            $("#btnClear").click(function () {
+                textAreaInstance.clear(); // clear value
+            });
+
+            // Reset method
+            $("#btnReset").click(function () {
+                textAreaInstance.reset("Reset Value"); // reset with new value
+            });
+
+            // Change option dynamically
+            $("#btnOption").click(function () {
+                textAreaInstance.option("value", "Changed dynamically"); // update value
+            });
+
+            // Repaint UI
+            $("#btnRepaint").click(function () {
+                textAreaInstance.repaint(); // re-render component
+            });
+
+            // Dispose component
+            $("#btnDispose").click(function () {
+                textAreaInstance.dispose(); // destroy component
+            });
+
+            // =========================
+            // ADVANCED METHODS
+            // =========================
+
+            // Batch updates for performance
+            textAreaInstance.beginUpdate(); // stop rendering
+            textAreaInstance.option("readOnly", true); 
+            textAreaInstance.option("disabled", false);
+            textAreaInstance.endUpdate();   // resume rendering
+
+            // Get DOM element
+            const element = textAreaInstance.element(); // root element
+
+            // Register custom key handler
+            textAreaInstance.registerKeyHandler("enter", function () {
+                console.log("Custom Enter handler"); // custom key logic
+            });
+
+            // Attach event dynamically
+            textAreaInstance.on("focusIn", function () {
+                console.log("Dynamic focus event"); // runtime event binding
+            });
+
+            // Remove event dynamically
+            textAreaInstance.off("focusIn"); // remove focus handler
+
+        });
+    </script>
+</body>
+</html>

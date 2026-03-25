@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <!-- DevExtreme CSS -->
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/24.2.3/css/dx.light.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DevExtreme JS -->
+    <script src="https://cdn3.devexpress.com/jslib/24.2.3/js/dx.all.js"></script>
+</head>
+<body>
+    ArrayStore
+    <script>
+        var array = new DevExpress.data.ArrayStore({
+            data: [
+                { id: 1, name: "ronak" },
+                { id: 2, name: "asdf" },
+                { id: 3, name: "wer" },
+                { id: 4, name: "cxvb"}
+            ],
+            key: "id",
+            errorHandler: function (e) {
+                console.log(e);
+            }
+        })
+
+        array.byKey(1)
+            .done(function (dataItem) {
+                console.log(dataItem)
+            })
+            .fail(function (error) {
+                console.log(error)
+            })
+
+        //array.clear();
+
+        array.insert({ id: 5, name: "temp" })
+            .done(function (dataObj, key) {
+                console.log("added")
+                console.log(dataObj)
+                console.log(key)
+            })
+            .fail(function (error) {
+                console.log("error",error)
+            });
+
+        var query = array.createQuery()
+                    
+        query = query.filter(["id", ">", 2])
+            .sortBy("name")
+            .select(["name", "id"])
+            .toArray();
+
+        console.log(query)
+
+        console.log(array._array)
+    </script>
+</body>
+</html>

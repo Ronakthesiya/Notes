@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <!-- DevExtreme CSS -->
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/24.2.3/css/dx.light.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DevExtreme JS -->
+    <script src="https://cdn3.devexpress.com/jslib/24.2.3/js/dx.all.js"></script>
+</head>
+<body>
+    <div id="grid"></div>
+
+    <script>
+        let url = "https://69c214b97518bf8facbd35ad.mockapi.io/users"
+
+        const store = new DevExpress.data.CustomStore({
+               
+            key: "id",
+            loadMode: "raw",
+
+            load: function (loadOptions) {
+                console.log("LoadOptions:", loadOptions);
+
+                return fetch(url)
+                    .then(res => res.json());
+            },
+
+            byKey: function (key) {
+                return fetch(`${url}/${key}`)
+                    .then(res => res.json());
+            },
+
+            insert: function (values) {
+                return fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(values)
+                }).then(res => res.json());
+            },
+
+            update: function (key, values) {
+                return fetch(`${url}/${key}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(values)
+                }).then(res => res.json());
+            },
+
+            remove: function (key) {
+                return fetch(`${url}/${key}`, {
+                    method: "DELETE"
+                }).then(res => res.json());
+            },
+
+            errorHandler: function (error) {
+                console.error("Error:", error);
+            }
+
+
+        });
+
+        // Correct way to log data
+        store.load({
+            skip: 10,
+            take:5
+        }).then(data => {
+            console.log("Loaded data:", data);
+        });
+
+        //store.insert({ name: "ronak", email: "ronak@gmail.com"})
+        //      .then(res => console.log(res));
+
+        store.update(25, { name: "asdf" }).then(res => console.log(res));
+
+        //store.remove(26)
+
+        store.load().then(data => {
+            console.log("Loaded data:", data);
+        });
+
+        $("#grid").dxDataGrid({
+            dataSource: store,
+        });
+
+        store.byKey(10).then(res=> console.log(res))
+
+    </script>
+</body>
+</html>

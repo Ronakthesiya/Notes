@@ -9,8 +9,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// DI
 builder.Services.AddSingleton<ILog, Log>();
 
+
+// Rate Limiting
 builder.Services.AddRateLimiter(options =>
 {
     options.AddFixedWindowLimiter("fixed", limiterOptions =>
@@ -38,13 +41,24 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// Middleware
 app.UseRateLimiter();
+
+app.Use(async (context, next) =>
+{
+    Console.WriteLine("Request received");
+
+    await next(); // call next middleware
+
+    Console.WriteLine("Response sent");
+});
 
 app.UseHttpsRedirection();
 
+// Route Group
 var product = app.MapGroup("api/product/");
 
-
+// get method with end point filter, ratelimiting
 product.MapGet("", (ILog log) =>
 {
     log.Log("get product by api.");
@@ -57,7 +71,7 @@ product.MapGet("", (ILog log) =>
 })
  .RequireRateLimiting("fixed");
 
-
+// get by id
 product.MapGet("/{id}", (ILog log,int id) =>
 {
     if (id <= 0)
@@ -76,7 +90,7 @@ product.MapGet("/{id}", (ILog log,int id) =>
     }
 }).RequireRateLimiting("sliding");
 
-
+// post new product
 product.MapPost("", (ILog log,Product product) =>
 {
     if (product.id != 0)
@@ -91,7 +105,7 @@ product.MapPost("", (ILog log,Product product) =>
     return Results.Created($"/{product.id}",product);
 });
 
-
+// update product
 product.MapPut("", (ILog log,Product product) =>
 {
     if (product.id <= 0)
@@ -109,7 +123,7 @@ product.MapPut("", (ILog log,Product product) =>
     return Results.Ok(oldProduct);
 });
 
-
+// delete product
 product.MapDelete("/{id}", (ILog log,int id) =>
 {
     if (id <= 0)

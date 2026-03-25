@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>DevExtreme dxNumberBox Complete Demo</title>
+
+    <!-- DevExtreme CSS -->
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/24.2.3/css/dx.light.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DevExtreme Library -->
+    <script src="https://cdn3.devexpress.com/jslib/24.2.3/js/dx.all.js"></script>
+</head>
+
+<body>
+
+    <h2>DevExtreme dxNumberBox Demo</h2>
+
+    <!-- Container where NumberBox will be rendered -->
+    <div id="numberBox"></div>
+
+    <br>
+
+    <!-- Buttons to demonstrate methods -->
+    <button id="focusBtn">Focus</button>
+    <button id="blurBtn">Blur</button>
+    <button id="clearBtn">Clear</button>
+    <button id="getValueBtn">Get Value</button>
+    <button id="setValueBtn">Set Value</button>
+    <button id="resetBtn">Reset</button>
+
+    <script>
+
+$(function(){
+
+    // Create dxNumberBox instance
+    var numberBox = $("#numberBox").dxNumberBox({
+
+        /* =========================
+           BASIC OPTIONS
+        ==========================*/
+
+        value: 10, // initial value of NumberBox
+
+        min: 0, // minimum allowed value
+
+        max: 100, // maximum allowed value
+
+        step: 5, // increment/decrement step for spin buttons
+
+        width: 250, // width of the input
+
+        height: 40, // height of the input
+
+        visible: true, // determines if component is visible
+
+        readOnly: false, // prevents editing when true
+
+        disabled: false, // disables the component
+
+        name: "quantity", // name attribute used when submitting forms
+
+        tabIndex: 1, // order of keyboard tab navigation
+
+        hint: "Enter quantity", // tooltip shown when hovering
+
+        accessKey: "Q", // keyboard shortcut to focus component
+
+
+        /* =========================
+           LABEL OPTIONS
+        ==========================*/
+
+        label: "Quantity", // label displayed for the input
+
+        labelMode: "floating", // floating label style (static | floating | hidden | outside)
+
+
+        /* =========================
+           STYLE OPTIONS
+        ==========================*/
+
+        stylingMode: "outlined", // visual style (outlined | filled | underlined)
+
+        hoverStateEnabled: true, // enables hover effect
+
+        focusStateEnabled: true, // enables focus effect
+
+        activeStateEnabled: true, // enables active click effect
+
+
+        /* =========================
+           INPUT BEHAVIOR OPTIONS
+        ==========================*/
+
+        mode: "number", // HTML input type (number, text, tel)
+
+        showSpinButtons: true, // shows increment/decrement buttons
+
+        useLargeSpinButtons: true, // larger buttons for touch devices
+
+        valueChangeEvent: "change keyup", // events that trigger value change
+
+        invalidValueMessage: "Please enter a valid number", // error message for invalid input
+
+
+        /* =========================
+           FORMAT OPTIONS
+        ==========================*/
+
+        format: {
+            type: "fixedPoint", // number format
+            precision: 2 // number of decimal places
+        },
+
+
+        /* =========================
+           INPUT ATTRIBUTES
+        ==========================*/
+
+        inputAttr: {
+            id: "qtyInput", // custom input id
+            class: "custom-number", // custom CSS class
+            "aria-label": "Quantity Input" // accessibility label
+        },
+
+
+        /* =========================
+           EVENTS
+        ==========================*/
+
+        // fires when component is initialized
+        onInitialized: function(e){
+            console.log("NumberBox initialized");
+            window.nb = e.component; // store instance globally
+        },
+
+        // fires when component rendering is completed
+        onContentReady: function(e){
+            console.log("Component rendered");
+        },
+
+        // fires when user focuses input
+        onFocusIn: function(e){
+            console.log("Input focused");
+        },
+
+        // fires when input loses focus
+        onFocusOut: function(e){
+            console.log("Input lost focus");
+        },
+
+        // fires whenever user types in input
+        onInput: function(e){
+            console.log("Typing:", e.component.option("value"));
+        },
+
+        // fires when Enter key pressed
+        onEnterKey: function(e){
+            alert("Enter key pressed");
+        },
+
+        // fires when value changes
+        onValueChanged: function(e){
+            console.log("Previous value:", e.previousValue);
+            console.log("New value:", e.value);
+        },
+
+        // fires when input loses focus after change
+        onChange: function(e){
+            console.log("Change event triggered");
+        },
+
+        // keyboard key pressed
+        onKeyDown: function(e){
+            console.log("Key Down:", e.event.key);
+        },
+
+        // keyboard key released
+        onKeyUp: function(e){
+            console.log("Key Up:", e.event.key);
+        },
+
+        // copy event
+        onCopy: function(){
+            console.log("Text copied");
+        },
+
+        // cut event
+        onCut: function(){
+            console.log("Text cut");
+        },
+
+        // paste event
+        onPaste: function(){
+            console.log("Text pasted");
+        },
+
+        // fires when any option changes
+        onOptionChanged: function(e){
+            console.log("Option changed:", e.name);
+        },
+
+        // fires before component destruction
+        onDisposing: function(){
+            console.log("Component disposed");
+        }
+
+    }).dxNumberBox("instance"); // get component instance
+
+
+    /* =========================
+       METHODS DEMO
+    ==========================*/
+
+
+    // focus method
+    $("#focusBtn").click(function(){
+        numberBox.focus(); // set focus to input
+    });
+
+
+    // blur method
+    $("#blurBtn").click(function(){
+        numberBox.blur(); // remove focus
+    });
+
+
+    // clear method
+    $("#clearBtn").click(function(){
+        numberBox.clear(); // reset value to default
+    });
+
+
+    // get option value
+    $("#getValueBtn").click(function(){
+        alert(numberBox.option("value")); // get current value
+    });
+
+
+    // set option value
+    $("#setValueBtn").click(function(){
+        numberBox.option("value", 50); // update value
+    });
+
+
+    // reset value
+    $("#resetBtn").click(function(){
+        numberBox.reset(10); // reset to specified value
+    });
+
+
+    /* =========================
+       CUSTOM KEY HANDLER
+    ==========================*/
+
+    numberBox.registerKeyHandler("enter", function(){
+        console.log("Custom Enter key handler triggered");
+    });
+
+
+});
+
+    </script>
+
+</body>
+</html>

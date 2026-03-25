@@ -1,0 +1,210 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <!-- DevExtreme theme -->
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/24.2.13/css/dx.dark.css">
+
+    <!-- DevExtreme libraries (reference only one of them) -->
+    <script type="text/javascript" src="https://cdn3.devexpress.com/jslib/24.2.13/js/dx.all.js"></script>
+</head>
+<body>
+
+    <div id="dropDownBox"></div>
+
+    <script>
+        $(function () {
+            // Sample data
+            var employees = [
+                { id: 1, name: "ABC", department: "HR" },
+                { id: 2, name: "DEF", department: "IT" },
+                { id: 3, name: "GHI", department: "Temp" }
+            ];
+
+            var dropDown = $("#dropDownBox").dxDropDownBox({
+
+                /*** Configuration Options ***/
+                // Bind to data source
+                dataSource: employees,
+
+                // Field used as the value
+                valueExpr: "id",
+
+                // Field used to display text
+                displayExpr: "name",
+
+                // Initial selected value
+                value: 2,
+
+                // Placeholder text
+                placeholder: "Select an employee",
+
+                // Show a clear button
+                showClearButton: true,
+
+                // Label for the editor
+                label: "Employee",
+
+                // Label behavior
+                labelMode: "floating",
+
+                // Width of the DropDownBox
+                width: 400,
+
+                // Height of input field
+                height: 40,
+
+                // DropDownBox disabled
+                disabled: false,
+
+                // Read-only mode
+                readOnly: false,
+
+                // Right-to-left layout
+                rtlEnabled: false,
+
+                // Max characters allowed
+                maxLength: 50,
+
+                // Tab index for focus navigation
+                tabIndex: 1,
+
+                // Accept custom values typed by the user
+                acceptCustomValue: true,
+
+                // Focus and hover states
+                focusStateEnabled: true,
+                hoverStateEnabled: true,
+                activeStateEnabled: true,
+
+                // HTML attributes for root element
+                elementAttr: { id: "employeeDropDown", class: "custom-class" },
+
+                // HTML attributes for input element
+                inputAttr: { "aria-label": "Employee" },
+
+                // Dropdown popup options
+                dropDownOptions: {
+                    width: 500,
+                    height: 300,
+                    showTitle: true,
+                    title: "Select Employee"
+                },
+
+                // Custom content inside the dropdown (embedding a DataGrid)
+                contentTemplate: function (e) {
+                    return $("<div>").dxDataGrid({
+                        dataSource: employees,
+                        columns: ["id", "name", "department"],
+                        selection: { mode: "multiple" },
+                        hoverStateEnabled: true,
+                        showBorders: true,
+                        onSelectionChanged: function (s) {
+                            if (s.selectedRowsData.length) {
+                                e.component.option("value", s.selectedRowsData[0].id);
+                                e.component.close();
+                            }
+                        }
+                    });
+                },
+
+                /*** Event Handlers ***/
+
+                // Component initialized
+                onInitialized: function (e) { console.log("DropDownBox initialized"); },
+
+                // Input focus gained
+                onFocusIn: function (e) { console.log("Focus in"); },
+
+                // Input focus lost
+                onFocusOut: function (e) { console.log("Focus out"); },
+
+                // Dropdown opened
+                onOpened: function (e) { console.log("Dropdown opened"); },
+
+                // Dropdown closed
+                onClosed: function (e) { console.log("Dropdown closed"); },
+
+                // Value changed
+                onValueChanged: function (e) { console.log("Value changed:", e.value); },
+
+                // Option changed
+                onOptionChanged: function (e) { console.log("Option changed:", e.name, e.value); },
+
+                // Input typing
+                onInput: function (e) { console.log("User typing:", e.event.target.value); },
+
+                // Change after losing focus
+                onChange: function (e) { console.log("Change event"); },
+
+                // Key pressed
+                onKeyDown: function (e) { console.log("Key down:", e.event.key); },
+                onKeyUp: function (e) { console.log("Key up:", e.event.key); },
+
+                // Enter key pressed
+                onEnterKey: function (e) { console.log("Enter key pressed"); },
+
+                // Clipboard actions
+                onCopy: function (e) { console.log("Copy"); },
+                onCut: function (e) { console.log("Cut"); },
+                onPaste: function (e) { console.log("Paste"); },
+
+                // Component disposing
+                onDisposing: function (e) { console.log("Disposing component"); }
+
+            }).dxDropDownBox("instance");
+
+            /*** Methods Usage ***/
+
+            // Focus the input
+            dropDown.focus();
+
+            // Open the dropdown
+            dropDown.open();
+
+            // Change value programmatically
+            dropDown.option("value", 3);
+
+            // Clear the value
+            dropDown.clear();
+
+            // Close dropdown
+            dropDown.close();
+
+            // Get dropdown content element
+            var contentEl = dropDown.content();
+            console.log("Dropdown content element:", contentEl);
+
+            // Get input field element
+            var inputEl = dropDown.field();
+            console.log("Input element:", inputEl);
+
+            // Get root element
+            console.log("Root element:", dropDown.element());
+
+            // Get button instance (dropDown button)
+            var btn = dropDown.getButton("dropDown");
+            console.log("DropDown button instance:", btn);
+
+            // Get data source instance
+            var ds = dropDown.getDataSource();
+            console.log("DataSource instance:", ds);
+
+            // Batch update multiple options
+            dropDown.beginUpdate();
+            dropDown.option({ width: 450, disabled: false, placeholder: "Choose employee" });
+            dropDown.endUpdate();
+
+            // Repaint component
+            dropDown.repaint();
+
+            // Reset a specific option to default
+            dropDown.resetOption("width");
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <!-- DevExtreme CSS -->
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/24.2.3/css/dx.light.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DevExtreme JS -->
+    <script src="https://cdn3.devexpress.com/jslib/24.2.3/js/dx.all.js"></script>
+</head>
+<body>
+    <div id="gridContainer"></div>
+
+    <script>
+        $(function () {
+            const demos = [
+                { name: "ArrayStore", link: "Content/ArrayStore.html" }
+            ];
+
+            $("#gridContainer").dxDataGrid({
+                dataSource: demos,
+                showBorders: true,
+
+                paging: {
+                    pageSize: 2
+                },
+
+                pager: {
+                    showPageSizeSelector: true,
+                    allowedPageSizes: [2, 5, 10],
+                    showInfo: true
+                },
+
+                searchPanel: {
+                    visible: true
+                },
+
+                sorting: {
+                    mode: "multiple"
+                },
+
+                columns: [
+                    {
+                        dataField: "name",
+                        caption: "Name"
+                    },
+                    {
+                        dataField: "link",
+                        caption: "Link",
+                        cellTemplate: function (container, options) {
+                            $("<a>")
+                                .attr("href", options.value)
+                                .attr("target", "_self")
+                                .text("Go to Demo")
+                                .appendTo(container);
+                        }
+                    }
+                ]
+            });
+
+        });
+    </script>
+</body>
+</html>
