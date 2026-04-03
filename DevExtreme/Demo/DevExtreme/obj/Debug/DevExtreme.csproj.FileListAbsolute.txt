@@ -1,0 +1,3 @@
+F:\Ronak - 453 2\Notes\DevExtreme\Demo\DevExtreme\obj\Debug\DevExtreme.csproj.AssemblyReference.cache
+F:\Ronak - 453 2\Notes\DevExtreme\Demo\DevExtreme\obj\Debug\DevExtreme.csproj.SuggestedBindingRedirects.cache
+F:\Ronak - 453 2\Notes\DevExtreme\Demo\DevExtreme\obj\Debug\DevExtreme.csproj.CoreCompileInputs.cache

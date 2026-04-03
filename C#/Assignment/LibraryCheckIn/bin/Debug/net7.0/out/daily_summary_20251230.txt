@@ -1,0 +1,16 @@
+Processed: 30-12-2025 13:16:25
+Total returns: 11
+
+Counts by condition:
+  Notgiven: 3
+  New: 1
+  Worn: 1
+  Damaged: 2
+  Good: 4
+
+Top 5 titles by penalty (desc):
+  b4 by a4 — Penalty 10
+  y2 by a1 — Penalty 10
+  b3 by a3 — Penalty 3
+  b5 by a5 — Penalty 1
+  y1 by a7 — Penalty 1

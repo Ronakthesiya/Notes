@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-16"?>
+<WriteObj xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Total>10</Total>
+  <TopPenalties>
+    <Book>
+      <Id>4</Id>
+      <Title>b4</Title>
+      <Author />
+      <Condition>Damaged</Condition>
+    </Book>
+    <Book>
+      <Id>4</Id>
+      <Title>b4</Title>
+      <Author />
+      <Condition>Damaged</Condition>
+    </Book>
+    <Book>
+      <Id>3</Id>
+      <Title />
+      <Author>a3</Author>
+      <Condition>Worn</Condition>
+    </Book>
+    <Book>
+      <Id>3</Id>
+      <Title />
+      <Author>a3</Author>
+      <Condition>Worn</Condition>
+    </Book>
+    <Book>
+      <Id>5</Id>
+      <Title />
+      <Author>a5</Author>
+      <Condition>Good</Condition>
+    </Book>
+  </TopPenalties>
+  <Conditions>
+    <string>Notgiven 2</string>
+    <string>New 2</string>
+    <string>Worn 2</string>
+    <string>Damaged 2</string>
+    <string>Good 2</string>
+  </Conditions>
+</WriteObj>

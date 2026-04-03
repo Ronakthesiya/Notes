@@ -1,0 +1,34 @@
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\bin\Debug\net7.0\appsettings.Development.json
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\bin\Debug\net7.0\appsettings.json
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\bin\Debug\net7.0\JSON demo.exe
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\bin\Debug\net7.0\JSON demo.deps.json
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\bin\Debug\net7.0\JSON demo.runtimeconfig.json
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\bin\Debug\net7.0\JSON demo.dll
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\bin\Debug\net7.0\JSON demo.pdb
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\bin\Debug\net7.0\Microsoft.OpenApi.dll
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\obj\Debug\net7.0\JSON demo.csproj.AssemblyReference.cache
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\obj\Debug\net7.0\JSON demo.GeneratedMSBuildEditorConfig.editorconfig
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\obj\Debug\net7.0\JSON demo.AssemblyInfoInputs.cache
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\obj\Debug\net7.0\JSON demo.AssemblyInfo.cs
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\obj\Debug\net7.0\JSON demo.csproj.CoreCompileInputs.cache
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\obj\Debug\net7.0\JSON demo.MvcApplicationPartsAssemblyInfo.cs
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\obj\Debug\net7.0\JSON demo.MvcApplicationPartsAssemblyInfo.cache
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\obj\Debug\net7.0\staticwebassets\msbuild.JSON demo.Microsoft.AspNetCore.StaticWebAssets.props
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\obj\Debug\net7.0\staticwebassets\msbuild.build.JSON demo.props
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.JSON demo.props
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.JSON demo.props
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\obj\Debug\net7.0\staticwebassets.pack.json
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\obj\Debug\net7.0\staticwebassets.build.json
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\obj\Debug\net7.0\staticwebassets.development.json
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\obj\Debug\net7.0\scopedcss\bundle\JSON demo.styles.css
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\obj\Debug\net7.0\JSON demo.csproj.CopyComplete
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\obj\Debug\net7.0\JSON demo.dll
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\obj\Debug\net7.0\refint\JSON demo.dll
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\obj\Debug\net7.0\JSON demo.pdb
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\obj\Debug\net7.0\JSON demo.genruntimeconfig.cache
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\obj\Debug\net7.0\ref\JSON demo.dll
+F:\Ronak - 453 2\Notes\.NetCore\Demo\JSON demo\bin\Debug\net7.0\xyz.json
