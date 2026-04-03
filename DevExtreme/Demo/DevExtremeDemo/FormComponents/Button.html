@@ -1,0 +1,186 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <!-- DevExtreme CSS -->
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/24.2.3/css/dx.light.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DevExtreme Library -->
+    <script src="https://cdn3.devexpress.com/jslib/24.2.3/js/dx.all.js"></script>
+</head>
+<body>
+    <div id="myButton"></div>
+
+    <button id="btnFocus">Focus</button>
+    <button id="btnOption">Change Text</button>
+    <button id="btnDisable">Disable</button>
+    <button id="btnEnable">Enable</button>
+    <button id="btnReset">Reset Option</button>
+    <button id="btnRepaint">Repaint</button>
+    <button id="btnDispose">Dispose</button>
+
+    <script>
+        $(function () {
+
+            // =========================
+            // INITIALIZATION
+            // =========================
+
+            // Create dxButton instance
+            const buttonInstance = $("#myButton").dxButton({
+
+                // =========================
+                // BASIC OPTIONS
+                // =========================
+
+                text: "Submit",                // text displayed on button
+                icon: "check",                // icon inside button
+                type: "success",              // semantic type (success, danger, normal, etc.)
+                stylingMode: "contained",     // visual style (contained / outlined / text)
+                hint: "Click to submit",      // tooltip text on hover
+
+                // =========================
+                // BEHAVIOR OPTIONS
+                // =========================
+
+                disabled: false,              // disable button interaction
+                visible: true,               // show/hide button
+                activeStateEnabled: true,    // enable pressed visual effect
+                focusStateEnabled: true,     // enable keyboard focus
+                useSubmitBehavior: false,    // form submit behavior
+                validationGroup: "group1",   // validation group name
+
+                // =========================
+                // LAYOUT OPTIONS
+                // =========================
+
+                width: 150,                  // button width
+                height: 40,                  // button height
+                rtlEnabled: false,           // left-to-right layout
+                tabIndex: 1,                 // tab order
+
+                // =========================
+                // ATTRIBUTES
+                // =========================
+
+                elementAttr: {               // attributes for root element
+                    id: "customButton",
+                    class: "my-btn"
+                },
+
+                accessKey: "S",              // keyboard shortcut (Alt+S)
+
+                // =========================
+                // TEMPLATE (CUSTOM UI)
+                // =========================
+
+                template: function (data, container) { // custom rendering
+                    $("<span>")
+                        .text(data.text) 
+                        .appendTo(container);
+                },
+
+                // =========================
+                // EVENTS
+                // =========================
+
+                onInitialized: function (e) {
+                    console.log("Initialized"); // component created
+                },
+
+                onContentReady: function () {
+                    console.log("Content Ready"); // rendered in DOM
+                },
+
+                onClick: function (e) {
+                    console.log("Button clicked"); // main click event
+                    console.log("Validation Group:", e.validationGroup); // validation info
+                    DevExpress.ui.notify("The button was clicked");
+                },
+
+                onOptionChanged: function (e) {
+                    console.log("Option changed:", e.name); // triggered on option change
+                },
+
+                onDisposing: function () {
+                    console.log("Disposed"); // before destroy
+                }
+
+            }).dxButton("instance"); // get instance for method usage
+
+
+            // =========================
+            // METHODS DEMO
+            // =========================
+
+            // Focus method
+            $("#btnFocus").click(function () {
+                buttonInstance.focus(); // set focus to button
+            });
+
+            // Change option dynamically
+            $("#btnOption").click(function () {
+                buttonInstance.option("text", "Updated Text"); // update text
+            });
+
+            // Disable button
+            $("#btnDisable").click(function () {
+                buttonInstance.option("disabled", true); // disable button
+            });
+
+            // Enable button
+            $("#btnEnable").click(function () {
+                buttonInstance.option("disabled", false); // enable button
+            });
+
+            // Reset option to default
+            $("#btnReset").click(function () {
+                buttonInstance.resetOption("text"); // reset text to default
+            });
+
+            // Repaint UI
+            $("#btnRepaint").click(function () {
+                buttonInstance.repaint(); // re-render button
+            });
+
+            // Dispose component
+            $("#btnDispose").click(function () {
+                buttonInstance.dispose(); // destroy button instance
+            });
+
+
+            // =========================
+            // ADVANCED METHODS
+            // =========================
+
+            // Batch updates for performance
+            buttonInstance.beginUpdate();         // stop rendering
+            buttonInstance.option("text", "Batch Updated"); // change multiple options
+            buttonInstance.option("type", "danger");        // change style
+            buttonInstance.endUpdate();           // resume rendering
+
+            // Get DOM element
+            const element = buttonInstance.element(); // root element
+
+            // Register custom key handler
+            buttonInstance.registerKeyHandler("enter", function () {
+                alert("Enter key pressed on button"); // custom key logic
+            });
+
+            // Attach event dynamically
+            buttonInstance.on("click", function () {
+                console.log("Dynamic click handler"); // runtime event binding
+            });
+
+            // Remove event dynamically
+            buttonInstance.off("click"); // remove click handler
+
+        });
+    </script>
+</body>
+</html>

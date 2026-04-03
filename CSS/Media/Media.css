@@ -1,0 +1,22 @@
+body{
+    background-color: aqua;
+}
+
+@media (min-width: 500px) and (max-height: 200px){
+    body{
+        background-color: rgb(229, 118, 118);
+    }
+}
+
+@media print{
+    .screen{
+        display: none;
+    }
+}
+
+@media screen{
+    .print{
+        display: none;
+    }
+}
+

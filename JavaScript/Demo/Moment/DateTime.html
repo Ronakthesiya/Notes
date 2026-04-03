@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="date"></div>
+
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script>
+        const date = document.getElementById("date");
+
+        const now = moment();
+
+        date.innerText = now;
+        date.innerHTML += "<br/>";
+
+        // crete moment
+        let dateFromString = moment('2025-12-01');
+        date.innerHTML += `${dateFromString}` + "<br/>";
+        let dateFromDateObject = moment(new Date(2026, 0, 1, 10)); // January 1st, 2026
+        date.innerHTML += `${dateFromDateObject}` + "<br/>";
+
+        // year
+        date.innerHTML += now.format("Y") + "<br/>"; //2026
+        date.innerHTML += now.format("YY") + "<br/>"; //26
+        date.innerHTML += now.format("YYYY") + "<br/>"; //2026
+
+        // month
+        date.innerHTML += now.format("M") + "<br/>"; // 1
+        date.innerHTML += now.format("MM") + "<br/>"; // 01
+        date.innerHTML += now.format("MMM") + "<br/>"; // Jan
+        date.innerHTML += now.format("MMMM") + "<br/>"; // January
+
+        // days
+        date.innerHTML += now.format("D") + "<br/>"; //22
+        date.innerHTML += now.format("Do") + "<br/>"; //22nd
+
+        // hours
+        date.innerHTML += now.format("h") + "<br/>"; //11
+
+        // minutes
+        date.innerHTML += now.format("m") + "<br/>"; //25
+
+        // seconds
+        date.innerHTML += now.format("s") + "<br/>"; //31
+
+        // am/pm
+        date.innerHTML += now.format("a") + "<br/>"; // am || pm
+
+
+        console.log(moment().subtract(2, 'days').from(dateFromString));
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <!-- DevExtreme CSS -->
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/24.2.3/css/dx.light.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DevExtreme Library -->
+    <script src="https://cdn3.devexpress.com/jslib/24.2.3/js/dx.all.js"></script>
+
+</head>
+<body>
+
+    <!-- Custom button to trigger file dialog -->
+    <button id="customBtn">Open File Dialog</button>
+
+    <!-- File uploader container -->
+    <div id="fileUploader"></div>
+
+    <script>
+        $(function () {
+
+            // Initialize dxFileUploader
+            const uploader = $("#fileUploader").dxFileUploader({
+
+                // ===== BASIC OPTIONS =====
+                accept: "image/*,.pdf", // Allowed file types in dialog
+                multiple: true, // Allow multiple file selection
+                name: "file", // Name sent to backend
+                dialogTrigger: "#customBtn", // Custom button to open file dialog
+
+                // ===== VALIDATION =====
+                allowedFileExtensions: [".jpg", ".png", ".pdf"], // Restrict upload types
+                maxFileSize: 5 * 1024 * 1024, // Max file size (5MB)
+                minFileSize: 1000, // Min file size
+                invalidFileExtensionMessage: "Invalid file type", // Custom error message
+                invalidMaxFileSizeMessage: "File too large", // Max size message
+                invalidMinFileSizeMessage: "File too small", // Min size message
+                isValid: true, // Validation state
+
+                // ===== UPLOAD CONFIG =====
+                uploadMode: "useButtons", // Upload only when button clicked
+                uploadUrl: "https://tmpfiles.org/api/v1/upload", // Backend API URL
+                uploadMethod: "POST", // HTTP method
+                uploadHeaders: { Authorization: "Bearer token" }, // Custom headers
+                uploadCustomData: { userId: 123 }, // Extra data sent to server
+                chunkSize: 2000000, // Enable chunk upload (2MB per chunk)
+
+                // Custom upload logic
+                uploadFile: function (file, progressCallback) {
+                    console.log("Custom upload:", file.name); // Log file name
+                },
+
+                // Custom chunk upload
+                uploadChunk: function (file, uploadInfo) {
+                    console.log("Uploading chunk:", uploadInfo.chunkIndex); // Chunk index
+                },
+
+                // ===== UI OPTIONS =====
+                selectButtonText: "Select Files", // Select button label
+                uploadButtonText: "Upload Now", // Upload button label
+                labelText: "Drag & Drop files here", // Drop zone text
+                uploadFailedMessage: "Upload failed!", // Error message
+                uploadAbortedMessage: "Upload canceled", // Abort message
+                uploadedMessage: "Upload success", // Success message
+                uploadingMessage: "Uploading...", // Upload progress text
+                showFileList: true, // Show selected files list
+                allowCanceling: true, // Allow cancel button
+                disabled: false, // Enable/disable component
+                readOnly: false, // Read-only mode
+                visible: true, // Visibility
+                width: "100%", // Width
+                height: 200, // Height
+                hint: "Upload your files", // Tooltip
+                rtlEnabled: false, // RTL support
+                tabIndex: 1, // Tab order
+                accessKey: "u", // Keyboard shortcut
+                activeStateEnabled: true, // Click effect
+                hoverStateEnabled: true, // Hover effect
+
+                // ===== HTML ATTRIBUTES =====
+                elementAttr: { class: "my-uploader" }, // Add class to container
+                inputAttr: { id: "fileInput" }, // Input attributes
+
+                // ===== STATE =====
+                value: [], // Selected files
+                progress: 0, // Upload progress
+
+                // ===== EVENTS =====
+
+                // Fires before request is sent
+                onBeforeSend: function (e) {
+                    console.log("Before send");
+                    e.request.setRequestHeader("Custom-Header", "123"); // Add header
+                },
+
+                // UI ready
+                onContentReady: function (e) {
+                    console.log("Component ready");
+                },
+
+                // Component destroyed
+                onDisposing: function (e) {
+                    console.log("Disposed");
+                },
+
+                // Drag enter
+                onDropZoneEnter: function (e) {
+                    console.log("Drag enter");
+                },
+
+                // Drag leave
+                onDropZoneLeave: function (e) {
+                    console.log("Drag leave");
+                },
+
+                // All files uploaded
+                onFilesUploaded: function (e) {
+                    console.log("All uploads done");
+                },
+
+                // Initialized
+                onInitialized: function (e) {
+                    console.log("Initialized");
+                },
+
+                // Option changed
+                onOptionChanged: function (e) {
+                    console.log("Option changed:", e.name);
+                },
+
+                // Upload progress
+                onProgress: function (e) {
+                    console.log("Progress:", e.bytesLoaded);
+                },
+
+                // Upload aborted
+                onUploadAborted: function (e) {
+                    console.log("Upload aborted");
+                },
+
+                // Upload error
+                onUploadError: function (e) {
+                    console.error("Upload error:", e.error);
+                },
+
+                // Upload started
+                onUploadStarted: function (e) {
+                    console.log("Upload started");
+                },
+
+                // File selection changed
+                onValueChanged: function (e) {
+                    console.log("Files selected:", e.value);
+                }
+
+            }).dxFileUploader("instance"); // Get instance
+
+
+            // ===== METHODS USAGE =====
+
+            // Upload all files
+            $("#uploadBtn").click(function () {
+                uploader.upload(); // Start upload
+            });
+
+            // Abort upload
+            $("#abortBtn").click(function () {
+                uploader.abortUpload(); // Cancel all uploads
+            });
+
+            // Remove first file
+            $("#removeBtn").click(function () {
+                uploader.removeFile(0); // Remove file by index
+            });
+
+            // Clear all files
+            $("#clearBtn").click(function () {
+                uploader.clear(); // Reset uploader
+            });
+
+            // Change option dynamically
+            uploader.option("multiple", true); // Enable multiple selection
+
+            // Get option
+            console.log(uploader.option("uploadMode")); // Read uploadMode
+
+            // Reset option
+            uploader.resetOption("multiple"); // Reset to default
+
+            // Repaint UI
+            uploader.repaint(); // Refresh component
+
+            // Focus component
+            uploader.focus(); // Set focus
+
+            // Begin batch update
+            uploader.beginUpdate(); // Stop rendering
+
+            // End batch update
+            uploader.endUpdate(); // Resume rendering
+
+            // Register keyboard shortcut
+            uploader.registerKeyHandler("enter", function () {
+                console.log("Enter pressed");
+            });
+
+        });
+    </script>
+
+    <!-- Buttons for method demo -->
+    <button id="uploadBtn">Upload</button>
+    <button id="abortBtn">Abort</button>
+    <button id="removeBtn">Remove First File</button>
+    <button id="clearBtn">Clear</button>
+
+</body>
+</html>

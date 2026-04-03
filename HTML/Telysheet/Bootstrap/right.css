@@ -1,0 +1,7 @@
+.right{
+    background-image: url("/HTML/Demo/Assets/right.png");
+    background-size: 35px; 
+    background-position: left;
+    background-repeat: no-repeat;
+    background-position-x: -10px;
+}

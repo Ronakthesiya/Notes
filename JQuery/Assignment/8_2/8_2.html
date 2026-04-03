@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <div id="cnt">
+            0
+        </div>
+        <button id="inc"> increment </button>
+        <button id="res"> Reset </button>
+        <div id="consol">
+
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js" integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
+    <script>
+        let cnt = 0;
+
+        $("#inc").on("click",function () {
+            cnt = cnt+1;
+            if(cnt==10){
+                $("#res").trigger("click");
+            }
+            $("#cnt").text(cnt);
+
+            let val = $("#consol").html();
+            $("#consol").html(val+" increment click");
+
+        })
+
+        $("#res").on("click",function () {
+            cnt = 0;
+            $("#cnt").text(cnt);
+            let val = $("#consol").html();
+            $("#consol").html(val+" reset click");
+
+        })
+
+
+
+    </script>
+</body>
+</html>

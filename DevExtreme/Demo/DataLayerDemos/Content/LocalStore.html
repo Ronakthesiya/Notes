@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <!-- DevExtreme CSS -->
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/24.2.3/css/dx.light.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DevExtreme JS -->
+    <script src="https://cdn3.devexpress.com/jslib/24.2.3/js/dx.all.js"></script>
+</head>
+<body>
+    <div id="grid"></div>
+    <script>
+        let data = [
+            { id: 1, name: "asdf", email: "qwer" },
+            { id: 2, name: "sdfg", email: "wert" },
+            { id: 3, name: "dfgh", email: "erty" },
+            { id: 4, name: "asdf", email: "qwer" },
+            { id: 5, name: "sdfg", email: "wert" },
+            { id: 6, name: "dfgh", email: "erty" },
+            { id: 7, name: "asdf", email: "qwer" },
+            { id: 8, name: "sdfg", email: "wert" },
+            { id: 9, name: "dfgh", email: "erty" },
+            { id: 10, name: "asdf", email: "qwer" },
+            { id: 11, name: "sdfg", email: "wert" },
+            { id: 12, name: "dfgh", email: "erty" }
+        ]
+
+        let ld = new DevExpress.data.LocalStore({
+            key: "id",
+            data: data,
+
+            // store in local storage with dx-data-localStore-myLocalData
+            name: "myLocalData",
+
+            // immediate update
+            immediate: false,
+
+            // time after change reflect
+            flushInterval: 5000,
+
+            onInserted: function (e) {
+                console.log(e);
+                console.log("Inserted")
+            },
+
+            onInserting: function (e) {
+                // new insert data
+                console.log(e);
+                console.log("Inserting")
+            },
+
+            onLoaded: function (e) {
+                // e = loaded data array
+                console.log(e)
+                console.log("Loaded")
+            },
+
+            onLoading: function (e) {
+                // e = null object
+                console.log(e)
+                console.log("Loading")
+            },
+
+            onModified: function (e) {
+                // undefine
+                console.log(e)
+                console.log("Modified")
+            },
+
+            onModifying: function (e) {
+                //undefine
+                console.log(e)
+                console.log("Modifying")
+            },
+
+            onRemoved: function (e) {
+                console.log(e)
+                console.log("Removed")
+            },
+
+            onRemoving: function (e) {
+                console.log(e)
+                console.log("Removing")
+            },
+
+            onUpdated: function (e) {
+                console.log(e)
+                console.log("Updated")
+            },
+
+            onUpdating: function (e) {
+                console.log(e)
+                console.log("Updating")
+            },
+
+        });
+
+        $("#grid").dxDataGrid({
+            dataSource: ld
+        })
+
+        console.log("ByKey 3")
+        ld.byKey(4).then(res => console.log(res));
+
+        ld.insert({ id: 20, name: " Ronak" });
+    </script>
+</body>
+</html>

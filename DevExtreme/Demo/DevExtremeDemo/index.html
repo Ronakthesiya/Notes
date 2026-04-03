@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>DevExtreme</title>
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="../Scripts/jquery-3.5.1.min.js"></script>
+
+    <!-- DevExtreme CSS -->
+    <link rel="stylesheet" href="../Content/dx.light.css">
+
+    <!-- DevExtreme JavaScript -->
+    <script type="text/javascript" src="../Scripts/dx.all.js"></script>
+</head>
+<body>
+    <div id="gridContainer"></div>
+
+    <script>
+        $(function () {
+            const demos = [
+                { name: "Basic", link: "Basics/Basics.html" },
+                { name: "CheckBox", link: "FormComponents/CheckBox.html" },
+                { name: "DateBox", link: "FormComponents/DateBox.html" },
+                { name: "DropDown", link: "FormComponents/DropDown.html" },
+            ];
+
+            $("#gridContainer").dxDataGrid({
+                dataSource: demos,
+                showBorders: true,
+
+                paging: {
+                    pageSize: 2
+                },
+
+                pager: {
+                    showPageSizeSelector: true,
+                    allowedPageSizes: [2, 5, 10],
+                    showInfo: true
+                },
+
+                searchPanel: {
+                    visible: true
+                },
+
+                sorting: {
+                    mode: "multiple"
+                },
+
+                columns: [
+                    {
+                        dataField: "name",
+                        caption: "Name"
+                    },
+                    {
+                        dataField: "link",
+                        caption: "Link",
+                        cellTemplate: function (container, options) {
+                            $("<a>")
+                                .attr("href", options.value)
+                                .attr("target", "_self") 
+                                .text("Go to Demo")
+                                .appendTo(container);
+                        }
+                    }
+                ]
+            });
+
+        });
+    </script>
+</body>
+</html>

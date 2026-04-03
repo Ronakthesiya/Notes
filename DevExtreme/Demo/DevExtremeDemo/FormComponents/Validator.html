@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <!-- DevExtreme CSS -->
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/24.2.3/css/dx.light.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DevExtreme Library -->
+    <script src="https://cdn3.devexpress.com/jslib/24.2.3/js/dx.all.js"></script>
+</head>
+<body>
+    <div id="textbox"></div>
+    <div id="textbox1"></div>
+    <div id="age"></div>
+    <div id="numeric"></div>
+    <div id="pattern"></div>
+    <div id="pass"></div>
+    <div id="cpass"></div>
+    <div id="group"></div>
+    <div id="summary"></div>
+    <button id="submitBtn">Submit</button>
+    <script>
+        $(function () {
+            $('#textbox').dxTextBox({
+                label: "Email",
+                labelMode: 'floating'
+            }).dxValidator({
+                validationRules: [
+                    {
+                        type: "required",
+                        message: "Email is Required"
+                    },
+                    {
+                        type: "email",
+                        message: "Invalid email format"
+                    }
+                ]
+            })
+
+            $('#textbox1').dxTextBox({
+                label: "Length 3 - 10",
+                labelMode: 'floating'
+            }).dxValidator({
+                validationRules: [
+                    {
+                        type: "stringLength",
+                        min: 3,
+                        max: 10,
+                        message: "Length is between 3 to 10"
+                    },
+                    {
+                        type: "async",
+                        validationCallback: function (e) {
+                            return new Promise((resolve) => {
+                                setTimeout(() => {
+                                    resolve(e.value != "admin");
+                                }, 1000);
+                            });
+                        },
+                        message: "Username already taken"
+                    }
+                ]
+            })
+
+            $('#age').dxTextBox({
+                label: "Age",
+                labelMode: 'floating'
+            }).dxValidator({
+                validationRules: [
+                    {
+                        type: "range",
+                        min: 18,
+                        max: 100,
+                        message: "Age is between 18 to 100"
+                    }
+                ]
+            })
+
+            $('#numeric').dxTextBox({
+                label: "Numeric",
+                labelMode: 'floating'
+            }).dxValidator({
+                validationRules: [
+                    {
+                        type: "numeric",
+                        message: "Only number allowed"
+                    }
+                ]
+            })
+
+            $('#pattern').dxTextBox({
+                label: "AAA111",
+                labelMode: 'floating'
+            }).dxValidator({
+                validationRules: [
+                    {
+                        type: "pattern",
+                        pattern: "^[A-Z]{3}[0-9]{3}$",
+                        message: "Not a validate pattern"
+                    }
+                ]
+            })
+
+            $('#pass').dxTextBox({
+                label: "Password",
+                labelMode: 'floating'
+            }).dxValidator({
+                validationGroup: 'group',
+                validationRules: [
+                    {
+                        type: "required",
+                        message: "Password is required"
+                    },
+                    {
+                        type: "custom",
+                        validationCallback: function (e) {
+                            return e.value === "admin";
+                        },
+                        message: "Only 'admin' allowed"
+                    }
+                ]
+            })
+
+            $('#cpass').dxTextBox({
+                label: "Confirm Password",
+                labelMode: 'floating'
+            }).dxValidator({
+                validationGroup: 'group',
+                validationRules: [
+                    {
+                        type: "required",
+                        message: "cPassword is required"
+                    },
+                    {
+                        type: "compare",
+                        comparisonTarget: function () {
+                            return $("#pass").dxTextBox("instance").option("value");
+                        },
+                        message: "pass and cpass must be same"
+                    }
+
+                ]
+            })
+
+            $("#group").dxValidationGroup({});
+
+            $("#submitBtn").click(function () {
+                const result = DevExpress.validationEngine.validateGroup("group");
+
+                if (result.isValid) {
+                    alert("Valid!");
+                }
+            });
+
+            $("#summary").dxValidationSummary({
+                validationGroup: "group"
+            });
+        })
+    </script>
+</body>
+</html>

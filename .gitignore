@@ -1,0 +1,5 @@
+.NetCore/Demo/ImageToClip/bin/Debug/net7.0/ffmpeg/ffmpeg.exe
+.NetCore/Demo/ImageToClip/ffmpeg/ffmpeg.exe
+bin/
+obj/
+*.exe

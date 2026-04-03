@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>DevExtreme DataGrid - Virtual Scrolling</title>
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/24.2.3/css/dx.light.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://cdn3.devexpress.com/jslib/24.2.3/js/dx.all.js"></script>
+</head>
+<body>
+    <h1>Scrolling</h1>
+    <div id="grid"></div>
+
+    <h1>Paging</h1>
+    <div id="grid1"></div>
+
+    <script>
+        let url = "https://69c214b97518bf8facbd35ad.mockapi.io/users";
+
+        $(function () {
+            $("#grid").dxDataGrid({
+                dataSource: new DevExpress.data.CustomStore({
+                    key: "id",
+                    load: function () {
+                        return $.ajax({
+                            url: url,
+                            method: "get"
+                        });
+                    }
+                }),
+                height: 200, // height in pixels
+
+                scrolling: {
+                    mode: "virtual",//infinite,virtual,standard
+                    rowRenderingMode: "virtual",
+                    columnRenderingMode: "virtual", // Essential for wide grids
+                    preloadEnabled: true,           // Seamless experience
+                    useNative: false,               // Consistent UI
+                    scrollByContent: true,          // Good for touch users
+                    showScrollbar: "onHover"        // Options: "always", "never", "onHover", "onScroll"
+                }
+
+            })
+
+            $("#grid1").dxDataGrid({
+                dataSource: new DevExpress.data.CustomStore({
+                    key: "id",
+                    load: function () {
+                        return $.ajax({
+                            url: url,
+                            method: "get"
+                        });
+                    }
+                }),
+                paging: {
+                    pageSize: 5
+                },
+                pager: {
+                    visible: true,
+                    showPageSizeSelector: true,
+                    allowedPageSizes: [5, 10, 15, 30],
+                    showInfo: true,
+                    showNavigationButtons: true,
+                    displayMode: "compact" // compact, full
+                }
+
+            })
+        })
+    </script>
+</body>
+</html>

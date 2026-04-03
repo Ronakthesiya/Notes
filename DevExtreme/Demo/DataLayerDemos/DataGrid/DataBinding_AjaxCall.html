@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <!-- DevExtreme CSS -->
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/24.2.3/css/dx.light.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DevExtreme JS -->
+    <script src="https://cdn3.devexpress.com/jslib/24.2.3/js/dx.all.js"></script>
+</head>
+<body>
+    <div id="grid"></div>
+    <script>
+        let url = "https://69c214b97518bf8facbd35ad.mockapi.io/users"
+
+        //let store = new DevExpress.data.CustomStore({
+        //    key: "id",
+        //    load: function () {
+        //        return $.ajax({
+        //            url: url,
+        //            method: "get"
+        //        })
+        //    }
+        //});
+
+        //$("#grid").dxDataGrid({
+        //    dataSource: store,
+        //    key: "id",
+        //})
+
+        $("#grid").dxDataGrid({
+            dataSource: {
+                load: function () {
+                    return $.ajax({
+                        url: url,
+                        method: "GET"
+                    });
+                }
+            },
+
+            scrolling: {
+                mode: "virtual",
+                useNative: false,
+                rowRenderingMode: "virtual",
+                columnRenderingMode: "virtual",
+                scrollByContent: true,
+                showScrollbar: "onHover"
+            },
+
+            paging: {
+                pageSize: 100
+            },
+
+            pager: {
+                visible: true,
+                showPageSizeSelector: true,
+                allowedPageSizes: [5, 10, 15, 30],
+                showInfo: true,
+                showNavigationButtons: true,
+                displayMode: "compact"
+            }
+
+        });
+    </script>
+</body>
+</html>

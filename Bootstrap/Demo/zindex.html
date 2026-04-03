@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+
+        .demo > div {
+            margin: calc(20px * var(--i));
+        
+        }
+
+        .demo > div:hover{
+            margin: calc(20px * (var(--i) + 3));
+            transition-duration: 3s;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container demo">
+        <div style="--i:1" class="position-absolute p-5 z-3 bg-danger" >3</div>
+        <div style="--i:2" class="position-absolute p-5 z-2 bg-primary">2</div>
+        <div style="--i:3" class="position-absolute p-5 z-1 bg-info">1</div>
+        <div style="--i:4" class="position-absolute p-5 z-0 bg-dark">0</div>
+        <div style="--i:5" class="position-absolute p-5 z-n1 bg-warning">-1</div>
+    </div>
+</body>
+</html>

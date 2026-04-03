@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <style>
+        .error{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="" id="UserForm" class="mt-5">
+            <div class="name">
+                <label for="name">Name</label>
+                <input class="form-control" type="text" id="name" name="name">
+            </div>
+            <div class="email">
+                <label for="email">email</label>
+                <input class="form-control" type="text" id="email" name="email">
+            </div>
+            <div class="password">
+                <label for="password">password</label>
+                <input class="form-control" type="text" id="password" name="password">
+            </div>
+            <div class="conpass">
+                <label for="conpass">conform password</label>
+                <input class="form-control" type="text" id="conpass" name="conpass">
+            </div>
+            <button class="btn btn-success mt-3">submit</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js" integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script>
+        $.validator.addMethod("password",function (value) {
+            if(value.length<8){
+                return false;
+            }
+
+            if(!/\d/.test(value)){
+                return false;
+            }
+
+            if(!/[!@#$%^&*()~`]/.test(value)){
+                return false;
+            }
+
+            return true;
+
+        },"enter a password of 8+ char with number, special character");
+
+
+        $("#UserForm").validate({
+            rules:{
+                name:{
+                    required: true
+                },
+                email:{
+                    required: true,
+                    email: true
+                },
+                password:{
+                    required: true,
+                    password: true
+                },
+                conpass:{
+                    required: true,
+                    equalTo: "#password"
+                }
+            }
+        });
+    </script>
+</body>
+</html>

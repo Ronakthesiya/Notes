@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="container">
+        <form action="">
+            <label for="name" class="form-label">Name : </label>
+            <input type="text" name="name" id="name" class="form-control">
+
+            <label for="color" class="form-label">Color : </label>
+            <input type="color" name="color" id="color" class="form-control-color">
+
+            <label for="course" class="form-label">course</label>
+            <select name="course" id="course" class="form-select" multiple>
+                <option value="CSE" selected>CSE</option>
+                <option value="IT">IT</option>
+                <option value="ML">ML</option>
+            </select>
+
+            <label for="subjects" class="from-label">Subjects</label>
+            <div class="form-check">
+                <input type="checkbox" id="Math" name="Math" class="form-check-input" >
+                <label for="Math" class="for-check-lable">Math</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" id="Physics" name="Physics" class="form-check-input">
+                <label for="Physics" class="for-check-lable">Physics</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" id="java" name="java" class="form-check-input">
+                <label for="java" class="for-check-lable">java</label>
+            </div>
+
+            <div>
+                <label for="Male" class="form-label">Male</label>
+                <input type="radio" class="form-radio" name="Gender" id="Male" value="Male">
+
+                <label for="female" class="form-label">female</label>
+                <input type="radio" class="form-radio" name="Gender" id="female" value="female">
+            </div>
+            
+            <label for="age" class="form-label">Age</label>
+            <input type="range" class="form-range" name="age" id="age">
+
+            <button class="btn btn-info" type="submit" value="submit">submit</button>
+            
+        </form>
+    </div>
+</body>
+</html>

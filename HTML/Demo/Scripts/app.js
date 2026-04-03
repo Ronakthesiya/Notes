@@ -1,0 +1,1 @@
+alert("alert from app.js in scripts file");
