@@ -847,3 +847,211 @@ $("#dataGridContainer").dxDataGrid({
     }
 });
 ```
+
+## Columns
+
+### Reorder Columns
+
+- To reorder grid columns, change their order in the columns array.
+- Users can also reorder columns if you enable the ***allowColumnReordering*** property.
+
+```js
+$(function() {
+    $("#dataGrid").dxDataGrid({
+        // ...
+        columns: [{
+            dataField: "FullName"
+        }, {
+            dataField: "Position"
+        }, {
+            dataField: "BirthDate", 
+            dataType: "date",
+        }, {
+            dataField: "HireDate", 
+            dataType: "date",
+        },"City", {
+            dataField: "Country"
+        },
+        "Address",
+        "HomePhone",
+        {
+            dataField: "PostalCode",
+        }],
+        allowColumnReordering: true,
+    });
+});
+```
+
+### Resize Columns
+
+- Grid columns have equal widths by default. You can set each column's width or indicate that all columns should adjust their widths to their content (**columnAutoWidth**).
+- Users can resize columns if you enable the ***allowColumnResizing*** property.
+
+```js
+$(function() {
+    $("#dataGrid").dxDataGrid({
+        // ...
+        columns: [
+        // ...
+        {
+            dataField: "BirthDate", 
+            dataType: "date",
+            width: 100,
+        }, {
+            dataField: "HireDate", 
+            dataType: "date",
+            width: 100,
+        },
+        // ...
+        ],
+        allowColumnResizing: true,
+        columnAutoWidth: true,
+    });
+});
+```
+
+### Fix Columns
+
+- users can scroll the grid horizontally. If you set the ***columnFixing.enabled*** property to true
+
+- You can also enable a column's fixed property in code.
+- This fixes the column to the UI component's left edge.
+- To change the position, set the fixedPosition property.
+
+```js
+$("#dataGrid").dxDataGrid({
+    // ...
+    columnFixing: { enabled: true },
+    columns: [{
+        dataField: "FullName", 
+        fixed: true
+    },
+    // ...
+    ],
+    // ...
+});
+```
+
+### Hide Columns
+
+- To hide a column, set its ***visible*** property to false.
+
+```js
+columns: [
+// ...
+{
+    dataField: "PostalCode",
+    visible: false
+}],
+columnChooser: { enabled: true },
+```
+
+### Sort Data
+
+- The ***sorting.mode*** property specifies whether users can sort grid records by single or multiple columns. This tutorial uses the default sorting mode - single.
+
+- You can also set a column's ***sortOrder*** and ***sortIndex*** properties to specify the initial sorting settings. sortIndex applies only in multiple sorting mode.
+
+```js
+columns: [{
+    dataField: "Country",
+    sortOrder: "asc",
+},
+// ...
+],
+```
+
+### Group Data
+
+- To group data in code, specify a column's groupIndex property. In this tutorial, the groupIndex is specified for the Country column:
+
+```js
+$("#dataGrid").dxDataGrid({
+    columns: [
+    // ...
+    {
+        dataField: "Country",
+        // ...
+        groupIndex: 0,
+    },
+    // ...
+    ],
+    groupPanel: { visible: true },
+});
+```
+
+### Column Types
+
+#### 1. Data Columns
+
+![Data Columns](column-types_data.png)
+
+```js
+$("#dataGridContainer").dxDataGrid({
+    // ...
+    dataSource: [{
+        HireDate: "2017/04/13",
+        // ...
+    },
+    //...
+    ],
+    columns: [{
+        dataField: "HireDate",
+        dataType: "date"
+    }]
+});
+```
+
+#### 2. Band Columns
+
+![Band Columns](BandColumns.png)
+
+```js
+$("#dataGridContainer").dxDataGrid({
+    // ...
+    columns: [{
+        caption: "Contacts",
+        columns: ["Email", "Mobile_Phone", "Skype"]
+    }]
+});
+```
+
+#### 3. Lookups Columns
+
+![Lookups Columns](column-types_lookup.png)
+
+```js
+const orders = [
+    { id: 1, statusId: 1 },
+    { id: 2, statusId: 2 }
+];
+
+const statusList = [
+    { id: 1, name: "Not Started" },
+    { id: 2, name: "In Progress" }
+];
+
+$("#grid2").dxDataGrid({
+    dataSource: orders,
+    columns: [
+        {
+            dataField: "statusId",
+            caption: "Status",
+            lookup: {
+                dataSource: statusList,
+                valueExpr: "id",
+                displayExpr: "name"
+            }
+        },
+        {
+            dataField: "id",
+        }
+    ]
+})
+```
+
+#### Command Column
+
+-- remaining --
+
+

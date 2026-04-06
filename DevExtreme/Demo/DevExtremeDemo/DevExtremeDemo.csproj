@@ -123,6 +123,8 @@
     <Content Include="Content\dx.material.teal.light.css" />
     <Content Include="Content\dx.softblue.compact.css" />
     <Content Include="Content\dx.softblue.css" />
+    <Content Include="Demo\Demo.html" />
+    <Content Include="Demo\Demo.js" />
     <Content Include="FormComponents\Button.html" />
     <Content Include="FormComponents\CheckBox.html" />
     <Content Include="FormComponents\DateBox.html" />

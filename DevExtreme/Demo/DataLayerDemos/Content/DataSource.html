@@ -3,14 +3,12 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
-    <!-- DevExtreme CSS -->
-    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/24.2.3/css/dx.light.css">
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <!-- DevExtreme JS -->
-    <script src="https://cdn3.devexpress.com/jslib/24.2.3/js/dx.all.js"></script>
+ <!--DevExtreme CSS--> 
+<link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/24.2.3/css/dx.light.css">
+ <!--jQuery--> 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ <!--DevExtreme JS--> 
+<script src="https://cdn3.devexpress.com/jslib/24.2.3/js/dx.all.js"></script>
 </head>
 <body>
     <div id="grid"></div>
@@ -19,9 +17,12 @@
 
         var data = new DevExpress.data.DataSource({
             // load data from api
-            load: function () {
+            load: function (loadOptions) {
+                console.log("loadOptions:", loadOptions);
+
                 return fetch(url).then(res => res.json())
             },
+
             // apply filter to data
             filter: [
                 [["id", ">", 10],
@@ -30,10 +31,12 @@
                 "and",
                 ["!", ["name", "startswith", "A"]]
             ],
+
             // map data to new format
             //map: function (item) {
             //    return { nid: item.name + " " + item.id, name: item.name, id: item.id }
             //},
+
             // group maped data based on column list
             //group: ["id"],
 
@@ -42,11 +45,13 @@
                 console.log(e) // undefine, not available
                 console.log("changed")
             },
+
             // call when load function faild and give error
             onLoadError: function (e) {
                 console.log(e); // print the error message
                 console.log("load error")
             },
+
             // call when loading status changed
             onLoadingChanged: function (e) {
                 console.log(e) // true = loading, false = loded
@@ -56,11 +61,14 @@
             pageSize: 3, // row count on one page
             paginate: true, // load data for current page only from database,
             requireTotalCount: true, // rewuire total data count
+
             //searchExpr: ["name"],
             //searchOperation: "contains",
-            //searchValue: "john",
-            //select: ["id"],
-            sort: [{selector: "id",desc:true}]
+            //searchValue: "D",
+
+            //select: ["name"],
+
+            sort: [{selector: "name",desc:false}]
         })
 
 
@@ -68,10 +76,11 @@
             { dataSource: data }
         );
 
-        data.filter(["id", "<", 18]);
+        //data.filter(["id", "<", 18]);
 
-        data.pageIndex(4)
-        data.load();
+        //data.pageIndex(4)
+
+        //data.load();
     </script>
 </body>
 </html>

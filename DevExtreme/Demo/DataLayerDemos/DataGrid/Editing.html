@@ -36,6 +36,14 @@
     <div id="select"></div>
     <div id="deselect"></div>
 
+    <h1>Band columns</h1>
+    <div id="grid1"></div>
+
+    <h1>Lookup columns</h1>
+    <div id="grid2"></div>
+
+
+    <!--grid-->
     <script>
         let url = "https://69c214b97518bf8facbd35ad.mockapi.io/users";
 
@@ -145,12 +153,15 @@
                     }
                 }),
 
+                // ============================ Columns =============================
                 columns: [
                     {
                         dataField: "id",
                         width: "50px",
                         alignment: "center",
-                        allowGrouping: false
+                        allowGrouping: false,
+                        // fixe to left side
+                        fixed: true
                     },
                     {
                         dataField: "name",
@@ -193,6 +204,8 @@
                         dataField: "bod",
                         alignment: "center",
                         dataType: "date",
+                        // default show in Column selector
+                        visible: false
                     },
                     {
                         dataField: "isActive",
@@ -229,6 +242,17 @@
                     }
                 ],
 
+                // Reorder
+                allowColumnReordering: true,
+                // resize change width
+                allowColumnResizing: true,
+                // width based on inner content size
+                columnAutoWidth: true,
+                // Horizontal scrolling
+                // not working
+                //columnFixing: { enabled: true },
+
+                columnChooser: { enabled: true },
                 paging: {
                     pageSize: 5
                 },
@@ -449,8 +473,57 @@
                     gridInstance.deselectRows(arr, true);
                 }
             })
+
+
         });
     </script>
 
+    <!--grid1-->
+    <script>
+        $("#grid1").dxDataGrid({
+            columns: [{
+                caption: 'A',
+                columns: ['A1', 'A2', {
+                    caption: 'A3',
+                    columns: ['A31', 'A32', {
+                        caption: 'A33',
+                        columns: ['A331', 'A332', 'A333']
+                    }]
+                }]
+            }]
+        });
+    </script>
+
+    <!--grid2-->
+    <script>
+
+        const orders = [
+            { id: 1, statusId: 1 },
+            { id: 2, statusId: 2 }
+        ];
+
+        const statusList = [
+            { id: 1, name: "Not Started" },
+            { id: 2, name: "In Progress" }
+        ];
+
+        $("#grid2").dxDataGrid({
+            dataSource: orders,
+            columns: [
+                {
+                    dataField: "statusId",
+                    caption: "Status",
+                    lookup: {
+                        dataSource: statusList,
+                        valueExpr: "id",
+                        displayExpr: "name"
+                    }
+                },
+                {
+                    dataField: "id",
+                }
+            ]
+        })
+    </script>
 </body>
 </html>
