@@ -138,6 +138,10 @@
     <Content Include="FormComponents\Validator.html" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
+    <Content Include="Reconcile2\ArrayStoreDDL\app.js" />
+    <Content Include="Reconcile2\ArrayStoreDDL\index.html" />
+    <Content Include="Reconcile2\CustomStoreDDL\app.js" />
+    <Content Include="Reconcile2\CustomStoreDDL\index.html" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />
     <Content Include="Scripts\cldr\supplemental.js" />
@@ -235,7 +239,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>57636</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44312/</IISUrl>
+          <IISUrl>https://localhost:44322/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

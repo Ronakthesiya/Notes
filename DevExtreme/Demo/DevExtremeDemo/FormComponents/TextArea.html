@@ -30,25 +30,13 @@
     <script>
         $(function () {
 
-            // =========================
-            // INITIALIZATION
-            // =========================
-
             // Create dxTextArea instance
             const textAreaInstance = $("#textArea").dxTextArea({
-
-                // =========================
-                // BASIC OPTIONS
-                // =========================
 
                 value: "Initial Text",              // initial value of textarea
                 placeholder: "Enter description",  // placeholder text when empty
                 name: "myTextArea",                // HTML name attribute for form
                 accessKey: "D",                   // keyboard shortcut (Alt+D)
-
-                // =========================
-                // UI / BEHAVIOR
-                // =========================
 
                 disabled: false,                  // disable component
                 readOnly: false,                 // make textarea read-only
@@ -57,34 +45,18 @@
                 activeStateEnabled: true,        // enable click styling
                 focusStateEnabled: true,         // allow keyboard focus
 
-                // =========================
-                // SIZE / RESIZE
-                // =========================
-
                 width: 400,                      // width of textarea
                 height: 120,                    // fixed height
                 autoResizeEnabled: false,       // disable auto-resize
                 minHeight: 80,                  // minimum height (for auto resize)
                 maxHeight: 300,                 // maximum height
 
-                // =========================
-                // LABEL
-                // =========================
-
                 label: "Description",            // label text
                 labelMode: "floating",           // label behavior
-
-                // =========================
-                // VALIDATION
-                // =========================
 
                 isValid: true,                   // validation state
                 validationErrors: null,          // validation errors
                 validationMessageMode: "auto",   // when to show validation
-
-                // =========================
-                // INPUT ATTRIBUTES
-                // =========================
 
                 elementAttr: {                   // attributes for wrapper div
                     class: "custom-textarea"
@@ -99,22 +71,10 @@
                 spellcheck: true,               // enable spellcheck
                 tabIndex: 1,                    // tab navigation order
 
-                // =========================
-                // VALUE CHANGE CONTROL
-                // =========================
-
                 valueChangeEvent: "keyup",       // update value on keyup
-
-                // =========================
-                // STYLING
-                // =========================
 
                 stylingMode: "outlined",         // outlined / filled / underlined
                 rtlEnabled: false,              // left-to-right layout
-
-                // =========================
-                // BUTTONS
-                // =========================
 
                 buttons: [
                     "clear",                    // built-in clear button
@@ -129,10 +89,6 @@
                         }
                     }
                 ],
-
-                // =========================
-                // EVENTS
-                // =========================
 
                 onInitialized: function (e) {
                     console.log("Initialized"); // component created
@@ -202,11 +158,6 @@
 
             }).dxTextArea("instance"); // get instance for methods
 
-
-            // =========================
-            // METHODS DEMO
-            // =========================
-
             // Focus method
             $("#btnFocus").click(function () {
                 textAreaInstance.focus(); // set focus to textarea
@@ -242,9 +193,6 @@
                 textAreaInstance.dispose(); // destroy component
             });
 
-            // =========================
-            // ADVANCED METHODS
-            // =========================
 
             // Batch updates for performance
             textAreaInstance.beginUpdate(); // stop rendering

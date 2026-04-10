@@ -309,3 +309,6 @@ compositeKeyStore.update(
 });
 ```
 
+## push vs Insert/update/delete
+
+![Alt text](image.png)

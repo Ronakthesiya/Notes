@@ -31,7 +31,6 @@
             // =========================
             const instance = $("#radioGroup").dxRadioGroup({
 
-                // -------- BASIC OPTIONS --------
                 accessKey: "R", // Keyboard shortcut key
                 activeStateEnabled: true, // Enables active state styling
                 focusStateEnabled: true, // Enables focus styling
@@ -42,24 +41,17 @@
                 hint: "Select an option", // Tooltip text
                 name: "demoRadioGroup", // HTML name attribute
 
-                // -------- DATA OPTIONS --------
                 dataSource: data, // Bind data source
                 displayExpr: "name", // Field to display
                 valueExpr: "id", // Field used as value
                 value: 1, // Default selected value
 
-                // -------- LAYOUT --------
                 layout: "vertical", // Layout: vertical or horizontal
 
-                // -------- ITEMS (alternative to dataSource) --------
-                // items: ["A", "B", "C"], // Static items (commented because using dataSource)
-
-                // -------- VALIDATION --------
                 isValid: true, // Validation state
                 validationMessageMode: "auto", // When to show validation message
                 validationMessagePosition: "bottom", // Position of validation message
 
-                // -------- HTML ATTRIBUTES --------
                 elementAttr: { id: "customId", class: "custom-class" }, // Custom HTML attributes
 
                 // =========================
@@ -144,9 +136,7 @@
             // element() - get DOM element
             console.log("Element:", instance.element());
 
-            // =========================
-            // STATIC METHODS
-            // =========================
+           
 
             // getInstance() - get instance from DOM
             const sameInstance = DevExpress.ui.dxRadioGroup.getInstance($("#radioGroup"));

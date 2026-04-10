@@ -1,208 +1,205 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <title>DevExtreme Real Form Demo (Session Storage)</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Registration</title>
 
-    <!-- DevExtreme CSS -->
-    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/23.2.5/css/dx.light.css">
-
-    <!-- jQuery + DevExtreme -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn3.devexpress.com/jslib/23.2.5/js/dx.all.js"></script>
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/23.2.5/css/dx.dark.css" />
+    <link rel="stylesheet" href="Style.css"/>
+   
 </head>
 <body>
+    <!-- Page header -->
+    <div class="page-header">
+        <h1>Employee Registration</h1>
+    </div>
 
-    <h2 style="font-family:sans-serif">Employee Registration Form</h2>
-    <div id="formContainer"></div>
+    <!-- Step Tracker -->
+    <div class="step-tracker">
+        <div class="step-item active" id="st1">
+            <div class="step-circle">
+                <span class="num">1</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <polyline points="20 6 9 17 4 12" />
+                </svg>
+            </div>
+            <span class="step-label">Personal</span>
+        </div>
 
-    <script>
-        $(function () {
+        <div class="step-connector" id="con1"></div>
 
-            const departments = [
-                { id: 1, name: "Engineering", group: "Technical" },
-                { id: 2, name: "QA", group: "Technical" },
-                { id: 3, name: "HR", group: "Management" },
-                { id: 4, name: "Finance", group: "Management" }
-            ];
+        <div class="step-item" id="st2">
+            <div class="step-circle">
+                <span class="num">2</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <polyline points="20 6 9 17 4 12" />
+                </svg>
+            </div>
+            <span class="step-label">Employment</span>
+        </div>
 
-            const manager = [
-                {id:1, name: "ABC"},
-                {id:2, name: "DEF"},
-                { id:3, name: "XYZ"}
-            ];
+        <div class="step-connector" id="con2"></div>
 
-            const roles = ["Developer", "Tester", "Manager", "HR"];
+        <div class="step-item" id="st3">
+            <div class="step-circle">
+                <span class="num">3</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <polyline points="20 6 9 17 4 12" />
+                </svg>
+            </div>
+            <span class="step-label">Skills &amp; Docs</span>
+        </div>
+    </div>
 
-            // Load session data
-            const savedData = sessionStorage.getItem("data");
-            const formData = savedData ? JSON.parse(savedData) : {
-                firstName: "",
-                lastName: "",
-                email: "",
-                age: null,
-                dob: null,
-                isActive: true,
-                gender: "Male",
-                department: null,
-                role: null,
-                bio: ""
-            };
+    <!-- Card -->
+    <div class="form-card">
 
-            $("#formContainer").dxForm({
-                formData: formData,
-                colCount: 2,
-                validationGroup: "employeeForm",
+       
+        <!--STEP 1--> 
+        <div class="step-panel active" id="panel1">
+            <div class="section-strip">
+                <div class="sdot" style="background:#4f8ef7"></div>
+                <h2>Personal Information</h2>
+                <span class="step-count">Step 1 of 3</span>
+            </div>
+            <div class="form-body">
+                <div class="form-grid">
+                    <div class="field-wrap">
+                        <label class="field-label">First Name <span class="req">*</span></label>
+                        <div id="firstName"></div>
+                    </div>
+                    <div class="field-wrap">
+                        <label class="field-label">Last Name <span class="req">*</span></label>
+                        <div id="lastName"></div>
+                    </div>
+                    <div class="field-wrap">
+                        <label class="field-label">Date of Birth <span class="req">*</span></label>
+                        <div id="dob"></div>
+                    </div>
+                    <div class="field-wrap">
+                        <label class="field-label">Gender <span class="req">*</span></label>
+                        <div id="gender"></div>
+                    </div>
+                    <div class="field-wrap">
+                        <label class="field-label">Email Address <span class="req">*</span></label>
+                        <div id="email"></div>
+                    </div>
+                    <div class="field-wrap">
+                        <label class="field-label">Phone Number <span class="req">*</span></label>
+                        <div id="phone"></div>
+                    </div>
+                    <div class="field-wrap col-full">
+                        <label class="field-label">Home Address</label>
+                        <div id="address"></div>
+                    </div>
+                </div>
+            </div>
+            <hr class="divider" />
+            <div class="btn-row one">
+                <div id="btn1Next"></div>
+            </div>
+        </div>
 
-                onFieldDataChanged: function (e) {
-                    sessionStorage.setItem("data", JSON.stringify(e.component.option("formData")));
-                },
+        <!-- ══════════════════════════
+             STEP 2 — Employment
+             Validation group: "step2"
+        ══════════════════════════ -->
+        <div class="step-panel" id="panel2">
+            <div class="section-strip">
+                <div class="sdot" style="background:#a78bfa"></div>
+                <h2>Employment Details</h2>
+                <span class="step-count">Step 2 of 3</span>
+            </div>
+            <div class="form-body">
+                <div class="form-grid">
+                    <div class="field-wrap">
+                        <label class="field-label">Employee ID <span class="req">*</span></label>
+                        <div id="empId"></div>
+                    </div>
+                    <div class="field-wrap">
+                        <label class="field-label">Job Title <span class="req">*</span></label>
+                        <div id="jobTitle"></div>
+                    </div>
+                    <div class="field-wrap">
+                        <label class="field-label">Department <span class="req">*</span></label>
+                        <div id="department"></div>
+                    </div>
+                    <div class="field-wrap">
+                        <label class="field-label">Employment Type <span class="req">*</span></label>
+                        <div id="empType"></div>
+                    </div>
+                    <div class="field-wrap">
+                        <label class="field-label">Joining Date <span class="req">*</span></label>
+                        <div id="joiningDate"></div>
+                    </div>
+                    <div class="field-wrap">
+                        <label class="field-label">Work Location</label>
+                        <div id="workLocation"></div>
+                    </div>
+                    <div class="field-wrap">
+                        <label class="field-label">Salary (₹ / month)</label>
+                        <div id="salary"></div>
+                    </div>
+                    <div class="field-wrap">
+                        <label class="field-label">Reporting Manager</label>
+                        <div id="manager"></div>
+                    </div>
+                </div>
+            </div>
+            <hr class="divider" />
+            <div class="btn-row two">
+                <div id="btn2Back"></div>
+                <div id="btn2Next"></div>
+            </div>
+        </div>
 
-                items: [
-                    {
-                        dataField: "firstName",
-                        label: { text: "First Name" },
-                        validationRules: [{ type: "required" }]
-                    },
-                    {
-                        dataField: "lastName",
-                        label: { text: "Last Name" },
-                        validationRules: [{ type: "required" }]
-                    },
-                    {
-                        dataField: "email",
-                        label: { text: "Email" },
-                        validationRules: [
-                            { type: "required" },
-                            {
-                                type: "email",
-                                message: "Invalid email format, please go to google account manager and copy email"
-                            }
-                        ]
-                    },
-                    {
-                        dataField: "age",
-                        label: { text: "Age" },
-                        editorType: "dxNumberBox",
-                        editorOptions: { min: 18, max: 60 }
-                    },
-                    {
-                        dataField: "dob",
-                        label: { text: "Date of Birth" },
-                        editorType: "dxDateBox"
-                    },
-                    {
-                        dataField: "isActive",
-                        label: { text: "Active Employee" },
-                        editorType: "dxCheckBox"
-                    },
-                    {
-                        dataField: "gender",
-                        label: { text: "Gender" },
-                        editorType: "dxRadioGroup",
-                        editorOptions: {
-                            items: ["Male", "Female", "Other"]
-                        }
-                    },
-                    {
-                        dataField: "role",
-                        label: { text: "Role (Search + Custom)" },
-                        editorType: "dxSelectBox",
-                        editorOptions: {
-                            dataSource: roles,
-                            searchEnabled: true,
-                            acceptCustomValue: true
-                        }
-                    },
-                    {
-                        dataField: "department",
-                        label: { text: "Department (Grouped)" },
-                        editorType: "dxSelectBox",
-                        editorOptions: {
-                            dataSource: new DevExpress.data.DataSource({
-                                store: departments,
-                                group: "group"
-                            }),
-                            displayExpr: "name",
-                            valueExpr: "id",
-                            grouped: true
-                        }
-                    },
-                    {
-                        dataField: "manager",
-                        label: { text: "Manager (Dropdown)" },
-                        editorType: "dxDropDownBox",
-                        editorOptions: {
-                            dataSource: manager,
-                            valueExpr: "id",
-                            displayExpr: "name",
-                            placeholder: "Select manager",
-                            contentTemplate: function (e) {
-                                return $("<div>").dxDataGrid({
-                                    dataSource: manager,
-                                    columns: ["id", "name"],
-                                    selection: { mode: "single" },
-                                    showBorders: true,
-                                    onSelectionChanged: function (s) {
-                                        if (s.selectedRowsData.length) {
-                                            const selected = s.selectedRowsData[0];
+        <!-- ══════════════════════════
+             STEP 3 — Skills & Docs
+             Validation group: "step3"
+        ══════════════════════════ -->
+        <div class="step-panel" id="panel3">
+            <div class="section-strip">
+                <div class="sdot" style="background:#34d399"></div>
+                <h2>Skills &amp; Documents</h2>
+                <span class="step-count">Step 3 of 3</span>
+            </div>
+            <div class="form-body">
+                <div class="form-grid">
+                    <div class="field-wrap col-full">
+                        <label class="field-label">Skills / Technologies <span class="req">*</span></label>
+                        <div id="skills"></div>
+                    </div>
+                    <div class="field-wrap col-full">
+                        <label class="field-label">Upload Resume / Documents</label>
+                        <div id="fileUpload"></div>
+                    </div>
+                    <div class="field-wrap col-full">
+                        <label class="field-label">Additional Notes</label>
+                        <div id="notes"></div>
+                    </div>
+                    <div class="field-wrap col-full" style="flex-direction:row;align-items:center;gap:12px;padding-top:4px;">
+                        <div id="agree"></div>
+                        <span style="font-size:13px;color:var(--muted);">
+                            I confirm all provided information is accurate and complete.
+                            <span style="color:var(--error)">*</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <hr class="divider" />
+            <div class="btn-row three">
+                <div id="btn3Back"></div>
+                <div id="btn3Reset"></div>
+                <div id="btn3Submit"></div>
+            </div>
+        </div>
 
-                                            e.component.option("value", selected.id);
-                                            e.component.close();                 
-                                        }
-                                    }
-                                });
-                            },
-                        }
-                    },
-                    {
-                        dataField: "resume",
-                        label: { text: "Upload Resume" },
-                        editorType: "dxFileUploader",
-                        editorOptions: {
-                            accept: ".pdf,.doc,.docx,.png",
-                            uploadMode: "useForm"
-                        }
-                    },
-                    {
-                        dataField: "bio",
-                        label: { text: "Short Bio" },
-                        editorType: "dxTextArea"
-                    },
-                    {
-                        itemType: "button",
-                        colSpan: 2,
-                        buttonOptions: {
-                            text: "Submit",
-                            type: "success",
-                            onClick: function () {
-                                const result = DevExpress.validationEngine.validateGroup("employeeForm");
-                                if (result.isValid) {
-                                    DevExpress.ui.notify("Employee saved successfully!", "success", 2000);
-                                    console.log("Submitted Data:", formData);
-                                } else {
-                                    DevExpress.ui.notify("Please fix validation errors", "error", 2000);
-                                }
-                            }
-                        }
-                    },
-                    {
-                        itemType: "button",
-                        colSpan: 2,
-                        buttonOptions: {
-                            text: "Clear Session",
-                            type: "danger",
-                            onClick: function () {
-                                sessionStorage.removeItem("data");
-                                location.reload();
-                            }
-                        }
-                    }
-                ]
-            });
+    </div><!-- /form-card -->
 
-        });
-    </script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn3.devexpress.com/jslib/23.2.5/js/dx.all.js"></script>
+   
+    <script src="app.js"></script>
 </body>
 </html>

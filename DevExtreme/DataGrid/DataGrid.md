@@ -1050,8 +1050,606 @@ $("#grid2").dxDataGrid({
 })
 ```
 
-#### Command Column
+### Command Column
 
--- remaining --
+![Alt text](Command_Columns.png)
+
+1. Adaptive column
+- Contains ellipsis buttons that expand/collapse adaptive detail rows.
+
+2. Selection column
+- Contains checkboxes that select rows. Appears when selection.mode is "multiple" and showCheckBoxesMode is not "none".
+
+3. Group expand column
+- Contains arrow buttons that expand/collapse groups.
+
+4. Detail expand column
+- Contains arrow buttons that expand/collapse detail sections.
+
+5. Button column (custom command column)
+- Contains buttons that execute custom actions. 
+
+6. Edit column
+- A Button column pre-populated with edit commands. 
+
+7. Drag Column
+- Contains drag icons. Appears when a column's type is "drag", and the allowReordering and showDragIcons properties of the rowDragging object are true.
+
+#### Configure a Command Column
+- All columns are configured in the columns array. Assign a command column's name to the type property and specify the other column properties.
+
+```js
+$("#dataGridContainer").dxDataGrid({
+    // ...
+    columns: [{
+        type: "adaptive",
+        width: 50
+    }]
+})
+```
+
+```js
+columns: [{
+    type: "selection",
+    cellTemplate: function ($cellElement, cellInfo) {
+        // Render custom cell content here
+    },
+    headerCellTemplate: function ($headerElement, headerInfo) {
+        // Render custom header content here
+    }
+}]
+
+// buttons column config
+columns: [{
+    type: "buttons",
+    buttons: [{
+        name: "save",
+        cssClass: "my-class"
+    }, "edit", "delete"]
+}]
+
+
+// custom onClick
+columns: [{
+    type: "buttons",
+    buttons: [{
+        name: "edit",
+        onClick: function(e) {
+            // Custom implementation goes here
+            e.component.editRow(e.row.rowIndex);
+            e.event.preventDefault();
+        }
+    }, "delete"]
+}]
+
+
+// hide the button
+columns: [{
+    type: "buttons",
+    buttons: ["edit"] // The Delete button is hidden
+}]
+
+
+// Add custom button
+columns: [{
+    type: "buttons",
+    buttons: ["edit", "delete", {
+        text: "Save",
+        icon: "add",
+        hint: "Save Row",
+        onClick: function (e) {
+            savedRows.push(e.row.data);
+        }
+    }]
+}]
+```
+
+### State Storing
+
+- State storing enables the UI component to save applied settings and restore them the next time the UI component is loaded.
+- Assign true to the **stateStoring.enabled** property to enable this functionality.
+
+- State storing saves the following properties :
+
+- Grid-level: 
+    - filterValue — active filter builder filter
+    - focusedRowKey — which row was focused
+    - selectedRowKeys / selectionFilter — selected rows
+    - filterPanel.filterEnabled — whether the filter panel is active
+    - paging.pageSize / paging.pageIndex — current page info
+    - searchPanel.text — search text
+
+- Column-level (per column):
+    - dataField, dataType
+    - filterType, filterValue, filterValues, selectedFilterOperation — all filter state
+    - fixed, fixedPosition — whether the column is pinned
+    - groupIndex — grouping order
+    - sortIndex, sortOrder — sorting
+    - visible, visibleIndex — column visibility and order
+    - width — column resize width
+    - name — column identifier used for matching during restore
+
+- ***stateStoring*** Properties :
+
+```js
+stateStoring: {
+    enabled: true,  // turn on state persistence;  default false
+
+    /*
+    type: default = localStorage
+    "sessionStorage" — the state is stored for the duration of the browser's session.
+    "localStorage" — the state is stored in the window.localStorage object and has no expiration time.
+    "custom" — puts state storing into manual mode. You need to implement the customSave and customLoad functions
+    */
+    type: "localStorage",
+
+    // Specifies the key for storing the UI component state. Type: String. Default Value: null
+    storageKey: "myKey",
+
+    // Specifies the delay in milliseconds between when a user makes a change and when this change is saved. Type: Number. Default Value: 2000.
+    savingTimeout: 500,
+
+    /*
+    customLoad
+    Specifies a function that is executed on state loading. Applies only if the type is 'custom'.
+    It must return a Promise that resolves with the state object.
+
+    customSave
+    Specifies a function that is executed on state change. Applies only if the type is "custom". 
+    Function parameter: gridState (Object) — the current UI component state. 
+    */
+}
+```
+
+- ***state()*** method
+- You can reset or read the grid state using the state() method:
+
+```js
+// Get current state
+var currentState = $("#dataGridContainer").dxDataGrid("instance").state();
+console.log(currentState);
+
+// Reset to default (clear all saved state)
+$("#dataGridContainer").dxDataGrid("instance").state(null);
+
+// Apply a specific saved state programmatically
+var myState = {
+    pageIndex: 0,
+    pageSize: 20,
+    columns: [
+        { dataField: "Name", sortOrder: "asc", sortIndex: 0, visible: true, visibleIndex: 0 }
+    ]
+};
+$("#dataGridContainer").dxDataGrid("instance").state(myState);
+```
+
+#### custome store Example
+
+```js
+function sendStorageRequest(storageKey, dataType, method, data) {
+    var deferred = new $.Deferred();
+    $.ajax({
+        url: "https://yourapi.com/grid-state/" + storageKey,
+        headers: { "Content-Type": "application/json" },
+        method: method,
+        data: data ? JSON.stringify(data) : null,
+        dataType: dataType,
+        success: function(data) { deferred.resolve(data); },
+        error: function() { deferred.reject(); }
+    });
+    return deferred.promise();
+}
+
+$("#dataGridContainer").dxDataGrid({
+    // ...
+    stateStoring: {
+        enabled: true,
+        type: "custom",
+        customLoad: function() {
+            // Return a promise — grid waits for it before rendering
+            return sendStorageRequest("employeeGrid", "json", "GET");
+        },
+        customSave: function(state) {
+            // Called whenever grid state changes (debounced by savingTimeout)
+            sendStorageRequest("employeeGrid", "text", "PUT", state);
+        }
+    }
+});
+```
+
+## Appearance
+
+### Customize the Value and Text
+
+- Use the **customizeText** function to customize the text displayed in cells.
+- Note that this text is not used to sort, filter, and group data or calculate summaries.
+
+```js
+columns: [{
+    dataField: "Price",
+    customizeText: function(cellInfo) {
+        return cellInfo.value + "$";
+    }
+}]
+```
+
+- To use the text displayed in cells in those data processing operations, specify the **calculateCellValue** function instead.
+
+```js
+columns: [{
+    caption: "Full Name",
+    calculateCellValue: function (rowData) {
+        return rowData.firstName + " " + rowData.lastName;
+    }
+}]
+```
+
+### Customize Cell Appearance
+
+#### Apply a Style to All Cells in a Column
+
+- You can use CSS rules and assign a class to the **columns.cssClass**
+
+#### Apply a Style to Individual Cells or Rows
+
+#### onCellPrepared
+
+```js
+$("#dataGridContainer").dxDataGrid({
+    onCellPrepared: function(e) {
+        if (e.rowType === "data") {
+            if (e.column.dataField === "Speed" && e.data.Speed > e.data.SpeedLimit) {
+                e.cellElement.css({"color":"white", "background-color":"red"});
+                // or
+                e.cellElement.addClass("my-class");
+            }
+        }
+    }
+});
+```
+
+#### cellTemplate
+
+```js
+$("#dataGridContainer").dxDataGrid({
+    // ...
+    columns: [{
+        dataField: 'Speed',
+        cellTemplate: function(container, cellInfo) {
+            const valueDiv = $("<div>").text(cellInfo.value);
+            if (cellInfo.data.Speed > cellInfo.data.SpeedLimit) {
+                valueDiv.css({"color":"white", "background-color":"red"});
+            }
+            return valueDiv;
+        }
+    }]
+});
+```
+
+### row
+
+#### onRowPrepared
+
+```js
+$("#dataGridContainer").dxDataGrid({
+    onRowPrepared: function(e) {
+        if (e.rowType === "data") {
+            if (e.data.Speed > e.data.SpeedLimit) {
+                e.rowElement.css({"color":"white", "background-color":"red"});
+                e.rowElement.addClass("my-class");
+                e.rowElement.removeClass("dx-row-alt");
+            }
+        }
+    }
+});
+```
+
+### Customize Editors
+
+-The columns's dataType defines a cell's editor that can be configured using the **editorOptions** object
+
+#### onEditorPreparing
+
+```js
+$("#dataGridContainer").dxDataGrid({
+    // ...
+    columns: [{
+        dataField: "Note",
+        editorOptions: {
+            height: 200
+        }
+    }, // ...
+    ],
+    onEditorPreparing: function(e) {
+        if (e.dataField == "Note" && e.parentType === "dataRow") {
+            const defaultValueChangeHandler = e.editorOptions.onValueChanged;
+            e.editorName = "dxTextArea"; // Change the editor's type
+            e.editorOptions.onValueChanged = function (args) {  // Override the default handler
+                // ...
+                // Custom commands go here
+                // ...
+                // If you want to modify the editor value, call the setValue function:
+                // e.setValue(newValue);
+                // Otherwise, call the default handler:
+                defaultValueChangeHandler(args);
+            }
+        }
+    }
+});
+```
+
+#### editCellTemplate
+
+```js
+columns: [{
+    dataField: "isChecked",
+    editCellTemplate: function(cellElement, cellInfo) {
+        $("<div />").dxSwitch({
+            width: 50,
+            switchedOnText: "YES",
+            switchedOffText: "NO",
+            value: cellInfo.value,
+            onValueChanged: function(e) {
+                cellInfo.setValue(e.value);
+            }
+        }).appendTo(cellElement);
+    }
+}],
+```
+
+### Form Editing
+
+```js
+columns: [
+    {
+        dataField: "ID",
+        formItem: {
+            visible: false
+        }
+    }, {
+        dataField: "Notes",
+        formItem: {
+            colSpan: 2, 
+            cssClass: "custom-class",
+            editorType: 'dxTextArea',
+            label: {
+                location: "top"
+            },
+            editorOptions: {
+                height: 100,
+            },
+            ...
+        }
+    },
+    // ...
+]
+```
+
+
+```js
+onEditorPreparing: function(e) {
+    if (e.dataField === "Notes" && e.parentType === "dataRow") {
+        e.editorName = "dxTextArea";
+    }
+    if (e.dataField === "requiredDataField" && e.parentType === "dataRow") {
+        const defaultValueChangeHandler = e.editorOptions.onValueChanged;
+        e.editorOptions.onValueChanged = function(args) { // override the default handler
+            if (someCondition(e, args)) doSomething(e, args);
+            defaultValueChangeHandler(args);
+        }
+    }
+}
+```
+
+### Toolbar Customize
+
+-  To add or remove toolbar items, declare the toolbar.items[] array.
+- Declare a toolbar item element and specify the name and properties that you want to customize (see the "addRowButton" configuration in the code below).
+- If a control does not need customization, include its name only.
+- Ensure that items[] contain controls for all features that you enabled in your DataGrid.
+
+```js
+toolbar: {
+        items: [
+            "groupPanel",
+            {
+                location: "after",
+                widget: "dxButton",
+                options: {
+                    text: "Collapse All",
+                    width: 136,
+                    onClick(e) {
+                        const expanding = e.component.option("text") === "Expand All";
+                        dataGrid.option("grouping.autoExpandAll", expanding);
+                        e.component.option("text", expanding ? "Collapse All" : "Expand All");
+                    },
+                },
+            },
+            {
+                name: "addRowButton",
+                showText: "always"
+            },
+            "exportButton",
+            "columnChooserButton",
+            "searchPanel"
+        ]
+    },
+```
+
+## Templates
+
+### button template
+
+```js
+columns: [
+    {
+        type: "buttons",
+        buttons: [{
+            template: function(data) {
+                return $("<div>").addClass("dx-icon-email").css("display", "inline-block");
+            },
+        }]
+    }
+]
+```
+
+### cellTemplate
+
+- container = cell element (DOM)
+    - You append/customize UI here
+
+- options = cell data info
+
+| Property   | Description             |
+| ---------- | ----------------------- |
+| `value`    | Raw value               |
+| `text`     | Formatted display value |
+| `data`     | Full row data           |
+| `rowIndex` | Row index               |
+| `column`   | Column config           |
+| `key`      | Row key                 |
+
+
+```js
+columns: [{
+    dataField: 'ProductName', 
+    dataType: 'string',
+    cellTemplate(container, info) {
+        const getter = (data) => data.Amount;
+        const handler = (newValue) => {
+            container.css('background-color', newValue < 100000 ? 'red' : 'green');
+        };
+        info.watch(getter, handler);
+        return $('<div>').text(info.data.ProductName);
+    }
+}]
+```
+
+### cellTemplate vs onCellPrepared
+| Feature        | cellTemplate     | onCellPrepared      |
+| -------------- | ---------------- | ------------------- |
+| When it runs   | During rendering | After rendering     |
+| Change content | ✅ Yes            | ❌ No                |
+| Change style   | ✅ Yes            | ✅ Yes               |
+| Use case       | UI creation      | Styling, conditions |
+
+### editCellTemplate
+
+- editCellTemplate is used to customize the editor (input UI) when a cell is in edit mode.
+
+- cellTemplate → display mode
+- editCellTemplate → edit mode
+
+- cellElement
+    - DOM element of the editing cell   
+    - You append your editor here
+
+- cellInfo
+| Property             | Description   |
+| -------------------- | ------------- |
+| `value`              | Current value |
+| `data`               | Full row data |
+| `setValue(newValue)` | Update value  |
+| `column`             | Column config |
+| `row`                | Row info      |
+
+
+```js
+{
+    dataField: "status",
+    editCellTemplate: function (cellElement, cellInfo) {
+        $("<div>").dxSelectBox({
+            dataSource: [
+                { id: true, text: "Active" },
+                { id: false, text: "Inactive" }
+            ],
+            valueExpr: "id",
+            displayExpr: "text",
+            value: cellInfo.value,
+            onValueChanged: function (e) {
+                cellInfo.setValue(e.value);
+            }
+        }).appendTo(cellElement);
+    }
+}
+```
+
+### groupCellTemplate
+
+- groupCellTemplate is used to customize the UI of group rows (group headers).
+
+- When you group data like this:
+
+```js
+columns: [{
+    dataField: "country",
+    groupIndex: 0
+}]
+```
+
+- DataGrid creates rows like:
+
+    - Country: India (10 items)
+    - Country: USA (5 items)
+
+- These rows are called group rows
+- And groupCellTemplate lets you customize them
+
+#### Parameters
+
+- element
+    - DOM element of the group cell
+    - You append UI here
+
+- options
+| Property       | Description                |
+| -------------- | -------------------------- |
+| `value`        | Group value (e.g. "India") |
+| `displayValue` | Formatted value            |
+| `data.key`     | Same as value              |
+| `data.items`   | All rows inside this group |
+| `column`       | Column config              |
+| `component`    | DataGrid instance          |
+
+
+```js
+groupCellTemplate: function (element, options) {
+    let count = options.data.items.length;
+
+    element.text(options.value + " (" + count + " items)");
+}
+
+groupCellTemplate: function (element, options) {
+    $("<div>")
+        .text(options.value)
+        .css({
+            fontWeight: "bold",
+            color: "blue",
+            fontSize: "16px"
+        })
+        .appendTo(element);
+}
+```
+
+### headerCellTemplate
+
+- headerCellTemplate is used to customize the header (top row) of a column.
+
+
+#### Parameter
+
+- headerElement
+    - DOM element of header cell
+    - You append content here
+
+- info
+
+| Property         | Description          |
+| ---------------- | -------------------- |
+| `column`         | Column configuration |
+| `column.caption` | Header text          |
+| `component`      | DataGrid instance    |
+
+
 
 

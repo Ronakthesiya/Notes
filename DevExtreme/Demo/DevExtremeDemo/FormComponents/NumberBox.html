@@ -37,13 +37,10 @@ $(function(){
     // Create dxNumberBox instance
     var numberBox = $("#numberBox").dxNumberBox({
 
-        /*
-           BASIC OPTIONS
-       */
 
         value: 10, // initial value of NumberBox
 
-        min: 0, // minimum allowed value
+        min: -100, // minimum allowed value
 
         max: 100, // maximum allowed value
 
@@ -68,18 +65,14 @@ $(function(){
         accessKey: "Q", // keyboard shortcut to focus component
 
 
-        /*
-           LABEL OPTIONS
-       */
+        //LABEL OPTIONS
 
         label: "Quantity", // label displayed for the input
 
         labelMode: "floating", // floating label style (static | floating | hidden | outside)
 
 
-        /*
-           STYLE OPTIONS
-       */
+        // STYLE OPTIONS
 
         stylingMode: "outlined", // visual style (outlined | filled | underlined)
 
@@ -90,9 +83,9 @@ $(function(){
         activeStateEnabled: true, // enables active click effect
 
 
-        /*
-           INPUT BEHAVIOR OPTIONS
-       */
+        
+         //  INPUT BEHAVIOR OPTIONS
+       
 
         mode: "number", // HTML input type (number, text, tel)
 
@@ -105,19 +98,18 @@ $(function(){
         invalidValueMessage: "Please enter a valid number", // error message for invalid input
 
 
-        /*
-           FORMAT OPTIONS
-       */
+        //   FORMAT OPTIONS
 
         format: {
-            type: "fixedPoint", // number format
+            type: "fixedPoint", // number format => person, decimal, currency
             precision: 2 // number of decimal places
         },
 
+        // positive + ';' + nagative
+        //format: "+#,##0.##;-(#,##0.##)",
 
-        /*
-           INPUT ATTRIBUTES
-       */
+
+        //   INPUT ATTRIBUTES
 
         inputAttr: {
             id: "qtyInput", // custom input id
@@ -126,9 +118,7 @@ $(function(){
         },
 
 
-        /*
-           EVENTS
-       */
+        // EVENTS
 
         // fires when component is initialized
         onInitialized: function(e){
@@ -210,9 +200,7 @@ $(function(){
     }).dxNumberBox("instance"); // get component instance
 
 
-    /*
-       METHODS DEMO
-   */
+    // METHODS DEMO
 
 
     // focus method

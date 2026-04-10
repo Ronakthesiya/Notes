@@ -1,0 +1,13 @@
+﻿.LowSalary{
+    background-color: lightcoral;
+    margin: 10px;
+}
+
+.HighSalary {
+    background-color: lightgreen;
+    margin: 10px;
+}
+
+.notActive{
+    background-color: lightgray;
+}

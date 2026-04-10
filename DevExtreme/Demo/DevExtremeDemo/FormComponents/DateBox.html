@@ -42,7 +42,7 @@
         instance.option("applyButtonText", "ronak");
 
         // working
-        instance.option("activeStateEnabled", false);
+        instance.option("activeStateEnabled", true);
 
         // cahnge the text of cancel btn
         instance.option("cancelButtonText", "wrong");
@@ -185,7 +185,10 @@
 
         setTimeout(function () {
             instance.close();
-        },2000);
+        }, 2000);
+
+        // use can enter only value in display fomate
+        instance.option("useMaskBehavior" , true)
 
 
     </script>

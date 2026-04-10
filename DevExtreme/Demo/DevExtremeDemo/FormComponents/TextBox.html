@@ -28,18 +28,11 @@
             // Create TextBox instance
             const textBoxInstance = $("#textBox").dxTextBox({
 
-                // =========================
-                // BASIC OPTIONS
-                // =========================
 
                 value: "Hello DevExtreme",     // initial value of textbox
                 placeholder: "Enter text...",  // placeholder text when empty
                 name: "myTextBox",             // HTML name attribute (form usage)
                 accessKey: "T",                // keyboard shortcut (Alt+T)
-
-                // =========================
-                // UI / BEHAVIOR OPTIONS
-                // =========================
 
                 disabled: false,               // disable input
                 readOnly: false,               // make read-only
@@ -48,33 +41,16 @@
                 activeStateEnabled: true,     // enable active (click) effect
                 focusStateEnabled: true,      // enable keyboard focus
 
-                // =========================
-                // SIZE / STYLE
-                // =========================
-
                 width: 300,                   // width of textbox
                 height: 100,                   // height of textbox
                 stylingMode: "outlined",      // UI style (outlined / filled / underlined)
 
-                // =========================
-                // LABEL
-                // =========================
-
                 label: "Username",            // label text
                 labelMode: "floating",        // label behavior (floating / static)
-
-                // =========================
-                // VALIDATION
-                // =========================
 
                 isValid: true,                // validation status
                 validationErrors: null,       // validation errors array
                 validationMessageMode: "auto",// when to show validation message
-
-                // =========================
-                // INPUT ATTRIBUTES
-                // =========================
-
                 elementAttr: {                // attributes for wrapper div
                     class: "my-textbox"
                 },
@@ -87,15 +63,7 @@
                 maxLength: 50,                // max characters allowed
                 tabIndex: 1,                 // tab order
 
-                // =========================
-                // VALUE CHANGE
-                // =========================
-
                 valueChangeEvent: "keyup",    // event that updates value
-
-                // =========================
-                // BUTTONS
-                // =========================
 
                 buttons: [
                     "clear",                 // built-in clear button
@@ -111,9 +79,7 @@
                     }
                 ],
 
-                // =========================
                 // EVENTS
-                // =========================
 
                 onInitialized: function (e) {
                     console.log("Initialized"); // when component is created
@@ -179,9 +145,7 @@
             }).dxTextBox("instance"); // get instance for method usage
 
 
-            // =========================
             // METHODS DEMO
-            // =========================
 
             // Focus method
             $("#btnFocus").click(function () {

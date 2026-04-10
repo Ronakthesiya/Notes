@@ -28,13 +28,11 @@
             // Initialize dxFileUploader
             const uploader = $("#fileUploader").dxFileUploader({
 
-                // ===== BASIC OPTIONS =====
                 accept: "image/*,.pdf", // Allowed file types in dialog
                 multiple: true, // Allow multiple file selection
                 name: "file", // Name sent to backend
                 dialogTrigger: "#customBtn", // Custom button to open file dialog
 
-                // ===== VALIDATION =====
                 allowedFileExtensions: [".jpg", ".png", ".pdf"], // Restrict upload types
                 maxFileSize: 5 * 1024 * 1024, // Max file size (5MB)
                 minFileSize: 1000, // Min file size
@@ -43,7 +41,6 @@
                 invalidMinFileSizeMessage: "File too small", // Min size message
                 isValid: true, // Validation state
 
-                // ===== UPLOAD CONFIG =====
                 uploadMode: "useButtons", // Upload only when button clicked
                 uploadUrl: "https://tmpfiles.org/api/v1/upload", // Backend API URL
                 uploadMethod: "POST", // HTTP method
@@ -61,7 +58,6 @@
                     console.log("Uploading chunk:", uploadInfo.chunkIndex); // Chunk index
                 },
 
-                // ===== UI OPTIONS =====
                 selectButtonText: "Select Files", // Select button label
                 uploadButtonText: "Upload Now", // Upload button label
                 labelText: "Drag & Drop files here", // Drop zone text
@@ -83,11 +79,9 @@
                 activeStateEnabled: true, // Click effect
                 hoverStateEnabled: true, // Hover effect
 
-                // ===== HTML ATTRIBUTES =====
                 elementAttr: { class: "my-uploader" }, // Add class to container
                 inputAttr: { id: "fileInput" }, // Input attributes
 
-                // ===== STATE =====
                 value: [], // Selected files
                 progress: 0, // Upload progress
 
