@@ -15,6 +15,7 @@
 <body>
     <div id="grid"></div>
     <script>
+
         let dataArray = [
             { id: 1, name: "asdf", email: "qwer" },
             { id: 2, name: "sdfg", email: "wert" },
@@ -30,9 +31,28 @@
             { id: 12, name: "dfgh", email: "erty" }
         ]
 
+        // direct bind
+
         $("#grid").dxDataGrid({
             dataSource : dataArray,
             key : "id"
+        })
+
+
+        // create a datasource and bind it
+
+        let store = new DevExpress.data.ArrayStore({
+            data: dataArray,
+            key: "id"
+        })
+
+
+        let source = new DevExpress.data.DataSource({
+            store: store
+        })
+
+        $("#grid").dxDataGrid({
+            dataSource: source,
         })
     </script>
 </body>

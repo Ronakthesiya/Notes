@@ -11,15 +11,25 @@
 </head>
 <body>
     <h1>Scrolling</h1>
+    <h2>Infinite</h2>
     <div id="grid"></div>
 
-    <h1>Paging</h1>
+    <h2>Virtual</h2>
     <div id="grid1"></div>
+
+    <h2>standard</h2>
+    <div id="grid2"></div>
+
+    <h1>Paging</h1>
+    <div id="grid3"></div>
 
     <script>
         let url = "https://69c214b97518bf8facbd35ad.mockapi.io/users";
 
         $(function () {
+
+            // Scrolling ======================================
+
             $("#grid").dxDataGrid({
                 dataSource: new DevExpress.data.CustomStore({
                     key: "id",
@@ -30,21 +40,64 @@
                         });
                     }
                 }),
-                height: 200, // height in pixels
+                height: 400, // height in pixels
 
                 scrolling: {
-                    mode: "virtual",//infinite,virtual,standard
-                    rowRenderingMode: "virtual",
-                    columnRenderingMode: "virtual", // Essential for wide grids
+                    mode: "infinite", // infinite, virtual, standard
                     preloadEnabled: true,           // Seamless experience
                     useNative: false,               // Consistent UI
-                    scrollByContent: true,          // Good for touch users
                     showScrollbar: "onHover"        // Options: "always", "never", "onHover", "onScroll"
                 }
-
             })
 
+
             $("#grid1").dxDataGrid({
+                dataSource: new DevExpress.data.CustomStore({
+                    key: "id",
+                    load: function () {
+                        return $.ajax({
+                            url: url,
+                            method: "get"
+                        });
+                    }
+                }),
+                height: 400, // height in pixels
+                //remoteOperations: true,
+                scrolling: {
+                    mode: "virtual", // infinite, virtual, standard
+                    rowRenderingMode: 'virtual',
+                    columnRenderingMode: 'virtual',
+                    preloadEnabled: true,           // Seamless experience
+                    useNative: false,               // Consistent UI
+                    showScrollbar: "onHover",        // Options: "always", "never", "onHover", "onScroll"
+                    scrollByThumb: false  // not allow to scroll by drag
+                }
+            })
+
+
+            $("#grid2").dxDataGrid({
+                dataSource: new DevExpress.data.CustomStore({
+                    key: "id",
+                    load: function () {
+                        return $.ajax({
+                            url: url,
+                            method: "get"
+                        });
+                    }
+                }),
+                height: 400, // height in pixels
+
+                scrolling: {
+                    mode: "standard", // infinite, virtual, standard
+                    preloadEnabled: true,           // Seamless experience
+                    useNative: false,               // Consistent UI
+                    showScrollbar: "onHover"        // Options: "always", "never", "onHover", "onScroll"
+                }
+            })
+
+            // Paging =====================================
+
+            $("#grid3").dxDataGrid({
                 dataSource: new DevExpress.data.CustomStore({
                     key: "id",
                     load: function () {

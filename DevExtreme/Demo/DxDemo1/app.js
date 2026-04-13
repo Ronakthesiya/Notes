@@ -13,6 +13,7 @@ let department = [
     'Engineering',
     'Marketing & Sales',
     'Human Resources']
+
 let departmentValue = -1;
 
 let jobTitle = {
@@ -36,6 +37,46 @@ let jobTitle = {
 };
 
 console.log(jobTitle[0])
+
+function refresh(e) {
+    let gridInstance;
+
+    let $dataGrid = $("<div>").dxDataGrid({
+        dataSource: jobTitle[departmentValue],
+        keyExpr: "id",
+        columns: ["title"],
+        hoverStateEnabled: true,
+        selection: { mode: "single" },
+
+        onSelectionChanged: function (args) {
+            const selectedRow = args.selectedRowsData[0];
+            if (selectedRow) {
+                e.component.option("value", selectedRow.id);
+                e.component.close();
+            }
+        },
+
+        onContentReady: function (args) {
+            gridInstance = args.component;
+
+            // initial sync
+            const value = e.component.option("value");
+            if (value) {
+                gridInstance.selectRows(value, false);
+            }
+        }
+    });
+
+    // single event binding
+    e.component.off("valueChanged"); // ✅ prevent duplicate
+    e.component.on("valueChanged", function (args) {
+        if (gridInstance) {
+            gridInstance.selectRows(args.value, false);
+        }
+    });
+
+    return $dataGrid;
+}
 
 
 //STEP 1
@@ -135,37 +176,16 @@ $('#empId').dxTextBox({
         ]
     });
 
+
 $('#jobTitle').dxDropDownBox({
-    dataSource: [], // Start empty
+    dataSource: jobTitle[departmentValue], // Start empty
     valueExpr: "id",
     displayExpr: "title",
     placeholder: 'e.g. Software Engineer',
     stylingMode: 'outlined',
     contentTemplate: function (e) {
-        const value = e.component.option("value");
-        const $dataGrid = $("<div>").dxDataGrid({
-            // Use the data specific to the selected department
-            dataSource: jobTitle[departmentValue] || [],
-            columns: ["title"],
-            hoverStateEnabled: true,
-            selection: { mode: "single" },
-            selectedRowKeys: value !== undefined ? [value] : [],
-            onSelectionChanged: function (args) {
-                const selectedRow = args.selectedRowsData[0];
-                if (selectedRow) {
-                    e.component.option("value", selectedRow.id);
-                }
-                e.component.close();
-            }
-        });
-
-        // Sync grid selection if the value changes externally
-        e.component.on("valueChanged", function (args) {
-            $dataGrid.dxDataGrid("instance").selectRows(args.value, false);
-        });
-
-        return $dataGrid;
-    }
+        return refresh(e);
+    },
 }).dxValidator({
     validationGroup: 'step2',
     validationRules: [
@@ -180,13 +200,13 @@ $('#department').dxSelectBox({
     onSelectionChanged: function (e) {
         let index = department.indexOf(e.selectedItem);
         departmentValue = index;
+
         const jobTitleBox = $('#jobTitle').dxDropDownBox("instance");
-        
-        // Clear previous selection since it might not belong to the new department
-        jobTitleBox.reset(); 
-        
-        // Update the data source so the displayExpr can find the new titles
-        jobTitleBox.option("dataSource", jobTitle[departmentValue]);
+        jobTitleBox.option("value", null)
+        jobTitleBox.option("dataSource", jobTitle[departmentValue])
+        jobTitleBox.option("contentTemplate", function (e) {
+            return refresh(e);
+        });
     }
 }).dxValidator({
     validationGroup: 'step2',
@@ -205,7 +225,9 @@ $('#empType').dxRadioGroup({
 });
 
 $('#joiningDate').dxDateBox({
-    placeholder: 'DD/MM/YYYY', stylingMode: 'outlined', displayFormat: 'dd/MM/yyyy'
+    placeholder: 'DD/MM/YYYY',
+    stylingMode: 'outlined',
+    displayFormat: 'dd/MM/yyyy'
 }).dxValidator({
     validationGroup: 'step2', validationRules: [
         { type: 'required', message: 'Joining date is required.' }
@@ -214,61 +236,74 @@ $('#joiningDate').dxDateBox({
 
 $('#workLocation').dxSelectBox({
     items: ['On-site', 'Remote', 'Hybrid'],
-    placeholder: 'Select work mode', stylingMode: 'outlined'
+    placeholder: 'Select work mode',
+    stylingMode: 'outlined'
 });
 
 $('#salary').dxNumberBox({
-    placeholder: '0', stylingMode: 'outlined', format: '₹ #,##0', min: 0
+    placeholder: '0',
+    stylingMode: 'outlined',
+    format: '₹ #,##0',
+    min: 0
 });
 
 $('#manager').dxSelectBox({
     items: ['Anita Desai', 'Rohan Mehta', 'Priya Nair', 'Vikram Shah', 'Deepa Krishnan'],
-    placeholder: 'Select manager', stylingMode: 'outlined', searchEnabled: true
+    placeholder: 'Select manager',
+    stylingMode: 'outlined',
+    searchEnabled: true
 });
 
-/* ══════════════════════════════════════
-    STEP 3 WIDGETS  —  validationGroup: 'step3'
-══════════════════════════════════════ */
-$('#skills').dxTagBox({
-    items: ['JavaScript', 'TypeScript', 'Python', 'Java', 'C#', 'React', 'Angular', 'Vue',
-        'Node.js', 'Django', 'Spring Boot', '.NET', 'SQL', 'MongoDB', 'PostgreSQL',
-        'Docker', 'Kubernetes', 'AWS', 'Azure', 'GCP', 'DevOps', 'Figma', 'Photoshop'],
-    placeholder: 'Select or type skills…', stylingMode: 'outlined',
-    searchEnabled: true, showSelectionControls: true,
-    applyValueMode: 'useButtons', acceptCustomValue: true, maxDisplayedTags: 6
-}).dxValidator({
-    validationGroup: 'step3', validationRules: [
-        { type: 'required', message: 'Please add at least one skill.' }
-    ]
-});
+
+// STEP 3 WIDGETS  
+
+
+let uploadedFiles = [];
 
 $('#fileUpload').dxFileUploader({
     selectButtonText: 'Choose File',
-    labelText: 'or drop files here  (PDF, DOC, DOCX — max 5 MB)',
+    labelText: 'or drop files here (PDF, DOC, DOCX — max 5 MB)',
     multiple: true,
     allowedFileExtensions: ['.pdf', '.doc', '.docx'],
     maxFileSize: 5 * 1024 * 1024,
-    uploadMode: 'useForm'
+
+    onValueChanged: function (e) {
+        console.log(e.value)
+        uploadedFiles = e.value; 
+    }
+})
+.dxValidator({
+    validationGroup: 'step3',
+    validationRules: [
+        {
+            type: "required",
+            message: "Resume is required",
+        }
+    ]
 });
 
 $('#notes').dxTextArea({
     placeholder: 'Any additional information about this employee…',
-    stylingMode: 'outlined', height: 90, autoResizeEnabled: true
+    stylingMode: 'outlined',
+    height: 90,
+    autoResizeEnabled: true
 });
 
 $('#agree').dxCheckBox({ value: false })
     .dxValidator({
-        validationGroup: 'step3', validationRules: [
+        validationGroup: 'step3',
+        validationRules: [
             {
-                type: 'compare', comparisonType: '===', comparisonTarget: function () { return true; },
+                type: 'compare',
+                comparisonType: '===',
+                comparisonTarget: function () { return true; },
                 message: 'You must confirm the information is accurate.'
             }
         ]
     });
 
-/* ══════════════════════════════════════
-    NAVIGATION  —  goTo(step, goingBack)
-══════════════════════════════════════ */
+
+ //   NAVIGATION 
 function goTo(step, back) {
     $('#panel' + currentStep).removeClass('active going-back');
     currentStep = step;
@@ -288,19 +323,17 @@ function goTo(step, back) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-/* ══════════════════════════════════════
-    BUTTONS
-══════════════════════════════════════ */
+ //  BUTTONS
 
 // Step 1 → Next  (validates group 'step1')
 $('#btn1Next').dxButton({
     text: 'Next: Employment Details →', cssClass: 'btn-primary',
     onClick: function () {
-        //var result = DevExpress.validationEngine.validateGroup('step1');
-        //if (!result.isValid) {
-        //    toast('Please fix the highlighted errors before continuing.', 'error');
-        //    return;
-        //}
+        var result = DevExpress.validationEngine.validateGroup('step1');
+        if (!result.isValid) {
+            toast('Please fix the highlighted errors before continuing.', 'error');
+            return;
+        }
         goTo(2, false);
     }
 });
@@ -332,7 +365,8 @@ $('#btn3Back').dxButton({
 
 // Step 3 → Reset All
 $('#btn3Reset').dxButton({
-    text: 'Reset All', cssClass: 'btn-secondary',
+    text: 'Reset All',
+    cssClass: 'btn-secondary',
     onClick: function () {
         DevExpress.ui.dialog.confirm('Reset all fields and return to Step 1?', 'Reset Form')
             .done(function (yes) {
@@ -346,7 +380,8 @@ $('#btn3Reset').dxButton({
 
 // Step 3 → Submit  (validates group 'step3')
 $('#btn3Submit').dxButton({
-    text: 'Register Employee ✓', cssClass: 'btn-success',
+    text: 'Register Employee ✓',
+    cssClass: 'btn-success',
     onClick: function () {
         var result = DevExpress.validationEngine.validateGroup('step3');
         if (!result.isValid) {
@@ -367,9 +402,7 @@ $('#btnAnother').dxButton({
     }
 });
 
-/* ══════════════════════════════════════
-    SUBMIT
-══════════════════════════════════════ */
+//  SUBMIT
 function submitForm() {
     var data = {
         'First Name': $('#firstName').dxTextBox('instance').option('value'),
@@ -379,7 +412,6 @@ function submitForm() {
         'Email': $('#email').dxTextBox('instance').option('value'),
         'Phone': $('#phone').dxTextBox('instance').option('value'),
         'Employee ID': $('#empId').dxTextBox('instance').option('value'),
-        'Job Title': $('#jobTitle').dxAutocomplete('instance').option('value'),
         'Department': $('#department').dxSelectBox('instance').option('value'),
         'Employment Type': $('#empType').dxRadioGroup('instance').option('value'),
         'Joining Date': $('#joiningDate').dxDateBox('instance').option('value'),
@@ -388,29 +420,14 @@ function submitForm() {
             ? '₹ ' + Number($('#salary').dxNumberBox('instance').option('value')).toLocaleString('en-IN')
             : '—',
         'Manager': $('#manager').dxSelectBox('instance').option('value') || '—',
-        'Skills': (($('#skills').dxTagBox('instance').option('value')) || []).join(', ') || '—'
     };
 
     console.log('Employee Registration:', data);
 
-    // Build summary
-    var html = '';
-    Object.keys(data).forEach(function (k) {
-        html += '<div class="sum-item"><label>' + k + '</label><span>' + (data[k] || '—') + '</span></div>';
-    });
-    $('#summaryGrid').html(html);
-
-    // Show success
-    $('#panel3').removeClass('active');
-    for (var i = 1; i <= 3; i++) $('#st' + i).addClass('done').removeClass('active');
-    $('#con1, #con2').addClass('filled');
-    $('#successPanel').addClass('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+   
 }
 
-/* ══════════════════════════════════════
-    RESET ALL
-══════════════════════════════════════ */
+//    RESET ALL
 function resetAll() {
     // Step 1
     $('#firstName').dxTextBox('instance').reset();
@@ -422,7 +439,6 @@ function resetAll() {
     $('#address').dxTextArea('instance').reset();
     // Step 2
     $('#empId').dxTextBox('instance').reset();
-    $('#jobTitle').dxAutocomplete('instance').reset();
     $('#department').dxSelectBox('instance').reset();
     $('#empType').dxRadioGroup('instance').reset();
     $('#joiningDate').dxDateBox('instance').reset();
@@ -430,7 +446,6 @@ function resetAll() {
     $('#salary').dxNumberBox('instance').reset();
     $('#manager').dxSelectBox('instance').reset();
     // Step 3
-    $('#skills').dxTagBox('instance').reset();
     $('#notes').dxTextArea('instance').reset();
     $('#agree').dxCheckBox('instance').option('value', false);
     // Reset validation highlights for each group

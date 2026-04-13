@@ -17,6 +17,7 @@
     <script>
         let url = "https://69c214b97518bf8facbd35ad.mockapi.io/users"
 
+        // using custom store
         //let store = new DevExpress.data.CustomStore({
         //    key: "id",
         //    load: function () {
@@ -32,6 +33,7 @@
         //    key: "id",
         //})
 
+        // direct asign custom store internal built creation
         $("#grid").dxDataGrid({
             dataSource: {
                 load: function () {
@@ -42,17 +44,8 @@
                 }
             },
 
-            scrolling: {
-                mode: "virtual",
-                useNative: false,
-                rowRenderingMode: "virtual",
-                columnRenderingMode: "virtual",
-                scrollByContent: true,
-                showScrollbar: "onHover"
-            },
-
             paging: {
-                pageSize: 100
+                pageSize: 10
             },
 
             pager: {

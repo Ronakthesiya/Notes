@@ -1,7 +1,11 @@
 ﻿
 const orders = [
-    { id: 1, statusId: 1 },
-    { id: 2, statusId: 2 }
+    { id: 1, name: "order1", statusId: 1 },
+    { id: 2, name: "order2", statusId: 2 },
+    { id: 3, name: "order3", statusId: 1 },
+    { id: 4, name: "order4", statusId: 1 },
+    { id: 5, name: "order5", statusId: 2 },
+    { id: 6, name: "order6", statusId: 2 }
 ];
 
 const statusList = [
@@ -13,6 +17,12 @@ $("#grid2").dxDataGrid({
     dataSource: orders,
     columns: [
         {
+            dataField: "id",
+        },
+        {
+            dataField: "name",
+        },
+        {
             dataField: "statusId",
             caption: "Status",
             lookup: {
@@ -20,9 +30,7 @@ $("#grid2").dxDataGrid({
                 valueExpr: "id",
                 displayExpr: "name"
             }
-        },
-        {
-            dataField: "id",
         }
+        
     ]
 })

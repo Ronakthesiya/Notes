@@ -129,7 +129,7 @@ pager: {
 | `useNative`           | boolean / "auto" | `"auto"`     | Native scroll              |
 | `scrollByContent`     | boolean          | `true`       | Touch scroll               |
 | `scrollByThumb`       | boolean          | `true`       | Scrollbar drag             |
-| `showScrollbar`       | string           | `"onHover"`  | Scrollbar visibility       |
+| `showScrollbar`       | string           | `"onHover/onScroll"`  | Scrollbar visibility       |
 
 
 ## Editing
@@ -1650,6 +1650,175 @@ groupCellTemplate: function (element, options) {
 | `column.caption` | Header text          |
 | `component`      | DataGrid instance    |
 
+```js
+headerCellTemplate: function (header, info) {
+    const container = $("<div>");
 
+    $("<span>")
+        .text(info.column.caption)
+        .appendTo(container);
+
+    $("<button>")
+        .text("Sort")
+        .on("click", function () {
+            console.log("Sort clicked");
+        })
+        .appendTo(container);
+
+    container.appendTo(header);
+}
+```
+
+
+
+
+======================================================================================
+
+## Methods
+
+| Method      | Description            | Example                         |
+| ----------- | ---------------------- | ------------------------------- |
+| `refresh()` | Reload data            | `grid.refresh()`                |
+| `reload()`  | Reload from dataSource | `grid.getDataSource().reload()` |
+| `dispose()` | Destroy grid instance  | `grid.dispose()`                |
+
+| Method                    | Description         | Example                      |
+| ------------------------- | ------------------- | ---------------------------- |
+| `getDataSource()`         | Returns data source | `grid.getDataSource()`       |
+| `getVisibleRows()`        | Get current rows    | `grid.getVisibleRows()`      |
+| `getSelectedRowsData()`   | Get selected data   | `grid.getSelectedRowsData()` |
+| `getKeyByRowIndex(index)` | Get row key         | `grid.getKeyByRowIndex(0)`   |
+| `byKey(key)`              | Get row by key      | `grid.byKey(1)`              |
+
+| Method             | Description           | Example                 |
+| ------------------ | --------------------- | ----------------------- |
+| `addRow()`         | Add new row           | `grid.addRow()`         |
+| `editRow(index)`   | Edit row              | `grid.editRow(0)`       |
+| `deleteRow(index)` | Delete row            | `grid.deleteRow(0)`     |
+| `saveEditData()`   | Save changes          | `grid.saveEditData()`   |
+| `cancelEditData()` | Cancel editing        | `grid.cancelEditData()` |
+| `hasEditData()`    | Check pending changes | `grid.hasEditData()`    |
+
+| Method               | Description         | Example                  |
+| -------------------- | ------------------- | ------------------------ |
+| `selectRows(keys)`   | Select rows         | `grid.selectRows([1,2])` |
+| `deselectRows(keys)` | Deselect rows       | `grid.deselectRows([1])` |
+| `clearSelection()`   | Clear all selection | `grid.clearSelection()`  |
+| `isRowSelected(key)` | Check selection     | `grid.isRowSelected(1)`  |
+
+| Method           | Description    | Example             |
+| ---------------- | -------------- | ------------------- |
+| `pageIndex()`    | Get/set page   | `grid.pageIndex(1)` |
+| `pageSize()`     | Get/set size   | `grid.pageSize(20)` |
+| `getPageIndex()` | Get page index | `grid.pageIndex()`  |
+
+| Method                            | Description       | Example                                       |
+| --------------------------------- | ----------------- | --------------------------------------------- |
+| `columnOption(id)`                | Get column option | `grid.columnOption("name")`                   |
+| `columnOption(id, option, value)` | Set column option | `grid.columnOption("name", "visible", false)` |
+| `getVisibleColumns()`             | Get columns       | `grid.getVisibleColumns()`                    |
+
+| Method           | Description    | Example                                  |
+| ---------------- | -------------- | ---------------------------------------- |
+| `filter()`       | Get/set filter | `grid.filter(["name", "contains", "A"])` |
+| `clearFilter()`  | Clear filter   | `grid.clearFilter()`                     |
+| `clearSorting()` | Remove sorting | `grid.clearSorting()`                    |
+
+| Method               | Description     | Example                     |
+| -------------------- | --------------- | --------------------------- |
+| `searchByText(text)` | Search globally | `grid.searchByText("john")` |
+
+| Method          | Description     | Example              |
+| --------------- | --------------- | -------------------- |
+| `expandAll()`   | Expand groups   | `grid.expandAll()`   |
+| `collapseAll()` | Collapse groups | `grid.collapseAll()` |
+
+| Method            | Description | Example               |
+| ----------------- | ----------- | --------------------- |
+| `exportToExcel()` | Export data | Custom implementation |
+
+| Method               | Description   | Example                  |
+| -------------------- | ------------- | ------------------------ |
+| `focus()`            | Focus grid    | `grid.focus()`           |
+| `navigateToRow(key)` | Scroll to row | `grid.navigateToRow(10)` |
+
+
+## Events
+
+| Event            | Description    |
+| ---------------- | -------------- |
+| `onInitialized`  | Grid created   |
+| `onContentReady` | Data rendered  |
+| `onDisposing`    | Before destroy |
+
+| Event                 | Description           |
+| --------------------- | --------------------- |
+| `onDataErrorOccurred` | Error in data loading |
+| `onLoadingChanged`    | Loading state         |
+| `onOptionChanged`     | Any config change     |
+
+| Event            | Description         |
+| ---------------- | ------------------- |
+| `onRowClick`     | Row click           |
+| `onRowDblClick`  | Double click        |
+| `onRowPrepared`  | Customize row       |
+| `onRowInserted`  | After insert        |
+| `onRowUpdated`   | After update        |
+| `onRowRemoved`   | After delete        |
+| `onRowInserting` | Before insert       |
+| `onRowUpdating`  | Before update       |
+| `onRowRemoving`  | Before delete       |
+| `onInitNewRow`   | Before new row init |
+
+| Event               | Description          |
+| ------------------- | -------------------- |
+| `onCellClick`       | Cell click           |
+| `onCellDblClick`    | Cell double click    |
+| `onCellPrepared`    | Customize cell       |
+| `onEditorPreparing` | Before editor create |
+| `onEditorPrepared`  | After editor create  |
+
+| Event            | Description   |
+| ---------------- | ------------- |
+| `onEditingStart` | Start editing |
+| `onEditCanceled` | Cancel edit   |
+| `onSaving`       | Before save   |
+| `onSaved`        | After save    |
+
+| Event            | Description   |
+| ---------------- | ------------- |
+| `onEditingStart` | Start editing |
+| `onEditCanceled` | Cancel edit   |
+| `onSaving`       | Before save   |
+| `onSaved`        | After save    |
+
+| Event                | Description       |
+| -------------------- | ----------------- |
+| `onSelectionChanged` | Selection changed |
+
+| Event                  | Description       |
+| ---------------------- | ----------------- |
+| `onFocusedRowChanged`  | Focus row change  |
+| `onFocusedCellChanged` | Focus cell change |
+
+| Event                | Description  |
+| -------------------- | ------------ |
+| `onPageIndexChanged` | Page changed |
+
+| Event              | Description     |
+| ------------------ | --------------- |
+| `onGroupExpanded`  | Group expanded  |
+| `onGroupCollapsed` | Group collapsed |
+
+| Event                    | Description       |
+| ------------------------ | ----------------- |
+| `onToolbarPreparing`     | Customize toolbar |
+| `onContextMenuPreparing` | Right-click menu  |
+
+| Event         | Description    |
+| ------------- | -------------- |
+| `onReorder`   | Column reorder |
+| `onDragStart` | Drag start     |
+| `onDragEnd`   | Drag end       |
 
 

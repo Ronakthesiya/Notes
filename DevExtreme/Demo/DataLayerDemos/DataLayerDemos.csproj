@@ -137,6 +137,8 @@
     <Content Include="Content\LocalStore.html" />
     <Content Include="DataGrid\DataBinding_AjaxCall.html" />
     <Content Include="DataGrid\DataBinding_SimpleArray.html" />
+    <Content Include="DataGrid\EditingModes\app.js" />
+    <Content Include="DataGrid\EditingModes\index.html" />
     <Content Include="DataGrid\Editing\Editing.css" />
     <Content Include="DataGrid\Editing\Editing.html" />
     <Content Include="DataGrid\Editing\Editing.js" />

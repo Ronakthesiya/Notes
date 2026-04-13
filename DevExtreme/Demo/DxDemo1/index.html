@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Employee Registration</title>
 
-    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/23.2.5/css/dx.dark.css" />
-    <link rel="stylesheet" href="Style.css"/>
-   
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/24.2.3/css/dx.dark.css">
+
+    <link rel="stylesheet" href="Style.css" />
+
 </head>
 <body>
     <!-- Page header -->
@@ -17,7 +18,7 @@
 
     <!-- Step Tracker -->
     <div class="step-tracker">
-        <div class="step-item active" id="st1">
+        <div class="step-item active" id="st1"> 
             <div class="step-circle">
                 <span class="num">1</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
@@ -55,8 +56,8 @@
     <!-- Card -->
     <div class="form-card">
 
-       
-        <!--STEP 1--> 
+
+        <!--STEP 1-->
         <div class="step-panel active" id="panel1">
             <div class="section-strip">
                 <div class="sdot" style="background:#4f8ef7"></div>
@@ -167,11 +168,8 @@
             <div class="form-body">
                 <div class="form-grid">
                     <div class="field-wrap col-full">
-                        <label class="field-label">Skills / Technologies <span class="req">*</span></label>
-                        <div id="skills"></div>
-                    </div>
-                    <div class="field-wrap col-full">
                         <label class="field-label">Upload Resume / Documents</label>
+                        <div id="uploadBtn"></div>
                         <div id="fileUpload"></div>
                     </div>
                     <div class="field-wrap col-full">
@@ -198,8 +196,9 @@
     </div><!-- /form-card -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdn3.devexpress.com/jslib/23.2.5/js/dx.all.js"></script>
-   
+
+    <!-- DevExtreme AFTER jQuery -->
+    <script src="https://cdn3.devexpress.com/jslib/24.2.3/js/dx.all.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

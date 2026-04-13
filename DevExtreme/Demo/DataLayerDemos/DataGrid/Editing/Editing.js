@@ -137,7 +137,12 @@ $(function () {
                         labelMode: "floating",
                     },
                 },
-                validationRules: [{ type: "required" }],
+                validationRules: [{
+                    type: "stringLength",
+                    min: 3,
+                    max: 10,
+                    message: "Must be between 3–10 characters"
+                }],
 
                 // filter
                 filterOperations: ["contains", "="], // filter options
@@ -198,10 +203,10 @@ $(function () {
             },
 
             // customize the config columns
-            {
-                type: "selection",
-                //width: 50
-            },
+            //{
+            //    type: "selection",
+            //    width: 50
+            //},
             {
                 type: "buttons",
                 buttons: [
@@ -228,11 +233,13 @@ $(function () {
         allowColumnResizing: true,
         // width based on inner content size
         columnAutoWidth: true,
-        // Horizontal scrolling
+
         // not working
         //columnFixing: {enabled: true },
 
+
         columnChooser: { enabled: true },
+
         paging: {
             pageSize: 5
         },
@@ -243,12 +250,13 @@ $(function () {
             allowedPageSizes: [5, 10, 15, 30]
         },
 
+        // Editing
         editing: {
             allowUpdating: true,
             allowAdding: true,
             allowDeleting: true,
             confirmDelete: true,
-            mode: "batch" // 'batch' | 'cell' | 'form' | 'popup'
+            mode: "batch" // 'row' | 'cell' | 'batch' | 'form' | 'popup'
         },
 
         // DEFAULT VALUE
@@ -286,6 +294,7 @@ $(function () {
         // Form Editing
 
         onEditorPreparing: function (e) {
+            console.log("Editor preparing")
             if (e.dataField == "id")
                 e.editorOptions.disabled = true;
         },
@@ -297,7 +306,7 @@ $(function () {
         grouping: {
             contextMenuEnabled: true,
             expandMode: "rowClick",  // or "buttonClick"
-            autoExpandAll: false,
+            autoExpandAll: true,
             allowCollapsing: true
         },
         // allow group panel with drag and drop feature
@@ -322,7 +331,7 @@ $(function () {
                 {
                     column: "salary",
                     summaryType: "max",
-                    name: "max",
+                    name: "NameForSorting",
                     alignByColumn: true
                 },
                 {
@@ -331,10 +340,17 @@ $(function () {
                     alignByColumn: true
 
                 }
+            ],
+            totalItems: [
+                {
+                    column: "salary",
+                    summaryType: "sum",
+                    alignByColumn: true,
+                }
             ]
         },
         sortByGroupSummaryInfo: [{
-            summaryItem: "max",  // or "count" | 0 | "OrderNumber"
+            summaryItem: "NameForSorting",  // or "count" | 0 | "OrderNumber"
             sortOrder: "asc"            // or "asc"
         }],
 
@@ -350,7 +366,7 @@ $(function () {
         },
         searchPanel: { visible: true },
         filterPanel: { visible: true },
-        filterSyncEnabled: false, // change in filterpanel are sync to headerfilter and filter row
+        filterSyncEnabled: true, // change in filterpanel are sync to headerfilter and filter row
 
 
         // State Storing
@@ -432,7 +448,7 @@ $(function () {
 
     // Add new row initially
     gridInstance.addRow();
-
+        
     // Update button
     $("#btn").dxButton({
         text: "Update First Row",
@@ -447,6 +463,7 @@ $(function () {
         text: "Delete First Row",
         onClick: function () {
             gridInstance.deleteRow(0);
+            //gridInstance.saveEditData();
         }
     });
 

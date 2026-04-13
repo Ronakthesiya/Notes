@@ -326,16 +326,7 @@ body {
     border-radius: 5px !important;
 }
 
-.dx-fileuploader-wrapper {
-    background: var(--surface) !important;
-    border: 1.5px dashed var(--border) !important;
-    border-radius: 10px !important;
-    color: var(--muted) !important;
-}
 
-.dx-fileuploader-button {
-    display: none !important;
-}
 
 /* ── Buttons ── */
 .btn-row {
@@ -543,4 +534,3 @@ body {
         grid-template-columns: 1fr;
     }
 }
-
